@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
-import classes from './App.scss';
 // import '../../assets/css/themecss/bootstrap.min.css'
 // import '../../assets/css/stylesheet.css'
 import Header from '../../containers/Shop/Header/Header';
@@ -8,7 +6,7 @@ import Header from '../../containers/Shop/Header/Header';
 class App extends Component {
   render() {
     return (
-      <Header/>
+      <Header />
       // <div className={classes.App}>
       //   <header className={classes['App-header']}>
       //     <img src={logo} className="App-logo" alt="logo" />

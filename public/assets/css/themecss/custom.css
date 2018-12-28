@@ -22,10 +22,10 @@ span.customSelect.changed {
   box-shadow: 0 0 3px #ff906a;*/
 }
 .customSelectInner {
-	background:url('../../image/themeimage/select-arrow-down.gif') no-repeat center right;
+	background:url('../../../assets/images/themeimage/select-arrow-down.gif') no-repeat center right;
 	width:100% !important;
 }
-.customSelectOpen .customSelectInner{ background:url('../../image/themeimage/select-arrow-up.gif') no-repeat center right; }
+.customSelectOpen .customSelectInner{ background:url('../../../assets/images/themeimage/select-arrow-up.gif') no-repeat center right; }
 #input-sort , #input-limit, #product .form-group select { cursor:pointer;}
 /* TREEVIEW CATEGORY LEFT */
 .treeview-list, .treeview-list ul { 
@@ -63,22 +63,22 @@ span.customSelect.changed {
 .treeview-list li ul li a:hover	{/*color:#D09E00;*/ } 	
 .treeview-list li ul li { background:none; border-bottom:none; }
 .treeview-list .collapsable .expandable-hitarea { 
-	background: url(../../image/themeimage/sprite.png) no-repeat scroll -38px -98px transparent;
+	background: url(../../../assets/images/themeimage/sprite.png) no-repeat scroll -38px -98px transparent;
     height: 25px;
     width: 25px;  
 } 
 .treeview-list .expandable .collapsable-hitarea{ 
-	background: url(../../image/themeimage/sprite.png) no-repeat scroll -38px -72px transparent;
+	background: url(../../../assets/images/themeimage/sprite.png) no-repeat scroll -38px -72px transparent;
     height: 25px;
     width: 25px;  
 } 
 .treeview-list .expandable-hitarea { 
-	background: url(../../image/themeimage/sprite.png) no-repeat scroll -38px -72px transparent;
+	background: url(../../../assets/images/themeimage/sprite.png) no-repeat scroll -38px -72px transparent;
     height: 25px;
     width: 25px;  
 } 
 .treeview-list .collapsable-hitarea { 
-	background: url(../../image/themeimage/sprite.png) no-repeat scroll -38px -98px transparent;
+	background: url(../../../assets/images/themeimage/sprite.png) no-repeat scroll -38px -98px transparent;
     height: 25px;
     width: 25px;
 } 
@@ -150,7 +150,7 @@ span.customSelect.changed {
 	max-height: 100%;
 }
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url('../../image/themeimage/fancybox_sprite.html');
+	background-image: url('../../../assets/images/themeimage/fancybox_sprite.html');
 }
 #fancybox-loading {
 	position: fixed;
@@ -169,7 +169,7 @@ span.customSelect.changed {
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-	background: url('../../image/themeimage/fancybox_loading.html') center center no-repeat;
+	background: url('../../../assets/images/themeimage/fancybox_loading.html') center center no-repeat;
 }
 .fancybox-close {
 	position: absolute;
@@ -187,7 +187,7 @@ span.customSelect.changed {
 	height: 100%;
 	cursor: pointer;
 	text-decoration: none;
-	background: transparent url('../../image/themeimage/blank.html'); /* helps IE */
+	background: transparent url('../../../assets/images/themeimage/blank.html'); /* helps IE */
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	z-index: 8040;
 }
@@ -238,7 +238,7 @@ span.customSelect.changed {
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: url('../../image/themeimage/fancybox_overlay.html');
+	background: url('../../../assets/images/themeimage/fancybox_overlay.html');
 }
 .fancybox-overlay-fixed {
 	position: fixed;
@@ -302,7 +302,7 @@ span.customSelect.changed {
 	background: rgba(0, 0, 0, .8);
 }
 /*.zoomContainer .zoomLens{
-	cursor: url(../../image/themeimage/zoom.png), pointer !important;
+	cursor: url(../../../assets/images/themeimage/zoom.png), pointer !important;
 	border:none !important;
 	opacity:0 !important;
 }*/
@@ -371,7 +371,7 @@ span.customSelect.changed {
 }
 .nav-responsive .expandable {
 	background-color: transparent;
-	background-image: url("../../image/themeimage/menu.svg");
+	background-image: url("../../../assets/images/themeimage/menu.svg");
 	background-repeat: no-repeat;
 	background-position: center center;
 	height: 28px;
@@ -380,14 +380,14 @@ span.customSelect.changed {
 	background-size: 24px;
 }
 .nav-responsive .expandable:hover {
-	background-image: url("../../image/themeimage/menu-hover.svg");
+	background-image: url("../../../assets/images/themeimage/menu-hover.svg");
 }
 .nav-responsive .expandable.active {
-	background-image: url("../../image/themeimage/close.svg");
+	background-image: url("../../../assets/images/themeimage/close.svg");
 	background-size: 20px;
 }
 .nav-responsive .expandable.active:hover {
-	background-image: url("../../image/themeimage/close-hover.svg");	
+	background-image: url("../../../assets/images/themeimage/close-hover.svg");	
 }
 .responsive-menu {
 	padding: 0;
@@ -414,26 +414,26 @@ span.customSelect.changed {
 }
 .responsive-menu .hitarea{margin-right:0;}
 .responsive-menu .expandable .collapsable-hitarea{ 
-	background:url("../../image/themeimage/sprite.png") no-repeat -9px -92px transparent;
+	background:url("../../../assets/images/themeimage/sprite.png") no-repeat -9px -92px transparent;
 	height: 33px;		
 	padding: 0;
 	width: 30px;
 } 
 .responsive-menu .expandable-hitarea { 
-	background:url("../../image/themeimage/sprite.png") no-repeat -9px -66px transparent;
+	background:url("../../../assets/images/themeimage/sprite.png") no-repeat -9px -66px transparent;
 	height: 33px;
 	width: 30px;		
 	padding: 10px;
 } 
 .responsive-menu .collapsable-hitarea { 
-	background: url("../../image/themeimage/sprite.png") no-repeat -9px -92px transparent;
+	background: url("../../../assets/images/themeimage/sprite.png") no-repeat -9px -92px transparent;
 	height: 33px;
 	width: 30px;	
 } 
 /* Responsive menu Css End */
 @media only screen and (max-width: 979px) {
 	.common-home .zoomContainer .zoomLens{
-		cursor: url(../../image/themeimage/zoom.html), pointer !important;
+		cursor: url(../../../assets/images/themeimage/zoom.html), pointer !important;
 		border:none !important;
 		opacity:0 !important;
 	}
