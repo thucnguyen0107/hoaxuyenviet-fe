@@ -41,20 +41,23 @@ const navigationItem = (props) => {
     );
   }
 
-
-
-
-  return (
-    <li className={li.join(' ')}><a href="#">{props.children}</a>
-      <div className="dropdown-menu megamenu " >
-        <div className="dropdown-inner">
-          <ul style={styleList} className="list-unstyled childs_2">
-            {subNavListHTML}
-          </ul>
+  if (props.type === 'dropdown') {
+    return (
+      <li className={li.join(' ')}><a href="#">{props.children}</a>
+        <div className="dropdown-menu megamenu " >
+          <div className="dropdown-inner">
+            <ul style={styleList} className="list-unstyled childs_2">
+              {subNavListHTML}
+            </ul>
+          </div>
         </div>
-      </div>
-    </li>
-  );
+      </li>
+    )
+  }
+
+  else {
+    return <li className={li.join(' ')}><a href="#">{props.children}</a></li>;
+  }
 };
 
 export default navigationItem;
