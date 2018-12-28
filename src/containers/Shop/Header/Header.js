@@ -22,7 +22,7 @@ class Header extends Component{
                         <div className="header-left">
                             <div className="header-logo">
                                 <div id="logo">
-                                    <a href="index9328.html?route=common/home"><img src="image/catalog/logo.png" title="Style-Light" alt="Style-Light"
+                                    <a href="index9328.html?route=common/home"><img src="assets/images/catalog/logo.png" title="Style-Light" alt="Style-Light"
                                          className="img-responsive" /></a>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@ class Header extends Component{
                                     <i className="fa fa-angle-down"></i>
                                 </div>
                                 <div id="search" className="input-group">
-                                    <input type="text" name="search" value="" placeholder="Search here..." className="form-control input-lg" />
+                                    <input type="text" name="search" placeholder="Search here..." className="form-control input-lg" />
                                     <span className="input-group-btn">
                                         <button type="button" className="btn-default btn-lg">
                                             <span className="search_button"><i className="fa fa-search" aria-hidden="true"></i></span>
@@ -151,8 +151,8 @@ class Header extends Component{
                                             </div>
                                         </nav>
                                         <div className="lang-curr-wrapper">
-                                            <form action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=common/language/language"
-                                             method="post" enctype="multipart/form-data" id="form-language">
+                                            <form action="#"
+                                             method="post"  id="form-language">
                                                 <div className="btn-group">
                                                     <span>
     
@@ -174,8 +174,8 @@ class Header extends Component{
                                                 <input type="hidden" name="redirect" value="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=common/home" />
                                             </form>
     
-                                            <form action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=common/currency/currency"
-                                             method="post" enctype="multipart/form-data" id="form-currency">
+                                            <form action="#"
+                                             method="post"  id="form-currency">
                                                 <div className="btn-group">
                                                     <span>
                                                         $
