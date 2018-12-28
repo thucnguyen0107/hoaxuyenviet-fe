@@ -590,7 +590,7 @@ $(document).ready(function() {
 
 function responsivecolumn() {
 	// ---------------- Fixed header responsive ----------------------
-	
+	console.log('test')
     if ($(document).width() >= 980) {
         $(window).bind('scroll', function() {
     		if ($(window).scrollTop() > 750) {
