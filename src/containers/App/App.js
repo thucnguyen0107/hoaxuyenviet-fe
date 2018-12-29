@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
-import classes from './App.scss';
 import Shop from '../Shop/Shop';
 
 

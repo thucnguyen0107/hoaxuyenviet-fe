@@ -9,7 +9,7 @@ while (i < columnDropdownList) {
 console.log(columnArr);
 const styleList = {
   'display': 'grid',
-  'grid-template-columns': columnArr.join(' ')
+  'gridTemplateColumns': columnArr.join(' ')
 }
 
 const navigationItem = (props) => {
@@ -30,8 +30,8 @@ const navigationItem = (props) => {
         {
           subNavList.map(subNav => {
             return (
-              <li >
-                <a href="#">{subNav.subName}</a>
+              <li key={subNav.id}>
+                <a href="index9328.html?route=common/home">{subNav.subName}</a>
               </li>
 
             );
@@ -43,7 +43,7 @@ const navigationItem = (props) => {
 
   if (props.type === 'dropdown') {
     return (
-      <li className={li.join(' ')}><a href="#">{props.children}</a>
+      <li className={li.join(' ')}><a href="index9328.html?route=common/home">{props.children}</a>
         <div className="dropdown-menu megamenu " >
           <div className="dropdown-inner">
             <ul style={styleList} className="list-unstyled childs_2">
@@ -56,7 +56,7 @@ const navigationItem = (props) => {
   }
 
   else {
-    return <li className={li.join(' ')}><a href="#">{props.children}</a></li>;
+    return <li className={li.join(' ')}><a href="index9328.html?route=common/home">{props.children}</a></li>;
   }
 };
 

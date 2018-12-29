@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import TopNavigation from '../../../components/TopNavigation/TopNavigation';
 
 class Header extends Component {
-	state = {
+	headerContent = {
 		categories: [
 			{ id: 1, name: 'Home', type: 'home' },
 			{
 				id: 2, name: 'Decorative', type: 'dropdown', subCategories:
 					[
-						{ subName: 'Indoor' },
-						{ subName: 'Outdoor' },
-						{ subName: 'Downlights' },
-						{ subName: 'Uplights' },
-						{ subName: 'LED-Batten-Tubes' },
-						{ subName: 'Projector' },
-						{ subName: 'Bollard' },
-						{ subName: 'Ground-Burial' },
-						{ subName: 'Projector' },
+						{id:1, subName: 'Indoor' },
+						{id:2, subName: 'Outdoor' },
+						{id:3, subName: 'Downlights' },
+						{id:4, subName: 'Uplights' },
+						{id:5, subName: 'LED-Batten-Tubes' },
+						{id:6, subName: 'Projector' },
+						{id:7, subName: 'Bollard' },
+						{id:8, subName: 'Ground-Burial' },
+						{id:9, subName: 'Projector' },
 					]
 			},
 			{ id: 3, name: 'Chandelier' },
@@ -30,7 +30,7 @@ class Header extends Component {
 	render() {
 		return (
 			<div>
-				<TopNavigation listCategoriesName={this.state.categories} />
+				<TopNavigation listCategoriesName={this.headerContent.categories} />
 			</div>
 
 		);
