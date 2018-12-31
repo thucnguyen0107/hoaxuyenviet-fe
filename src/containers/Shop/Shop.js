@@ -7,9 +7,11 @@ class Shop extends React.Component {
     render() {
         return (
             <>
+            <div className="common-home   layout-1">
                 <Header />
                 <Body />
                 <Footer />
+            </div>
             </>
         )
     }
