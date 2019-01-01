@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
-import Banner1 from '../../../assets/images/catalog/banners/main-banner-1-1903x928.jpg';
-import Banner2 from '../../../assets/images/catalog/banners/main-banner-2-1903x928.jpg';
+// import Banner1 from '../../../assets/images/catalog/banners/main-banner-1-1903x928.jpg';
+// import Banner2 from '../../../assets/images/catalog/banners/main-banner-2-1903x928.jpg';
 import catBanner1 from '../../../assets/images/catalog/demo/cat-banner-1.png';
 import catBanner2 from '../../../assets/images/catalog/demo/cat-banner-2.png';
 import catBanner3 from '../../../assets/images/catalog/demo/cat-banner-3.png';
 import catBanner4 from '../../../assets/images/catalog/demo/cat-banner-4.png';
+import BannersSlider from '../../../components/Slider/BannersSlider/BannersSlider';
+import CategoriesSlider from '../../../components/Slider/CategoriesSlider/CategoriesSlider';
 
 import $ from 'jquery';
 class Body extends Component {
+
+
+  arrBannerSlider = [
+    { id: 1, srcImg: require('../../../assets/images/catalog/banners/main-banner-1-1903x928.jpg') },
+    { id: 2, srcImg: require('../../../assets/images/catalog/banners/main-banner-2-1903x928.jpg') },
+  ]
+
+  arrCatBannerSlider = [
+    { id: 1, name: 'Hanging lighting Collection', srcImg: require('../../../assets/images/catalog/demo/cat-banner-1.png') },
+    { id: 2, name: 'Best Table Lamp', srcImg: require('../../../assets/images/catalog/demo/cat-banner-2.png') },
+    { id: 3, name: 'New Night lamp', srcImg: require('../../../assets/images/catalog/demo/cat-banner-3.png') },
+    { id: 4, name: 'Living room Lighting', srcImg: require('../../../assets/images/catalog/demo/cat-banner-4.png') },
+  ]
 
   arrImageTabCategorySlider = [
     { id: 1, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
@@ -71,9 +86,9 @@ class Body extends Component {
     paginationType: 'bullets'*/
   }
 
-  
 
- 
+
+
 
   componentDidMount() {
     $(document).ready(function () {
@@ -90,155 +105,12 @@ class Body extends Component {
         <div className="content-top">
           <div id="content">
             {/**Slider */}
-            <div className="main-slider">
-              <div id="spinner"></div>
-              <div className="swiper-viewport">
-                <div id="slideshow0" className="swiper-container" style={{ opacity: "1" }}>
-                  <div className="swiper-wrapper">
-                    <div className="swiper-slide text-center">
-                      <a href="#"><img src={Banner1} alt="Main-banner-1" className="img-responsive" /></a></div>
-                    <div className="swiper-slide text-center">
-                      <a href="#"><img src={Banner2} alt="Main-banner-2" className="img-responsive" /></a></div>
-                  </div>
-                </div>
-                <div className="swiper-pagination slideshow0"></div>
-                <div className="swiper-pager">
-                  <div className="swiper-button-next"></div>
-                  <div className="swiper-button-prev"></div>
-                </div>
-              </div>
-            </div>
+            <BannersSlider listBannerSlider={this.arrBannerSlider} />
             {/**End Slider */}
 
             {/**Test Category Block SlideShow */}
-            <div className="main-slider">
-              <div className="swiper-viewport">
-                <div id="slideshow1" className="swiper-container" style={{ opacity: "1" }}>
-                  <div className="swiper-wrapper">
-                    {/**Category Block Slide 1*/}
-                    <div className="swiper-slide text-center">
-                      <div id="categorycmsblock" className="categorycmsblock">
-                        <div className="container">
-                          <div className="row">
-                            <div className="categorycmsblock-wrapper">
-                              <div className="row">
-                                <div className="categorycmsblock-left col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                  <div className="categorycmsblock-item categorycmsblock-item-1">
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner1} alt="Cat-banner-1" />
-                                    </div>
-                                    <div className="categorycmsblock-title-link-wrapper">
-                                      <span className="categorycmsblock-title">Hanging lighting Collection</span>
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                  <div className="categorycmsblock-item categorycmsblock-item-2">
-                                    <div className="categorycmsblock-title-wrapper">
-                                      <span className="categorycmsblock-title">Best Table Lamp</span>
-                                    </div>
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner2} alt="Cat-banner-2" />
-                                    </div>
-                                    <div className="categorycmsblock-link-wrapper">
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="categorycmsblock-right col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                  <div className="categorycmsblock-item categorycmsblock-item-3">
-                                    <div className="categorycmsblock-title-wrapper">
-                                      <span className="categorycmsblock-title">New Night lamp</span>
-                                    </div>
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner3} alt="Cat-banner-3" />
-                                    </div>
-                                    <div className="categorycmsblock-link-wrapper">
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                  <div className="categorycmsblock-item categorycmsblock-item-4">
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner4} alt="Cat-banner-4" />
-                                    </div>
-                                    <div className="categorycmsblock-title-link-wrapper">
-                                      <span className="categorycmsblock-title">Living room Lighting</span>
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {/**Category Block Slide 2*/}
-                    <div className="swiper-slide text-center">
-                      <div id="categorycmsblock" className="categorycmsblock">
-                        <div className="container">
-                          <div className="row">
-                            <div className="categorycmsblock-wrapper">
-                              <div className="row">
-                                <div className="categorycmsblock-left col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                  <div className="categorycmsblock-item categorycmsblock-item-1">
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner4} alt="Cat-banner-1" />
-                                    </div>
-                                    <div className="categorycmsblock-title-link-wrapper">
-                                      <span className="categorycmsblock-title">Hanging lighting Collection</span>
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                  <div className="categorycmsblock-item categorycmsblock-item-2">
-                                    <div className="categorycmsblock-title-wrapper">
-                                      <span className="categorycmsblock-title">Best Table Lamp</span>
-                                    </div>
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner2} alt="Cat-banner-2" />
-                                    </div>
-                                    <div className="categorycmsblock-link-wrapper">
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="categorycmsblock-right col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                  <div className="categorycmsblock-item categorycmsblock-item-3">
-                                    <div className="categorycmsblock-title-wrapper">
-                                      <span className="categorycmsblock-title">New Night lamp</span>
-                                    </div>
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner3} alt="Cat-banner-3" />
-                                    </div>
-                                    <div className="categorycmsblock-link-wrapper">
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                  <div className="categorycmsblock-item categorycmsblock-item-4">
-                                    <div className="categorycmsblock-image">
-                                      <img src={catBanner4} alt="Cat-banner-4" />
-                                    </div>
-                                    <div className="categorycmsblock-title-link-wrapper">
-                                      <span className="categorycmsblock-title">Living room Lighting</span>
-                                      <a className="categorycmsblock-link" href="#">View More</a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* <div className="swiper-pagination slideshow0"></div>
-                <div className="swiper-pager">
-                  <div className="swiper-button-next"></div>
-                  <div className="swiper-button-prev"></div>
-                </div> */}
-              </div>
-            </div>
 
+            <CategoriesSlider listCatBannerSlider={this.arrCatBannerSlider} />
             {/**END Test Category Block SlideShow */}
 
             {/**Category Block */}
