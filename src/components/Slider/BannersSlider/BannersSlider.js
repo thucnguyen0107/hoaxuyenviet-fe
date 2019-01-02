@@ -1,27 +1,35 @@
 import React from 'react';
-
+import SwiperSlider from '../SwiperSlider/SwiperSlider';
+import Slider from '../../../components/UI/Slider';
 const bannersSlider = (props) => {
 
-    return (
-        <div className="main-slider">
-            <div id="spinner"></div>
-            <div className="swiper-viewport">
-                <div id="slideshow0" className="swiper-container" style={{ opacity: "1" }}>
-                    <div className="swiper-wrapper">
-                        <div className="swiper-slide text-center">
-                            <a href="#"><img src={props.listBannerSlider[0].srcImg} alt="Main-banner-1" className="img-responsive" /></a></div>
-                        <div className="swiper-slide text-center">
-                            <a href="#"><img src={props.listBannerSlider[1].srcImg} alt="Main-banner-2" className="img-responsive" /></a></div>
-                    </div>
-                </div>
-                <div className="swiper-pagination slideshow0"></div>
-                <div className="swiper-pager">
-                    <div className="swiper-button-next"></div>
-                    <div className="swiper-button-prev"></div>
-                </div>
-            </div>
-        </div>
-    );
-} 
+  let type = "bannerSlider";
+  let bannerId = "slideshow0";
+
+  let sliderList = [];
+
+  sliderList = (
+    <>
+      {
+        props.listBannerSlider.map((banner, index) => {
+          return (
+
+            <SwiperSlider key={banner.id}>
+              <a href="#"><img src={banner.srcImg} alt={`Main-banner-${index + 1}`} className="img-responsive" /></a>
+            </SwiperSlider>
+          )
+        })
+      }
+
+    </>
+  )
+
+
+  return (
+    <Slider type={type} bannerId={bannerId}>
+      {sliderList}
+    </Slider>
+  );
+}
 
 export default bannersSlider;

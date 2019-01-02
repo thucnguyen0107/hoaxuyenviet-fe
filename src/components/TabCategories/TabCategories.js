@@ -1,25 +1,22 @@
 import React from 'react';
+import TabCategoryHeader from '../TabCategories/TabCategoryHeader/TabCategoryHeader';
 
 const tabCategoriesSlider = (props) => {
+
+  // let arrTabCategoryHeaderName = [];
+
+  // props.listTabCategory.map(tab => {
+  //   arrTabCategoryHeaderName.push(tab.categoryName)
+  // })
+
+
+
   return (
     <>
       <div className="container">
         <div className="row">
           <div className="category-tab-container">
-            <div className="category-tab-heading-wrapper">
-              <div className="box-heading">
-                <h2 className="products-section-title">New Arrivals</h2>
-              </div>
-              <div className="etabs">
-                <ul className="nav nav-tabs">
-                  <li className="active"><a href="#All collection" data-toggle="tab">All
-													collection</a></li>
-                  <li><a href="#New arrivals" data-toggle="tab">New arrivals</a></li>
-                  <li><a href="#Top rated" data-toggle="tab">Top rated</a></li>
-                  <li><a href="#Best Seller" data-toggle="tab">Best Seller</a></li>
-                </ul>
-              </div>
-            </div>
+            <TabCategoryHeader listTabCategory={props.listTabCategory} />
             <div className="tabs">
               <div className="tab-content">
                 <div className="tab-pane active" id="All collection">
@@ -30,8 +27,8 @@ const tabCategoriesSlider = (props) => {
                           <div className="product-block-inner">
                             <div className="image">
                               <a href="indexd21c.html?route=product/product&amp;product_id=47">
-                                <img src={props.listTabCatBannerSlider[0].srcImg} title="HP LP3065" alt="HP LP3065" className="img-responsive reg-image" />
-                                <img className="img-responsive hover-image" src={props.listTabCatBannerSlider[2].srcImg} title="HP LP3065"
+                                <img src={props.tabCategory[0].srcImg} title="HP LP3065" alt="HP LP3065" className="img-responsive reg-image" />
+                                <img className="img-responsive hover-image" src={props.tabCategory[2].srcImg} title="HP LP3065"
                                   alt="HP LP3065" />
                               </a>
                               <div className="extra-info">
@@ -84,9 +81,9 @@ const tabCategoriesSlider = (props) => {
                           <div className="product-block-inner">
                             <div className="image">
                               <a href="indexb77e.html?route=product/product&amp;product_id=48">
-                                <img src={props.listTabCatBannerSlider[1].srcImg} title="iPod classNameic" alt="iPod classNameic"
+                                <img src={props.tabCategory[1].srcImg} title="iPod classNameic" alt="iPod classNameic"
                                   className="img-responsive reg-image" />
-                                <img className="img-responsive hover-image" src={props.listTabCatBannerSlider[3].srcImg} title="iPod classNameic"
+                                <img className="img-responsive hover-image" src={props.tabCategory[3].srcImg} title="iPod classNameic"
                                   alt="iPod classNameic" />
                               </a>
                               <div className="extra-info">
@@ -139,8 +136,8 @@ const tabCategoriesSlider = (props) => {
                           <div className="product-block-inner">
                             <div className="image">
                               <a href="indexb8ca.html?route=product/product&amp;product_id=43">
-                                <img src={props.listTabCatBannerSlider[2].srcImg} title="MacBook" alt="MacBook" className="img-responsive reg-image" />
-                                <img className="img-responsive hover-image" src={props.listTabCatBannerSlider[4].srcImg} title="MacBook"
+                                <img src={props.tabCategory[2].srcImg} title="MacBook" alt="MacBook" className="img-responsive reg-image" />
+                                <img className="img-responsive hover-image" src={props.tabCategory[4].srcImg} title="MacBook"
                                   alt="MacBook" />
                               </a>
                               <div className="extra-info">
@@ -193,8 +190,8 @@ const tabCategoriesSlider = (props) => {
                           <div className="product-block-inner">
                             <div className="image">
                               <a href="indexbfcf.html?route=product/product&amp;product_id=31">
-                                <img src={props.listTabCatBannerSlider[3].srcImg} title="Nikon D300" alt="Nikon D300" className="img-responsive reg-image" />
-                                <img className="img-responsive hover-image" src={props.listTabCatBannerSlider[5].srcImg} title="Nikon D300"
+                                <img src={props.tabCategory[3].srcImg} title="Nikon D300" alt="Nikon D300" className="img-responsive reg-image" />
+                                <img className="img-responsive hover-image" src={props.tabCategory[5].srcImg} title="Nikon D300"
                                   alt="Nikon D300" />
                               </a>
                               <div className="extra-info">
@@ -247,9 +244,9 @@ const tabCategoriesSlider = (props) => {
                           <div className="product-block-inner">
                             <div className="image">
                               <a href="index6a4d.html?route=product/product&amp;product_id=33">
-                                <img src={props.listTabCatBannerSlider[4].srcImg} title="Samsung SyncMaster 941BW" alt="Samsung SyncMaster 941BW"
+                                <img src={props.tabCategory[4].srcImg} title="Samsung SyncMaster 941BW" alt="Samsung SyncMaster 941BW"
                                   className="img-responsive reg-image" />
-                                <img className="img-responsive hover-image" src={props.listTabCatBannerSlider[6].srcImg} title="Samsung SyncMaster 941BW"
+                                <img className="img-responsive hover-image" src={props.tabCategory[6].srcImg} title="Samsung SyncMaster 941BW"
                                   alt="Samsung SyncMaster 941BW" />
                               </a>
                               <div className="extra-info">
@@ -302,8 +299,8 @@ const tabCategoriesSlider = (props) => {
                           <div className="product-block-inner">
                             <div className="image">
                               <a href="index2ebe.html?route=product/product&amp;product_id=46">
-                                <img src={props.listTabCatBannerSlider[5].srcImg} title="Sony VAIO" alt="Sony VAIO" className="img-responsive reg-image" />
-                                <img className="img-responsive hover-image" src={props.listTabCatBannerSlider[7].srcImg} title="Sony VAIO"
+                                <img src={props.tabCategory[5].srcImg} title="Sony VAIO" alt="Sony VAIO" className="img-responsive reg-image" />
+                                <img className="img-responsive hover-image" src={props.tabCategory[7].srcImg} title="Sony VAIO"
                                   alt="Sony VAIO" />
                               </a>
                               <div className="extra-info">

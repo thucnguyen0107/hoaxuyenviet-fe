@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import Banner1 from '../../../assets/images/catalog/banners/main-banner-1-1903x928.jpg';
 // import Banner2 from '../../../assets/images/catalog/banners/main-banner-2-1903x928.jpg';
 import catBanner1 from '../../../assets/images/catalog/demo/cat-banner-1.png';
@@ -6,19 +6,20 @@ import catBanner2 from '../../../assets/images/catalog/demo/cat-banner-2.png';
 import catBanner3 from '../../../assets/images/catalog/demo/cat-banner-3.png';
 import catBanner4 from '../../../assets/images/catalog/demo/cat-banner-4.png';
 import emailInputImage from '../../../assets/images/themeimage/special-discount-block.jpg';
-
+import { slideShowDelayTime } from '../../../shared/config';
 
 
 import BannersSlider from '../../../components/Slider/BannersSlider/BannersSlider';
 import CategoriesSlider from '../../../components/Slider/CategoriesSlider/CategoriesSlider';
-import TabCategoriesSlider from '../../../components/Slider/TabCategoriesSlider/TabCategoriesSlider';
-import Blog_News from '../../../components/Blog_News/Blog_News';
+import TabCategoriesSlider from '../../../components/TabCategories/TabCategories';
+import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
 
 import $ from 'jquery';
-class Body extends Component {
+class Body extends React.Component {
 
 
   arrBannerSlider = [
+
     { id: 1, srcImg: require('../../../assets/images/catalog/banners/main-banner-1-1903x928.jpg') },
     { id: 2, srcImg: require('../../../assets/images/catalog/banners/main-banner-2-1903x928.jpg') },
   ]
@@ -30,15 +31,35 @@ class Body extends Component {
     { id: 4, name: 'Living room Lighting', srcImg: require('../../../assets/images/catalog/demo/cat-banner-4.png') },
   ]
 
-  arrTabCategorySlider = [
-    { id: 1, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
-    { id: 2, srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
-    { id: 3, srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
-    { id: 4, srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
-    { id: 5, srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
-    { id: 6, srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
-    { id: 7, srcImg: require("../../../assets/images/catalog/product/14-366x450.jpg") },
-    { id: 8, srcImg: require("../../../assets/images/catalog/product/16-366x450.jpg") },
+  arrTabCategory = [
+    {
+      id: 1,
+      categoryName: "All Collection",
+      categoryProductList: [
+        { id: 1, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
+        { id: 2, srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
+        { id: 3, srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
+        { id: 4, srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
+        { id: 5, srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
+        { id: 6, srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
+        { id: 7, srcImg: require("../../../assets/images/catalog/product/14-366x450.jpg") },
+        { id: 8, srcImg: require("../../../assets/images/catalog/product/16-366x450.jpg") },
+      ],
+    },
+    {
+      id: 2,
+      categoryName: "New Arrivals",
+      categoryProductList: [
+        { id: 1, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
+        { id: 2, srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
+        { id: 3, srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
+        { id: 4, srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
+        { id: 5, srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
+        { id: 6, srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
+        { id: 7, srcImg: require("../../../assets/images/catalog/product/14-366x450.jpg") },
+        { id: 8, srcImg: require("../../../assets/images/catalog/product/16-366x450.jpg") },
+      ],
+    }
   ];
 
   arrLatestNew = [
@@ -62,20 +83,29 @@ class Body extends Component {
     { id: 10, srcImg: require("../../../assets/images/catalog/manufacturer/brand10-108x108.png") },
   ]
 
+  createNewSlider = (id) => {
+    const slideShow = {
+      mode: 'horizontal',
+      slidesPerView: 1,
+      pagination: false,
+      paginationClickable: true,
+      nextButton: `.swiper-button-next.${id}`,
+      prevButton: `.swiper-button-prev.${id}`,
+      spaceBetween: 0,
+      autoplay: slideShowDelayTime,
+      autoplayDisableOnInteraction: true,
+      loop: true
+    }
 
-  slideShow = {
-    mode: 'horizontal',
-    slidesPerView: 1,
-    //pagination: '.slideshow0',
-    pagination: false,
-    paginationClickable: true,
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
-    spaceBetween: 0,
-    autoplay: 5000,
-    autoplayDisableOnInteraction: true,
-    loop: true/*,
-    paginationType: 'bullets'*/
+    return slideShow;
+  }
+
+  hoverBanner = (element) => {
+    window.$(element).hover(function () {
+      document.querySelector(element).swiper.stopAutoplay()
+    }, function () {
+      document.querySelector(element).swiper.startAutoplay()
+    });
   }
 
 
@@ -86,8 +116,14 @@ class Body extends Component {
     $(document).ready(function () {
       $("#spinner").fadeOut("slow");
     });
-    window.$('#slideshow0').swiper(this.slideShow);
-    window.$('#slideshow1').swiper(this.slideShow);
+    let slideShow0 = window.$('#slideshow0');
+    let slideShow1 = window.$('#slideshow1');
+
+    slideShow0.swiper(this.createNewSlider('slideshow0'));
+    slideShow1.swiper(this.createNewSlider('slideshow1'));
+    this.hoverBanner('#slideshow0');
+    this.hoverBanner('#slideshow1');
+
   }
 
 
@@ -105,63 +141,7 @@ class Body extends Component {
             <CategoriesSlider listCatBannerSlider={this.arrCatBannerSlider} />
             {/**END Test Category Block SlideShow */}
 
-            {/**Category Block */}
-            <div id="categorycmsblock" className="categorycmsblock">
-              <div className="container">
-                <div className="row">
-                  <div className="categorycmsblock-wrapper">
-                    <div className="row">
-                      <div className="categorycmsblock-left col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <div className="categorycmsblock-item categorycmsblock-item-1">
-                          <div className="categorycmsblock-image">
-                            <img src={catBanner1} alt="Cat-banner-1" />
-                          </div>
-                          <div className="categorycmsblock-title-link-wrapper">
-                            <span className="categorycmsblock-title">Hanging lighting Collection</span>
-                            <a className="categorycmsblock-link" href="#">View More</a>
-                          </div>
-                        </div>
-                        <div className="categorycmsblock-item categorycmsblock-item-2">
-                          <div className="categorycmsblock-title-wrapper">
-                            <span className="categorycmsblock-title">Best Table Lamp</span>
-                          </div>
-                          <div className="categorycmsblock-image">
-                            <img src={catBanner2} alt="Cat-banner-2" />
-                          </div>
-                          <div className="categorycmsblock-link-wrapper">
-                            <a className="categorycmsblock-link" href="#">View More</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="categorycmsblock-right col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <div className="categorycmsblock-item categorycmsblock-item-3">
-                          <div className="categorycmsblock-title-wrapper">
-                            <span className="categorycmsblock-title">New Night lamp</span>
-                          </div>
-                          <div className="categorycmsblock-image">
-                            <img src={catBanner3} alt="Cat-banner-3" />
-                          </div>
-                          <div className="categorycmsblock-link-wrapper">
-                            <a className="categorycmsblock-link" href="#">View More</a>
-                          </div>
-                        </div>
-                        <div className="categorycmsblock-item categorycmsblock-item-4">
-                          <div className="categorycmsblock-image">
-                            <img src={catBanner4} alt="Cat-banner-4" />
-                          </div>
-                          <div className="categorycmsblock-title-link-wrapper">
-                            <span className="categorycmsblock-title">Living room Lighting</span>
-                            <a className="categorycmsblock-link" href="#">View More</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {/**End Category Block */}
 
             {/**Special Discount Block */}
             <div id="special-discount-block" className="special-discount-block">
@@ -182,10 +162,10 @@ class Body extends Component {
 
             {/**End Special Discount Block */}
 
-            {/*--------------TAB CATEGORY SLIDER--------------- */}
+            {/*--------------TAB CATEGORY --------------- */}
             <div id="Tab_Category_Slider" className="category_tab box">
-              <TabCategoriesSlider listTabCatBannerSlider={this.arrTabCategorySlider} />
-              {/**------------- END--TAB CATEGORY SLIDER--------------------- */}
+              <TabCategoriesSlider tabCategory={this.arrTabCategory[0].categoryProductList} listTabCategory={this.arrTabCategory} />
+              {/**------------- END--TAB CATEGORY--------------------- */}
 
 
               {/**-----------------NEWSLETTER------------------- */}
