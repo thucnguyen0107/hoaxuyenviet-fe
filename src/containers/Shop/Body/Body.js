@@ -1,10 +1,5 @@
 import React from 'react';
-// import Banner1 from '../../../assets/images/catalog/banners/main-banner-1-1903x928.jpg';
-// import Banner2 from '../../../assets/images/catalog/banners/main-banner-2-1903x928.jpg';
-import catBanner1 from '../../../assets/images/catalog/demo/cat-banner-1.png';
-import catBanner2 from '../../../assets/images/catalog/demo/cat-banner-2.png';
-import catBanner3 from '../../../assets/images/catalog/demo/cat-banner-3.png';
-import catBanner4 from '../../../assets/images/catalog/demo/cat-banner-4.png';
+
 import emailInputImage from '../../../assets/images/themeimage/special-discount-block.jpg';
 import { slideShowDelayTime } from '../../../shared/config';
 
@@ -36,28 +31,28 @@ class Body extends React.Component {
       id: 1,
       categoryName: "All Collection",
       categoryProductList: [
-        { id: 1, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
-        { id: 2, srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
-        { id: 3, srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
-        { id: 4, srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
-        { id: 5, srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
-        { id: 6, srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
-        { id: 7, srcImg: require("../../../assets/images/catalog/product/14-366x450.jpg") },
-        { id: 8, srcImg: require("../../../assets/images/catalog/product/16-366x450.jpg") },
+        { id: 1, name:'HP LP3065', srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
+        { id: 2, name:'IPOD CLASSNAMEIC', srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
+        { id: 3, name:'MACBOOK', srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
+        { id: 4, name:'NIKON D300', srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
+        { id: 5, name:'SAMSUNG SYNCMASTER 941BW', srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
+        { id: 6, name:'SONY VAIO', srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
+        { id: 7, name:'HP LP3065', srcImg: require("../../../assets/images/catalog/product/14-366x450.jpg") },
+        { id: 8, name:'HP LP3065', srcImg: require("../../../assets/images/catalog/product/16-366x450.jpg") },
       ],
     },
     {
       id: 2,
       categoryName: "New Arrivals",
       categoryProductList: [
-        { id: 1, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
-        { id: 2, srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
-        { id: 3, srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
-        { id: 4, srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
-        { id: 5, srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
-        { id: 6, srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
-        { id: 7, srcImg: require("../../../assets/images/catalog/product/14-366x450.jpg") },
-        { id: 8, srcImg: require("../../../assets/images/catalog/product/16-366x450.jpg") },
+        { id: 1, name:'HP LP3065', srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
+        { id: 2, name:'IPOD CLASSNAMEIC', srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
+        { id: 3, name:'MACBOOK', srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
+        { id: 4, name:'NIKON D300', srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
+        { id: 5, name:'SAMSUNG SYNCMASTER 941BW', srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
+        { id: 6, name:'SONY VAIO', srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
+        { id: 7, name:'HP LP3065', srcImg: require("../../../assets/images/catalog/product/14-366x450.jpg") },
+        { id: 8, name:'HP LP3065', srcImg: require("../../../assets/images/catalog/product/16-366x450.jpg") },
       ],
     }
   ];
@@ -164,7 +159,7 @@ class Body extends React.Component {
 
             {/*--------------TAB CATEGORY --------------- */}
             <div id="Tab_Category_Slider" className="category_tab box">
-              <TabCategoriesSlider tabCategory={this.arrTabCategory[0].categoryProductList} listTabCategory={this.arrTabCategory} />
+              <TabCategoriesSlider tabCategory={this.arrTabCategory[0].categoryProductList} listTabCategoryHeader={this.arrTabCategory} />
               {/**------------- END--TAB CATEGORY--------------------- */}
 
 

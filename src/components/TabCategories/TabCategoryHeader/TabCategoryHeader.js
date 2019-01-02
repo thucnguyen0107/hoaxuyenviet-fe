@@ -12,7 +12,7 @@ const tabCategoryHeader = (props) => {
   listTabCategoryHeaderNameHTML = (
     <>
       {
-        props.listTabCategory.map(cat => {
+        props.listTabCategoryHeader.map(cat => {
           return (
             <TabCategoryHeaderItem key={cat.id} categoryName={cat.categoryName}>
               {cat.categoryName}
