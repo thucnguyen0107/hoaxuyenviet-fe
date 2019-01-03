@@ -18,7 +18,7 @@ const categorySlider = (props) => {
                     </div>
                     <div className="categorycmsblock-title-link-wrapper">
                       <span className="categorycmsblock-title">{props.sliderItem[0].name}</span>
-                      <a className="categorycmsblock-link" href="#">View More</a>
+                      <a className="categorycmsblock-link" href="/">Chi tiết</a>
                     </div>
                   </div>
                   <div className="categorycmsblock-item categorycmsblock-item-2">
@@ -29,7 +29,7 @@ const categorySlider = (props) => {
                       <img src={props.sliderItem[1].srcImg} alt="Cat-banner-2" />
                     </div>
                     <div className="categorycmsblock-link-wrapper">
-                      <a className="categorycmsblock-link" href="#">View More</a>
+                      <a className="categorycmsblock-link" href="/">Chi tiết</a>
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@ const categorySlider = (props) => {
                       <img src={props.sliderItem[2].srcImg} alt="Cat-banner-3" />
                     </div>
                     <div className="categorycmsblock-link-wrapper">
-                      <a className="categorycmsblock-link" href="#">View More</a>
+                      <a className="categorycmsblock-link" href="/">Chi tiết</a>
                     </div>
                   </div>
                   <div className="categorycmsblock-item categorycmsblock-item-4">
@@ -51,7 +51,7 @@ const categorySlider = (props) => {
                     </div>
                     <div className="categorycmsblock-title-link-wrapper">
                       <span className="categorycmsblock-title">{props.sliderItem[3].name}</span>
-                      <a className="categorycmsblock-link" href="#">View More</a>
+                      <a className="categorycmsblock-link" href="/">Chi tiết</a>
                     </div>
                   </div>
                 </div>

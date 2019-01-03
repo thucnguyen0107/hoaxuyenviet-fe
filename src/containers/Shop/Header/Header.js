@@ -4,25 +4,52 @@ import TopNavigation from '../../../components/TopNavigation/TopNavigation';
 class Header extends Component {
 	headerContent = {
 		categories: [
-			{ id: 1, name: 'Home', type: 'home' },
+			{ id: 1, name: 'Trang chủ', type: 'home' },
 			{
-				id: 2, name: 'Decorative', type: 'dropdown', subCategories:
+				id: 2, name: 'Sự kiện', type: 'dropdown', subCategories:
 					[
-						{id:1, subName: 'Indoor' },
-						{id:2, subName: 'Outdoor' },
-						{id:3, subName: 'Downlights' },
-						{id:4, subName: 'Uplights' },
-						{id:5, subName: 'LED-Batten-Tubes' },
-						{id:6, subName: 'Projector' },
-						{id:7, subName: 'Bollard' },
-						{id:8, subName: 'Ground-Burial' },
-						{id:9, subName: 'Projector' },
+						{ id: 1, subName: 'Khánh thành' },
+						{ id: 2, subName: 'Lễ cưới' },
+						{ id: 3, subName: 'Sinh nhật' },
+
 					]
 			},
-			{ id: 3, name: 'Chandelier' },
-			{ id: 4, name: 'Accent Lighting' },
-			{ id: 5, name: 'Wall lamp' },
-			{ id: 6, name: 'Blogs' },
+			{
+				id: 3, name: 'Ngày lễ', type: 'dropdown', subCategories:
+					[
+						{ id: 1, subName: 'Quốc tế phụ nữ' },
+						{ id: 2, subName: 'Phụ nữ Việt Nam' },
+						{ id: 3, subName: 'Nhà giáo Việt Nam' },
+
+					]
+			},
+			{
+				id: 4, name: 'Kiểu loại', type: 'dropdown', subCategories:
+					[
+						{ id: 1, subName: 'Hoa hồng' },
+						{ id: 2, subName: 'Hoa cúc' },
+						{ id: 3, subName: 'Hoa mẫu đơn' },
+
+					]
+			},
+			{
+				id: 5, name: 'Hình thức', type: 'dropdown', subCategories:
+					[
+						{ id: 1, subName: 'Lẳng hoa' },
+						{ id: 2, subName: 'Giỏ hoa' },
+						{ id: 3, subName: 'Bó hoa' },
+
+					]
+			},
+			{
+				id: 6, name: 'Màu sắc', type: 'dropdown', subCategories:
+					[
+						{ id: 1, subName: 'Màu hồng' },
+						{ id: 2, subName: 'Màu trắng' },
+						{ id: 3, subName: 'Màu vàng' },
+
+					]
+			},
 		]
 	};
 

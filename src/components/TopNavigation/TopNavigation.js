@@ -5,7 +5,6 @@ import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 const topNavigation = (props) => {
 
   let navList = [];
-  console.log(props.listCategoriesName)
 
   navList = (
     <>
@@ -62,7 +61,7 @@ const topNavigation = (props) => {
                 <div className="header-cart">
                   <div id="cart" className="btn-group btn-block">
                     <button type="button" data-toggle="dropdown" data-loading-text="Loading..." className="btn btn-inverse btn-block btn-lg dropdown-toggle">
-                      <span id="cart-title">My Cart</span>
+                      <span id="cart-title">Giỏ hàng</span>
                       <i className="fa fa-angle-down"></i>
                       <span id="cart-total">
                         <span className="single-item">0</span>
@@ -70,7 +69,7 @@ const topNavigation = (props) => {
                     </button>
                     <ul className="dropdown-menu pull-right cart-menu">
                       <li>
-                        <p className="text-center">Your shopping cart is empty!</p>
+                        <p className="text-center">Giỏ hàng của bạn rỗng!</p>
                       </li>
                     </ul>
                   </div>
@@ -82,7 +81,7 @@ const topNavigation = (props) => {
                   <i className="fa fa-angle-down"></i>
                 </div>
                 <div id="search" className="input-group">
-                  <input type="text" name="search" placeholder="Search here..." className="form-control input-lg" />
+                  <input type="text" name="search" placeholder="Nhập từ khóa..." className="form-control input-lg" />
                   <span className="input-group-btn">
                     <button type="button" className="btn-default btn-lg">
                       <span className="search_button"><i className="fa fa-search" aria-hidden="true"></i></span>
@@ -97,14 +96,14 @@ const topNavigation = (props) => {
                     <i className="fa fa-angle-down"></i>
                   </a>
                   <ul className="dropdown-menu dropdown-menu-right myaccount-menu">
-                    <li><a href="index5502.html?route=account/register">Register</a></li>
-                    <li><a href="indexe223.html?route=account/login">Login</a></li>
+                    <li><a href="index5502.html?route=account/register">Đăng ký</a></li>
+                    <li><a href="indexe223.html?route=account/login">Đăng nhập</a></li>
                     <nav id="top">
                       <div id="top-links" className="nav">
                         <ul className="list-inline">
 
 
-                          <li><a href="index630e.html?route=checkout/checkout" title="Checkout"><span className="checkout">Checkout</span></a></li>
+                          <li><a href="index630e.html?route=checkout/checkout" title="Checkout"><span className="checkout">Kiểm tra</span></a></li>
                         </ul>
                       </div>
                     </nav>

@@ -1,14 +1,21 @@
 import React from 'react';
 import TabCategoryHeader from '../TabCategories/TabCategoryHeader/TabCategoryHeader';
 import TabCategoryContent from '../TabCategories/TabCategoryContent/TabCategoryContent'
-const tabCategoriesSlider = (props) => {
+const tabCategories = (props) => {
 
-  // let arrTabCategoryHeaderName = [];
+  let listTabCategoryContentHTML = (
+    <>
+      {
+        props.tabCategory.map(tab => {
+          return (
+            <TabCategoryContent key={tab.id} tabId={tab.id} tabCategoryContent={tab.categoryProductList} activeTab={tab.active}>
 
-  // props.listTabCategory.map(tab => {
-  //   arrTabCategoryHeaderName.push(tab.categoryName)
-  // })
-
+            </TabCategoryContent>
+          )
+        })
+      }
+    </>
+  );
 
 
   return (
@@ -19,7 +26,7 @@ const tabCategoriesSlider = (props) => {
             <TabCategoryHeader listTabCategoryHeader={props.listTabCategoryHeader} />
             <div className="tabs">
               <div className="tab-content">
-                <TabCategoryContent tabCategoryContent={props.tabCategory} />
+                {listTabCategoryContentHTML}
               </div>
             </div>
           </div>
@@ -29,4 +36,4 @@ const tabCategoriesSlider = (props) => {
   );
 }
 
-export default tabCategoriesSlider;
+export default tabCategories;

@@ -3,8 +3,6 @@ import TabCategoryHeaderItem from '../TabCategoryHeader/TabCategoryHeaderItem/Ta
 
 const tabCategoryHeader = (props) => {
 
-  // console.log(props.listTabCategoryHeaderName);
-  // console.log(props.listTabCategory);
 
 
   let listTabCategoryHeaderNameHTML = [];
@@ -14,7 +12,7 @@ const tabCategoryHeader = (props) => {
       {
         props.listTabCategoryHeader.map(cat => {
           return (
-            <TabCategoryHeaderItem key={cat.id} categoryName={cat.categoryName}>
+            <TabCategoryHeaderItem key={cat.id} categoryName={cat.categoryName} id={cat.id} active={cat.active}>
               {cat.categoryName}
             </TabCategoryHeaderItem>
           )
@@ -28,7 +26,7 @@ const tabCategoryHeader = (props) => {
   return (
     <div className="category-tab-heading-wrapper">
       <div className="box-heading">
-        <h2 className="products-section-title">New Arrivals</h2>
+        <h2 className="products-section-title">Mới nhập</h2>
       </div>
       <div className="etabs">
         <ul className="nav nav-tabs">

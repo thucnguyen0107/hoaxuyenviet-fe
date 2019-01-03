@@ -239,7 +239,7 @@ ul, ol {
 .header .header-middle .header-middle-wrapper {
 	font-size: 0;
 	font-family: empty;
-	padding: 0 50px;
+	padding: 0 46px;
 }
 .myaccount .dropdown-menu {
 	padding: 10px 0;
@@ -586,12 +586,18 @@ header .header-middle.fixed {
 	padding: 10px 50px 10px 10px;
 	vertical-align: top;
 	border: 0 none;
-	width: 325px;
+	width: 831px;
 	border-radius: 0;
 	text-transform: capitalize;
 	letter-spacing: 1px;
 	background: #fff;
 	height: 40px;
+}
+
+@media (min-width: 576px) and (max-width:1024px){
+	.header .header-right #search .input-lg{
+		width: 325px;
+	}
 }
 .header .header-right #search .input-lg:focus {
 	-webkit-box-shadow: none;

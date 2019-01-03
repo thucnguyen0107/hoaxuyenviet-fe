@@ -6,7 +6,6 @@ while (i < columnDropdownList) {
   columnArr.push('auto');
   i++;
 }
-console.log(columnArr);
 const styleList = {
   'display': 'grid',
   'gridTemplateColumns': columnArr.join(' ')
@@ -16,7 +15,6 @@ const navigationItem = (props) => {
 
   let subNavList = null, subNavListHTML = null;
   subNavList = props.subNavList;
-  console.log(subNavList);
 
   let li = ['top_level'];
   li.push(props.type);

@@ -10,19 +10,19 @@ const footer = () => {
               <div className="footer-about-us-block-wrapper">
                 <div className="footer-logo footer-about-us-block-item col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                   <a href="index9328.html?route=common/home">
-                    <img alt="Error Image" src={FooterLogo}></img>
+                    <img alt="" src={FooterLogo}></img>
                   </a>
                 </div>
                 <div className="footer-contact footer-about-us-block-item col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                   <div className="footer-contact-wrapper">
-                    <h5 className="footer-about-us-block-item-title">Contact Us</h5>
-                    <div className="footer-contact-discription">(91)-261 3023333 , +91 8866888222</div>
+                    <h5 className="footer-about-us-block-item-title">Liên hệ</h5>
+                    <div className="footer-contact-discription">(91)-261 3023333 , +84 8866888222</div>
                   </div>
                 </div>
                 <div className="footer-address footer-about-us-block-item col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                   <div className="footer-contact-wrapper">
-                    <h5 className="footer-about-us-block-item-title">Address</h5>
-                    <div className="footer-contact-discription">Furnise 42 avenue des Champs United States </div>
+                    <h5 className="footer-about-us-block-item-title">Địa chỉ</h5>
+                    <div className="footer-contact-discription">307/12 Nguyễn Văn Trỗi, Tân Bình, HCM </div>
                   </div>
                 </div>
                 <div className="footer-share footer-about-us-block-item col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">

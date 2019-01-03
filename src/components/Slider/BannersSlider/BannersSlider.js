@@ -15,7 +15,7 @@ const bannersSlider = (props) => {
           return (
 
             <SwiperSlider key={banner.id}>
-              <a href="#"><img src={banner.srcImg} alt={`Main-banner-${index + 1}`} className="img-responsive" /></a>
+              <a href="/"><img src={banner.srcImg} alt={`Main-banner-${index + 1}`} className="img-responsive" /></a>
             </SwiperSlider>
           )
         })
