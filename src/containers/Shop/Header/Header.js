@@ -56,9 +56,9 @@ class Header extends Component {
 
 	render() {
 		return (
-			<div>
+			<>
 				<TopNavigation listCategoriesName={this.headerContent.categories} />
-			</div>
+			</>
 
 		);
 	}

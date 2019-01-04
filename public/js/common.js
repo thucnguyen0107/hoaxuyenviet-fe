@@ -22,9 +22,9 @@ function getURLVar(key) {
 	}
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 	// Highlight any found errors
-	$('.text-danger').each(function() {
+	$('.text-danger').each(function () {
 		var element = $(this).parent().parent();
 
 		if (element.hasClass('form-group')) {
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	});
 
 	// Currency
-	$('#form-currency .currency-select').on('click', function(e) {
+	$('#form-currency .currency-select').on('click', function (e) {
 		e.preventDefault();
 
 		$('#form-currency input[name=\'code\']').val($(this).attr('name'));
@@ -42,7 +42,7 @@ $(document).ready(function() {
 	});
 
 	// Language
-	$('#form-language .language-select').on('click', function(e) {
+	$('#form-language .language-select').on('click', function (e) {
 		e.preventDefault();
 
 		$('#form-language input[name=\'code\']').val($(this).attr('name'));
@@ -51,7 +51,7 @@ $(document).ready(function() {
 	});
 
 	/* Search */
-	$('#search input[name=\'search\']').parent().find('button').on('click', function() {
+	$('#search input[name=\'search\']').parent().find('button').on('click', function () {
 		var url = $('base').attr('href') + 'index.php?route=product/search';
 
 		var value = $('header #search input[name=\'search\']').val();
@@ -63,14 +63,14 @@ $(document).ready(function() {
 		location = url;
 	});
 
-	$('#search input[name=\'search\']').on('keydown', function(e) {
+	$('#search input[name=\'search\']').on('keydown', function (e) {
 		if (e.keyCode == 13) {
 			$('header #search input[name=\'search\']').parent().find('button').trigger('click');
 		}
 	});
 
 	// Menu
-	$('#menu .dropdown-menu').each(function() {
+	$('#menu .dropdown-menu').each(function () {
 		var menu = $('#menu').offset();
 		var dropdown = $(this).parent().offset();
 
@@ -82,7 +82,7 @@ $(document).ready(function() {
 	});
 
 	// Product List
-	$('#list-view').click(function() {
+	$('#list-view').click(function () {
 		$('#content .product-grid > .clearfix').remove();
 
 		$('#content .row > .product-grid').attr('class', 'product-layout product-list col-xs-12');
@@ -93,7 +93,7 @@ $(document).ready(function() {
 	});
 
 	// Product Grid
-	$('#grid-view').click(function() {
+	$('#grid-view').click(function () {
 		// What a shame bootstrap does not take into account dynamically loaded columns
 		var cols = $('#column-right, #column-left').length;
 
@@ -120,132 +120,132 @@ $(document).ready(function() {
 	}
 
 	// Checkout
-	$(document).on('keydown', '#collapse-checkout-option input[name=\'email\'], #collapse-checkout-option input[name=\'password\']', function(e) {
+	$(document).on('keydown', '#collapse-checkout-option input[name=\'email\'], #collapse-checkout-option input[name=\'password\']', function (e) {
 		if (e.keyCode == 13) {
 			$('#collapse-checkout-option #button-login').trigger('click');
 		}
 	});
 
 	// tooltips on hover
-	$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
+	$('[data-toggle=\'tooltip\']').tooltip({ container: 'body' });
 
 	// Makes tooltips work on ajax generated content
-	$(document).ajaxStop(function() {
-		$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
+	$(document).ajaxStop(function () {
+		$('[data-toggle=\'tooltip\']').tooltip({ container: 'body' });
 	});
 });
 
 // Cart add remove functions
 var cart = {
-	'add': function(product_id, quantity) {
+	'add': function (product_id, quantity) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/add',
 			type: 'post',
-			data: 'product_id=' + product_id + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
+			data: 'product_id=' + product_id + '&quantity=' + (typeof (quantity) != 'undefined' ? quantity : 1),
 			dataType: 'json',
-			success: function(json) {
+			success: function (json) {
 				if (json['redirect']) {
 					location = json['redirect'];
 				}
 
 				if (json['success']) {
-				     $.notify({
-				     	message: json['success'],
-				     	target: '_blank'
-				     },{
-				     	// settings
-				     	element: 'body',
-				     	position: null,
-				     	type: "info",
-				     	allow_dismiss: true,
-				     	newest_on_top: false,
-				     	placement: {
-				     		from: "top",
-				     		align: "center"
-				     	},
-				     	offset: 0,
-				     	spacing: 10,
-				     	z_index: 2031,
-				     	delay: 5000,
-				     	timer: 1000,
-				     	url_target: '_blank',
-				     	mouse_over: null,
-				     	animate: {
-				     		enter: 'animated fadeInDown'
-				     		//exit: 'animated fadeOutUp'
-				     	},
-				     	onShow: null,
-				     	onShown: null,
-				     	onClose: null,
-				     	onClosed: null,
-				     	icon_type: 'class',
-				     	template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
-				     		'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
-				     		'<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
-				     		'<div class="progress" data-notify="progressbar">' +
-				     			'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-				     		'</div>' +
-				     		'<a href="{3}" target="{4}" data-notify="url"></a>' +
-				     	'</div>' 
-				     });
+					$.notify({
+						message: json['success'],
+						target: '_blank'
+					}, {
+							// settings
+							element: 'body',
+							position: null,
+							type: "info",
+							allow_dismiss: true,
+							newest_on_top: false,
+							placement: {
+								from: "top",
+								align: "center"
+							},
+							offset: 0,
+							spacing: 10,
+							z_index: 2031,
+							delay: 5000,
+							timer: 1000,
+							url_target: '_blank',
+							mouse_over: null,
+							animate: {
+								enter: 'animated fadeInDown'
+								//exit: 'animated fadeOutUp'
+							},
+							onShow: null,
+							onShown: null,
+							onClose: null,
+							onClosed: null,
+							icon_type: 'class',
+							template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
+								'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
+								'<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
+								'<div class="progress" data-notify="progressbar">' +
+								'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+								'</div>' +
+								'<a href="{3}" target="{4}" data-notify="url"></a>' +
+								'</div>'
+						});
 
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-					
+
 					var total_text;
-					if(json['total'] > 1) {
-						total_text = '<span class="more-item">Items '  + json['total'] +  '</span>';
+					if (json['total'] > 1) {
+						total_text = '<span class="more-item">Items ' + json['total'] + '</span>';
 					} else {
-						total_text = '<span class="single-item">Item '  + json['total'] +  '</span>';
+						total_text = '<span class="single-item">Item ' + json['total'] + '</span>';
 					}
-					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">'+ total_text +'<span class="total-amount"></span></span>');
+					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">' + total_text + '<span class="total-amount"></span></span>');
 				}
 			}
 		});
 	},
-	'update': function(key, quantity) {
+	'update': function (key, quantity) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/edit',
 			type: 'post',
-			data: 'key=' + key + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
+			data: 'key=' + key + '&quantity=' + (typeof (quantity) != 'undefined' ? quantity : 1),
 			dataType: 'json',
-			success: function(json) {
+			success: function (json) {
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 					location = 'index.php?route=checkout/cart';
 				} else {
 					$('#cart > ul').load('index.php?route=common/cart/info cart_prod');
-                    
-                    $('#cart > ul').load('index.php?route=common/cart/info ul li');
-					
+
+					$('#cart > ul').load('index.php?route=common/cart/info ul li');
+
 					var total_text;
-					if(json['total'] > 1) {
-						total_text = '<span class="more-item">Items '  + json['total'] +  '</span>';
+					if (json['total'] > 1) {
+						total_text = '<span class="more-item">Items ' + json['total'] + '</span>';
 					} else {
-						total_text = '<span class="single-item">Item '  + json['total'] +  '</span>';
+						total_text = '<span class="single-item">Item ' + json['total'] + '</span>';
 					}
-					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">'+ total_text +'<span class="total-amount"></span></span>');
+					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">' + total_text + '<span class="total-amount"></span></span>');
 				}
 			}
 		});
 	},
-	'remove': function(key) {
+	'remove': function (key) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/remove',
 			type: 'post',
 			data: 'key=' + key,
 			dataType: 'json',
-			success: function(json) {
+			success: function (json) {
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 					location = 'index.php?route=checkout/cart';
 				} else {
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-                    
+
 					var total_text;
-					if(json['total'] > 1) {
-						total_text = '<span class="more-item">Items '  + json['total'] +  '</span>';
+					if (json['total'] > 1) {
+						total_text = '<span class="more-item">Items ' + json['total'] + '</span>';
 					} else {
-						total_text = '<span class="single-item">Item '  + json['total'] +  '</span>';
+						total_text = '<span class="single-item">Item ' + json['total'] + '</span>';
 					}
-					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">'+ total_text +'<span class="total-amount"></span></span>');
+					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">' + total_text + '<span class="total-amount"></span></span>');
 				}
 			}
 		});
@@ -253,36 +253,36 @@ var cart = {
 }
 
 var voucher = {
-	'add': function() {
+	'add': function () {
 
 	},
-	'remove': function(key) {
+	'remove': function (key) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/remove',
 			type: 'post',
 			data: 'key=' + key,
 			dataType: 'json',
-			beforeSend: function() {
+			beforeSend: function () {
 				$('#cart > button').button('loading');
 			},
-			complete: function() {
+			complete: function () {
 				$('#cart > button').button('reset');
 			},
-			success: function(json) {
+			success: function (json) {
 				$('#cart-total').html(json['total']);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
 					location = 'index.php?route=checkout/cart';
 				} else {
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-                    
+
 					var total_text;
-					if(json['total'] > 1) {
+					if (json['total'] > 1) {
 						total_text = '<span class="more-item">' + json['total'] + '</span>';
 					} else {
 						total_text = '<span class="single-item">' + json['total'] + '</span>';
 					}
-					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">'+ total_text +'<span class="total-amount"></span></span>');
+					$('#cart> button').html('<span id="cart-title">My Cart</span><span id="cart-total">' + total_text + '<span class="total-amount"></span></span>');
 				}
 			}
 		});
@@ -290,167 +290,167 @@ var voucher = {
 }
 
 var wishlist = {
-	'add': function(product_id) {
+	'add': function (product_id) {
 		$.ajax({
 			url: 'index.php?route=account/wishlist/add',
 			type: 'post',
 			data: 'product_id=' + product_id,
 			dataType: 'json',
-			success: function(json) {
+			success: function (json) {
 				if (json['success']) {
 					$.notify({
 						message: json['success'],
 						target: '_blank'
-					},{
-						// settings
-						element: 'body',
-						position: null,
-						type: "info",
-						allow_dismiss: true,
-						newest_on_top: false,
-						placement: {
-							from: "top",
-							align: "center"
-						},
-						offset: 0,
-						spacing: 10,
-						z_index: 2031,
-						delay: 5000,
-						timer: 1000,
-						url_target: '_blank',
-						mouse_over: null,
-						animate: {
-							enter: 'animated fadeInDown',
-							exit: 'animated fadeOutUp'
-						},
-						onShow: null,
-						onShown: null,
-						onClose: null,
-						onClosed: null,
-						icon_type: 'class',
-						template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
-							'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
-							'<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
-							'<div class="progress" data-notify="progressbar">' +
+					}, {
+							// settings
+							element: 'body',
+							position: null,
+							type: "info",
+							allow_dismiss: true,
+							newest_on_top: false,
+							placement: {
+								from: "top",
+								align: "center"
+							},
+							offset: 0,
+							spacing: 10,
+							z_index: 2031,
+							delay: 5000,
+							timer: 1000,
+							url_target: '_blank',
+							mouse_over: null,
+							animate: {
+								enter: 'animated fadeInDown',
+								exit: 'animated fadeOutUp'
+							},
+							onShow: null,
+							onShown: null,
+							onClose: null,
+							onClosed: null,
+							icon_type: 'class',
+							template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
+								'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
+								'<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
+								'<div class="progress" data-notify="progressbar">' +
 								'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-							'</div>' +
-							'<a href="{3}" target="{4}" data-notify="url"></a>' +
-						'</div>' 
-					});
+								'</div>' +
+								'<a href="{3}" target="{4}" data-notify="url"></a>' +
+								'</div>'
+						});
 				}
 
 				if (json['info']) {
 					$.notify({
 						message: json['info'],
 						target: '_blank'
-					},{
-						// settings
-						element: 'body',
-						position: null,
-						type: "info",
-						allow_dismiss: true,
-						newest_on_top: false,
-						placement: {
-							from: "top",
-							align: "center"
-						},
-						offset: 0,
-						spacing: 10,
-						z_index: 2031,
-						delay: 5000,
-						timer: 1000,
-						url_target: '_blank',
-						mouse_over: null,
-						animate: {
-							enter: 'animated fadeInDown',
-							exit: 'animated fadeOutUp'
-						},
-						onShow: null,
-						onShown: null,
-						onClose: null,
-						onClosed: null,
-						icon_type: 'class',
-						template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-info" role="alert">' +
-							'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
-							'<span data-notify="message"><i class="fa fa-info"></i>&nbsp; {2}</span>' +
-							'<div class="progress" data-notify="progressbar">' +
+					}, {
+							// settings
+							element: 'body',
+							position: null,
+							type: "info",
+							allow_dismiss: true,
+							newest_on_top: false,
+							placement: {
+								from: "top",
+								align: "center"
+							},
+							offset: 0,
+							spacing: 10,
+							z_index: 2031,
+							delay: 5000,
+							timer: 1000,
+							url_target: '_blank',
+							mouse_over: null,
+							animate: {
+								enter: 'animated fadeInDown',
+								exit: 'animated fadeOutUp'
+							},
+							onShow: null,
+							onShown: null,
+							onClose: null,
+							onClosed: null,
+							icon_type: 'class',
+							template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-info" role="alert">' +
+								'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
+								'<span data-notify="message"><i class="fa fa-info"></i>&nbsp; {2}</span>' +
+								'<div class="progress" data-notify="progressbar">' +
 								'<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-							'</div>' +
-							'<a href="{3}" target="{4}" data-notify="url"></a>' +
-						'</div>' 
-					});
+								'</div>' +
+								'<a href="{3}" target="{4}" data-notify="url"></a>' +
+								'</div>'
+						});
 				}
 
 				$('#wishlist-total').html(json['total']);
 			}
 		});
 	},
-	'remove': function() {
+	'remove': function () {
 
 	}
 }
 
 var compare = {
-	'add': function(product_id) {
+	'add': function (product_id) {
 		$.ajax({
 			url: 'index.php?route=product/compare/add',
 			type: 'post',
 			data: 'product_id=' + product_id,
 			dataType: 'json',
-			success: function(json) {
+			success: function (json) {
 				if (json['success']) {
 					$.notify({
 						message: json['success'],
 						target: '_blank'
-					},{
-						// settings
-						element: 'body',
-						position: null,
-						type: "info",
-						allow_dismiss: true,
-						newest_on_top: false,
-						placement: {
-							from: "top",
-							align: "center"
-						},
-						offset: 0,
-						spacing: 10,
-						z_index: 2031,
-						delay: 5000,
-						timer: 1000,
-						url_target: '_blank',
-						mouse_over: null,
-						animate: {
-							enter: 'animated fadeInDown',
-							exit: 'animated fadeOutUp'
-						},
-						onShow: null,
-						onShown: null,
-						onClose: null,
-						onClosed: null,
-						icon_type: 'class',
-						template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
-							'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
-							'<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
-							'<div class="progress" data-notify="progressbar">' +
+					}, {
+							// settings
+							element: 'body',
+							position: null,
+							type: "info",
+							allow_dismiss: true,
+							newest_on_top: false,
+							placement: {
+								from: "top",
+								align: "center"
+							},
+							offset: 0,
+							spacing: 10,
+							z_index: 2031,
+							delay: 5000,
+							timer: 1000,
+							url_target: '_blank',
+							mouse_over: null,
+							animate: {
+								enter: 'animated fadeInDown',
+								exit: 'animated fadeOutUp'
+							},
+							onShow: null,
+							onShown: null,
+							onClose: null,
+							onClosed: null,
+							icon_type: 'class',
+							template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success" role="alert">' +
+								'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&nbsp;&times;</button>' +
+								'<span data-notify="message"><i class="fa fa-check-circle"></i>&nbsp; {2}</span>' +
+								'<div class="progress" data-notify="progressbar">' +
 								'<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-							'</div>' +
-							'<a href="{3}" target="{4}" data-notify="url"></a>' +
-						'</div>' 
-					});
+								'</div>' +
+								'<a href="{3}" target="{4}" data-notify="url"></a>' +
+								'</div>'
+						});
 
 					$('#compare-total').html(json['total']);
 				}
 			}
 		});
 	},
-	'remove': function() {
+	'remove': function () {
 
 	}
 }
 
 /* Agree to Terms */
-$(document).delegate('.agree', 'click', function(e) {
+$(document).delegate('.agree', 'click', function (e) {
 	e.preventDefault();
 
 	$('#modal-agree').remove();
@@ -461,8 +461,8 @@ $(document).delegate('.agree', 'click', function(e) {
 		url: $(element).attr('href'),
 		type: 'get',
 		dataType: 'html',
-		success: function(data) {
-			html  = '<div id="modal-agree" class="modal">';
+		success: function (data) {
+			html = '<div id="modal-agree" class="modal">';
 			html += '  <div class="modal-dialog">';
 			html += '    <div class="modal-content">';
 			html += '      <div class="modal-header">';
@@ -482,9 +482,9 @@ $(document).delegate('.agree', 'click', function(e) {
 });
 
 // Autocomplete */
-(function($) {
-	$.fn.autocomplete = function(option) {
-		return this.each(function() {
+(function ($) {
+	$.fn.autocomplete = function (option) {
+		return this.each(function () {
 			this.timer = null;
 			this.items = new Array();
 
@@ -493,20 +493,20 @@ $(document).delegate('.agree', 'click', function(e) {
 			$(this).attr('autocomplete', 'off');
 
 			// Focus
-			$(this).on('focus', function() {
+			$(this).on('focus', function () {
 				this.request();
 			});
 
 			// Blur
-			$(this).on('blur', function() {
-				setTimeout(function(object) {
+			$(this).on('blur', function () {
+				setTimeout(function (object) {
 					object.hide();
 				}, 200, this);
 			});
 
 			// Keydown
-			$(this).on('keydown', function(event) {
-				switch(event.keyCode) {
+			$(this).on('keydown', function (event) {
+				switch (event.keyCode) {
 					case 27: // escape
 						this.hide();
 						break;
@@ -517,7 +517,7 @@ $(document).delegate('.agree', 'click', function(e) {
 			});
 
 			// Click
-			this.click = function(event) {
+			this.click = function (event) {
 				event.preventDefault();
 
 				value = $(event.target).parent().attr('data-value');
@@ -528,7 +528,7 @@ $(document).delegate('.agree', 'click', function(e) {
 			}
 
 			// Show
-			this.show = function() {
+			this.show = function () {
 				var pos = $(this).position();
 
 				$(this).siblings('ul.dropdown-menu').css({
@@ -540,21 +540,21 @@ $(document).delegate('.agree', 'click', function(e) {
 			}
 
 			// Hide
-			this.hide = function() {
+			this.hide = function () {
 				$(this).siblings('ul.dropdown-menu').hide();
 			}
 
 			// Request
-			this.request = function() {
+			this.request = function () {
 				clearTimeout(this.timer);
 
-				this.timer = setTimeout(function(object) {
+				this.timer = setTimeout(function (object) {
 					object.source($(object).val(), $.proxy(object.response, object));
 				}, 200, this);
 			}
 
 			// Response
-			this.response = function(json) {
+			this.response = function (json) {
 				html = '';
 
 				if (json.length) {

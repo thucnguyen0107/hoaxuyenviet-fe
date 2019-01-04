@@ -320,7 +320,7 @@ ul, ol {
 
 /* Header */
 
-.common-home header {
+/* .common-home header {
 	position: absolute;
 	width: 100%;
 	clear: both;
@@ -328,7 +328,7 @@ ul, ol {
 	top: 0;
 	left: 0;
 	right: 0;
-}
+} */
 header {
 	background: #fff;
 }
@@ -2697,7 +2697,7 @@ ul.dropmenu{
 	text-transform: uppercase;
 	font-weight: 500;
 	font-family: 'Roboto', sans-serif;
-	margin: 0 0 20px;
+	margin: 0;
 	display: block;
 	letter-spacing: 1px;
 }
@@ -4136,16 +4136,16 @@ ul.dropmenu{
 	overflow: hidden;
 	width: 100%;
 	float: left;
-	padding: 40px 0;
+	padding: 0;
 }
 footer {
 	float: left;
 	width: 100%;
 	margin: 50px 0 0;
 }
-.common-home footer {
+/* .common-home footer {
 	margin: 0;
-}
+} */
 #footer #footer_cms_block {
     float: left;
     line-height: 23px;
@@ -4655,7 +4655,7 @@ footer hr {
 	color: #fff;
 }
 #footer .content_footer_top {
-	padding: 80px 0 120px;
+	padding: 20px 0;
 }
 .newsletter label {
 	display: none;
@@ -4875,9 +4875,9 @@ ul.breadcrumb li a:hover {
 [class*="product-quick_view-"] #content {
 	margin: 0;
 }
-.common-home #breadcrumb {
+/* .common-home #breadcrumb {
 	display: none;
-}
+} */
 #breadcrumb > .container {
 	padding: 54px 15px;
 }

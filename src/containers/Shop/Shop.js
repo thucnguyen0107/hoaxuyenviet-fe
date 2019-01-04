@@ -1,17 +1,22 @@
 import React from 'react';
 import Header from '../../containers/Shop/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Body from '../../containers/Shop/Body/Body'
+import Home from '../../containers/Shop/Home/Home';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import Category from '../Shop/Category/Category'
 
 class Shop extends React.Component {
   render() {
     return (
       <>
-        <div className="common-home   layout-1">
-          <Header />
-          <Body />
-          <Footer />
-        </div>
+        <Header />
+        <Switch>
+          <Route path="/home" exact component={Home} />
+          <Route path="/category" exact component={Category} />
+          <Redirect from="/" to="/home" />
+          <Route render={() => <h1>Not Found</h1>} />
+        </Switch>
+        <Footer />
       </>
     )
   }

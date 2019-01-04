@@ -31,7 +31,7 @@ function gridResize() {
                 $('#content .product-layout').attr('class', 'product-layout product-grid col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 last-item');
             }
         } else {
-            $('#content .product-layout').attr('class', 'product-layout product-grid col-xl-3 col-lg-4 col-md-3 col-sm-6 col-xs-12');
+            $('#content .product-layout').attr('class', 'product-layout product-grid col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12');
             $('#content .product-layout:nth-child(3n+1)').addClass('first-item');
             $('#content .product-layout:nth-child(3n+3)').addClass('last-item');
         }

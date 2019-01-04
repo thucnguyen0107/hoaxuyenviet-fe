@@ -8,7 +8,7 @@ import BannersSlider from '../../../components/Slider/BannersSlider/BannersSlide
 import CategoriesSlider from '../../../components/Slider/CategoriesSlider/CategoriesSlider';
 import TabCategories from '../../../components/TabCategories/TabCategories';
 // import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
-import classes from './Body.scss'
+import classes from './Home.scss'
 import $ from 'jquery';
 class Body extends React.Component {
 
