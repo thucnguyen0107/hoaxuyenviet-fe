@@ -1,6 +1,6 @@
 import React from 'react';
-import SwiperSlider from '../SwiperSlider/SwiperSlider';
-import Slider from '../../../components/UI/Slider';
+import SwiperSlider from '../../UI/SwiperSlider';
+import Slider from '../../UI/Slider';
 const bannersSlider = (props) => {
 
   let type = "bannerSlider";

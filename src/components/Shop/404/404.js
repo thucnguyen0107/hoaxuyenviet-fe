@@ -1,5 +1,6 @@
 import React from 'react';
-import NotFoundImg from '../../assets/images/catalog/funny-404-illustration.png'
+// import NotFoundImg from '../../assets/images/catalog/funny-404-illustration.png';
+import NotFoundImg from '../../../assets/images/catalog/funny-404-illustration.png';
 import { Link } from 'react-router-dom';
 const notFoundPage = (props) => {
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
-import Logo from '../../assets/images/catalog/logo.png';
+// import Logo from '../../assets/images/catalog/logo.png';
+import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 
 const topNavigation = (props) => {

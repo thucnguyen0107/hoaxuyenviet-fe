@@ -1,67 +1,85 @@
 import React from 'react';
 import classes from '../UI/Filter.scss';
+import $ from 'jquery'
 
 
 const filterBtn = {
-  color: '#666',
+  color: 'rgb(102, 102, 102)',
   lineHeight: '1.12',
   textAlign: 'left',
   padding: '3px 20px 3px 6px',
   position: 'relative',
-  width: ' 100%',
+  width: '50%',
   height: '42px',
-  border: 'none',
-  borderRadius: '0',
-  borderTop: '1px solid #ddd',
-  borderBottom: '1px solid #ddd',
+  borderTop: '1px solid rgb(221, 221, 221)',
+  borderRight: 'none',
+  borderBottom: '1px solid rgb(221, 221, 221)',
+  borderLeft: 'none',
+  borderImage: 'initial',
+  borderRadius: '0px',
   backgroundColor: 'transparent',
-  display: 'inline-block'
+  display: 'inline-block',
+  margin: '0 20px',
 }
 
-const filter = (props) => {
+const caletStyle = {
+  position: 'absolute',
+  right: '0px',
+  top: '19px',
+}
 
+const dropdownContainer ={
+  display: 'flex',
+  marginBottom:'30px'
+}
+
+
+
+const filter = (props) => {
   return (
     <>
-      <div className={classes.dropdownContainer}>
+      <div className="dropdown" style={dropdownContainer}>
         <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span className="caret"></span>
+          Loại hoa <span className="caret" style={caletStyle}></span>
         </button>
 
         <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span className="caret"></span>
+          Hình thức hoa <span className="caret" style={caletStyle}></span>
         </button>
 
         <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span className="caret"></span>
+          Màu sắc <span className="caret" style={caletStyle}></span>
         </button>
 
         <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span className="caret"></span>
+          Giá <span className="caret" style={caletStyle} ></span>
         </button>
-        {/* <ul class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li class="dropdown">
-      <a href="#">One more dropdown</a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li class="dropdown">
-          <a href="#">One more dropdown</a>
-          <ul class="dropdown-menu">
-          ...
-          </ul>
-        </li>
-        <li><a href="#">Something else here</a></li>
-        <li><a href="#">Separated link</a></li>
-       </ul>
-    </li>
-    <li><a href="#">Something else here</a></li>
-    <li><a href="#">Separated link</a></li>
-  </ul> */}
+        <ul className="dropdown-menu">
+          <li><a href="/">Action</a></li>
+          <li><a href="/">Another action</a></li>
+          <li className="dropdown">
+            <a href="/">One more dropdown</a>
+            <ul className="dropdown-menu">
+              <li><a href="/">Action</a></li>
+              <li><a href="/">Another action</a></li>
+              <li className="dropdown">
+                <a href="/">One more dropdown</a>
+                <ul className="dropdown-menu">
+                  ...
+            </ul>
+              </li>
+              <li><a href="/">Something else here</a></li>
+              <li><a href="/">Separated link</a></li>
+            </ul>
+          </li>
+          <li><a href="/">Something else here</a></li>
+          <li><a href="/">Separated link</a></li>
+        </ul>
       </div>
 
-      <h3 className="refine-search">Refine Search</h3>
+      <button style={{display:'none'}} type="button" id="grid-view" className="btn btn-default grid active"><i className="fa fa-th"></i></button>
+
+      {/* <h3 className="refine-search">Refine Search</h3>
       <div>
         <div className="col-sm-12 category_list">
           <ul>
@@ -70,8 +88,9 @@ const filter = (props) => {
             <li><a href="indexbadb.html?route=product/category&amp;path=25_30_27">Ground-Burial</a></li>
           </ul>
         </div>
-      </div>
-      <div className="category_filter">
+      </div> */}
+
+      {/* <div className="category_filter">
         <div className="col-md-4 btn-list-grid">
           <div className="btn-group">
             <button type="button" id="grid-view" className="btn btn-default grid active"><i className="fa fa-th"></i></button>
@@ -137,7 +156,7 @@ const filter = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { columnDropdownList } from "../../../shared/config";
+import { columnDropdownList } from "../../../../shared/config";
 import { Link } from 'react-router-dom';
 let columnArr = [];
 let i = 0;

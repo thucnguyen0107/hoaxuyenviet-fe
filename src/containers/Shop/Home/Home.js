@@ -4,79 +4,17 @@ import React from 'react';
 import { slideShowDelayTime } from '../../../shared/config';
 
 
-import BannersSlider from '../../../components/Slider/BannersSlider/BannersSlider';
-import CategoriesSlider from '../../../components/Slider/CategoriesSlider/CategoriesSlider';
-import TabCategories from '../../../components/TabCategories/TabCategories';
+import BannersSlider from '../../../components/Shop/Slider/BannersSlider/BannersSlider';
+import CategoriesSlider from '../../../components/Shop/Slider/CategoriesSlider/CategoriesSlider';
+import TabCategories from '../../../components/Shop/TabCategories/TabCategories';
 // import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
 import classes from './Home.scss'
 import $ from 'jquery';
+import {arrBannerSlider, arrCatBannerSlider, arrTabCategory, arrLatestNew, arrManufacturer} from '../../../data/data'
 class Body extends React.Component {
 
 
-  arrBannerSlider = [
-
-    { id: 1, srcImg: require('../../../assets/images/catalog/banners/main-banner-1-1903x928.jpg') },
-    { id: 2, srcImg: require('../../../assets/images/catalog/banners/main-banner-2-1903x928.jpg') },
-  ]
-
-  arrCatBannerSlider = [
-    { id: 1, name: 'Bộ sưu tập hoa lãng mạn', srcImg: require('../../../assets/images/catalog/demo/cat-banner-1.png') },
-    { id: 2, name: 'Bộ sưu tập hoa cưới', srcImg: require('../../../assets/images/catalog/demo/cat-banner-2.png') },
-    { id: 3, name: 'Bộ sưu tập hoa tình yêu', srcImg: require('../../../assets/images/catalog/demo/cat-banner-3.png') },
-    { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../../../assets/images/catalog/demo/cat-banner-4.png') },
-  ]
-
-  arrTabCategory = [
-    {
-      id: 'tab-1',
-      categoryName: "Xem tất cả",
-      active: "active",
-      categoryProductList: [
-        { id: 1, name: 'Hoa hồng', price: 500000, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
-        { id: 2, name: 'Hoa cúc', price: 700000, srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
-        { id: 3, name: 'Hoa huệ', price: 1500000, srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
-        { id: 4, name: 'Hoa mẫu đơn', price: 590000, srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
-        { id: 5, name: 'Hoa lan', price: 999000, srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
-        { id: 6, name: 'Hoa hướng dương', price: 890000, srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
-
-      ],
-    },
-    {
-      id: 'tab-2',
-      categoryName: "Mới nhập",
-      active: "",
-      categoryProductList: [
-        { id: 1, name: 'Hello', price: 122, srcImg: require("../../../assets/images/catalog/product/3-366x450.jpg") },
-        { id: 2, name: 'IPOD CLASSNAMEIC', price: 122, srcImg: require("../../../assets/images/catalog/product/5-366x450.jpg") },
-        { id: 3, name: 'MACBOOK', price: 602, srcImg: require("../../../assets/images/catalog/product/7-366x450.jpg") },
-        { id: 4, name: 'NIKON D300', price: 98, srcImg: require("../../../assets/images/catalog/product/9-366x450.jpg") },
-        { id: 5, name: 'SAMSUNG SYNCMASTER 941BW', price: 242, srcImg: require("../../../assets/images/catalog/product/11-366x450.jpg") },
-        { id: 6, name: 'SONY VAIO', price: 1202, srcImg: require("../../../assets/images/catalog/product/13-366x450.jpg") },
-
-      ],
-    }
-  ];
-
-  arrLatestNew = [
-    { id: 1, srcImg: require("../../../assets/images/catalog/blogs/1-835x455.jpg") },
-    { id: 2, srcImg: require("../../../assets/images/catalog/blogs/2-835x455.jpg") },
-    { id: 3, srcImg: require("../../../assets/images/catalog/blogs/3-835x455.jpg") },
-    { id: 4, srcImg: require("../../../assets/images/catalog/blogs/4-835x455.jpg") },
-    { id: 5, srcImg: require("../../../assets/images/catalog/blogs/5-835x455.jpg") },
-  ]
-
-  arrManufacturer = [
-    { id: 1, srcImg: require("../../../assets/images/catalog/manufacturer/brand1-108x108.png") },
-    { id: 2, srcImg: require("../../../assets/images/catalog/manufacturer/brand2-108x108.png") },
-    { id: 3, srcImg: require("../../../assets/images/catalog/manufacturer/brand3-108x108.png") },
-    { id: 4, srcImg: require("../../../assets/images/catalog/manufacturer/brand4-108x108.png") },
-    { id: 5, srcImg: require("../../../assets/images/catalog/manufacturer/brand5-108x108.png") },
-    { id: 6, srcImg: require("../../../assets/images/catalog/manufacturer/brand6-108x108.png") },
-    { id: 7, srcImg: require("../../../assets/images/catalog/manufacturer/brand7-108x108.png") },
-    { id: 8, srcImg: require("../../../assets/images/catalog/manufacturer/brand8-108x108.png") },
-    { id: 9, srcImg: require("../../../assets/images/catalog/manufacturer/brand9-108x108.png") },
-    { id: 10, srcImg: require("../../../assets/images/catalog/manufacturer/brand10-108x108.png") },
-  ]
+  
 
   createNewSlider = (id) => {
     const slideShow = {
@@ -134,12 +72,12 @@ class Body extends React.Component {
           <div className="content-top">
             <div id="content">
               {/**Slider */}
-              <BannersSlider listBannerSlider={this.arrBannerSlider} />
+              <BannersSlider listBannerSlider={arrBannerSlider} />
               {/**End Slider */}
 
               {/**Test Category Block SlideShow */}
 
-              <CategoriesSlider listCatBannerSlider={this.arrCatBannerSlider} />
+              <CategoriesSlider listCatBannerSlider={arrCatBannerSlider} />
               {/**END Test Category Block SlideShow */}
 
 
@@ -165,7 +103,7 @@ class Body extends React.Component {
 
               {/*--------------TAB CATEGORY --------------- */}
               <div id="Tab_Category_Slider" className="category_tab box">
-                <TabCategories tabCategory={this.arrTabCategory} listTabCategoryHeader={this.arrTabCategory} />
+                <TabCategories tabCategory={arrTabCategory} listTabCategoryHeader={arrTabCategory} />
                 {/**------------- END--TAB CATEGORY--------------------- */}
 
 
@@ -201,7 +139,7 @@ class Body extends React.Component {
 
 
                 {/**-----------------LATEST NEWS------------------- */}
-                {/* <Blog_News listNews_Blog={this.arrLatestNew} /> */}
+                {/* <Blog_News listNews_Blog={arrLatestNew} /> */}
 
                 {/**-----------END------LATEST NEWS------------------- */}
 
@@ -218,70 +156,70 @@ class Body extends React.Component {
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[0].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[0].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[1].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[1].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[2].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[2].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[3].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[3].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[4].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[4].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[5].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[5].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[6].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[6].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[7].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[7].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[8].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[8].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>
                         <div className="slider-item">
                           <div className="product-block">
                             <div className="product-block-inner">
-                              <a href="index.html"><img src={this.arrManufacturer[9].srcImg} alt="" /></a>
+                              <a href="index.html"><img src={arrManufacturer[9].srcImg} alt="" /></a>
                             </div>
                           </div>
                         </div>

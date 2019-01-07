@@ -1,11 +1,11 @@
 import React from 'react';
-import Filter from '../../../components/UI/Filter';
-import ProductList from '../../../components/UI/ProductList';
+import Filter from '../../../components/Shop/UI/Filter';
+import ProductList from '../../../components/Shop/UI/ProductList';
 import classes from './Category.scss';
 import { visibleItems } from '../../../shared/config'
 import $ from 'jquery';
 import convertCategories from '../../../utilities/convertCategories';
-import notFoundPage from '../../../components/404/404';
+import notFoundPage from '../../../components/Shop/404/404';
 import { Redirect } from 'react-router';
 class Category extends React.Component {
   constructor(props) {
@@ -76,8 +76,8 @@ class Category extends React.Component {
                 <ul className="breadcrumb">
                   <h2 className="page-title">{convertCategories(this.props.match.params.first)}</h2>
                   <li><a href="index9328.html?route=common/home"><i className="fa fa-home"></i></a></li>
-                  <li><a href="index1647.html?route=product/category&amp;path=25">Decorative</a></li>
-                  <li><a href="index68a7.html?route=product/category&amp;path=25_30">Outdoor</a></li>
+                  <li><a style={{cursor: "default"}}>{convertCategories(this.props.match.params.first)}</a></li>
+                  <li><a style={{cursor: "default"}}>{this.props.match.params.second}</a></li>
                 </ul>
               </div>
             </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../../containers/Shop/Header/Header';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/Shop/Footer/Footer';
 import Home from '../../containers/Shop/Home/Home';
 import { Route, Redirect, Switch } from 'react-router';
 import Category from '../Shop/Category/Category';
-import notFoundPage from '../../components/404/404';
+import notFoundPage from '../../components/Shop/404/404';
 
 class Shop extends React.Component {
   render() {
