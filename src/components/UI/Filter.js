@@ -1,24 +1,42 @@
 import React from 'react';
 import classes from '../UI/Filter.scss';
 
+
+const filterBtn = {
+  color: '#666',
+  lineHeight: '1.12',
+  textAlign: 'left',
+  padding: '3px 20px 3px 6px',
+  position: 'relative',
+  width: ' 100%',
+  height: '42px',
+  border: 'none',
+  borderRadius: '0',
+  borderTop: '1px solid #ddd',
+  borderBottom: '1px solid #ddd',
+  backgroundColor: 'transparent',
+  display: 'inline-block'
+}
+
 const filter = (props) => {
+
   return (
     <>
-      <div class="dropdown">
-        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span class="caret"></span>
+      <div className={classes.dropdownContainer}>
+        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span className="caret"></span>
         </button>
 
-        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span class="caret"></span>
+        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span className="caret"></span>
         </button>
 
-        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span class="caret"></span>
+        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span className="caret"></span>
         </button>
 
-        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Dropdown <span class="caret"></span>
+        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span className="caret"></span>
         </button>
         {/* <ul class="dropdown-menu">
     <li><a href="#">Action</a></li>
@@ -56,7 +74,7 @@ const filter = (props) => {
       <div className="category_filter">
         <div className="col-md-4 btn-list-grid">
           <div className="btn-group">
-            <button type="button" id="grid-view" className="btn btn-default grid"><i className="fa fa-th"></i></button>
+            <button type="button" id="grid-view" className="btn btn-default grid active"><i className="fa fa-th"></i></button>
             <button type="button" id="list-view" className="btn btn-default list"><i className="fa fa-th-list"></i></button>
           </div>
         </div>

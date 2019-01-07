@@ -9,12 +9,13 @@ const topNavigation = (props) => {
   navList = (
     <>
       {
-        props.listCategoriesName.map(category => {
+        props.listCategoriesName.map((category, index) => {
           return (
             <NavigationItem
-              key={category.id} type={category.type}
+              key={index} type={category.type}
               subNavList={category.subCategories}
-            >{category.name}
+              parentNav={category.id}>
+              {category.name}
             </NavigationItem>
           )
         })
@@ -35,7 +36,7 @@ const topNavigation = (props) => {
                 <div id="logo">
                   <a href="index9328.html?route=common/home"><img src={Logo} title="Style-Light" alt="Style-Light"
                     className="img-responsive" /></a>
-                  
+
                 </div>
               </div>
             </div>

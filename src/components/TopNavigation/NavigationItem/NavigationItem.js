@@ -1,5 +1,6 @@
 import React from 'react';
 import { columnDropdownList } from "../../../shared/config";
+import { Link } from 'react-router-dom';
 let columnArr = [];
 let i = 0;
 while (i < columnDropdownList) {
@@ -12,6 +13,8 @@ const styleList = {
 }
 
 const navigationItem = (props) => {
+
+
 
   let subNavList = null, subNavListHTML = null;
   subNavList = props.subNavList;
@@ -26,12 +29,12 @@ const navigationItem = (props) => {
     subNavListHTML = (
       <>
         {
-          subNavList.map(subNav => {
+          subNavList.map((subNav, index) => {
             return (
-              <li key={subNav.id}>
-                <a href="index9328.html?route=common/home">{subNav.subName}</a>
+              <li key={index}>
+                {/* <a href="index9328.html?route=common/home">{subNav.subName}</a> */}
+                <Link to={{ pathname: `/category/${props.parentNav}/${subNav.id}` }}>{subNav.subName}</Link>
               </li>
-
             );
           })
         }
@@ -39,9 +42,14 @@ const navigationItem = (props) => {
     );
   }
 
+
   if (props.type === 'dropdown') {
     return (
-      <li className={li.join(' ')}><a href="index9328.html?route=common/home" style={{pointerEvents: 'none', cursor: "default"}}>{props.children}</a>
+      <li className={li.join(' ')}>
+        {
+          props.parentNav === 'home' ? <Link to="/home"> {props.children}</Link> : <a style={{ cursor: "default" }}> {props.children}</a>
+        }
+
         <div className="dropdown-menu megamenu " >
           <div className="dropdown-inner">
             <ul style={styleList} className="list-unstyled childs_2">
@@ -54,7 +62,14 @@ const navigationItem = (props) => {
   }
 
   else {
-    return <li className={li.join(' ')}><a href="index9328.html?route=common/home">{props.children}</a></li>;
+    return (
+      <li className={li.join(' ')}>
+        {/* <a href="/">{props.children}</a> */}
+        <Link to={{ pathname: `/${props.parentNav}` }}> {props.children}
+
+        </Link>
+
+      </li>);
   }
 };
 

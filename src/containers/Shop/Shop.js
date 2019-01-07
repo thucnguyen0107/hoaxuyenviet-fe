@@ -3,7 +3,8 @@ import Header from '../../containers/Shop/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Home from '../../containers/Shop/Home/Home';
 import { Route, Redirect, Switch } from 'react-router';
-import Category from '../Shop/Category/Category'
+import Category from '../Shop/Category/Category';
+import notFoundPage from '../../components/404/404';
 
 class Shop extends React.Component {
   render() {
@@ -12,9 +13,11 @@ class Shop extends React.Component {
         <Header />
         <Switch>
           <Route path="/home" exact component={Home} />
-          <Route path="/category" exact component={Category} />
-          <Redirect from="/" to="/home" />
-          <Route render={() => <h1>Not Found</h1>} />
+          <Route path="/category/:first/:second" exact component={Category} />
+          <Redirect from="/" to="/home" exact />
+          <Route path="/pageNotFound" exact component={notFoundPage} />
+          <Route component={notFoundPage} />
+
         </Switch>
         <Footer />
       </>
