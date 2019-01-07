@@ -41,7 +41,7 @@ const navigationItem = (props) => {
 
   if (props.type === 'dropdown') {
     return (
-      <li className={li.join(' ')}><a href="index9328.html?route=common/home">{props.children}</a>
+      <li className={li.join(' ')}><a href="index9328.html?route=common/home" style={{pointerEvents: 'none', cursor: "default"}}>{props.children}</a>
         <div className="dropdown-menu megamenu " >
           <div className="dropdown-inner">
             <ul style={styleList} className="list-unstyled childs_2">

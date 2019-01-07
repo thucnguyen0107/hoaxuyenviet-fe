@@ -1,14 +1,48 @@
 import React from 'react';
+import classes from '../UI/Filter.scss';
 
 const filter = (props) => {
   return (
     <>
-      <ul>
-        <li><div><button>Filter</button></div></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <div class="dropdown">
+        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span class="caret"></span>
+        </button>
+
+        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span class="caret"></span>
+        </button>
+
+        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span class="caret"></span>
+        </button>
+
+        <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+          Dropdown <span class="caret"></span>
+        </button>
+        {/* <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li class="dropdown">
+      <a href="#">One more dropdown</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li class="dropdown">
+          <a href="#">One more dropdown</a>
+          <ul class="dropdown-menu">
+          ...
+          </ul>
+        </li>
+        <li><a href="#">Something else here</a></li>
+        <li><a href="#">Separated link</a></li>
+       </ul>
+    </li>
+    <li><a href="#">Something else here</a></li>
+    <li><a href="#">Separated link</a></li>
+  </ul> */}
+      </div>
+
       <h3 className="refine-search">Refine Search</h3>
       <div>
         <div className="col-sm-12 category_list">

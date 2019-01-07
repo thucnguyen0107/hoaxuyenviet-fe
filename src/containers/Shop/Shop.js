@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../containers/Shop/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Home from '../../containers/Shop/Home/Home';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router';
 import Category from '../Shop/Category/Category'
 
 class Shop extends React.Component {
