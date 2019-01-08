@@ -112,55 +112,55 @@ export const arrBannerSlider = [
 
     { id: 1, srcImg: require('../assets/images/catalog/banners/main-banner-1-1903x928.jpg') },
     { id: 2, srcImg: require('../assets/images/catalog/banners/main-banner-2-1903x928.jpg') },
-  ]
+]
 
-  export const arrCatBannerSlider = [
+export const arrCatBannerSlider = [
     { id: 1, name: 'Bộ sưu tập hoa lãng mạn', srcImg: require('../assets/images/catalog/demo/cat-banner-1.png') },
     { id: 2, name: 'Bộ sưu tập hoa cưới', srcImg: require('../assets/images/catalog/demo/cat-banner-2.png') },
     { id: 3, name: 'Bộ sưu tập hoa tình yêu', srcImg: require('../assets/images/catalog/demo/cat-banner-3.png') },
     { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../assets/images/catalog/demo/cat-banner-4.png') },
-  ]
+]
 
-  export const arrTabCategory = [
+export const arrTabCategory = [
     {
-      id: 'tab-1',
-      categoryName: "Xem tất cả",
-      active: "active",
-      categoryProductList: [
-        { id: 1, name: 'Hoa hồng', price: 500000, srcImg: require("../assets/images/catalog/product/3-366x450.jpg") },
-        { id: 2, name: 'Hoa cúc', price: 700000, srcImg: require("../assets/images/catalog/product/5-366x450.jpg") },
-        { id: 3, name: 'Hoa huệ', price: 1500000, srcImg: require("../assets/images/catalog/product/7-366x450.jpg") },
-        { id: 4, name: 'Hoa mẫu đơn', price: 590000, srcImg: require("../assets/images/catalog/product/9-366x450.jpg") },
-        { id: 5, name: 'Hoa lan', price: 999000, srcImg: require("../assets/images/catalog/product/11-366x450.jpg") },
-        { id: 6, name: 'Hoa hướng dương', price: 890000, srcImg: require("../assets/images/catalog/product/13-366x450.jpg") },
+        id: 'tab-1',
+        categoryName: "Xem tất cả",
+        active: "active",
+        categoryProductList: [
+            { id: 1, name: 'Hoa hồng', price: 500000, srcImg: require("../assets/images/catalog/product/3-366x450.jpg") },
+            { id: 2, name: 'Hoa cúc', price: 700000, srcImg: require("../assets/images/catalog/product/5-366x450.jpg") },
+            { id: 3, name: 'Hoa huệ', price: 1500000, srcImg: require("../assets/images/catalog/product/7-366x450.jpg") },
+            { id: 4, name: 'Hoa mẫu đơn', price: 590000, srcImg: require("../assets/images/catalog/product/9-366x450.jpg") },
+            { id: 5, name: 'Hoa lan', price: 999000, srcImg: require("../assets/images/catalog/product/11-366x450.jpg") },
+            { id: 6, name: 'Hoa hướng dương', price: 890000, srcImg: require("../assets/images/catalog/product/13-366x450.jpg") },
 
-      ],
+        ],
     },
     {
-      id: 'tab-2',
-      categoryName: "Mới nhập",
-      active: "",
-      categoryProductList: [
-        { id: 1, name: 'Hello', price: 122, srcImg: require("../assets/images/catalog/product/3-366x450.jpg") },
-        { id: 2, name: 'IPOD CLASSNAMEIC', price: 122, srcImg: require("../assets/images/catalog/product/5-366x450.jpg") },
-        { id: 3, name: 'MACBOOK', price: 602, srcImg: require("../assets/images/catalog/product/7-366x450.jpg") },
-        { id: 4, name: 'NIKON D300', price: 98, srcImg: require("../assets/images/catalog/product/9-366x450.jpg") },
-        { id: 5, name: 'SAMSUNG SYNCMASTER 941BW', price: 242, srcImg: require("../assets/images/catalog/product/11-366x450.jpg") },
-        { id: 6, name: 'SONY VAIO', price: 1202, srcImg: require("../assets/images/catalog/product/13-366x450.jpg") },
+        id: 'tab-2',
+        categoryName: "Mới nhập",
+        active: "",
+        categoryProductList: [
+            { id: 1, name: 'Hello', price: 122, srcImg: require("../assets/images/catalog/product/3-366x450.jpg") },
+            { id: 2, name: 'IPOD CLASSNAMEIC', price: 122, srcImg: require("../assets/images/catalog/product/5-366x450.jpg") },
+            { id: 3, name: 'MACBOOK', price: 602, srcImg: require("../assets/images/catalog/product/7-366x450.jpg") },
+            { id: 4, name: 'NIKON D300', price: 98, srcImg: require("../assets/images/catalog/product/9-366x450.jpg") },
+            { id: 5, name: 'SAMSUNG SYNCMASTER 941BW', price: 242, srcImg: require("../assets/images/catalog/product/11-366x450.jpg") },
+            { id: 6, name: 'SONY VAIO', price: 1202, srcImg: require("../assets/images/catalog/product/13-366x450.jpg") },
 
-      ],
+        ],
     }
-  ];
+];
 
-  export const arrLatestNew = [
+export const arrLatestNew = [
     { id: 1, srcImg: require("../assets/images/catalog/blogs/1-835x455.jpg") },
     { id: 2, srcImg: require("../assets/images/catalog/blogs/2-835x455.jpg") },
     { id: 3, srcImg: require("../assets/images/catalog/blogs/3-835x455.jpg") },
     { id: 4, srcImg: require("../assets/images/catalog/blogs/4-835x455.jpg") },
     { id: 5, srcImg: require("../assets/images/catalog/blogs/5-835x455.jpg") },
-  ]
+]
 
-  export const arrManufacturer = [
+export const arrManufacturer = [
     { id: 1, srcImg: require("../assets/images/catalog/manufacturer/brand1-108x108.png") },
     { id: 2, srcImg: require("../assets/images/catalog/manufacturer/brand2-108x108.png") },
     { id: 3, srcImg: require("../assets/images/catalog/manufacturer/brand3-108x108.png") },
@@ -171,4 +171,4 @@ export const arrBannerSlider = [
     { id: 8, srcImg: require("../assets/images/catalog/manufacturer/brand8-108x108.png") },
     { id: 9, srcImg: require("../assets/images/catalog/manufacturer/brand9-108x108.png") },
     { id: 10, srcImg: require("../assets/images/catalog/manufacturer/brand10-108x108.png") },
-  ]
+]

@@ -10,11 +10,11 @@ import TabCategories from '../../../components/Shop/TabCategories/TabCategories'
 // import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
 import classes from './Home.scss'
 import $ from 'jquery';
-import {arrBannerSlider, arrCatBannerSlider, arrTabCategory, arrLatestNew, arrManufacturer} from '../../../data/data'
+import { arrBannerSlider, arrCatBannerSlider, arrTabCategory } from '../../../data/data'
 class Body extends React.Component {
 
 
-  
+
 
   createNewSlider = (id) => {
     const slideShow = {

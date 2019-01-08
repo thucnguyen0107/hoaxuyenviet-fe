@@ -1,7 +1,5 @@
 import React from 'react';
-import classes from '../UI/Filter.scss';
-import $ from 'jquery'
-
+import DropdownBtn from '../UI/DropdownBtn'
 
 const filterBtn = {
   color: 'rgb(102, 102, 102)',
@@ -28,56 +26,42 @@ const caletStyle = {
   top: '19px',
 }
 
-const dropdownContainer ={
+const dropdownContainer = {
   display: 'flex',
-  marginBottom:'30px'
+  marginBottom: '30px'
 }
 
 
 
 const filter = (props) => {
+  // console.log(props.catFilter);
+
+  let dropdownBtnHTML = [];
+
+  dropdownBtnHTML = (
+    <>
+      {
+        props.catFilter.map((filter, index) => {
+          return (
+            <DropdownBtn key={index} idBtn={filter.id} subCatFilter={filter.subCategories}>
+              {filter.name}
+            </DropdownBtn>
+          )
+        })
+      }
+    </>
+  );
+
+
+
   return (
     <>
       <div className="dropdown" style={dropdownContainer}>
-        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Loại hoa <span className="caret" style={caletStyle}></span>
-        </button>
+        {dropdownBtnHTML}
 
-        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Hình thức hoa <span className="caret" style={caletStyle}></span>
-        </button>
-
-        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Màu sắc <span className="caret" style={caletStyle}></span>
-        </button>
-
-        <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-          Giá <span className="caret" style={caletStyle} ></span>
-        </button>
-        <ul className="dropdown-menu">
-          <li><a href="/">Action</a></li>
-          <li><a href="/">Another action</a></li>
-          <li className="dropdown">
-            <a href="/">One more dropdown</a>
-            <ul className="dropdown-menu">
-              <li><a href="/">Action</a></li>
-              <li><a href="/">Another action</a></li>
-              <li className="dropdown">
-                <a href="/">One more dropdown</a>
-                <ul className="dropdown-menu">
-                  ...
-            </ul>
-              </li>
-              <li><a href="/">Something else here</a></li>
-              <li><a href="/">Separated link</a></li>
-            </ul>
-          </li>
-          <li><a href="/">Something else here</a></li>
-          <li><a href="/">Separated link</a></li>
-        </ul>
       </div>
 
-      <button style={{display:'none'}} type="button" id="grid-view" className="btn btn-default grid active"><i className="fa fa-th"></i></button>
+      <button style={{ display: 'none' }} type="button" id="grid-view" className="btn btn-default grid active"><i className="fa fa-th"></i></button>
 
       {/* <h3 className="refine-search">Refine Search</h3>
       <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 
 const productList = (props) => {
@@ -16,12 +16,15 @@ const productList = (props) => {
               <div className="product-block product-thumb transition">
                 <div className="product-block-inner">
                   <div className="image">
-                    <a href="index3a05.html?route=product/product&amp;path=25_30&amp;product_id=42">
+                    <Link to={{
+                      pathname: '/product',
+                      search: '?id='
+                    }}>
                       <img src={product.srcImg} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
                         className="img-responsive reg-image" />
                       <img className="img-responsive hover-image" src={product.srcImg}
                         title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;" />
-                    </a>
+                    </Link>
                     <div className="extra-info">
                       <span className="percentsaving">10%</span>
                     </div>

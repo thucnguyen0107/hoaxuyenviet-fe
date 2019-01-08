@@ -4,15 +4,13 @@ import ProductList from '../../../components/Shop/UI/ProductList';
 import classes from './Category.scss';
 import { visibleItems } from '../../../shared/config'
 import $ from 'jquery';
-import convertCategories from '../../../utilities/convertCategories';
-import notFoundPage from '../../../components/Shop/404/404';
+import { convertCategories, convertFilters } from '../../../utilities/categoriesUtil';
 import { Redirect } from 'react-router';
 class Category extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
-
-    if (this.props.match.params.first === 'color') {
+    if (props.match.params.first === 'color') {
       this.state = null;
     } else {
       this.state = {
@@ -64,6 +62,7 @@ class Category extends React.Component {
   }
 
   render() {
+    let catParams = convertCategories(this.props.match.params.first, this.props.match.params.second);
     if (this.props.match.params.first === 'color') {
       return <Redirect to="/pageNotFound" />
     } else {
@@ -74,10 +73,10 @@ class Category extends React.Component {
             <div className="container">
               <div className="row">
                 <ul className="breadcrumb">
-                  <h2 className="page-title">{convertCategories(this.props.match.params.first)}</h2>
-                  <li><a href="index9328.html?route=common/home"><i className="fa fa-home"></i></a></li>
-                  <li><a style={{cursor: "default"}}>{convertCategories(this.props.match.params.first)}</a></li>
-                  <li><a style={{cursor: "default"}}>{this.props.match.params.second}</a></li>
+                  <h2 className="page-title">{catParams.catParentName}</h2>
+                  <li><a href="/"><i className="fa fa-home"></i></a></li>
+                  <li><a href="/" style={{ cursor: "default" }}>{catParams.catParentName}</a></li>
+                  <li><a href="/" style={{ cursor: "default" }}>{catParams.catName}</a></li>
                 </ul>
               </div>
             </div>
@@ -86,7 +85,8 @@ class Category extends React.Component {
             <div id="product-category" className="container">
               <div className="row">
                 <div id="content" className="col-sm-12 categorypage">
-                  <Filter />
+                  <Filter catFilter={convertFilters(this.props.match.params.first)}
+                    subCatFilter={convertFilters(this.props.match.params.first).subCategories} />
                   <div className="row list-grid-wrapper">
                     <ProductList lstProduct={this.state.productList.slice(0, this.state.visible)} />
                   </div>

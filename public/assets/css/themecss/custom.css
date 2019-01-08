@@ -312,9 +312,9 @@ span.customSelect.changed {
 	-moz-box-shadow: 3px 4px 4px -1px #999999;
 	box-shadow: 3px 4px 4px -1px #999999;*/
 }
-.common-home .zoomWindowContainer{
+/* .common-home .zoomWindowContainer{
 	display: none!important;
-}
+} */
 /* FancyBox */
 .last_item_tm .product-block{}
 .first_item_tm .product-block{}
@@ -432,14 +432,14 @@ span.customSelect.changed {
 } 
 /* Responsive menu Css End */
 @media only screen and (max-width: 979px) {
-	.common-home .zoomContainer .zoomLens{
+	/* .common-home .zoomContainer .zoomLens{
 		cursor: url(../../../assets/images/themeimage/zoom.html), pointer !important;
 		border:none !important;
 		opacity:0 !important;
-	}
-	.common-home .zoomContainer{
+	} */
+	/* .common-home .zoomContainer{
 		display: none!important;
-	}
+	} */
 }
 @media only screen and (max-width: 479px) {
 	.nav-responsive .expandable {
