@@ -10,18 +10,37 @@ export const headerContent = {
         {
             id: 'event', name: 'Sự kiện', type: 'dropdown', subCategories:
                 [
-                    { id: 'opening', subName: 'Khánh thành' },
-                    { id: 'wedding', subName: 'Lễ cưới' },
                     { id: 'birthdate', subName: 'Sinh nhật' },
-
+                    { id: 'opening', subName: 'Khánh thành' },
+                    { id: 'opening', subName: 'Hẹn hò' },
+                    { id: 'opening', subName: 'Chia buồn' },
+                    { id: 'opening', subName: 'Trang trí' },
+                    { id: 'opening', subName: 'Chúc sức khỏe' },
+                    { id: 'wedding', subName: 'Đám cưới' },
+                    { id: 'wedding', subName: 'Khác' },
                 ]
         },
         {
             id: 'holiday', name: 'Ngày lễ', type: 'dropdown', subCategories:
                 [
-                    { id: 'womenDay', subName: 'Quốc tế phụ nữ' },
-                    { id: 'vnWomenDay', subName: 'Phụ nữ Việt Nam' },
-                    { id: 'vnTeacherDay', subName: 'Nhà giáo Việt Nam' },
+                    { id: 'womenDay', subName: 'Tết dương lịch(1/1)' },
+                    { id: 'vnWomenDay', subName: 'Thành lập DCSVN(3/2)' },
+                    { id: 'vnTeacherDay', subName: 'Valentine(14/2)' },
+                    { id: 'vnTeacherDay', subName: 'Thầy thuốc VN(27/2)' },
+                    { id: 'vnTeacherDay', subName: 'Quốc tế phụ nữ(8/3)' },
+                    { id: 'vnTeacherDay', subName: 'Quốc tế hạnh phúc(20/3)' },
+                    { id: 'vnTeacherDay', subName: 'Giải phóng miền Nam(30/4)' },
+                    { id: 'vnTeacherDay', subName: 'Quốc tế lao động(1/5)' },
+                    { id: 'vnTeacherDay', subName: 'Quốc tế thiếu nhi(1/6)' },
+                    { id: 'vnTeacherDay', subName: 'Gia đình VN(28/6)' },
+                    { id: 'vnTeacherDay', subName: 'Thương binh liệt sĩ(27/7)' },
+                    { id: 'vnTeacherDay', subName: 'Doanh nhân VN(13/10)' },
+                    { id: 'vnTeacherDay', subName: 'Phụ nữ VN(20/10)' },
+                    { id: 'vnTeacherDay', subName: 'Nhà giáo VN(20/11)' },
+                    { id: 'vnTeacherDay', subName: 'Thành lập QDNDVN(22/12)' },
+                    { id: 'vnTeacherDay', subName: 'Giáng sinh(25/12)' },
+                    { id: 'vnTeacherDay', subName: 'Ngày của mẹ' },
+                    { id: 'vnTeacherDay', subName: 'Ngày của cha' },
 
                 ]
         },
@@ -29,8 +48,26 @@ export const headerContent = {
             id: 'type', name: 'Kiểu loại', type: 'dropdown', subCategories:
                 [
                     { id: 'rose', subName: 'Hoa hồng' },
+                    { id: 'rose', subName: 'Hoa ly' },
+                    { id: 'rose', subName: 'Hoa lan' },
+                    { id: 'rose', subName: 'Hoa hướng dương' },
+                    { id: 'rose', subName: 'Hoa cẩm chướng' },
+                    { id: 'rose', subName: 'Hoa loa kèn' },
+                    { id: 'rose', subName: 'Hoa đồng tiền' },
+                    { id: 'rose', subName: 'Hoa cẩm tú cầu' },
+                    { id: 'rose', subName: 'Hoa thiên điển' },
+                    { id: 'rose', subName: 'Hoa thạch thảo' },
+                    { id: 'rose', subName: 'Hoa hồ điệp' },
+                    { id: 'rose', subName: 'Hoa baby' },
+                    { id: 'rose', subName: 'Hoa sen' },
                     { id: 'chrysanthemum', subName: 'Hoa cúc' },
                     { id: 'peony', subName: 'Hoa mẫu đơn' },
+                    { id: 'peony', subName: 'Hoa oải hương' },
+                    { id: 'peony', subName: 'Hoa tu líp' },
+                    { id: 'peony', subName: 'Hoa địa lan' },
+                    { id: 'peony', subName: 'Hoa đỗ quyên' },
+                    { id: 'peony', subName: 'Hoa nhập khẩu' },
+                    { id: 'peony', subName: 'khác' },
 
                 ]
         },
@@ -40,15 +77,29 @@ export const headerContent = {
                     { id: 'buds', subName: 'Lẳng hoa' },
                     { id: 'basket', subName: 'Giỏ hoa' },
                     { id: 'bouquet', subName: 'Bó hoa' },
+                    { id: 'bouquet', subName: 'Bình hoa' },
+                    { id: 'bouquet', subName: 'Hộp hoa' },
+                    { id: 'bouquet', subName: 'Cành hoa' },
+                    { id: 'bouquet', subName: 'Chậu hoa' },
+                    { id: 'bouquet', subName: 'Khác' },
 
                 ]
         },
         {
             id: 'color', name: 'Màu sắc', type: 'dropdown', subCategories:
                 [
-                    { id: 'pink', subName: 'Màu hồng' },
-                    { id: 'white', subName: 'Màu trắng' },
-                    { id: 'yellow', subName: 'Màu vàng' },
+                    { id: 'pink', subName: 'hồng' },
+                    { id: 'white', subName: 'trắng' },
+                    { id: 'yellow', subName: 'vàng' },
+                    { id: 'yellow', subName: 'đỏ tươi' },
+                    { id: 'yellow', subName: 'tím' },
+                    { id: 'yellow', subName: 'đỏ đô' },
+                    { id: 'yellow', subName: 'xanh lá' },
+                    { id: 'yellow', subName: 'cam' },
+                    { id: 'yellow', subName: 'xanh da trời' },
+                    { id: 'yellow', subName: 'trộn nhiều màu' },
+                    { id: 'yellow', subName: 'đen' },
+                    { id: 'yellow', subName: 'khác' },
 
                 ]
         },
