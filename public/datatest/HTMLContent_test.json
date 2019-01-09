@@ -1,0 +1,82 @@
+{
+  "bannerSlider": [
+    {
+      "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+      "eventLink": "/event/wedding"
+    },
+    {
+      "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+      "eventLink": "/event/birthdate"
+    },
+    {
+      "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+      "eventLink": "/event/decorate"
+    }
+  ],
+  "eventSlide": {
+    "firstSlide": [
+      {
+        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "eventLink": "/event/wedding"
+      },
+      {
+        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "eventLink": "/event/birthdate"
+      },
+      {
+        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "eventLink": "/event/decorate"
+      }
+    ],
+    "secondSlide": [
+      {
+        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "eventLink": "/event/wedding"
+      },
+      {
+        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "eventLink": "/event/birthdate"
+      },
+      {
+        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "eventLink": "/event/decorate"
+      }
+    ]
+  },
+  "otherSlide": {
+    "firstSlide": {
+      "name": "Loại Hoa",
+      "categoryDisplay": [
+        {
+          "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+          "eventLink": "/event/wedding"
+        },
+        {
+          "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+          "eventLink": "/event/birthdate"
+        },
+        {
+          "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+          "eventLink": "/event/decorate"
+        }
+      ]
+    },
+    "secondSlide": {
+      "name": "Hình Thức Hoa",
+      "categoryDisplay": [
+        {
+          "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+          "eventLink": "/event/wedding"
+        },
+        {
+          "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+          "eventLink": "/event/birthdate"
+        },
+        {
+          "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+          "eventLink": "/event/decorate"
+        }
+      ]
+    }
+  }
+}

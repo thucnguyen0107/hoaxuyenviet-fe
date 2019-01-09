@@ -1,5 +1,6 @@
 import React from 'react';
-import { convertCategories } from '../../../utilities/categoriesUtil';
+import { arrProductList } from '../../../data/data';
+import ProductCard from '../../../components/Shop/UI/ProductCard';
 class ProductDetail extends React.Component {
   init = () => {
     let $ = window.$;
@@ -44,7 +45,7 @@ class ProductDetail extends React.Component {
           var ez = $('#tmzoom').data('elevateZoom');
           $('.thumbnail').attr('href', largeImage);
           ez.swaptheimage(smallImage, largeImage);
-          z_index = $(this).index('.additional-carousel a');
+          z_index = $(this).index('#additional-carousel a');
           return false;
         });
       } else {
@@ -76,21 +77,41 @@ class ProductDetail extends React.Component {
   }
 
   componentDidMount() {
+    window.productCarouselAutoSet();
     this.init();
   }
 
   render() {
 
+    let listProductCardHTML = [];
+
+    listProductCardHTML = (
+      <>
+        {
+          arrProductList.map((card, index) => {
+            return (
+              <div className="slider-item" key={index}>
+                <ProductCard cardContent={card}>
+                </ProductCard>
+              </div>
+            )
+          })
+        }
+
+      </>
+    );
+
     return (
       <>
+
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title">TEST</h2>
+                <h2 className="page-title">Sản phẩm</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
-                <li><a href="/" style={{ cursor: "default" }}>TEST</a></li>
-                <li><a href="/" style={{ cursor: "default" }}>TEST</a></li>
+                <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Sản phẩm </a></li>
+
               </ul>
             </div>
           </div>
@@ -114,8 +135,8 @@ class ProductDetail extends React.Component {
 
                         <div className="additional-carousel">
                           <div className="customNavigation">
-                            <a className="fa prev fa-angle-left"></a>
-                            <a className="fa next fa-angle-right"></a>
+                            <a href="/" className="fa prev fa-angle-left"></a>
+                            <a href="/" className="fa next fa-angle-right"></a>
                           </div>
 
                           <div id="additional-carousel" className="image-additional product-carousel">
@@ -130,7 +151,7 @@ class ProductDetail extends React.Component {
                             </div>
                             <div className="slider-item">
                               <div className="product-block">
-                                <a href="image/cache/catalog/demo/product/13-813x1000.jpg" title="MacBook" className="elevatezoom-gallery"
+                                <a href={require('../../../assets/images/catalog/product/13-813x1000.jpg')} title="MacBook" className="elevatezoom-gallery"
                                   data-image={require('../../../assets/images/catalog/product/13-813x1000.jpg')}
                                   data-zoom-image={require('../../../assets/images/catalog/product/13-813x1000.jpg')} >
                                   <img src={require('../../../assets/images/catalog/product/13-813x1000.jpg')} width="74" height="74" title="MacBook" alt="MacBook" />
@@ -139,7 +160,7 @@ class ProductDetail extends React.Component {
                             </div>
                             <div className="slider-item">
                               <div className="product-block">
-                                <a href="image/cache/catalog/demo/product/14-813x1000.jpg" title="MacBook" className="elevatezoom-gallery"
+                                <a href={require('../../../assets/images/catalog/product/14-813x1000.jpg')} title="MacBook" className="elevatezoom-gallery"
                                   data-image={require('../../../assets/images/catalog/product/14-813x1000.jpg')}
                                   data-zoom-image={require('../../../assets/images/catalog/product/14-813x1000.jpg')} >
                                   <img src={require('../../../assets/images/catalog/product/14-813x1000.jpg')} width="74" height="74" title="MacBook" alt="MacBook" />
@@ -166,19 +187,8 @@ class ProductDetail extends React.Component {
                   </div>
                   <div className="col-sm-4 product-right">
                     <h3 className="product-title">MacBook</h3>
-                    <div className="rating-wrapper">
-                      <span className="fa fa-stack"><i className="fa fa-star"></i></span>
-                      <span className="fa fa-stack"><i className="fa fa-star"></i></span>
-                      <span className="fa fa-stack"><i className="fa fa-star"></i></span>
-                      <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
-                      <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
-                      <a href="#" className="review-count" >1
-									reviews</a>
-                      <a href="#" className="write-review"><i
-                        className="fa fa-pencil"></i>Write a review</a>
-                    </div>
-                    <ul className="list-unstyled">
-                      <li><span className="desc">Brands</span><a href="index98fa.html?route=product/manufacturer/info&amp;manufacturer_id=8">Apple</a></li>
+                    <ul className="list-unstyled" style={{ borderTop: 'none' }}>
+                      <li><span className="desc">Brands</span><a href="/">Apple</a></li>
                       <li><span className="desc">Product Code:</span> Product 11</li>
                       <li><span className="desc">Reward Points:</span> 600</li>
                       <li><span className="desc">Availability:</span> In Stock</li>
@@ -190,27 +200,33 @@ class ProductDetail extends React.Component {
                       <li>
                         <h2>$602.00</h2>
                       </li>
-                      <li className="price-tax">Ex Tax: $500.00</li>
+                      {/* <li className="price-tax">Ex Tax: $500.00</li> */}
                     </ul>
                     <div id="product">
+                      <h3 className="product-option">Available Options</h3>
+                      <div className="form-group required">
+                        <label className="control-label" htmlFor="input-option226">Select</label>
+                        <select name="option[226]" id="input-option226" className="form-control hasCustomSelect" style={{ WebkitAppearance: 'menulist-button', width: '597px', position: 'absolute', opacity: '0', height: '40px', fontSize: '14px' }}>
+                          <option value=""> -- Plase select -- </option>
+                        </select><span className="customSelect form-control" style={{ display: "inline-block" }}><span className="customSelectInner" style={{ width: '571px', display: 'inline-block' }}>--Please Select --  </span></span>
+                      </div>
                       <div className="form-group cart">
                         <label className="control-label qty" htmlFor="input-quantity">Qty</label>
                         <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
-                        <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block">Add
-										to Cart</button>
+                        <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block">Thêm vào giỏ hàng</button>
                         <span> - OR - </span>
                         <div className="btn-group">
-                          <button type="button" className="btn btn-primary wishlist" >Add to Wish List</button>
-                          <button type="button" className="btn btn-primary compare" >Add to Compare</button>
+                          <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>
+                          {/* <button type="button" className="btn btn-primary compare" >Add to Compare</button> */}
                         </div>
                       </div>
                       <input type="hidden" name="product_id" defaultValue="43" />
 
                       {/* <!-- AddThis Button BEGIN --> */}
                       <div className="addthis_toolbox addthis_default_style" data-url="indexb8ca.html?route=product/product&amp;product_id=43">
-                        <a className="addthis_button_facebook_like"></a>
-                        <a className="addthis_button_tweet"></a> <a className="addthis_button_pinterest_pinit"></a>
-                        <a className="addthis_counter addthis_pill_style"></a>
+                        <a href="/" className="addthis_button_facebook_like"></a>
+                        <a href="/" className="addthis_button_tweet"></a> <a className="addthis_button_pinterest_pinit"></a>
+                        <a href="/" className="addthis_counter addthis_pill_style"></a>
                       </div>
                       <script type="text/javascript" src="../../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
                       {/* <!-- AddThis Button END --> */}
@@ -220,9 +236,9 @@ class ProductDetail extends React.Component {
                   <div className="col-md-12">
                     <div id="tabs_info" className="product-tab col-sm-12">
                       <ul className="nav nav-tabs">
-                        <li className="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
-                        <li><a href="#tab-specification" data-toggle="tab">Specification</a></li>
-                        <li><a href="#tab-review" data-toggle="tab">Reviews (1)</a></li>
+                        <li className="active"><a href="/" data-toggle="tab">Description</a></li>
+                        {/* <li><a href="#tab-specification" data-toggle="tab">Specification</a></li>
+                        <li><a href="#tab-review" data-toggle="tab">Reviews (1)</a></li> */}
                       </ul>
                       <div className="tab-content">
                         <div className="tab-pane active" id="tab-description">
@@ -249,7 +265,7 @@ class ProductDetail extends React.Component {
 												take fun pictures with Photo Booth</p>
                           </div>
                         </div>
-                        <div className="tab-pane" id="tab-specification">
+                        {/* <div className="tab-pane" id="tab-specification">
                           <table className="table table-bordered">
                             <thead>
                               <tr>
@@ -274,8 +290,8 @@ class ProductDetail extends React.Component {
                               </tr>
                             </tbody>
                           </table>
-                        </div>
-                        <div className="tab-pane" id="tab-review">
+                        </div> */}
+                        {/* <div className="tab-pane" id="tab-review">
                           <form className="form-horizontal" id="form-review">
                             <div id="review"></div>
                             <h4>Write a review</h4>
@@ -315,6 +331,80 @@ class ProductDetail extends React.Component {
                               </div>
                             </div>
                           </form>
+                        </div> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="box related">
+                  <div className="box-heading">
+                    <h2 className="products-section-title">Related Products</h2>
+                  </div>
+                  <div className="tabs">
+                    <div className="box-content">
+                      <div id="products-related" className="related-products">
+
+                        <div className="customNavigation">
+                          <a className="fa prev fa-angle-left"></a>
+                          <a className="fa next fa-angle-right"></a>
+                        </div>
+                        <div className="box-product product-carousel" id="related-carousel">
+                          <div className="slider-item">
+                            <div className="product-block product-thumb transition">
+                              <div className="product-block-inner">
+                                <div className="image">
+                                  <a href="indexbfcf.html?route=product/product&amp;product_id=31">
+                                    <img src={require('../../../assets/images/catalog/product/14-813x1000.jpg')} title="Nikon D300" alt="Nikon D300" className="img-responsive reg-image" />
+                                    <img className="img-responsive hover-image" src={require('../../../assets/images/catalog/product/16-813x1000.jpg')} title="Nikon D300"
+                                      alt="Nikon D300" />
+                                  </a>
+                                  <div className="extra-info">
+                                  </div>
+                                </div>
+                                <div className="caption">
+                                  <div className="product-deacription-wrapper">
+                                    <h4><a href="index.html">Nikon D300 </a></h4>
+                                    <span className="price">
+                                      <span className="price-new">$98.00</span>
+                                      <span className="price-tax">Ex Tax: $80.00</span>
+
+                                    </span>
+                                    <div className="rating">
+                                      <span className="fa fa-stack"><i className="fa fa-star"></i></span>
+                                      <span className="fa fa-stack"><i className="fa fa-star"></i></span>
+                                      <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
+                                      <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
+                                      <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
+                                    </div>
+                                    <div className="button-group">
+                                      <button type="button" className="btn btn-primary addtocart" >
+                                        <i className="fa fa-shopping-basket"></i>
+                                        Add to Cart
+																</button>
+                                      <button className="btn btn-primary wishlist" type="button" >
+                                        <i className="fa fa-heart"></i>
+                                        Add to Wish List
+																</button>
+                                      <button className="btn btn-primary compare" type="button">
+                                        <i className="fa fa-clone"></i>
+                                        Add to Compare
+																</button>
+                                      <div className="quickview">
+                                        <a href="/" className="btn btn-primary">
+                                          <i className="fa fa-eye"></i>
+
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <span className="related_default_width" style={{ display: 'none', visibility: "hidden" }}></span>
+                                {/* <!-- Related Products Start --> */}
+                              </div>
+                            </div>
+                          </div>
+
+                          {listProductCardHTML}
                         </div>
                       </div>
                     </div>
@@ -322,7 +412,10 @@ class ProductDetail extends React.Component {
                 </div>
               </div>
             </div>
+
           </div>
+
+
         </div>
       </>
     );

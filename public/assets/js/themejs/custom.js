@@ -37,9 +37,9 @@ function gridResize() {
         }
     }
 }
-$(document).ready(function () {
-    gridResize();
-});
+// $(document).ready(function () {
+//     gridResize();
+// });
 $(window).resize(function () {
     gridResize();
 });
@@ -401,9 +401,9 @@ function productCarouselAutoSet() {
     });
 }
 //$(window).load(function(){productCarouselAutoSet();});
-$(document).ready(function () {
-    productCarouselAutoSet();
-});
+// $(document).ready(function () {
+//     productCarouselAutoSet();
+// });
 
 /*----------------------------------  Blog Carousel  -----------------------------------*/
 

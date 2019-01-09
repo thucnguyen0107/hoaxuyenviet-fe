@@ -1,47 +1,33 @@
 import React from 'react';
 import DropdownBtn from '../UI/DropdownBtn'
 
-const filterBtn = {
-  color: 'rgb(102, 102, 102)',
-  lineHeight: '1.12',
-  textAlign: 'left',
-  padding: '3px 20px 3px 6px',
-  position: 'relative',
-  width: '50%',
-  height: '42px',
-  borderTop: '1px solid rgb(221, 221, 221)',
-  borderRight: 'none',
-  borderBottom: '1px solid rgb(221, 221, 221)',
-  borderLeft: 'none',
-  borderImage: 'initial',
-  borderRadius: '0px',
-  backgroundColor: 'transparent',
-  display: 'inline-block',
-  margin: '0 20px',
-}
 
-const caletStyle = {
-  position: 'absolute',
-  right: '0px',
-  top: '19px',
-}
 
 const dropdownContainer = {
-  display: 'flex',
-  marginBottom: '30px'
+  marginBottom: '30px',
 }
 
 
 
 const filter = (props) => {
   // console.log(props.catFilter);
+  let arrayFilter = props.catFilter.slice();
+  let priceFilter = {
+    id: 'price', name: 'Giá', type: 'dropdown', subCategories:
+      [
+        { id: 'increase', subName: 'Tăng dần' },
+        { id: 'decrease', subName: 'Giảm dần' },
+
+      ]
+  };
+  arrayFilter.push(priceFilter);
 
   let dropdownBtnHTML = [];
 
   dropdownBtnHTML = (
     <>
       {
-        props.catFilter.map((filter, index) => {
+        arrayFilter.map((filter, index) => {
           return (
             <DropdownBtn key={index} idBtn={filter.id} subCatFilter={filter.subCategories}>
               {filter.name}
@@ -56,7 +42,7 @@ const filter = (props) => {
 
   return (
     <>
-      <div className="dropdown" style={dropdownContainer}>
+      <div className="dropdown row" style={dropdownContainer}>
         {dropdownBtnHTML}
 
       </div>

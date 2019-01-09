@@ -12,12 +12,12 @@ export const headerContent = {
                 [
                     { id: 'birthdate', subName: 'Sinh nhật' },
                     { id: 'opening', subName: 'Khánh thành' },
-                    { id: 'opening', subName: 'Hẹn hò' },
-                    { id: 'opening', subName: 'Chia buồn' },
-                    { id: 'opening', subName: 'Trang trí' },
-                    { id: 'opening', subName: 'Chúc sức khỏe' },
+                    { id: 'dating', subName: 'Hẹn hò' },
+                    { id: 'condolatory', subName: 'Chia buồn' },
+                    { id: 'decorate', subName: 'Trang trí' },
+                    { id: 'health', subName: 'Chúc sức khỏe' },
                     { id: 'wedding', subName: 'Đám cưới' },
-                    { id: 'wedding', subName: 'Khác' },
+                    { id: 'other', subName: 'Khác' },
                 ]
         },
         {
@@ -25,12 +25,12 @@ export const headerContent = {
                 [
                     { id: 'womenDay', subName: 'Tết dương lịch(1/1)' },
                     { id: 'vnWomenDay', subName: 'Thành lập DCSVN(3/2)' },
-                    { id: 'vnTeacherDay', subName: 'Valentine(14/2)' },
-                    { id: 'vnTeacherDay', subName: 'Thầy thuốc VN(27/2)' },
-                    { id: 'vnTeacherDay', subName: 'Quốc tế phụ nữ(8/3)' },
-                    { id: 'vnTeacherDay', subName: 'Quốc tế hạnh phúc(20/3)' },
-                    { id: 'vnTeacherDay', subName: 'Giải phóng miền Nam(30/4)' },
-                    { id: 'vnTeacherDay', subName: 'Quốc tế lao động(1/5)' },
+                    { id: 'valentine', subName: 'Valentine(14/2)' },
+                    { id: 'vnDoctorDay', subName: 'Thầy thuốc VN(27/2)' },
+                    { id: 'internationalWoman', subName: 'Quốc tế phụ nữ(8/3)' },
+                    { id: 'internationalHappy', subName: 'Quốc tế hạnh phúc(20/3)' },
+                    { id: 'indepentdentDay', subName: 'Giải phóng miền Nam(30/4)' },
+                    { id: 'internationalLabor', subName: 'Quốc tế lao động(1/5)' },
                     { id: 'vnTeacherDay', subName: 'Quốc tế thiếu nhi(1/6)' },
                     { id: 'vnTeacherDay', subName: 'Gia đình VN(28/6)' },
                     { id: 'vnTeacherDay', subName: 'Thương binh liệt sĩ(27/7)' },
@@ -171,4 +171,15 @@ export const arrManufacturer = [
     { id: 8, srcImg: require("../assets/images/catalog/manufacturer/brand8-108x108.png") },
     { id: 9, srcImg: require("../assets/images/catalog/manufacturer/brand9-108x108.png") },
     { id: 10, srcImg: require("../assets/images/catalog/manufacturer/brand10-108x108.png") },
+]
+
+
+export const arrProductList = [
+    { id: 1, name: 'Hoa hồng', price: 500000, srcImg: require("../assets/images/catalog/product/3-813x1000.jpg") },
+    { id: 2, name: 'Hoa cúc', price: 700000, srcImg: require("../assets/images/catalog/product/5-813x1000.jpg") },
+    { id: 3, name: 'Hoa huệ', price: 1500000, srcImg: require("../assets/images/catalog/product/7-813x1000.jpg") },
+    { id: 4, name: 'Hoa mẫu đơn', price: 590000, srcImg: require("../assets/images/catalog/product/9-813x1000.jpg") },
+    { id: 5, name: 'Hoa lan', price: 999000, srcImg: require("../assets/images/catalog/product/11-813x1000.jpg") },
+    { id: 6, name: 'Hoa cúc dại', price: 890000, srcImg: require("../assets/images/catalog/product/3-813x1000.jpg") }
+
 ]

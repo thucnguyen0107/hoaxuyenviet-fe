@@ -10,11 +10,17 @@ import TabCategories from '../../../components/Shop/TabCategories/TabCategories'
 // import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
 import classes from './Home.scss'
 import $ from 'jquery';
-import { arrBannerSlider, arrCatBannerSlider, arrTabCategory } from '../../../data/data'
+import { arrBannerSlider, arrCatBannerSlider, arrTabCategory } from '../../../data/data';
+import axios from 'axios';
+import htmlContentModel from '../../../models/htmlContentModel';
 class Body extends React.Component {
 
-
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      htmlContentModel
+    }
+  }
 
   createNewSlider = (id) => {
     const slideShow = {
@@ -46,6 +52,21 @@ class Body extends React.Component {
 
 
   componentDidMount() {
+    // Add a response interceptor
+    axios.interceptors.response.use(function (response) {
+      // Do something with response data
+      return response.data;
+    }, function (error) {
+      // Do something with response error
+      return Promise.reject(error);
+    });
+    console.log(this.state);
+    axios.get('/datatest/HTMLContent_test.json').then((res) => {
+      console.log(res);
+      this.setState({ htmlContentModel: res })
+    }).catch((err) => {
+      console.error(err);
+    })
     $(document).ready(function () {
       $("#spinner").fadeOut("slow");
     });
@@ -72,7 +93,7 @@ class Body extends React.Component {
           <div className="content-top">
             <div id="content">
               {/**Slider */}
-              <BannersSlider listBannerSlider={arrBannerSlider} />
+              <BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlider} />
               {/**End Slider */}
 
               {/**Test Category Block SlideShow */}

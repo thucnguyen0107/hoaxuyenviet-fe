@@ -16,10 +16,7 @@ const productList = (props) => {
               <div className="product-block product-thumb transition">
                 <div className="product-block-inner">
                   <div className="image">
-                    <Link to={{
-                      pathname: '/product',
-                      search: '?id='
-                    }}>
+                    <Link to={'/product/' + product.id}>
                       <img src={product.srcImg} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
                         className="img-responsive reg-image" />
                       <img className="img-responsive hover-image" src={product.srcImg}
@@ -31,10 +28,9 @@ const productList = (props) => {
                   </div>
                   <div className="caption">
                     <div className="product-deacription-wrapper">
-                      <h4><a href="index3a05.html?route=product/product&amp;path=25_30&amp;product_id=42">Apple Cinema
-                          30&quot; </a></h4>
+                      <h4><a href="index3a05.html?route=product/product&amp;path=25_30&amp;product_id=42">{product.name} </a></h4>
                       <span className="price">
-                        <span className="price-new">$110.00</span>
+                        <span className="price-new">{product.price} VND</span>
                         <span className="price-old">$122.00</span>
                         <span className="price-tax">Ex Tax: $90.00</span>
                         <div className="saleback">

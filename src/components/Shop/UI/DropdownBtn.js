@@ -17,6 +17,7 @@ const filterBtn = {
   backgroundColor: 'transparent',
   display: 'inline-block',
   margin: '0 20px',
+  marginBottom: '10px'
 }
 
 const caletStyle = {
@@ -41,18 +42,15 @@ const dropdownMenuStyle = {
   // -webkit-background-clip: padding-box;
   backgroundClip: 'padding-box',
   border: '1px solid #ccc',
-  border: '1px solid rgba(0,0,0,.15)',
   borderRadius: '4px',
   boxShadow: '0 6px 12px rgba(0,0,0,.175)',
-  width: '234px',
-  textAlign: 'left',
+  width: '200px',
 }
 
 
 
 
 const dropdownBtn = (props) => {
-  console.log(props.subCatFilter);
   let dropdownMenuHTML = [];
   dropdownMenuHTML = (
     <>
@@ -66,7 +64,8 @@ const dropdownBtn = (props) => {
     </>
   );
   return (
-    <div className="btn-group" id={props.idBtn}>
+
+    <div className="btn-group col-xs-6 col-sm-4 col-md-3" id={props.idBtn}>
       <button style={filterBtn} className="dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-target={`#${props.idBtn}`}>
         {props.children}<span className="caret" style={caletStyle}></span>
       </button>

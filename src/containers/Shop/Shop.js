@@ -15,7 +15,7 @@ class Shop extends React.Component {
         <Switch>
           <Route path="/home" exact component={Home} />
           <Route path="/category/:first/:second" exact component={Category} />
-          <Route path="/test" exact component={ProductDetail} />
+          <Route path="/product/:product_id" exact component={ProductDetail} />
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
           <Route component={notFoundPage} />

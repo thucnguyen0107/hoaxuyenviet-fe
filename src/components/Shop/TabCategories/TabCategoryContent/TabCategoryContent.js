@@ -9,13 +9,16 @@ const tabCategoryContent = (props) => {
   listProductCardHTML = (
     <>
       {
-        props.tabCategoryContent.map(card => {
+        props.tabCategoryContent.map((card, index) => {
 
 
           return (
-            <ProductCard key={card.id} cardContent={card}>
-
-            </ProductCard>
+            <div className="item text-center" key={index}>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ProductCard cardContent={card}>
+                </ProductCard>
+              </div>
+            </div>
           )
         })
       }

@@ -14,8 +14,8 @@ const bannersSlider = (props) => {
         props.listBannerSlider.map((banner, index) => {
           return (
 
-            <SwiperSlider key={banner.id}>
-              <a href="/"><img src={banner.srcImg} alt={`Main-banner-${index + 1}`} className="img-responsive" /></a>
+            <SwiperSlider key={index}>
+              <a href="/"><img src={banner.image} alt={`Main-banner-${index + 1}`} className="img-responsive" /></a>
             </SwiperSlider>
           )
         })
