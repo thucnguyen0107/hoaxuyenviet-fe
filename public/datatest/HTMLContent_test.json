@@ -1,44 +1,48 @@
 {
   "bannerSlider": [
     {
-      "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+      "image": "../assets/images/catalog/banners/main-banner-1-1903x928.jpg",
       "eventLink": "/event/wedding"
     },
     {
-      "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+      "image": "../assets/images/catalog/banners/main-banner-2-1903x928.jpg",
       "eventLink": "/event/birthdate"
-    },
-    {
-      "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
-      "eventLink": "/event/decorate"
     }
   ],
   "eventSlide": {
     "firstSlide": [
       {
-        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "image": "../assets/images/catalog/demo/cat-banner-1.png",
         "eventLink": "/event/wedding"
       },
       {
-        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "image": "../assets/images/catalog/demo/cat-banner-2.png",
         "eventLink": "/event/birthdate"
       },
       {
-        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "image": "../assets/images/catalog/demo/cat-banner-3.png",
+        "eventLink": "/event/decorate"
+      },
+      {
+        "image": "../assets/images/catalog/demo/cat-banner-4.png",
         "eventLink": "/event/decorate"
       }
     ],
     "secondSlide": [
       {
-        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "image": "../assets/images/catalog/demo/cat-banner-1.png",
         "eventLink": "/event/wedding"
       },
       {
-        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "image": "../assets/images/catalog/demo/cat-banner-2.png",
         "eventLink": "/event/birthdate"
       },
       {
-        "image": "../../../assets/images/catalog/product/11-813x1000.jpg",
+        "image": "../assets/images/catalog/demo/cat-banner-3.png",
+        "eventLink": "/event/decorate"
+      },
+      {
+        "image": "../assets/images/catalog/demo/cat-banner-4.png",
         "eventLink": "/event/decorate"
       }
     ]

@@ -121,6 +121,23 @@ export const arrCatBannerSlider = [
     { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../assets/images/catalog/demo/cat-banner-4.png') },
 ]
 
+export const arrCatBannerSlider2 = {
+       firstSlide:[ 
+        { id: 1, name: 'Bộ sưu tập hoa lãng mạn', srcImg: require('../assets/images/catalog/demo/cat-banner-1.png') },
+        { id: 2, name: 'Bộ sưu tập hoa cưới', srcImg: require('../assets/images/catalog/demo/cat-banner-2.png') },
+        { id: 3, name: 'Bộ sưu tập hoa tình yêu', srcImg: require('../assets/images/catalog/demo/cat-banner-3.png') },
+        { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../assets/images/catalog/demo/cat-banner-4.png') },
+        ],
+        secondSlide:[
+            { id: 1, name: 'Bộ sưu tập hoa lãng mạn', srcImg: require('../assets/images/catalog/demo/cat-banner-1.png') },
+            { id: 2, name: 'Bộ sưu tập hoa cưới', srcImg: require('../assets/images/catalog/demo/cat-banner-2.png') },
+            { id: 3, name: 'Bộ sưu tập hoa tình yêu', srcImg: require('../assets/images/catalog/demo/cat-banner-3.png') },
+            { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../assets/images/catalog/demo/cat-banner-4.png') },
+        ]
+    }
+    
+
+
 export const arrTabCategory = [
     {
         id: 'tab-1',

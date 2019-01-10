@@ -20,7 +20,7 @@ const slider = (props) => {
         </div>
       </div>
     );
-  } else
+  } else{
     return (
       <div className="main-slider">
         <div className="swiper-viewport">
@@ -36,6 +36,7 @@ const slider = (props) => {
         </div>
       </div>
     );
+  }
 }
 
 
