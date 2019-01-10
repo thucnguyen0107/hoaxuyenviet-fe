@@ -2,10 +2,13 @@ import React from 'react';
 import Filter from '../../../components/Shop/UI/Filter';
 import ProductList from '../../../components/Shop/UI/ProductList';
 import classes from './Category.scss';
-import { visibleItems } from '../../../shared/config'
+import { visibleItems } from '../../../services/config'
 import $ from 'jquery';
 import { convertCategories, convertFilters } from '../../../utilities/categoriesUtil';
 import { Redirect } from 'react-router';
+import axios from 'axios';
+import { baseURL } from '../../../services/config';
+import htmlContentModel from '../../../models/htmlContentModel';
 class Category extends React.Component {
   constructor(props) {
     super(props);
@@ -51,6 +54,15 @@ class Category extends React.Component {
     this.setState((prev) => {
       return { visible: prev.visible + 4 };
     }, window.gridResize);
+  }
+
+  componentWillMount() {
+    axios.get(`${baseURL}/datatest/HTMLContent_test.json`).then((res) => {
+      console.log(res);
+      this.setState({ htmlContentModel: res })
+    }).catch((err) => {
+      console.error(err);
+    })
   }
 
   componentDidMount() {

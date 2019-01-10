@@ -1,5 +1,5 @@
 {
-  "bannerSlider": [
+  "bannerSlide": [
     {
       "image": "../assets/images/catalog/banners/main-banner-1-1903x928.jpg",
       "eventLink": "/category/event/wedding"
@@ -110,5 +110,229 @@
         }
       ]
     }
-  }
+  },
+  "productList": [
+    {
+      "id": "1",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/1-813x1000.jpg')"
+    },
+    {
+      "id": "1",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/2-813x1000.jpg')"
+    },
+    {
+      "id": "2",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/3-813x1000.jpg')"
+    },
+    {
+      "id": "3",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/4-813x1000.jpg')"
+    },
+    {
+      "id": "4",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/5-813x1000.jpg')"
+    },
+    {
+      "id": "5",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/6-813x1000.jpg')"
+    },
+    {
+      "id": "6",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/7-813x1000.jpg')"
+    },
+    {
+      "id": "7",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/8-813x1000.jpg')"
+    },
+    {
+      "id": "8",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/9-813x1000.jpg')"
+    },
+    {
+      "id": "9",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/10-813x1000.jpg')"
+    },
+    {
+      "id": "10",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/11-813x1000.jpg')"
+    },
+    {
+      "id": "11",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/12-813x1000.jpg')"
+    },
+    {
+      "id": "12",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/13-813x1000.jpg')"
+    },
+    {
+      "id": "13",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/14-813x1000.jpg')"
+    },
+    {
+      "id": "14",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/15-813x1000.jpg')"
+    },
+    {
+      "id": "15",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/16-813x1000.jpg')"
+    },
+    {
+      "id": "16",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/17-813x1000.jpg')"
+    },
+    {
+      "id": "17",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/18-813x1000.jpg')"
+    },
+    {
+      "id": "18",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/19-813x1000.jpg')"
+    },
+    {
+      "id": "19",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/1-813x1000.jpg')"
+    },
+    {
+      "id": "20",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/2-813x1000.jpg')"
+    },
+    {
+      "id": "21",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/3-813x1000.jpg')"
+    },
+    {
+      "id": "22",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/4-813x1000.jpg')"
+    },
+    {
+      "id": "23",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/5-813x1000.jpg')"
+    },
+    {
+      "id": "24",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/6-813x1000.jpg')"
+    },
+    {
+      "id": "25",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/7-813x1000.jpg')"
+    },
+    {
+      "id": "26",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/8-813x1000.jpg')"
+    },
+    {
+      "id": "27",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/9-813x1000.jpg')"
+    },
+    {
+      "id": "28",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/10-813x1000.jpg')"
+    },
+    {
+      "id": "29",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/11-813x1000.jpg')"
+    },
+    {
+      "id": "30",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/12-813x1000.jpg')"
+    },
+    {
+      "id": "31",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/13-813x1000.jpg')"
+    },
+    {
+      "id": "32",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/14-813x1000.jpg')"
+    },
+    {
+      "id": "33",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/15-813x1000.jpg')"
+    },
+    {
+      "id": "34",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/16-813x1000.jpg')"
+    },
+    {
+      "id": "35",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/17-813x1000.jpg')"
+    },
+    {
+      "id": "36",
+      "name": "Hoa hồng",
+      "price": "500000",
+      "srcImg": "require('../../../assets/images/catalog/product/18-813x1000.jpg')"
+    }
+  ]
 }

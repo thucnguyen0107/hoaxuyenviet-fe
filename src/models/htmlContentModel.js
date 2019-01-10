@@ -1,7 +1,8 @@
 const htmlContentModel = {
-  "bannerSlider": [],
+  "bannerSlide": [],
   "eventSlide": {},
-  "otherSlide": {}
+  "otherSlide": {},
+  "productList": {}
 }
 
 export default htmlContentModel;

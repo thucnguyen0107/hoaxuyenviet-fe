@@ -52,7 +52,7 @@ const productList = (props) => {
                           <i className="fa fa-shopping-basket"></i>
                           Add to Cart
                         </button>
-                        <button className="btn btn-primary wishlist" type="button" >
+                        {/* <button className="btn btn-primary wishlist" type="button" >
                           <i className="fa fa-heart"></i>
                           Add to Wish List
                         </button>
@@ -65,7 +65,7 @@ const productList = (props) => {
                             <i className="fa fa-eye"></i>
 
                           </a>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>

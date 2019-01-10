@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import emailInputImage from '../../../assets/images/themeimage/special-discount-block.jpg';
-import { slideShowDelayTime, baseURL } from '../../../shared/config';
+import { slideShowDelayTime, baseURL } from '../../../services/config';
 
 
 import BannersSlider from '../../../components/Shop/Slider/BannersSlider/BannersSlider';
@@ -94,7 +94,7 @@ class Body extends React.Component {
             <div id="content">
               {/**Slider */}
               {/* {<BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlider} />} */}
-              {<BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlider} />}
+              {<BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlide} />}
               {/**End Slider */}
 
               {/**Test Category Block SlideShow */}
