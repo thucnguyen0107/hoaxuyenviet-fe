@@ -1,10 +1,11 @@
 import React from 'react';
 
 const tabCategoryHeaderItem = (props) => {
+  console.log(props);
 
   return (
-    <li className={props.active}><a href={`#${props.categoryName}`} data-toggle="tab" data-target={`#${props.id}`}>
-      {props.children}
+    <li className={props.tabCategoryContent.active}><a href={`#${props.tabCategoryContent.name}`} data-toggle="tab" data-target={`#${props.tabCategoryContent.id}`}>
+      {props.tabCategoryContent.name}
     </a></li>
   );
 }

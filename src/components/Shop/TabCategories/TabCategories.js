@@ -3,19 +3,34 @@ import TabCategoryHeader from '../TabCategories/TabCategoryHeader/TabCategoryHea
 import TabCategoryContent from '../TabCategories/TabCategoryContent/TabCategoryContent'
 const tabCategories = (props) => {
 
-  let listTabCategoryContentHTML = (
-    <>
-      {
-        props.tabCategory.map(tab => {
-          return (
-            <TabCategoryContent key={tab.id} tabId={tab.id} tabCategoryContent={tab.categoryProductList} activeTab={tab.active}>
 
-            </TabCategoryContent>
-          )
-        })
-      }
-    </>
-  );
+  let listTabCategoryContentHTML = []
+
+  // let listTabCategoryContentHTML = (
+  //   <>
+  //     {
+  //       props.listTabCategory.map((tab, index) => {
+  //         return (
+  //           <TabCategoryContent key={index} tabId={tab.id} tabCategoryContent={tab.categoryProductList} activeTab={tab.active}>
+
+  //           </TabCategoryContent>
+  //         )
+  //       })
+  //     }
+  //   </>
+  // );
+
+
+
+  for (const i in props.listTabCategory) {
+
+    listTabCategoryContentHTML.push(
+      (
+        <TabCategoryContent key={i} tabCategoryContent={props.listTabCategory[i]} >
+        </TabCategoryContent>
+      )
+    )
+  }
 
 
   return (
@@ -23,7 +38,7 @@ const tabCategories = (props) => {
       <div className="container">
         <div className="row">
           <div className="category-tab-container">
-            <TabCategoryHeader listTabCategoryHeader={props.listTabCategoryHeader} />
+            <TabCategoryHeader listTabCategoryHeader={props.listTabCategory} />
             <div className="tabs">
               <div className="tab-content">
                 {listTabCategoryContentHTML}

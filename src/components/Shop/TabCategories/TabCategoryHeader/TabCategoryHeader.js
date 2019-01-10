@@ -7,26 +7,36 @@ const tabCategoryHeader = (props) => {
 
   let listTabCategoryHeaderNameHTML = [];
 
-  listTabCategoryHeaderNameHTML = (
-    <>
-      {
-        props.listTabCategoryHeader.map(cat => {
-          return (
-            <TabCategoryHeaderItem key={cat.id} categoryName={cat.categoryName} id={cat.id} active={cat.active}>
-              {cat.categoryName}
-            </TabCategoryHeaderItem>
-          )
-        })
-      }
+  // listTabCategoryHeaderNameHTML = (
+  //   <>
+  //     {
+  //       props.listTabCategoryHeader.map(cat => {
+  //         return (
+  //           <TabCategoryHeaderItem key={cat.id} categoryName={cat.categoryName} id={cat.id} active={cat.active}>
+  //             {cat.categoryName}
+  //           </TabCategoryHeaderItem>
+  //         )
+  //       })
+  //     }
 
-    </>
-  )
+  //   </>
+  // )
+
+  for (const i in props.listTabCategoryHeader) {
+
+    listTabCategoryHeaderNameHTML.push(
+      (
+        <TabCategoryHeaderItem key={i} tabCategoryContent={props.listTabCategoryHeader[i]} >
+        </TabCategoryHeaderItem>
+      )
+    )
+  }
 
 
   return (
     <div className="category-tab-heading-wrapper">
       <div className="box-heading">
-        <h2 className="products-section-title">Mới nhập</h2>
+        <h2 className="products-section-title">Danh Mục</h2>
       </div>
       <div className="etabs">
         <ul className="nav nav-tabs">

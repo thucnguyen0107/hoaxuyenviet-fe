@@ -4,29 +4,29 @@ import SwiperSlider from '../../UI/SwiperSlider';
 import Slider from '../../UI/Slider';
 const categoriesSlider = (props) => {
 
-	console.log(props.listCatBannerSlider[0].firstSlide);
-	
 
 	let type = "categorySlider";
 	let catId = "slideshow1";
 
 	let catSliderList = [];
 
-	catSliderList = (
-		<>
-			{
-				props.listCatBannerSlider.map((catBannerSlider, index) => {
-					console.log(catBannerSlider);
-					return (
-						<SwiperSlider key={index}>
-							<CategorySlider sliderItem={props.listCatBannerSlider} />
-						</SwiperSlider>
-					)
-				})
-			}
+	// catSliderList = props.listCatBannerSlider.map((item) => {
+	// 	return (
+	// 		<SwiperSlider >
+	// 			<CategorySlider sliderItem={item} />
+	// 		</SwiperSlider>
+	// 	)
+	// })
 
-		</>
-	)
+	for (const i in props.listCatBannerSlider) {
+		catSliderList.push(
+			(
+				<SwiperSlider key={i}>
+					<CategorySlider sliderItem={props.listCatBannerSlider[i]} />
+				</SwiperSlider>
+			)
+		)
+	}
 
 
 	return (

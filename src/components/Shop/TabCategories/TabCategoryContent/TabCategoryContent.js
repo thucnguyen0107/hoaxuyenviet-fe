@@ -1,22 +1,24 @@
 import React from 'react';
 import ProductCard from '../../UI/ProductCard';
+import CategoryCard from '../../UI/CategoryCard';
 
 const tabCategoryContent = (props) => {
 
+  console.log(props);
 
   let listProductCardHTML = [];
 
   listProductCardHTML = (
     <>
       {
-        props.tabCategoryContent.map((card, index) => {
+        props.tabCategoryContent.categoryDisplay.map((card, index) => {
 
 
           return (
             <div className="item text-center" key={index}>
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <ProductCard cardContent={card}>
-                </ProductCard>
+                <CategoryCard cardContent={card}>
+                </CategoryCard>
               </div>
             </div>
           )
@@ -28,7 +30,7 @@ const tabCategoryContent = (props) => {
 
   return (
 
-    <div className={`tab-pane ${props.activeTab}`} id={props.tabId}>
+    <div className={`tab-pane ${props.tabCategoryContent.active}`} id={props.tabCategoryContent.id}>
       <div className="box-product">
         {listProductCardHTML}
       </div>

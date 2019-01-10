@@ -20,9 +20,9 @@ const slider = (props) => {
         </div>
       </div>
     );
-  } else{
+  } else {
     return (
-      <div className="main-slider">
+      <div className="main-slider" style={{ marginBottom: "0px" }}>
         <div className="swiper-viewport">
           <div id={props.catId} className="swiper-container" style={{ opacity: "1" }}>
             <div className="swiper-wrapper">

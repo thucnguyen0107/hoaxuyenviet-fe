@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import emailInputImage from '../../../assets/images/themeimage/special-discount-block.jpg';
-import { slideShowDelayTime } from '../../../shared/config';
+import { slideShowDelayTime, baseURL } from '../../../shared/config';
 
 
 import BannersSlider from '../../../components/Shop/Slider/BannersSlider/BannersSlider';
@@ -10,15 +10,14 @@ import TabCategories from '../../../components/Shop/TabCategories/TabCategories'
 // import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
 import classes from './Home.scss'
 import $ from 'jquery';
-import { arrBannerSlider, arrCatBannerSlider2, arrCatBannerSlider, arrTabCategory } from '../../../data/data';
 import axios from 'axios';
 import htmlContentModel from '../../../models/htmlContentModel';
 class Body extends React.Component {
   state = {
     htmlContentModel
-    
+
   }
- 
+
 
   createNewSlider = (id) => {
     const slideShow = {
@@ -31,10 +30,17 @@ class Body extends React.Component {
       spaceBetween: 0,
       autoplay: slideShowDelayTime,
       autoplayDisableOnInteraction: true,
-      loop: true
+      loop: true,
+      preloadImages: true
     }
 
     return slideShow;
+  }
+
+  createSwiper = (...arg) => {
+    for (const item of arg) {
+      window.$(`#${item}`).swiper(this.createNewSlider(item));
+    }
   }
 
   hoverBanner = (element, childElement = '') => {
@@ -46,35 +52,31 @@ class Body extends React.Component {
   }
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    
+
   }
 
-
-  componentDidMount() {
-    axios.interceptors.response.use(function (response) {
-      return response.data;
-    }, function (error) {
-      return Promise.reject(error);
-    });
-    axios.get('/datatest/HTMLContent_test.json').then((res) => {
+  componentWillMount() {
+    axios.get(`${baseURL}/datatest/HTMLContent_test.json`).then((res) => {
       console.log(res);
       this.setState({ htmlContentModel: res })
     }).catch((err) => {
       console.error(err);
     })
+  }
+
+  componentDidUpdate() {
+    this.createSwiper('slideshow0', 'slideshow1');
+    this.hoverBanner('#slideshow0');
+    this.hoverBanner('#slideshow1', '.categorycmsblock-wrapper');
+  }
+
+  componentDidMount() {
     $(document).ready(function () {
       $("#spinner").fadeOut("slow");
     });
-    let slideShow0 = window.$('#slideshow0');
-    let slideShow1 = window.$('#slideshow1');
-
-    slideShow0.swiper(this.createNewSlider('slideshow0'));
-    slideShow1.swiper(this.createNewSlider('slideshow1'));
-    this.hoverBanner('#slideshow0');
-    this.hoverBanner('#slideshow1', '.categorycmsblock-wrapper');
 
   }
 
@@ -91,12 +93,13 @@ class Body extends React.Component {
           <div className="content-top">
             <div id="content">
               {/**Slider */}
-              <BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlider} />
+              {/* {<BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlider} />} */}
+              {<BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlider} />}
               {/**End Slider */}
 
               {/**Test Category Block SlideShow */}
 
-              <CategoriesSlider listCatBannerSlider={arrCatBannerSlider} />
+              {!window.jQuery.isEmptyObject(this.state.htmlContentModel.eventSlide) ? <CategoriesSlider listCatBannerSlider={this.state.htmlContentModel.eventSlide} /> : null}
               {/**END Test Category Block SlideShow */}
 
 
@@ -122,7 +125,7 @@ class Body extends React.Component {
 
               {/*--------------TAB CATEGORY --------------- */}
               <div id="Tab_Category_Slider" className="category_tab box">
-                <TabCategories tabCategory={arrTabCategory} listTabCategoryHeader={arrTabCategory} />
+                {!window.jQuery.isEmptyObject(this.state.htmlContentModel.otherSlide) ? <TabCategories listTabCategory={this.state.htmlContentModel.otherSlide} /> : null}
                 {/**------------- END--TAB CATEGORY--------------------- */}
 
 
