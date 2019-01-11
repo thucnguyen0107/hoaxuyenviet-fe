@@ -1,205 +1,1202 @@
-{
-    "listProduct": [
-        {
-            "_id": "1",
-            "images": [
-                "require('../../../assets/images/catalog/product/1-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "2",
-            "images": [
-                "require('../../../assets/images/catalog/product/2-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "3",
-            "images": [
-                "require('../../../assets/images/catalog/product/3-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "4",
-            "images": [
-                "require('../../../assets/images/catalog/product/4-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "5",
-            "images": [
-                "require('../../../assets/images/catalog/product/5-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "6",
-            "images": [
-                "require('../../../assets/images/catalog/product/6-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "7",
-            "images": [
-                "require('../../../assets/images/catalog/product/7-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "8",
-            "images": [
-                "require('../../../assets/images/catalog/product/8-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "9",
-            "images": [
-                "require('../../../assets/images/catalog/product/9-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        },
-        {
-            "_id": "10",
-            "images": [
-                "require('../../../assets/images/catalog/product/10-813x1000.jpg')"
-            ],
-            "productType": [],
-            "productForm": [],
-            "productEvent": [],
-            "productColor": [],
-            "productHoliday": [],
-            "productName": "",
-            "price": "500000",
-            "discount": 0,
-            "new": false,
-            "sale": false,
-            "hot": false,
-            "description": [],
-            "saleDayBegin": "",
-            "saleDayEnd": ""
-        }
-        
-    ]
-}
+[
+    {
+        "_id": "1",
+        "images": [
+            "../../../assets/images/catalog/product/1-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Bó hoa hồng",
+        "price": "150000",
+        "discount": 0,
+        "new": true,
+        "sale": false,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "2",
+        "images": [
+            "../../../assets/images/catalog/product/2-813x1000.jpg"
+        ],
+        "type": [
+            "celestial",
+            "lotus",
+            "haethbell"
+        ],
+        "form": [
+            "buds",
+            "vase",
+            "branch"
+        ],
+        "event": [
+            "decorate",
+            "wedding",
+            "condolatory"
+        ],
+        "color": [
+            "green",
+            "cyan",
+            "violet"
+        ],
+        "holiday": [
+            "internationalLabor",
+            "indepentdentDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Bình hoa thiên điển tím",
+        "price": "499000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "3",
+        "images": [
+            "../../../assets/images/catalog/product/3-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Lẳng hoa mẫu đơn vàng",
+        "price": "299000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "4",
+        "images": [
+            "../../../assets/images/catalog/product/4-813x1000.jpg"
+        ],
+        "type": [
+            "lavender",
+            "cymbidium",
+            "haethbell"
+        ],
+        "form": [
+            "pot",
+            "box",
+            "vase"
+        ],
+        "event": [
+            "wedding",
+            "opening",
+            "condolatory"
+        ],
+        "color": [
+            "white",
+            "cyan",
+            "violet"
+        ],
+        "holiday": [
+            "valentine",
+            "vnArmyDay",
+            "internationalHappy"
+        ],
+        "productName": "Hộp hoa oải hương trắng",
+        "price": "799000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "5",
+        "images": [
+            "../../../assets/images/catalog/product/5-813x1000.jpg"
+        ],
+        "type": [
+            "gerbera",
+            "lily",
+            "carnation"
+        ],
+        "form": [
+            "pot",
+            "branch",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "health",
+            "dating"
+        ],
+        "color": [
+            "black",
+            "white",
+            "bright-red"
+        ],
+        "holiday": [
+            "vnTeacherDay",
+            "vnFamilyDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Chậu hoa loa kèn trắng",
+        "price": "199000",
+        "discount": 20,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "6",
+        "images": [
+            "../../../assets/images/catalog/product/6-813x1000.jpg"
+        ],
+        "type": [
+            "haethbell",
+            "lake",
+            "baby"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "vase"
+        ],
+        "event": [
+            "birthdate",
+            "decorate",
+            "dating"
+        ],
+        "color": [
+            "mix-color",
+            "orange",
+            "yellow"
+        ],
+        "holiday": [
+            "motherDay",
+            "fatherDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Giỏ hoa thạch thảo nhiều màu",
+        "price": "999000",
+        "discount": 20,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "7",
+        "images": [
+            "../../../assets/images/catalog/product/7-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Bó hoa mẫu đơn vàng",
+        "price": "779000",
+        "discount": 0,
+        "new": true,
+        "sale": false,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "8",
+        "images": [
+            "../../../assets/images/catalog/product/8-813x1000.jpg"
+        ],
+        "type": [
+            "celestial",
+            "lotus",
+            "haethbell"
+        ],
+        "form": [
+            "buds",
+            "vase",
+            "branch"
+        ],
+        "event": [
+            "decorate",
+            "wedding",
+            "condolatory"
+        ],
+        "color": [
+            "green",
+            "cyan",
+            "violet"
+        ],
+        "holiday": [
+            "internationalLabor",
+            "indepentdentDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Cành hoa sen tím",
+        "price": "669000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "9",
+        "images": [
+            "../../../assets/images/catalog/product/9-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Giỏ hoa cúc vàng",
+        "price": "169000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "10",
+        "images": [
+            "../../../assets/images/catalog/product/10-813x1000.jpg"
+        ],
+        "type": [
+            "lavender",
+            "cymbidium",
+            "haethbell"
+        ],
+        "form": [
+            "pot",
+            "box",
+            "vase"
+        ],
+        "event": [
+            "wedding",
+            "opening",
+            "condolatory"
+        ],
+        "color": [
+            "white",
+            "cyan",
+            "violet"
+        ],
+        "holiday": [
+            "valentine",
+            "vnArmyDay",
+            "internationalHappy"
+        ],
+        "productName": "Hộp hoa địa lan trắng",
+        "price": "229000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "11",
+        "images": [
+            "../../../assets/images/catalog/product/11-813x1000.jpg"
+        ],
+        "type": [
+            "gerbera",
+            "lily",
+            "carnation"
+        ],
+        "form": [
+            "pot",
+            "branch",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "health",
+            "dating"
+        ],
+        "color": [
+            "black",
+            "white",
+            "bright-red"
+        ],
+        "holiday": [
+            "vnTeacherDay",
+            "vnFamilyDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Chậu hoa đồng tiền đỏ tươi",
+        "price": "339000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "12",
+        "images": [
+            "../../../assets/images/catalog/product/12-813x1000.jpg"
+        ],
+        "type": [
+            "haethbell",
+            "lake",
+            "baby"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "vase"
+        ],
+        "event": [
+            "birthdate",
+            "decorate",
+            "dating"
+        ],
+        "color": [
+            "mix-color",
+            "orange",
+            "yellow"
+        ],
+        "holiday": [
+            "motherDay",
+            "fatherDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Bình hoa baby màu vàng",
+        "price": "269000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "13",
+        "images": [
+            "../../../assets/images/catalog/product/13-813x1000.jpg"
+        ],
+        "type": [
+            "orchid",
+            "botany",
+            "carnation"
+        ],
+        "form": [
+            "branch",
+            "box",
+            "pot"
+        ],
+        "event": [
+            "decorate",
+            "health",
+            "wedding"
+        ],
+        "color": [
+            "green",
+            "orange",
+            "yellow"
+        ],
+        "holiday": [
+            "vnArmyDay",
+            "christmasDay",
+            "vnCommunistDay"
+        ],
+        "productName": "Chậu hoa lan vàng",
+        "price": "789000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "14",
+        "images": [
+            "../../../assets/images/catalog/product/14-813x1000.jpg"
+        ],
+        "type": [
+            "hydrangeas",
+            "celestial",
+            "lake"
+        ],
+        "form": [
+            "bouquet",
+            "vase",
+            "box"
+        ],
+        "event": [
+            "health",
+            "wedding",
+            "other"
+        ],
+        "color": [
+            "green",
+            "orange",
+            "cyan"
+        ],
+        "holiday": [
+            "vnChildrenDay",
+            "vnTeacherDay",
+            "vnBusinessDay"
+        ],
+        "productName": "Hộp hoa cẩm tú cầu cam",
+        "price": "889000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "15",
+        "images": [
+            "../../../assets/images/catalog/product/15-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Bình hoa cúc trắng",
+        "price": "329000",
+        "discount": 10,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "16",
+        "images": [
+            "../../../assets/images/catalog/product/16-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Bó hoa mẫu đơn",
+        "price": "139000",
+        "discount": 0,
+        "new": true,
+        "sale": false,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "17",
+        "images": [
+            "../../../assets/images/catalog/product/17-813x1000.jpg"
+        ],
+        "type": [
+            "celestial",
+            "lotus",
+            "haethbell"
+        ],
+        "form": [
+            "buds",
+            "vase",
+            "branch"
+        ],
+        "event": [
+            "decorate",
+            "wedding",
+            "condolatory"
+        ],
+        "color": [
+            "green",
+            "cyan",
+            "violet"
+        ],
+        "holiday": [
+            "internationalLabor",
+            "indepentdentDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Bình hoa thạch thảo xanh da trời",
+        "price": "199000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "18",
+        "images": [
+            "../../../assets/images/catalog/product/18-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Lẳng hoa hồng",
+        "price": "359000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "19",
+        "images": [
+            "../../../assets/images/catalog/product/19-813x1000.jpg"
+        ],
+        "type": [
+            "lavender",
+            "cymbidium",
+            "haethbell"
+        ],
+        "form": [
+            "pot",
+            "box",
+            "vase"
+        ],
+        "event": [
+            "wedding",
+            "opening",
+            "condolatory"
+        ],
+        "color": [
+            "white",
+            "cyan",
+            "violet"
+        ],
+        "holiday": [
+            "valentine",
+            "vnArmyDay",
+            "internationalHappy"
+        ],
+        "productName": "Hộp hoa địa lan trắng",
+        "price": "799000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "20",
+        "images": [
+            "../../../assets/images/catalog/product/2-813x1000.jpg"
+        ],
+        "type": [
+            "gerbera",
+            "lily",
+            "carnation"
+        ],
+        "form": [
+            "pot",
+            "branch",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "health",
+            "dating"
+        ],
+        "color": [
+            "black",
+            "white",
+            "bright-red"
+        ],
+        "holiday": [
+            "vnTeacherDay",
+            "vnFamilyDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Chậu hoa cẩm chướng đỏ tươi",
+        "price": "199000",
+        "discount": 20,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "21",
+        "images": [
+            "../../../assets/images/catalog/product/3-813x1000.jpg"
+        ],
+        "type": [
+            "haethbell",
+            "lake",
+            "baby"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "vase"
+        ],
+        "event": [
+            "birthdate",
+            "decorate",
+            "dating"
+        ],
+        "color": [
+            "mix-color",
+            "orange",
+            "yellow"
+        ],
+        "holiday": [
+            "motherDay",
+            "fatherDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Giỏ hoa baby vàng",
+        "price": "999000",
+        "discount": 20,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "22",
+        "images": [
+            "../../../assets/images/catalog/product/4-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Bó hoa cúc vàng",
+        "price": "779000",
+        "discount": 0,
+        "new": true,
+        "sale": false,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "23",
+        "images": [
+            "../../../assets/images/catalog/product/9-813x1000.jpg"
+        ],
+        "type": [
+            "celestial",
+            "lotus",
+            "hydrangeas"
+        ],
+        "form": [
+            "buds",
+            "vase",
+            "branch"
+        ],
+        "event": [
+            "decorate",
+            "wedding",
+            "condolatory"
+        ],
+        "color": [
+            "green",
+            "cyan",
+            "violet"
+        ],
+        "holiday": [
+            "internationalLabor",
+            "indepentdentDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Cành hoa cẩm tú cầu xanh",
+        "price": "669000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "24",
+        "images": [
+            "../../../assets/images/catalog/product/6-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "lake"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Giỏ hoa hồ điệp trắng",
+        "price": "169000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "25",
+        "images": [
+            "../../../assets/images/catalog/product/7-813x1000.jpg"
+        ],
+        "type": [
+            "lavender",
+            "celestial",
+            "haethbell"
+        ],
+        "form": [
+            "pot",
+            "box",
+            "vase"
+        ],
+        "event": [
+            "wedding",
+            "opening",
+            "condolatory"
+        ],
+        "color": [
+            "pink",
+            "cyan",
+            "orange"
+        ],
+        "holiday": [
+            "valentine",
+            "vnArmyDay",
+            "internationalHappy"
+        ],
+        "productName": "Hộp hoa thiên điển hồng",
+        "price": "229000",
+        "discount": 20,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "26",
+        "images": [
+            "../../../assets/images/catalog/product/11-813x1000.jpg"
+        ],
+        "type": [
+            "gerbera",
+            "lily",
+            "carnation"
+        ],
+        "form": [
+            "pot",
+            "branch",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "health",
+            "dating"
+        ],
+        "color": [
+            "black",
+            "white",
+            "bright-red"
+        ],
+        "holiday": [
+            "vnTeacherDay",
+            "vnFamilyDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Chậu hoa đồng tiền đỏ tươi",
+        "price": "339000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "27",
+        "images": [
+            "../../../assets/images/catalog/product/12-813x1000.jpg"
+        ],
+        "type": [
+            "haethbell",
+            "lake",
+            "baby"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "vase"
+        ],
+        "event": [
+            "birthdate",
+            "decorate",
+            "dating"
+        ],
+        "color": [
+            "mix-color",
+            "orange",
+            "yellow"
+        ],
+        "holiday": [
+            "motherDay",
+            "fatherDay",
+            "vnDoctorDay"
+        ],
+        "productName": "Bình hoa baby màu vàng",
+        "price": "269000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "28",
+        "images": [
+            "../../../assets/images/catalog/product/13-813x1000.jpg"
+        ],
+        "type": [
+            "orchid",
+            "botany",
+            "carnation"
+        ],
+        "form": [
+            "branch",
+            "box",
+            "pot"
+        ],
+        "event": [
+            "decorate",
+            "health",
+            "wedding"
+        ],
+        "color": [
+            "green",
+            "orange",
+            "yellow"
+        ],
+        "holiday": [
+            "vnArmyDay",
+            "christmasDay",
+            "vnCommunistDay"
+        ],
+        "productName": "Chậu hoa lan vàng",
+        "price": "789000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "29",
+        "images": [
+            "../../../assets/images/catalog/product/14-813x1000.jpg"
+        ],
+        "type": [
+            "hydrangeas",
+            "celestial",
+            "lake"
+        ],
+        "form": [
+            "bouquet",
+            "vase",
+            "box"
+        ],
+        "event": [
+            "health",
+            "wedding",
+            "other"
+        ],
+        "color": [
+            "green",
+            "orange",
+            "cyan"
+        ],
+        "holiday": [
+            "vnChildrenDay",
+            "vnTeacherDay",
+            "vnBusinessDay"
+        ],
+        "productName": "Hộp hoa cẩm tú cầu cam",
+        "price": "889000",
+        "discount": 0,
+        "new": false,
+        "sale": false,
+        "hot": true,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    },
+    {
+        "_id": "30",
+        "images": [
+            "../../../assets/images/catalog/product/15-813x1000.jpg"
+        ],
+        "type": [
+            "rose",
+            "chrysanthemum",
+            "peony"
+        ],
+        "form": [
+            "buds",
+            "basket",
+            "bouquet"
+        ],
+        "event": [
+            "birthdate",
+            "opening",
+            "dating"
+        ],
+        "color": [
+            "pink",
+            "white",
+            "yellow"
+        ],
+        "holiday": [
+            "womenDay",
+            "valentine",
+            "vnDoctorDay"
+        ],
+        "productName": "Bình hoa cúc trắng",
+        "price": "329000",
+        "discount": 10,
+        "new": false,
+        "sale": true,
+        "hot": false,
+        "description": [],
+        "saleDayBegin": "",
+        "saleDayEnd": ""
+    }
+]

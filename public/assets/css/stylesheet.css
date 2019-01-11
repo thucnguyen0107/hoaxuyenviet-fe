@@ -5414,6 +5414,32 @@ h2.price {
 	text-transform: uppercase;
 	color: #fff;
 }
+
+.product-thumb .new {
+	font-size: 12px;
+	background: #07ff31;
+	padding: 0 5px;
+	letter-spacing: 1px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #fff;
+}
+
+.product-thumb .hot {
+	font-size: 12px;
+	background: #ff6e07;
+	padding: 0 5px;
+	letter-spacing: 1px;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #fff;
+}
 .product-thumb .percentsaving {
 	color: #000;
 	padding: 0;

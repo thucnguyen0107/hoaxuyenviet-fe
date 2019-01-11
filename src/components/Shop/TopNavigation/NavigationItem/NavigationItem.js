@@ -47,7 +47,7 @@ const navigationItem = (props) => {
     return (
       <li className={li.join(' ')}>
         {
-          props.parentNav === 'home' ? <Link to="/home"> {props.children}</Link> : <a href="/" style={{ cursor: "default" }}> {props.children}</a>
+          props.parentNav === 'home' ? <Link to="/home"> {props.children}</Link> : <a href="/" style={{ cursor: "default", pointerEvents: "none" }}> {props.children}</a>
         }
 
         <div className="dropdown-menu megamenu " >

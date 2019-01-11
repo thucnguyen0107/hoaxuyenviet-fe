@@ -24,23 +24,23 @@ export const headerContent = {
             id: 'holiday', name: 'Ngày lễ', type: 'dropdown', subCategories:
                 [
                     { id: 'womenDay', subName: 'Tết dương lịch(1/1)' },
-                    { id: 'vnWomenDay', subName: 'Thành lập DCSVN(3/2)' },
+                    { id: 'vnCommunistDay', subName: 'Thành lập DCSVN(3/2)' },
                     { id: 'valentine', subName: 'Valentine(14/2)' },
                     { id: 'vnDoctorDay', subName: 'Thầy thuốc VN(27/2)' },
                     { id: 'internationalWoman', subName: 'Quốc tế phụ nữ(8/3)' },
                     { id: 'internationalHappy', subName: 'Quốc tế hạnh phúc(20/3)' },
                     { id: 'indepentdentDay', subName: 'Giải phóng miền Nam(30/4)' },
                     { id: 'internationalLabor', subName: 'Quốc tế lao động(1/5)' },
-                    { id: 'vnTeacherDay', subName: 'Quốc tế thiếu nhi(1/6)' },
-                    { id: 'vnTeacherDay', subName: 'Gia đình VN(28/6)' },
+                    { id: 'vnChildrenDay', subName: 'Quốc tế thiếu nhi(1/6)' },
+                    { id: 'vnFamilyDay', subName: 'Gia đình VN(28/6)' },
                     { id: 'vnTeacherDay', subName: 'Thương binh liệt sĩ(27/7)' },
-                    { id: 'vnTeacherDay', subName: 'Doanh nhân VN(13/10)' },
-                    { id: 'vnTeacherDay', subName: 'Phụ nữ VN(20/10)' },
+                    { id: 'vnBusinessDay', subName: 'Doanh nhân VN(13/10)' },
+                    { id: 'vnWomenDay', subName: 'Phụ nữ VN(20/10)' },
                     { id: 'vnTeacherDay', subName: 'Nhà giáo VN(20/11)' },
-                    { id: 'vnTeacherDay', subName: 'Thành lập QDNDVN(22/12)' },
-                    { id: 'vnTeacherDay', subName: 'Giáng sinh(25/12)' },
-                    { id: 'vnTeacherDay', subName: 'Ngày của mẹ' },
-                    { id: 'vnTeacherDay', subName: 'Ngày của cha' },
+                    { id: 'vnArmyDay', subName: 'Thành lập QDNDVN(22/12)' },
+                    { id: 'christmasDay', subName: 'Giáng sinh(25/12)' },
+                    { id: 'motherDay', subName: 'Ngày của mẹ' },
+                    { id: 'fatherDay', subName: 'Ngày của cha' },
 
                 ]
         },
@@ -48,26 +48,26 @@ export const headerContent = {
             id: 'type', name: 'Kiểu loại', type: 'dropdown', subCategories:
                 [
                     { id: 'rose', subName: 'Hoa hồng' },
-                    { id: 'rose', subName: 'Hoa ly' },
-                    { id: 'rose', subName: 'Hoa lan' },
-                    { id: 'rose', subName: 'Hoa hướng dương' },
-                    { id: 'rose', subName: 'Hoa cẩm chướng' },
-                    { id: 'rose', subName: 'Hoa loa kèn' },
-                    { id: 'rose', subName: 'Hoa đồng tiền' },
-                    { id: 'rose', subName: 'Hoa cẩm tú cầu' },
-                    { id: 'rose', subName: 'Hoa thiên điển' },
-                    { id: 'rose', subName: 'Hoa thạch thảo' },
-                    { id: 'rose', subName: 'Hoa hồ điệp' },
-                    { id: 'rose', subName: 'Hoa baby' },
-                    { id: 'rose', subName: 'Hoa sen' },
+                    { id: 'botany', subName: 'Hoa ly' },
+                    { id: 'orchid', subName: 'Hoa lan' },
+                    { id: 'sun-flower', subName: 'Hoa hướng dương' },
+                    { id: 'carnation', subName: 'Hoa cẩm chướng' },
+                    { id: 'lily', subName: 'Hoa loa kèn' },
+                    { id: 'gerbera', subName: 'Hoa đồng tiền' },
+                    { id: 'hydrangeas', subName: 'Hoa cẩm tú cầu' },
+                    { id: 'celestial', subName: 'Hoa thiên điển' },
+                    { id: 'haethbell', subName: 'Hoa thạch thảo' },
+                    { id: 'lake', subName: 'Hoa hồ điệp' },
+                    { id: 'baby', subName: 'Hoa baby' },
+                    { id: 'lotus', subName: 'Hoa sen' },
                     { id: 'chrysanthemum', subName: 'Hoa cúc' },
                     { id: 'peony', subName: 'Hoa mẫu đơn' },
-                    { id: 'peony', subName: 'Hoa oải hương' },
-                    { id: 'peony', subName: 'Hoa tu líp' },
-                    { id: 'peony', subName: 'Hoa địa lan' },
-                    { id: 'peony', subName: 'Hoa đỗ quyên' },
-                    { id: 'peony', subName: 'Hoa nhập khẩu' },
-                    { id: 'peony', subName: 'khác' },
+                    { id: 'lavender', subName: 'Hoa oải hương' },
+                    { id: 'tulip', subName: 'Hoa tu líp' },
+                    { id: 'cymbidium ', subName: 'Hoa địa lan' },
+                    { id: 'azalea', subName: 'Hoa đỗ quyên' },
+                    { id: 'import-flower', subName: 'Hoa nhập khẩu' },
+                    { id: 'other', subName: 'khác' },
 
                 ]
         },
@@ -77,11 +77,11 @@ export const headerContent = {
                     { id: 'buds', subName: 'Lẳng hoa' },
                     { id: 'basket', subName: 'Giỏ hoa' },
                     { id: 'bouquet', subName: 'Bó hoa' },
-                    { id: 'bouquet', subName: 'Bình hoa' },
-                    { id: 'bouquet', subName: 'Hộp hoa' },
-                    { id: 'bouquet', subName: 'Cành hoa' },
-                    { id: 'bouquet', subName: 'Chậu hoa' },
-                    { id: 'bouquet', subName: 'Khác' },
+                    { id: 'vase', subName: 'Bình hoa' },
+                    { id: 'box', subName: 'Hộp hoa' },
+                    { id: 'branch', subName: 'Cành hoa' },
+                    { id: 'pot', subName: 'Chậu hoa' },
+                    { id: 'other', subName: 'Khác' },
 
                 ]
         },
@@ -91,15 +91,15 @@ export const headerContent = {
                     { id: 'pink', subName: 'hồng' },
                     { id: 'white', subName: 'trắng' },
                     { id: 'yellow', subName: 'vàng' },
-                    { id: 'yellow', subName: 'đỏ tươi' },
-                    { id: 'yellow', subName: 'tím' },
-                    { id: 'yellow', subName: 'đỏ đô' },
-                    { id: 'yellow', subName: 'xanh lá' },
-                    { id: 'yellow', subName: 'cam' },
-                    { id: 'yellow', subName: 'xanh da trời' },
-                    { id: 'yellow', subName: 'trộn nhiều màu' },
-                    { id: 'yellow', subName: 'đen' },
-                    { id: 'yellow', subName: 'khác' },
+                    { id: 'bright-red', subName: 'đỏ tươi' },
+                    { id: 'violet', subName: 'tím' },
+                    { id: 'capital-red', subName: 'đỏ đô' },
+                    { id: 'green', subName: 'xanh lá' },
+                    { id: 'orange', subName: 'cam' },
+                    { id: 'cyan', subName: 'xanh da trời' },
+                    { id: 'mix-color', subName: 'trộn nhiều màu' },
+                    { id: 'black', subName: 'đen' },
+                    { id: 'other', subName: 'khác' },
 
                 ]
         },
@@ -122,20 +122,20 @@ export const arrCatBannerSlider = [
 ]
 
 export const arrCatBannerSlider2 = {
-       firstSlide:[ 
+    firstSlide: [
         { id: 1, name: 'Bộ sưu tập hoa lãng mạn', srcImg: require('../assets/images/catalog/demo/cat-banner-1.png') },
         { id: 2, name: 'Bộ sưu tập hoa cưới', srcImg: require('../assets/images/catalog/demo/cat-banner-2.png') },
         { id: 3, name: 'Bộ sưu tập hoa tình yêu', srcImg: require('../assets/images/catalog/demo/cat-banner-3.png') },
         { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../assets/images/catalog/demo/cat-banner-4.png') },
-        ],
-        secondSlide:[
-            { id: 1, name: 'Bộ sưu tập hoa lãng mạn', srcImg: require('../assets/images/catalog/demo/cat-banner-1.png') },
-            { id: 2, name: 'Bộ sưu tập hoa cưới', srcImg: require('../assets/images/catalog/demo/cat-banner-2.png') },
-            { id: 3, name: 'Bộ sưu tập hoa tình yêu', srcImg: require('../assets/images/catalog/demo/cat-banner-3.png') },
-            { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../assets/images/catalog/demo/cat-banner-4.png') },
-        ]
-    }
-    
+    ],
+    secondSlide: [
+        { id: 1, name: 'Bộ sưu tập hoa lãng mạn', srcImg: require('../assets/images/catalog/demo/cat-banner-1.png') },
+        { id: 2, name: 'Bộ sưu tập hoa cưới', srcImg: require('../assets/images/catalog/demo/cat-banner-2.png') },
+        { id: 3, name: 'Bộ sưu tập hoa tình yêu', srcImg: require('../assets/images/catalog/demo/cat-banner-3.png') },
+        { id: 4, name: 'Bộ sưu tập hoa mới', srcImg: require('../assets/images/catalog/demo/cat-banner-4.png') },
+    ]
+}
+
 
 
 export const arrTabCategory = [

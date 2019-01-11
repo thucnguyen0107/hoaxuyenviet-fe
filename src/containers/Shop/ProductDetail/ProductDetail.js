@@ -81,6 +81,9 @@ class ProductDetail extends React.Component {
     this.init();
   }
 
+  componentWillUnmount() {
+    window.$('.zoomContainer').remove();
+  }
   render() {
 
     let listProductCardHTML = [];
@@ -135,8 +138,8 @@ class ProductDetail extends React.Component {
 
                         <div className="additional-carousel">
                           <div className="customNavigation">
-                            <a href="/" className="fa prev fa-angle-left"></a>
-                            <a href="/" className="fa next fa-angle-right"></a>
+                            <a className="fa prev fa-angle-left"></a>
+                            <a className="fa next fa-angle-right"></a>
                           </div>
 
                           <div id="additional-carousel" className="image-additional product-carousel">

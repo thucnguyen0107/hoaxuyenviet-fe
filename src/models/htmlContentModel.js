@@ -5,6 +5,3 @@ export const htmlContentModel = {
   "productList": {}
 }
 
-export const htmlProductModel = {
- "listProduct":[]
-}

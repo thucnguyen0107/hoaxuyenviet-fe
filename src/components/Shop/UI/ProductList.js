@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 
 const productList = (props) => {
-  
+  console.log(props);
+
 
   let listProductCardHTML = [];
 
@@ -17,27 +18,28 @@ const productList = (props) => {
                 <div className="product-block-inner">
                   <div className="image">
                     <Link to={'/product/' + product._id}>
-                      <img src={product.images[i]} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
+                      <img src={(product.images)} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
                         className="img-responsive reg-image" />
-                      <img className="img-responsive hover-image" src={product.images[i]}
+                      <img className="img-responsive hover-image" src={product.images}
                         title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;" />
                     </Link>
                     <div className="extra-info">
-                      <span className="percentsaving">10%</span>
+                      {product.discount > 0 ? <span className="percentsaving">{`${product.discount}%`}</span> : null}
                     </div>
                   </div>
                   <div className="caption">
                     <div className="product-deacription-wrapper">
-                      <h4><a href="index3a05.html?route=product/product&amp;path=25_30&amp;product_id=42"> </a></h4>
+                      <h4><a href="index3a05.html?route=product/product&amp;path=25_30&amp;product_id=42">{product.productName} </a></h4>
                       <span className="price">
-                        <span className="price-new">{product.price} VND</span>
-                        <span className="price-old">$122.00</span>
-                        <span className="price-tax">Ex Tax: $90.00</span>
+                        <span className="price-new">{product.price - (product.discount * product.price / 100)} VND</span>
+                        {product.discount > 0 ? <span className="price-old">{product.price}</span> : <span className="price-old"></span>}
                         <div className="saleback">
-                          <span className="saleicon sale">Sale</span>
+                          {product.hot === true ? <span className="saleicon hot">Hot</span> : null}
+                          {product.new === true ? <span className="saleicon new">New</span> : null}
+                          {product.sale === true ? <span className="saleicon sale">Sale</span> : null}
                         </div>
                       </span>
-                      <div className="rating">
+                      {/* <div className="rating">
                         <span className="fa fa-stack"><i className="fa fa-star"></i></span>
                         <span className="fa fa-stack"><i className="fa fa-star"></i></span>
                         <span className="fa fa-stack"><i className="fa fa-star"></i></span>
@@ -46,7 +48,7 @@ const productList = (props) => {
                       </div>
                       <p className="desc">The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel
                         resolution. Designed specifically htmlFor the creative professional, this display provides more
-                        space htmlFor easier access to all the tools and...</p>
+                        space htmlFor easier access to all the tools and...</p> */}
                       <div className="button-group">
                         <button type="button" className="btn btn-primary addtocart" >
                           <i className="fa fa-shopping-basket"></i>
