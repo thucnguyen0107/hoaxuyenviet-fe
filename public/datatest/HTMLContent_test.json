@@ -114,9 +114,8 @@
   "productList": [
     {
       "id": "1",
-      "name": "Hoa hồng",
-      "price": "500000",
-      "srcImg": "require('../../../assets/images/catalog/product/1-813x1000.jpg')"
+      "images": ["require('../../../assets/images/catalog/product/1-813x1000.jpg')"],
+      "price": "500000"
     },
     {
       "id": "1",

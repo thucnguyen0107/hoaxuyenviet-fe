@@ -1,8 +1,10 @@
-const htmlContentModel = {
+export const htmlContentModel = {
   "bannerSlide": [],
   "eventSlide": {},
   "otherSlide": {},
   "productList": {}
 }
 
-export default htmlContentModel;
+export const htmlProductModel = {
+ "listProduct":[]
+}

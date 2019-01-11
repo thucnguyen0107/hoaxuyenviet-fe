@@ -11,7 +11,7 @@ import TabCategories from '../../../components/Shop/TabCategories/TabCategories'
 import classes from './Home.scss'
 import $ from 'jquery';
 import axios from 'axios';
-import htmlContentModel from '../../../models/htmlContentModel';
+import {htmlContentModel} from '../../../models/htmlContentModel';
 class Body extends React.Component {
   state = {
     htmlContentModel

@@ -4,7 +4,6 @@ import CategoryCard from '../../UI/CategoryCard';
 
 const tabCategoryContent = (props) => {
 
-  console.log(props);
 
   let listProductCardHTML = [];
 
