@@ -30,7 +30,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bó hoa hồng",
-        "price": "150000",
+        "price": 150000,
         "discount": 0,
         "new": true,
         "sale": false,
@@ -70,7 +70,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bình hoa thiên điển tím",
-        "price": "499000",
+        "price": 499000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -110,7 +110,7 @@
             "vnDoctorDay"
         ],
         "productName": "Lẳng hoa mẫu đơn vàng",
-        "price": "299000",
+        "price": 299000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -150,7 +150,7 @@
             "internationalHappy"
         ],
         "productName": "Hộp hoa oải hương trắng",
-        "price": "799000",
+        "price": 799000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -190,7 +190,7 @@
             "vnDoctorDay"
         ],
         "productName": "Chậu hoa loa kèn trắng",
-        "price": "199000",
+        "price": 199000,
         "discount": 20,
         "new": false,
         "sale": false,
@@ -230,7 +230,7 @@
             "vnDoctorDay"
         ],
         "productName": "Giỏ hoa thạch thảo nhiều màu",
-        "price": "999000",
+        "price": 999000,
         "discount": 20,
         "new": false,
         "sale": false,
@@ -270,7 +270,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bó hoa mẫu đơn vàng",
-        "price": "779000",
+        "price": 779000,
         "discount": 0,
         "new": true,
         "sale": false,
@@ -310,7 +310,7 @@
             "vnDoctorDay"
         ],
         "productName": "Cành hoa sen tím",
-        "price": "669000",
+        "price": 669000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -350,7 +350,7 @@
             "vnDoctorDay"
         ],
         "productName": "Giỏ hoa cúc vàng",
-        "price": "169000",
+        "price": 169000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -390,7 +390,7 @@
             "internationalHappy"
         ],
         "productName": "Hộp hoa địa lan trắng",
-        "price": "229000",
+        "price": 229000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -430,7 +430,7 @@
             "vnDoctorDay"
         ],
         "productName": "Chậu hoa đồng tiền đỏ tươi",
-        "price": "339000",
+        "price": 339000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -470,7 +470,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bình hoa baby màu vàng",
-        "price": "269000",
+        "price": 269000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -510,7 +510,7 @@
             "vnCommunistDay"
         ],
         "productName": "Chậu hoa lan vàng",
-        "price": "789000",
+        "price": 789000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -550,7 +550,7 @@
             "vnBusinessDay"
         ],
         "productName": "Hộp hoa cẩm tú cầu cam",
-        "price": "889000",
+        "price": 889000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -590,7 +590,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bình hoa cúc trắng",
-        "price": "329000",
+        "price": 329000,
         "discount": 10,
         "new": false,
         "sale": true,
@@ -630,7 +630,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bó hoa mẫu đơn",
-        "price": "139000",
+        "price": 139000,
         "discount": 0,
         "new": true,
         "sale": false,
@@ -670,7 +670,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bình hoa thạch thảo xanh da trời",
-        "price": "199000",
+        "price": 199000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -710,7 +710,7 @@
             "vnDoctorDay"
         ],
         "productName": "Lẳng hoa hồng",
-        "price": "359000",
+        "price": 359000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -750,7 +750,7 @@
             "internationalHappy"
         ],
         "productName": "Hộp hoa địa lan trắng",
-        "price": "799000",
+        "price": 799000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -790,7 +790,7 @@
             "vnDoctorDay"
         ],
         "productName": "Chậu hoa cẩm chướng đỏ tươi",
-        "price": "199000",
+        "price": 199000,
         "discount": 20,
         "new": false,
         "sale": false,
@@ -830,7 +830,7 @@
             "vnDoctorDay"
         ],
         "productName": "Giỏ hoa baby vàng",
-        "price": "999000",
+        "price": 999000,
         "discount": 20,
         "new": false,
         "sale": false,
@@ -870,7 +870,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bó hoa cúc vàng",
-        "price": "779000",
+        "price": 779000,
         "discount": 0,
         "new": true,
         "sale": false,
@@ -910,7 +910,7 @@
             "vnDoctorDay"
         ],
         "productName": "Cành hoa cẩm tú cầu xanh",
-        "price": "669000",
+        "price": 669000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -950,7 +950,7 @@
             "vnDoctorDay"
         ],
         "productName": "Giỏ hoa hồ điệp trắng",
-        "price": "169000",
+        "price": 169000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -990,7 +990,7 @@
             "internationalHappy"
         ],
         "productName": "Hộp hoa thiên điển hồng",
-        "price": "229000",
+        "price": 229000,
         "discount": 20,
         "new": false,
         "sale": true,
@@ -1030,7 +1030,7 @@
             "vnDoctorDay"
         ],
         "productName": "Chậu hoa đồng tiền đỏ tươi",
-        "price": "339000",
+        "price": 339000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -1070,7 +1070,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bình hoa baby màu vàng",
-        "price": "269000",
+        "price": 269000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -1110,7 +1110,7 @@
             "vnCommunistDay"
         ],
         "productName": "Chậu hoa lan vàng",
-        "price": "789000",
+        "price": 789000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -1150,7 +1150,7 @@
             "vnBusinessDay"
         ],
         "productName": "Hộp hoa cẩm tú cầu cam",
-        "price": "889000",
+        "price": 889000,
         "discount": 0,
         "new": false,
         "sale": false,
@@ -1190,7 +1190,7 @@
             "vnDoctorDay"
         ],
         "productName": "Bình hoa cúc trắng",
-        "price": "329000",
+        "price": 329000,
         "discount": 10,
         "new": false,
         "sale": true,

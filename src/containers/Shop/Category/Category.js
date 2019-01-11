@@ -15,19 +15,10 @@ class Category extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      htmlProductModel
-
+      productList: [],
+      filteredProductList: [],
+      visible: visibleItems
     }
-    if (props.match.params.first === 'color') {
-      this.state = null;
-    } else {
-      this.state = {
-        htmlProductModel,
-        visible: visibleItems,
-        error: false
-      }
-    }
-
     this.loadMore = this.loadMore.bind(this);
   }
 
@@ -44,7 +35,10 @@ class Category extends React.Component {
   componentWillMount() {
     axios.get(`${baseURL}/datatest/HTMLProduct_test.json`).then((res) => {
       console.log(res);
-      this.setState({ htmlProductModel: res })
+      this.setState({
+        productList: res,
+        filteredProductList: res
+      })
     }).catch((err) => {
       console.error(err);
     })
@@ -88,10 +82,10 @@ class Category extends React.Component {
                     subCatFilter={convertFilters(this.props.match.params.first).subCategories} />
 
                   <div className="row list-grid-wrapper">
-                    {!window.jQuery.isEmptyObject(this.state.htmlProductModel) ? <ProductList lstProduct={this.state.htmlProductModel.slice(0, this.state.visible)} /> : null}
+                    {!window.jQuery.isEmptyObject(this.state.filteredProductList) ? <ProductList lstProduct={this.state.filteredProductList.slice(0, this.state.visible)} /> : null}
                   </div>
-                  <p className={classes.productsProgressBar} data-auto-id="productsProgressBar">You've viewed {this.state.visible > this.state.htmlProductModel.length ? this.state.htmlProductModel.length : this.state.visible} of {this.state.htmlProductModel.length} products</p>
-                  {this.state.visible < this.state.htmlProductModel.length &&
+                  <p className={classes.productsProgressBar} data-auto-id="productsProgressBar">You've viewed {this.state.visible > this.state.filteredProductList.length ? this.state.filteredProductList.length : this.state.visible} of {this.state.filteredProductList.length} products</p>
+                  {this.state.visible < this.state.filteredProductList.length &&
                     <button onClick={this.loadMore} type="button" className={classes.loadMoreBtn}>Load more</button>
                   }
                 </div>

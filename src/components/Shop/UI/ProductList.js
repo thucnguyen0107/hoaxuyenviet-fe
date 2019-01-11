@@ -31,8 +31,8 @@ const productList = (props) => {
                     <div className="product-deacription-wrapper">
                       <h4><a href="index3a05.html?route=product/product&amp;path=25_30&amp;product_id=42">{product.productName} </a></h4>
                       <span className="price">
-                        <span className="price-new">{product.price - (product.discount * product.price / 100)} VND</span>
-                        {product.discount > 0 ? <span className="price-old">{product.price}</span> : <span className="price-old"></span>}
+                        <span className="price-new">{(product.price - (product.discount * product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</span>
+                        {product.discount > 0 ? <span className="price-old">{product.price.toLocaleString('vi-VN', { currency: 'VND' })}</span> : <span className="price-old"></span>}
                         <div className="saleback">
                           {product.hot === true ? <span className="saleicon hot">Hot</span> : null}
                           {product.new === true ? <span className="saleicon new">New</span> : null}

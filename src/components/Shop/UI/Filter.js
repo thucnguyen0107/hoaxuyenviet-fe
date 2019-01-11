@@ -10,7 +10,7 @@ const dropdownContainer = {
 
 
 const filter = (props) => {
-  // console.log(props.catFilter);
+  console.log(props.catFilter);
   let arrayFilter = props.catFilter.slice();
   let priceFilter = {
     id: 'price', name: 'Giá', type: 'dropdown', subCategories:
@@ -29,7 +29,7 @@ const filter = (props) => {
       {
         arrayFilter.map((filter, index) => {
           return (
-            <DropdownBtn key={index} idBtn={filter.id} subCatFilter={filter.subCategories}>
+            <DropdownBtn key={index} idSelect={filter.id} nameSelect={filter.name} subCatFilter={filter.subCategories}>
               {filter.name}
             </DropdownBtn>
           )
@@ -42,9 +42,8 @@ const filter = (props) => {
 
   return (
     <>
-      <div className="dropdown row" style={dropdownContainer}>
+      <div style={dropdownContainer} id="filterGroup">
         {dropdownBtnHTML}
-
       </div>
 
       <button style={{ display: 'none' }} type="button" id="grid-view" className="btn btn-default grid active"><i className="fa fa-th"></i></button>
