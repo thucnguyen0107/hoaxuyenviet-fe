@@ -1,7 +1,12 @@
 import React from 'react';
 import { arrProductList } from '../../../data/data';
 import ProductCard from '../../../components/Shop/UI/ProductCard';
+import axios from 'axios';
+import { baseURL } from '../../../services/config';
 class ProductDetail extends React.Component {
+
+  
+
   init = () => {
     let $ = window.$;
     // let quickbox = () => {
@@ -74,6 +79,53 @@ class ProductDetail extends React.Component {
         }
       });
     });
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: {},
+    }
+    this.styleSale = {
+      fontSize: '12px',
+      background: '#ffc107',
+      padding: '0 5px',
+      letterSpacing: '1px',
+      textAlign: 'center',
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      fontWeight: '700',
+      textTransform:'uppercase',
+      color: '#fff'
+    }
+    this.percentSaving = {
+    color: '#000',
+    padding: '0',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+    background: '#fff',
+    fontSize: '12px',
+    height: '40px',
+    width: '40px',
+    borderRadius:' 50%',
+    lineHeight: '40px',
+    fontWeight: '500',
+    boxShadow: '0 0 4px 2px rgba(0,0,0,0.15)',
+    display: 'block',
+    marginTop:'10px'
+    }
+  }
+
+  componentWillMount(){
+    axios.get(`${baseURL}/datatest/HTMLProduct_test.json`).then((res) => {
+      console.log(res[1]);
+      this.setState({
+        product: res[1],
+        filteredProductList: res
+      })
+    }).catch((err) => {
+      console.error(err);
+    })
   }
 
   componentDidMount() {
@@ -189,7 +241,7 @@ class ProductDetail extends React.Component {
                     </div>
                   </div>
                   <div className="col-sm-4 product-right">
-                    <h3 className="product-title">MacBook</h3>
+                    <h3 className="product-title">{this.state.product.productName}</h3>
                     <ul className="list-unstyled" style={{ borderTop: 'none' }}>
                       <li><span className="desc">Brands</span><a href="/">Apple</a></li>
                       <li><span className="desc">Product Code:</span> Product 11</li>
@@ -201,23 +253,24 @@ class ProductDetail extends React.Component {
                     </ul>
                     <ul className="list-unstyled price">
                       <li>
-                        <h2>$602.00</h2>
+                        <h2>{(this.state.product.price - (this.state.product.discount * this.state.product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</h2>
                       </li>
-                      {/* <li className="price-tax">Ex Tax: $500.00</li> */}
+  
+                       {this.state.product.discount > 0 ? <span style={{display:'block', color:'#ffc107', textDecoration:'line-through', fontSize:'20px'}}>{this.state.product.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</span> : <span></span>}
+                        {this.state.product.hot === true ? <span className="saleicon hot" >Hot</span> : null}
+                        {this.state.product.new === true ? <span className="saleicon new">New</span> : null}
+                        {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
+                        {this.state.product.discount > 0 ? <span style={this.percentSaving} className="percentsaving">{`${this.state.product.discount}%`}</span> : null}
                     </ul>
                     <div id="product">
-                      <h3 className="product-option">Available Options</h3>
+                      {/* <h3 className="product-option">Available Options</h3>
                       <div className="form-group required">
-                        <label className="control-label" htmlFor="input-option226">Select</label>
-                        <select name="option[226]" id="input-option226" className="form-control hasCustomSelect" style={{ WebkitAppearance: 'menulist-button', width: '597px', position: 'absolute', opacity: '0', height: '40px', fontSize: '14px' }}>
-                          <option value=""> -- Plase select -- </option>
-                        </select><span className="customSelect form-control" style={{ display: "inline-block" }}><span className="customSelectInner" style={{ width: '571px', display: 'inline-block' }}>--Please Select --  </span></span>
-                      </div>
+                      </div> */}
                       <div className="form-group cart">
                         <label className="control-label qty" htmlFor="input-quantity">Qty</label>
                         <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
                         <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block">Thêm vào giỏ hàng</button>
-                        <span> - OR - </span>
+                      
                         <div className="btn-group">
                           <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>
                           {/* <button type="button" className="btn btn-primary compare" >Add to Compare</button> */}
