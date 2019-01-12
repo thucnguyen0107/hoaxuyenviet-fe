@@ -33,7 +33,7 @@ export const headerContent = {
                     { id: 'internationalLabor', subName: 'Quốc tế lao động(1/5)' },
                     { id: 'vnChildrenDay', subName: 'Quốc tế thiếu nhi(1/6)' },
                     { id: 'vnFamilyDay', subName: 'Gia đình VN(28/6)' },
-                    { id: 'vnTeacherDay', subName: 'Thương binh liệt sĩ(27/7)' },
+                    { id: 'vnInvalidsDay', subName: 'Thương binh liệt sĩ(27/7)' },
                     { id: 'vnBusinessDay', subName: 'Doanh nhân VN(13/10)' },
                     { id: 'vnWomenDay', subName: 'Phụ nữ VN(20/10)' },
                     { id: 'vnTeacherDay', subName: 'Nhà giáo VN(20/11)' },

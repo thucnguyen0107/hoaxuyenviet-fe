@@ -2,10 +2,10 @@ import React from 'react';
 import { arrProductList } from '../../../data/data';
 import ProductCard from '../../../components/Shop/UI/ProductCard';
 import axios from 'axios';
-import { baseURL } from '../../../services/config';
+import { endPoints } from '../../../services/config';
 class ProductDetail extends React.Component {
 
-  
+
 
   init = () => {
     let $ = window.$;
@@ -95,33 +95,35 @@ class ProductDetail extends React.Component {
       display: 'inline-block',
       verticalAlign: 'middle',
       fontWeight: '700',
-      textTransform:'uppercase',
+      textTransform: 'uppercase',
       color: '#fff'
     }
-    this.percentSaving = {
-    color: '#000',
-    padding: '0',
-    textAlign: 'center',
-    textTransform: 'capitalize',
-    background: '#fff',
-    fontSize: '12px',
-    height: '40px',
-    width: '40px',
-    borderRadius:' 50%',
-    lineHeight: '40px',
-    fontWeight: '500',
-    boxShadow: '0 0 4px 2px rgba(0,0,0,0.15)',
-    display: 'block',
-    marginTop:'10px'
+
+    this.stylePercentSaving = {
+      color: '#000',
+      padding: '0',
+      textAlign: 'center',
+      textTransform: 'capitalize',
+      background: '#fff',
+      fontSize: '12px',
+      height: '40px',
+      width: '40px',
+      borderRadius: ' 50%',
+      lineHeight: '40px',
+      fontWeight: '500',
+      boxShadow: '0 0 4px 2px rgba(0,0,0,0.15)',
+      display: 'inline-block',
+      marginTop: '10px',
+      marginLeft: '10px'
     }
+
   }
 
-  componentWillMount(){
-    axios.get(`${baseURL}/datatest/HTMLProduct_test.json`).then((res) => {
-      console.log(res[1]);
+  componentWillMount() {
+    axios.get(endPoints.GET_PRODUCT_BY_ID + this.props.match.params.product_id).then((res) => {
+      console.log(res);
       this.setState({
-        product: res[1],
-        filteredProductList: res
+        product: res,
       })
     }).catch((err) => {
       console.error(err);
@@ -156,9 +158,11 @@ class ProductDetail extends React.Component {
       </>
     );
 
-    return (
-      <>
 
+
+    return (
+
+      <>
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -243,10 +247,12 @@ class ProductDetail extends React.Component {
                   <div className="col-sm-4 product-right">
                     <h3 className="product-title">{this.state.product.productName}</h3>
                     <ul className="list-unstyled" style={{ borderTop: 'none' }}>
-                      <li><span className="desc">Brands</span><a href="/">Apple</a></li>
-                      <li><span className="desc">Product Code:</span> Product 11</li>
-                      <li><span className="desc">Reward Points:</span> 600</li>
-                      <li><span className="desc">Availability:</span> In Stock</li>
+                      <li><span className="desc">Sự kiện</span>
+                      </li>
+                      <li><span className="desc">Ngày lễ</span>Valentine</li>
+                      <li><span className="desc">Loại hoa:</span> Thiên Điển </li>
+                      <li><span className="desc">Hình thức:</span> Bình Hoa</li>
+                      <li><span className="desc">Màu sắc:</span> Tím </li>
 
                       <li><span className="desc"></span> </li>
 
@@ -255,12 +261,14 @@ class ProductDetail extends React.Component {
                       <li>
                         <h2>{(this.state.product.price - (this.state.product.discount * this.state.product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</h2>
                       </li>
-  
-                       {this.state.product.discount > 0 ? <span style={{display:'block', color:'#ffc107', textDecoration:'line-through', fontSize:'20px'}}>{this.state.product.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</span> : <span></span>}
-                        {this.state.product.hot === true ? <span className="saleicon hot" >Hot</span> : null}
-                        {this.state.product.new === true ? <span className="saleicon new">New</span> : null}
-                        {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
-                        {this.state.product.discount > 0 ? <span style={this.percentSaving} className="percentsaving">{`${this.state.product.discount}%`}</span> : null}
+                      <span>Giảm</span>
+                      {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
+
+                      {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{this.state.product.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</span> : <span></span>}
+                      {this.state.product.hot === true ? <span className="saleicon hot" >Hot</span> : null}
+                      {this.state.product.new === true ? <span className="saleicon new">New</span> : null}
+                      {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
+
                     </ul>
                     <div id="product">
                       {/* <h3 className="product-option">Available Options</h3>
@@ -270,7 +278,7 @@ class ProductDetail extends React.Component {
                         <label className="control-label qty" htmlFor="input-quantity">Qty</label>
                         <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
                         <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block">Thêm vào giỏ hàng</button>
-                      
+
                         <div className="btn-group">
                           <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>
                           {/* <button type="button" className="btn btn-primary compare" >Add to Compare</button> */}

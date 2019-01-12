@@ -1,13 +1,12 @@
 import React from 'react';
-
 const dropdownBtn = (props) => {
   let dropdownMenuHTML = [];
   dropdownMenuHTML = (
     <>
       {
-        props.subCatFilter.map((subFilter, index) => {
+        props.subCatFilter.map((subFilter) => {
           return (
-            <option key={index} value={subFilter.id} >{subFilter.subName}</option>
+            <option key={subFilter.id} value={subFilter.id} >{subFilter.subName}</option>
           );
         })
       }
@@ -16,8 +15,8 @@ const dropdownBtn = (props) => {
   return (
 
     <div className="col-xs-6 col-sm-4 col-md-3" style={{ marginBottom: "15px" }}>
-      <select id={props.idSelect} className="form-control">
-        <option defaultChecked value="">{props.nameSelect}</option>
+      <select id={props.idSelect} className="form-control" onChange={props.change}>
+        <option defaultChecked value="" >{props.nameSelect}</option>
         {dropdownMenuHTML}
       </select>
     </div>

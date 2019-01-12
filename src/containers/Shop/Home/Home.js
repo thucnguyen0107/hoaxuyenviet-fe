@@ -11,7 +11,8 @@ import TabCategories from '../../../components/Shop/TabCategories/TabCategories'
 import classes from './Home.scss'
 import $ from 'jquery';
 import axios from 'axios';
-import {htmlContentModel} from '../../../models/htmlContentModel';
+import { endPoints } from '../../../services/config';
+import { htmlContentModel } from '../../../models/htmlContentModel';
 class Body extends React.Component {
   state = {
     htmlContentModel
@@ -59,7 +60,7 @@ class Body extends React.Component {
   }
 
   componentWillMount() {
-    axios.get(`${baseURL}/datatest/HTMLContent_test.json`).then((res) => {
+    axios.get(endPoints.HTML_CONTENT).then((res) => {
       console.log(res);
       this.setState({ htmlContentModel: res })
     }).catch((err) => {

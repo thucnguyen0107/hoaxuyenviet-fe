@@ -1,5 +1,6 @@
 import React from 'react';
-import DropdownBtn from '../UI/DropdownBtn'
+import DropdownBtn from '../UI/DropdownBtn';
+import filterUtils from '../../../utilities/filter';
 
 
 
@@ -7,7 +8,9 @@ const dropdownContainer = {
   marginBottom: '30px',
 }
 
-
+const changeFilter = (params, fn) => {
+  fn(filterUtils.getFilterParams(params));
+}
 
 const filter = (props) => {
   console.log(props.catFilter);
@@ -29,7 +32,7 @@ const filter = (props) => {
       {
         arrayFilter.map((filter, index) => {
           return (
-            <DropdownBtn key={index} idSelect={filter.id} nameSelect={filter.name} subCatFilter={filter.subCategories}>
+            <DropdownBtn key={index} change={() => changeFilter(props.filterParams, props.filter)} idSelect={filter.id} nameSelect={filter.name} subCatFilter={filter.subCategories}>
               {filter.name}
             </DropdownBtn>
           )

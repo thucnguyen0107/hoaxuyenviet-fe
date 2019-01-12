@@ -7,11 +7,19 @@ import $ from 'jquery';
 import { convertCategories, convertFilters } from '../../../utilities/categoriesUtil';
 import { Redirect } from 'react-router';
 import axios from 'axios';
-import { baseURL } from '../../../services/config';
-import { htmlProductModel } from '../../../models/htmlProductModel';
+import { endPoints } from '../../../services/config';
+import loadingScreen from '../../../utilities/loadingScreen';
+import filterUtils from '../../../utilities/filter';
 class Category extends React.Component {
 
-
+  filterParams = {
+    event: null,
+    holiday: null,
+    type: null,
+    form: null,
+    color: null,
+    price: null
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -32,8 +40,78 @@ class Category extends React.Component {
 
   }
 
+  filterProductFn = (params) => {
+    loadingScreen.showLoading();
+    let filteredProductList = filterUtils.filterArrFn(this.state.productList, params);
+    this.setState({
+      filteredProductList
+    })
+    loadingScreen.hideLoading();
+  }
+
+  resetFilter = () => {
+    if (this.props.history.location.pathname !== this.props.location.pathname) {
+      window.$(`#event ~ .customSelect .customSelectInner`).text('Sự kiện');
+      window.$(`#event`).val('');
+
+      window.$(`#holiday ~ .customSelect .customSelectInner`).text('Ngày lễ');
+      window.$(`#holiday`).val('');
+
+      window.$(`#type ~ .customSelect .customSelectInner`).text('Kiểu loại');
+      window.$(`#type`).val('');
+
+      window.$(`#form ~ .customSelect .customSelectInner`).text('Hình thức');
+      window.$(`#form`).val('');
+
+      window.$(`#color ~ .customSelect .customSelectInner`).text('Màu sắc');
+      window.$(`#color`).val('');
+
+      window.$(`#price ~ .customSelect .customSelectInner`).text('Giá');
+      window.$(`#price`).val('');
+      this.filterParams = {
+        event: null,
+        holiday: null,
+        type: null,
+        form: null,
+        color: null,
+        price: null
+      }
+    }
+  }
+  componentWillReceiveProps() {
+    loadingScreen.showLoading();
+    axios.get(endPoints.GET_PRODUCT_LIST, {
+      params: {
+        page: this.props.history.location.pathname.split('/')[1],
+        of: this.props.history.location.pathname.split('/')[2],
+        by: this.props.history.location.pathname.split('/')[3]
+      }
+    }).then((res) => {
+      console.log(res);
+      this.setState({
+        productList: res,
+        filteredProductList: res
+      })
+      loadingScreen.hideLoading();
+    }).catch((err) => {
+      loadingScreen.hideLoading();
+      console.error(err);
+    })
+
+  }
+
+  componentWillUpdate() {
+    this.resetFilter();
+  }
   componentWillMount() {
-    axios.get(`${baseURL}/datatest/HTMLProduct_test.json`).then((res) => {
+    loadingScreen.showLoading();
+    axios.get(endPoints.GET_PRODUCT_LIST, {
+      params: {
+        page: this.props.history.location.pathname.split('/')[1],
+        of: this.props.history.location.pathname.split('/')[2],
+        by: this.props.history.location.pathname.split('/')[3]
+      }
+    }).then((res) => {
       console.log(res);
       this.setState({
         productList: res,
@@ -49,9 +127,13 @@ class Category extends React.Component {
   }
   componentDidMount() {
     $(document).ready(function () {
-      $("#spinner").fadeOut("slow");
+      loadingScreen.hideLoading();
     });
 
+  }
+
+  componentWillUnmount() {
+    console.log("unmount")
   }
 
   render() {
@@ -66,7 +148,7 @@ class Category extends React.Component {
             <div className="container">
               <div className="row">
                 <ul className="breadcrumb">
-                  <h2 className="page-title">{catParams.catParentName}</h2>
+                  <h2 className="page-title">{catParams.catName}</h2>
                   <li><a href="/"><i className="fa fa-home"></i></a></li>
                   <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{catParams.catParentName}</a></li>
                   <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{catParams.catName}</a></li>
@@ -78,7 +160,7 @@ class Category extends React.Component {
             <div id="product-category" className="container">
               <div className="row">
                 <div id="content" className="col-sm-12 categorypage">
-                  <Filter catFilter={convertFilters(this.props.match.params.first)}
+                  <Filter filter={this.filterProductFn} filterParams={this.filterParams} catFilter={convertFilters(this.props.match.params.first)}
                     subCatFilter={convertFilters(this.props.match.params.first).subCategories} />
 
                   <div className="row list-grid-wrapper">
