@@ -1,24 +1,20 @@
 import React from 'react';
-
 // import emailInputImage from '../../../assets/images/themeimage/special-discount-block.jpg';
-import { slideShowDelayTime, baseURL } from '../../../services/config';
-
-
+import { slideShowDelayTime } from '../../../services/config';
 import BannersSlider from '../../../components/Shop/Slider/BannersSlider/BannersSlider';
 import CategoriesSlider from '../../../components/Shop/Slider/CategoriesSlider/CategoriesSlider';
 import TabCategories from '../../../components/Shop/TabCategories/TabCategories';
 // import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
 import classes from './Home.scss'
-import $ from 'jquery';
 import axios from 'axios';
 import { endPoints } from '../../../services/config';
+import loadingScreen from '../../../utilities/loadingScreen';
 import { htmlContentModel } from '../../../models/htmlContentModel';
 class Body extends React.Component {
   state = {
     htmlContentModel
 
   }
-
 
   createNewSlider = (id) => {
     const slideShow = {
@@ -52,18 +48,13 @@ class Body extends React.Component {
     });
   }
 
-
-  constructor(props) {
-    super(props);
-
-
-  }
-
   componentWillMount() {
+    loadingScreen.showLoading();
     axios.get(endPoints.HTML_CONTENT).then((res) => {
       console.log(res);
-      this.setState({ htmlContentModel: res })
+      this.setState({ htmlContentModel: res }, loadingScreen.hideLoading)
     }).catch((err) => {
+      loadingScreen.hideLoading();
       console.error(err);
     })
   }
@@ -73,16 +64,6 @@ class Body extends React.Component {
     this.hoverBanner('#slideshow0');
     this.hoverBanner('#slideshow1', '.categorycmsblock-wrapper');
   }
-
-  componentDidMount() {
-    $(document).ready(function () {
-      $("#spinner").fadeOut("slow");
-    });
-
-  }
-
-
-
 
   render() {
     return (

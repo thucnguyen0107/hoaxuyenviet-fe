@@ -3,15 +3,14 @@ import Filter from '../../../components/Shop/UI/Filter';
 import ProductList from '../../../components/Shop/UI/ProductList';
 import classes from './Category.scss';
 import { visibleItems } from '../../../services/config'
-import $ from 'jquery';
 import { convertCategories, convertFilters } from '../../../utilities/categoriesUtil';
-import { Redirect } from 'react-router';
 import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import filterUtils from '../../../utilities/filter';
 class Category extends React.Component {
 
+  catParams;
   filterParams = {
     event: null,
     holiday: null,
@@ -22,6 +21,7 @@ class Category extends React.Component {
   }
   constructor(props) {
     super(props);
+    this.catParams = convertCategories(this.props.match.params.first, this.props.match.params.second, props.history.replace);
     this.state = {
       productList: [],
       filteredProductList: [],
@@ -49,60 +49,8 @@ class Category extends React.Component {
     loadingScreen.hideLoading();
   }
 
-  resetFilter = () => {
-    if (this.props.history.location.pathname !== this.props.location.pathname) {
-      window.$(`#event ~ .customSelect .customSelectInner`).text('Sự kiện');
-      window.$(`#event`).val('');
+  
 
-      window.$(`#holiday ~ .customSelect .customSelectInner`).text('Ngày lễ');
-      window.$(`#holiday`).val('');
-
-      window.$(`#type ~ .customSelect .customSelectInner`).text('Kiểu loại');
-      window.$(`#type`).val('');
-
-      window.$(`#form ~ .customSelect .customSelectInner`).text('Hình thức');
-      window.$(`#form`).val('');
-
-      window.$(`#color ~ .customSelect .customSelectInner`).text('Màu sắc');
-      window.$(`#color`).val('');
-
-      window.$(`#price ~ .customSelect .customSelectInner`).text('Giá');
-      window.$(`#price`).val('');
-      this.filterParams = {
-        event: null,
-        holiday: null,
-        type: null,
-        form: null,
-        color: null,
-        price: null
-      }
-    }
-  }
-  componentWillReceiveProps() {
-    loadingScreen.showLoading();
-    axios.get(endPoints.GET_PRODUCT_LIST, {
-      params: {
-        page: this.props.history.location.pathname.split('/')[1],
-        of: this.props.history.location.pathname.split('/')[2],
-        by: this.props.history.location.pathname.split('/')[3]
-      }
-    }).then((res) => {
-      console.log(res);
-      this.setState({
-        productList: res,
-        filteredProductList: res
-      })
-      loadingScreen.hideLoading();
-    }).catch((err) => {
-      loadingScreen.hideLoading();
-      console.error(err);
-    })
-
-  }
-
-  componentWillUpdate() {
-    this.resetFilter();
-  }
   componentWillMount() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_LIST, {
@@ -116,42 +64,53 @@ class Category extends React.Component {
       this.setState({
         productList: res,
         filteredProductList: res
-      })
+      }, loadingScreen.hideLoading)
     }).catch((err) => {
+      loadingScreen.hideLoading();
       console.error(err);
     })
+  }
+
+  componentWillReceiveProps() {
+    loadingScreen.showLoading();
+    axios.get(endPoints.GET_PRODUCT_LIST, {
+      params: {
+        page: this.props.history.location.pathname.split('/')[1],
+        of: this.props.history.location.pathname.split('/')[2],
+        by: this.props.history.location.pathname.split('/')[3]
+      }
+    }).then((res) => {
+      console.log(res);
+      this.setState({
+        productList: res,
+        filteredProductList: res
+      }, loadingScreen.hideLoading)
+    }).catch((err) => {
+      loadingScreen.hideLoading();
+      console.error(err);
+    })
+
+  }
+
+  componentWillUpdate() {
+    filterUtils.resetFilterFn(this.filterParams, this.props.history.location.pathname, this.props.location.pathname);
   }
 
   componentDidUpdate() {
     window.gridResize();
   }
-  componentDidMount() {
-    $(document).ready(function () {
-      loadingScreen.hideLoading();
-    });
-
-  }
-
-  componentWillUnmount() {
-    console.log("unmount")
-  }
 
   render() {
-    let catParams = convertCategories(this.props.match.params.first, this.props.match.params.second);
-    if (this.props.match.params.first === 'color') {
-      return <Redirect to="/pageNotFound" />
-    } else {
-      return (
+      return this.catParams && (
         <>
-          <div id="spinner"></div>
           <div id="breadcrumb">
             <div className="container">
               <div className="row">
                 <ul className="breadcrumb">
-                  <h2 className="page-title">{catParams.catName}</h2>
+                  <h2 className="page-title">{this.catParams.catName}</h2>
                   <li><a href="/"><i className="fa fa-home"></i></a></li>
-                  <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{catParams.catParentName}</a></li>
-                  <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{catParams.catName}</a></li>
+                  <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{this.catParams.catParentName}</a></li>
+                  <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{this.catParams.catName}</a></li>
                 </ul>
               </div>
             </div>
@@ -178,7 +137,6 @@ class Category extends React.Component {
 
         </>
       );
-    }
 
   }
 }

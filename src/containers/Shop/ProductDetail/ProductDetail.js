@@ -3,6 +3,7 @@ import { arrProductList } from '../../../data/data';
 import ProductCard from '../../../components/Shop/UI/ProductCard';
 import axios from 'axios';
 import { endPoints } from '../../../services/config';
+import loadingScreen from '../../../utilities/loadingScreen';
 class ProductDetail extends React.Component {
 
 
@@ -120,12 +121,14 @@ class ProductDetail extends React.Component {
   }
 
   componentWillMount() {
+    loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_BY_ID + this.props.match.params.product_id).then((res) => {
       console.log(res);
       this.setState({
         product: res,
-      })
+      }, loadingScreen.hideLoading())
     }).catch((err) => {
+      loadingScreen.hideLoading();
       console.error(err);
     })
   }
@@ -275,7 +278,7 @@ class ProductDetail extends React.Component {
                       <div className="form-group required">
                       </div> */}
                       <div className="form-group cart">
-                        <label className="control-label qty" htmlFor="input-quantity">Qty</label>
+                        <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
                         <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
                         <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block">Thêm vào giỏ hàng</button>
 
@@ -284,15 +287,15 @@ class ProductDetail extends React.Component {
                           {/* <button type="button" className="btn btn-primary compare" >Add to Compare</button> */}
                         </div>
                       </div>
-                      <input type="hidden" name="product_id" defaultValue="43" />
+                      {/* <input type="hidden" name="product_id" defaultValue="43" /> */}
 
                       {/* <!-- AddThis Button BEGIN --> */}
-                      <div className="addthis_toolbox addthis_default_style" data-url="indexb8ca.html?route=product/product&amp;product_id=43">
+                      {/* <div className="addthis_toolbox addthis_default_style" data-url="indexb8ca.html?route=product/product&amp;product_id=43">
                         <a href="/" className="addthis_button_facebook_like"></a>
                         <a href="/" className="addthis_button_tweet"></a> <a className="addthis_button_pinterest_pinit"></a>
                         <a href="/" className="addthis_counter addthis_pill_style"></a>
                       </div>
-                      <script type="text/javascript" src="../../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
+                      <script type="text/javascript" src="../../../../../s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script> */}
                       {/* <!-- AddThis Button END --> */}
                     </div>
                   </div>

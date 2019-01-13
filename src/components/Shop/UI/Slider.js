@@ -6,7 +6,6 @@ const slider = (props) => {
   if (props.type === 'bannerSlider') {
     return (
       <div className="main-slider">
-        <div id="spinner"></div>
         <div className="swiper-viewport">
           <div id={props.bannerId} className="swiper-container" style={{ opacity: "1" }}>
             <div className="swiper-wrapper">

@@ -18,10 +18,10 @@ class Shop extends React.Component {
           <Route path="/product/:product_id" exact component={ProductDetail} />
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
-          <Route component={notFoundPage} />
-
+          <Redirect to="/pageNotFound" />
         </Switch>
         <Footer />
+        <div id="spinner" ></div>
       </>
     )
   }

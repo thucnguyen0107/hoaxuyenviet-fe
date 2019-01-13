@@ -1,3 +1,5 @@
+import { headerContent } from '../data/data';
+
 const filterArrFn = (array, params) => {
   let arrFilter = array.slice();
   for (const filterKey in params) {
@@ -34,8 +36,33 @@ const getFilterParams = (params) => {
   return params;
 }
 
+const resetFilterFn = (params, nextLocation, currentLocaltion) => {
+  if (nextLocation !== currentLocaltion) {
+    for (const filterKey in headerContent.categories) {
+      let item = headerContent.categories[filterKey];
+      if (item.id !== 'home') {
+        window.$(`#${item.id} ~ .customSelect .custonSelectInner`).text(item.name);
+        window.$(`#${item.id}`).val('');
+      }
+    }
+
+    window.$(`#price ~ .customSelect .customSelectInner`).text('Giá');
+    window.$(`#price`).val('');
+
+    params = {
+      event: null,
+      holiday: null,
+      type: null,
+      form: null,
+      color: null,
+      price: null
+    }
+  }
+}
+
 const filterUtils = {
   filterArrFn,
-  getFilterParams
+  getFilterParams,
+  resetFilterFn
 }
 export default filterUtils;
