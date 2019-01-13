@@ -4,6 +4,7 @@ import ProductCard from '../../../components/Shop/UI/ProductCard';
 import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
+import Iimg from '../../../components/Shop/UI/LoadingImage/Limg';
 class ProductDetail extends React.Component {
 
 
@@ -189,8 +190,8 @@ class ProductDetail extends React.Component {
 
                         {/* <!-- Cloud-Zoom Image Effect Start --> */}
                         <div className="image">
-                          <a className="thumbnail" href={require('../../../assets/images/catalog/product/11-813x1000.jpg')} title="MacBook">
-                            <img id="tmzoom" src={require('../../../assets/images/catalog/product/11-813x1000.jpg')} data-zoom-image={require('../../../assets/images/catalog/product/11-813x1000.jpg')}
+                          <a className="thumbnail" href={'../../../assets/images/catalog/product/11-813x1000.jpg'} title="MacBook">
+                            <Iimg id="tmzoom" src={'../../../assets/images/catalog/product/11-813x1000.jpg'} data-zoom-image={'../../../assets/images/catalog/product/11-813x1000.jpg'}
                               title="MacBook" alt="MacBook" />
                           </a>
                         </div>
@@ -204,37 +205,37 @@ class ProductDetail extends React.Component {
                           <div id="additional-carousel" className="image-additional product-carousel">
                             <div className="slider-item">
                               <div className="product-block">
-                                <a href={require('../../../assets/images/catalog/product/11-813x1000.jpg')} title="MacBook" className="elevatezoom-gallery"
-                                  data-image={require('../../../assets/images/catalog/product/11-813x1000.jpg')}
-                                  data-zoom-image={require('../../../assets/images/catalog/product/11-813x1000.jpg')} >
-                                  <img src={require('../../../assets/images/catalog/product/11-813x1000.jpg')} width="74" height="74" title="MacBook" alt="MacBook" />
+                                <a href={'../../../assets/images/catalog/product/11-813x1000.jpg'} title="MacBook" className="elevatezoom-gallery"
+                                  data-image={'../../../assets/images/catalog/product/11-813x1000.jpg'}
+                                  data-zoom-image={'../../../assets/images/catalog/product/11-813x1000.jpg'} >
+                                  <img src={'../../../assets/images/catalog/product/11-813x1000.jpg'} width="74" height="74" title="MacBook" alt="MacBook" />
                                 </a>
                               </div>
                             </div>
                             <div className="slider-item">
                               <div className="product-block">
-                                <a href={require('../../../assets/images/catalog/product/13-813x1000.jpg')} title="MacBook" className="elevatezoom-gallery"
-                                  data-image={require('../../../assets/images/catalog/product/13-813x1000.jpg')}
-                                  data-zoom-image={require('../../../assets/images/catalog/product/13-813x1000.jpg')} >
-                                  <img src={require('../../../assets/images/catalog/product/13-813x1000.jpg')} width="74" height="74" title="MacBook" alt="MacBook" />
+                                <a href={'../../../assets/images/catalog/product/13-813x1000.jpg'} title="MacBook" className="elevatezoom-gallery"
+                                  data-image={'../../../assets/images/catalog/product/13-813x1000.jpg'}
+                                  data-zoom-image={'../../../assets/images/catalog/product/13-813x1000.jpg'} >
+                                  <img src={'../../../assets/images/catalog/product/13-813x1000.jpg'} width="74" height="74" title="MacBook" alt="MacBook" />
                                 </a>
                               </div>
                             </div>
                             <div className="slider-item">
                               <div className="product-block">
-                                <a href={require('../../../assets/images/catalog/product/14-813x1000.jpg')} title="MacBook" className="elevatezoom-gallery"
-                                  data-image={require('../../../assets/images/catalog/product/14-813x1000.jpg')}
-                                  data-zoom-image={require('../../../assets/images/catalog/product/14-813x1000.jpg')} >
-                                  <img src={require('../../../assets/images/catalog/product/14-813x1000.jpg')} width="74" height="74" title="MacBook" alt="MacBook" />
+                                <a href={'../../../assets/images/catalog/product/14-813x1000.jpg'} title="MacBook" className="elevatezoom-gallery"
+                                  data-image={'../../../assets/images/catalog/product/14-813x1000.jpg'}
+                                  data-zoom-image={'../../../assets/images/catalog/product/14-813x1000.jpg'} >
+                                  <img src={'../../../assets/images/catalog/product/14-813x1000.jpg'} width="74" height="74" title="MacBook" alt="MacBook" />
                                 </a>
                               </div>
                             </div>
                             <div className="slider-item">
                               <div className="product-block">
-                                <a href={require('../../../assets/images/catalog/product/15-813x1000.jpg')} title="MacBook" className="elevatezoom-gallery"
-                                  data-image={require('../../../assets/images/catalog/product/15-813x1000.jpg')}
-                                  data-zoom-image={require('../../../assets/images/catalog/product/15-813x1000.jpg')}>
-                                  <img src={require('../../../assets/images/catalog/product/15-813x1000.jpg')} width="74" height="74" title="MacBook" alt="MacBook" />
+                                <a href={'../../../assets/images/catalog/product/15-813x1000.jpg'} title="MacBook" className="elevatezoom-gallery"
+                                  data-image={'../../../assets/images/catalog/product/15-813x1000.jpg'}
+                                  data-zoom-image={'../../../assets/images/catalog/product/15-813x1000.jpg'}>
+                                  <img src={'../../../assets/images/catalog/product/15-813x1000.jpg'} width="74" height="74" title="MacBook" alt="MacBook" />
                                 </a>
                               </div>
                             </div>
@@ -421,8 +422,8 @@ class ProductDetail extends React.Component {
                               <div className="product-block-inner">
                                 <div className="image">
                                   <a href="indexbfcf.html?route=product/product&amp;product_id=31">
-                                    <img src={require('../../../assets/images/catalog/product/14-813x1000.jpg')} title="Nikon D300" alt="Nikon D300" className="img-responsive reg-image" />
-                                    <img className="img-responsive hover-image" src={require('../../../assets/images/catalog/product/16-813x1000.jpg')} title="Nikon D300"
+                                    <img src={'../../../assets/images/catalog/product/14-813x1000.jpg'} title="Nikon D300" alt="Nikon D300" className="img-responsive reg-image" />
+                                    <img className="img-responsive hover-image" src={'../../../assets/images/catalog/product/16-813x1000.jpg'} title="Nikon D300"
                                       alt="Nikon D300" />
                                   </a>
                                   <div className="extra-info">
