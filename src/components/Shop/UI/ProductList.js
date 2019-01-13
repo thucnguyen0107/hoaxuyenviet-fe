@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 
 const productList = (props) => {
-  console.log(props);
 
 
   let listProductCardHTML = [];

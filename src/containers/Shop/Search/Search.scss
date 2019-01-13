@@ -1,0 +1,29 @@
+.loadMoreBtn{
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    cursor: pointer;
+    line-height: normal;
+    font-family: futura-pt,sans-serif;
+    letter-spacing: 2px;
+    font-size: 16px;
+    // font-weight: 900;
+    border: 2px solid #ddd;
+    background-color: #fff;
+    color: #2d2d2d;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 16px auto 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .productsProgressBar{
+    text-align: center;
+  }

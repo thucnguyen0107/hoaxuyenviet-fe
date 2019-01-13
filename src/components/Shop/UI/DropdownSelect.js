@@ -1,5 +1,5 @@
 import React from 'react';
-const dropdownBtn = (props) => {
+const dropdownSelect = (props) => {
   let dropdownMenuHTML = [];
   dropdownMenuHTML = (
     <>
@@ -23,4 +23,4 @@ const dropdownBtn = (props) => {
   );
 }
 
-export default dropdownBtn;
+export default dropdownSelect;

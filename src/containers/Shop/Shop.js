@@ -6,6 +6,7 @@ import { Route, Redirect, Switch } from 'react-router';
 import Category from '../Shop/Category/Category';
 import notFoundPage from '../../components/Shop/404/404';
 import ProductDetail from '../Shop/ProductDetail/ProductDetail';
+import Search from '../Shop/Search/Search';
 
 class Shop extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class Shop extends React.Component {
           <Route path="/home" exact component={Home} />
           <Route path="/category/:first/:second" exact component={Category} />
           <Route path="/product/:product_id" exact component={ProductDetail} />
+          <Route path="/search" exact component={Search}/>
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
           <Redirect to="/pageNotFound" />

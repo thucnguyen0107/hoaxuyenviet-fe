@@ -97,7 +97,34 @@ class ProductDetail extends React.Component {
       verticalAlign: 'middle',
       fontWeight: '700',
       textTransform: 'uppercase',
-      color: '#fff'
+      color: '#fff',
+      marginTop:'20px'
+    }
+    this.styleHot = {
+      fontSize: '12px',
+      background: '#ff6e07',
+      padding: '0 5px',
+      letterSpacing: '1px',
+      textAlign: 'center',
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      fontWeight: '700',
+      textTransform: 'uppercase',
+      color: '#fff',
+      marginLeft:'20px'
+    }
+    this.styleNew = {
+      fontSize: '12px',
+      background: '#07ff31',
+      padding: '0 5px',
+      letterSpacing: '1px',
+      textAlign: 'center',
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      fontWeight: '700',
+      textTransform: 'uppercase',
+      color: '#fff',
+      marginLeft:'20px'
     }
 
     this.stylePercentSaving = {
@@ -106,7 +133,7 @@ class ProductDetail extends React.Component {
       textAlign: 'center',
       textTransform: 'capitalize',
       background: '#fff',
-      fontSize: '12px',
+      fontSize: '14px',
       height: '40px',
       width: '40px',
       borderRadius: ' 50%',
@@ -115,7 +142,7 @@ class ProductDetail extends React.Component {
       boxShadow: '0 0 4px 2px rgba(0,0,0,0.15)',
       display: 'inline-block',
       marginTop: '10px',
-      marginLeft: '10px'
+      marginLeft: '10px',
     }
 
   }
@@ -170,9 +197,9 @@ class ProductDetail extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title">Sản phẩm</h2>
+                <h2 className="page-title">{this.state.product.productName}</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
-                <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Sản phẩm </a></li>
+                <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{this.state.product.productName}</a></li>
 
               </ul>
             </div>
@@ -264,12 +291,12 @@ class ProductDetail extends React.Component {
                       <li>
                         <h2>{(this.state.product.price - (this.state.product.discount * this.state.product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</h2>
                       </li>
-                      <span>Giảm</span>
+                      {this.state.product.discount > 0 ? <span style={{fontSize:'18px'}}>Giảm</span> : null}
                       {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
 
                       {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{this.state.product.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</span> : <span></span>}
-                      {this.state.product.hot === true ? <span className="saleicon hot" >Hot</span> : null}
-                      {this.state.product.new === true ? <span className="saleicon new">New</span> : null}
+                      {this.state.product.hot === true ? <span className="saleicon hot" style={this.styleHot}>Hot</span> : null}
+                      {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
                       {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
 
                     </ul>
@@ -280,7 +307,7 @@ class ProductDetail extends React.Component {
                       <div className="form-group cart">
                         <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
                         <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
-                        <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block">Thêm vào giỏ hàng</button>
+                        <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block" style={{marginLeft:'20px'}}>Thêm vào giỏ hàng</button>
 
                         <div className="btn-group">
                           <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>

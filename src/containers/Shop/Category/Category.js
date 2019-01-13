@@ -1,5 +1,5 @@
 import React from 'react';
-import Filter from '../../../components/Shop/UI/Filter';
+import FilterBar from '../../../components/Shop/UI/FilterBar';
 import ProductList from '../../../components/Shop/UI/ProductList';
 import classes from './Category.scss';
 import { visibleItems } from '../../../services/config'
@@ -119,7 +119,7 @@ class Category extends React.Component {
             <div id="product-category" className="container">
               <div className="row">
                 <div id="content" className="col-sm-12 categorypage">
-                  <Filter filter={this.filterProductFn} filterParams={this.filterParams} catFilter={convertFilters(this.props.match.params.first)}
+                  <FilterBar filter={this.filterProductFn} filterParams={this.filterParams} catFilter={convertFilters(this.props.match.params.first)}
                     subCatFilter={convertFilters(this.props.match.params.first).subCategories} />
 
                   <div className="row list-grid-wrapper">
