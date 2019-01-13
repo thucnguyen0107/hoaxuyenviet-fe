@@ -4,7 +4,7 @@ import Loader from './Loader';
 
 
 const Limg = props => (
-  <Img {...props} loader={<Loader />}/>
+  <Img {...props} loader={<Loader />} />
 )
 
 export default Limg;
