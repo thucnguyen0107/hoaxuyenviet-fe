@@ -2,6 +2,7 @@ import React from 'react';
 import SwiperSlider from '../../UI/SwiperSlider';
 import Slider from '../../UI/Slider';
 import { Link } from 'react-router-dom';
+import Iimg from '../../UI/LoadingImage/Limg'
 const bannersSlider = (props) => {
 
   let type = "bannerSlider";

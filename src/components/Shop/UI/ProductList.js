@@ -28,7 +28,7 @@ const productList = (props) => {
                   </div>
                   <div className="caption">
                     <div className="product-deacription-wrapper">
-                      <h4><a href="index3a05.html?route=product/product&amp;path=25_30&amp;product_id=42">{product.productName} </a></h4>
+                      <h4><Link to={'/product/' + product._id}>{product.productName} </Link></h4>
                       <span className="price">
                         <span className="price-new">{(product.price - (product.discount * product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</span>
                         {product.discount > 0 ? <span className="price-old">{product.price.toLocaleString('vi-VN', { currency: 'VND' })}</span> : <span className="price-old"></span>}

@@ -7,7 +7,8 @@ import filterUtils from '../../../utilities/filter';
 import classes from './Search.scss';
 import { convertCategories, convertFilters } from '../../../utilities/categoriesUtil';
 import FilterBar from '../../../components/Shop/UI/FilterBar';
-import { visibleItems } from '../../../services/config'
+import { visibleItems } from '../../../services/config';
+import $ from 'jquery'
 class Search extends React.Component {
 
   catParams;
@@ -65,7 +66,7 @@ class Search extends React.Component {
       console.error(err);
     })
   }
-
+ 
   componentWillReceiveProps() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_LIST).then((res) => {

@@ -2,6 +2,33 @@ import React from 'react';
 // import Logo from '../../assets/images/catalog/logo.png';
 import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
+import classes from './TopNavigation.scss';
+
+function focusSelected() {
+  document.body.style.overflow = "hidden";
+
+  const UnDark = document.querySelector('.TopNavigation_UnDark__1gFit');
+  // TopNavigation_UnDark__1gFit
+  if (UnDark.classList.contains('TopNavigation_UnDark__1gFit')) {
+    UnDark.classList.remove('TopNavigation_UnDark__1gFit');
+    UnDark.classList.add('TopNavigation_Dark__3kJp_');
+
+    document.querySelector('.inputField').style.zIndex = '22000';
+
+  }
+}
+
+function blurSelected() {
+  document.body.style.overflow = "visible";
+
+  const Dark = document.querySelector('.TopNavigation_Dark__3kJp_');
+  // TopNavigation_Dark__3kJp_
+  if (Dark.classList.contains('TopNavigation_Dark__3kJp_')) {
+    Dark.classList.remove('TopNavigation_Dark__3kJp_');
+    Dark.classList.add('TopNavigation_UnDark__1gFit');
+
+  }
+}
 
 const topNavigation = (props) => {
 
@@ -24,8 +51,6 @@ const topNavigation = (props) => {
 
     </>
   )
-
-
 
   return (
     <header>
@@ -83,14 +108,19 @@ const topNavigation = (props) => {
                   <span className="text-search">Search</span>
                   <i className="fa fa-angle-down"></i>
                 </div>
-                <div id="search" className="input-group">
-                  <input type="text" name="search" placeholder="Nhập từ khóa..." className="form-control input-lg" />
+
+                <div className={classes.UnDark}></div>
+
+
+                <div id="search" className="input-group" style={{ zIndex: '20000' }}>
+                  <input type="text" name="search" placeholder="Nhập từ khóa..." className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
                   <span className="input-group-btn">
                     <button type="button" className="btn-default btn-lg">
                       <span className="search_button"><i className="fa fa-search" aria-hidden="true"></i></span>
                     </button>
                   </span>
                 </div>
+
               </div>
               <div className="myaccount-wrapper">
                 <div className="dropdown myaccount">

@@ -8,6 +8,7 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import filterUtils from '../../../utilities/filter';
+import $ from 'jquery'
 class Category extends React.Component {
 
   catParams;
@@ -21,7 +22,7 @@ class Category extends React.Component {
   }
   constructor(props) {
     super(props);
-    this.catParams = convertCategories(this.props.match.params.first, this.props.match.params.second, props.history.replace);
+    this.catParams = convertCategories(props.match.params.first, props.match.params.second, props.history.replace);
     this.state = {
       productList: [],
       filteredProductList: [],
@@ -71,6 +72,9 @@ class Category extends React.Component {
     })
   }
 
+  
+ 
+
   componentWillReceiveProps() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_LIST, {
@@ -93,6 +97,7 @@ class Category extends React.Component {
   }
 
   componentWillUpdate() {
+    this.catParams = convertCategories(this.props.match.params.first, this.props.match.params.second, this.props.history.replace);
     filterUtils.resetFilterFn(this.filterParams, this.props.history.location.pathname, this.props.location.pathname);
   }
 
