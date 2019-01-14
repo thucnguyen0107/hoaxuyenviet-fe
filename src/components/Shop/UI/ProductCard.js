@@ -1,14 +1,16 @@
 import React from 'react';
-
+import Iimg from '../../../components/Shop/UI/LoadingImage/Limg';
+import Link from 'react-router-dom';
 const productCard = (props) => {
+  
 
   return (
     <div className="product-block product-thumb transition">
       <div className="product-block-inner">
         <div className="image">
           <a href="indexd21c.html?route=product/product&amp;product_id=47">
-            <img src={props.cardContent.srcImg} title={props.cardContent.name} alt={props.cardContent.name} className="img-responsive reg-image" />
-            <img className="img-responsive hover-image" src={props.cardContent.srcImg} title={props.cardContent.name}
+            <Iimg src={props.cardContent.srcImg} title={props.cardContent.name} alt={props.cardContent.name} className="img-responsive reg-image" />
+            <Iimg className="img-responsive hover-image" src={props.cardContent.srcImg} title={props.cardContent.name}
               alt={props.cardContent.name} />
           </a>
           <div className="extra-info">

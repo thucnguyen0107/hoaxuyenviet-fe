@@ -23,7 +23,7 @@ export const headerContent = {
         {
             id: 'holiday', name: 'Ngày lễ', type: 'dropdown', subCategories:
                 [
-                    { id: 'womenDay', subName: 'Tết dương lịch(1/1)' },
+                    { id: 'newYear', subName: 'Tết dương lịch(1/1)' },
                     { id: 'vnCommunistDay', subName: 'Thành lập DCSVN(3/2)' },
                     { id: 'valentine', subName: 'Valentine(14/2)' },
                     { id: 'vnDoctorDay', subName: 'Thầy thuốc VN(27/2)' },

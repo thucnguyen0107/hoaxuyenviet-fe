@@ -5,6 +5,7 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/Shop/UI/LoadingImage/Limg';
+import $ from 'jquery'
 class ProductDetail extends React.Component {
 
   createZoom = () => {
@@ -180,14 +181,16 @@ class ProductDetail extends React.Component {
       console.error(err);
     })
   }
+  
 
   componentDidMount() {
     window.productCarouselAutoSet();
     this.init();
   }
-
+// hide Search Input when change page
   componentWillUnmount() {
     window.$('.zoomContainer').remove();
+     
   }
   render() {
 
@@ -469,8 +472,8 @@ class ProductDetail extends React.Component {
                               <div className="product-block-inner">
                                 <div className="image">
                                   <a href="indexbfcf.html?route=product/product&amp;product_id=31">
-                                    <img src={'../../../assets/images/catalog/product/14-813x1000.jpg'} title="Nikon D300" alt="Nikon D300" className="img-responsive reg-image" />
-                                    <img className="img-responsive hover-image" src={'../../../assets/images/catalog/product/16-813x1000.jpg'} title="Nikon D300"
+                                    <Iimg src={'../../../assets/images/catalog/product/14-813x1000.jpg'} title="Nikon D300" alt="Nikon D300" className="img-responsive reg-image" />
+                                    <Iimg className="img-responsive hover-image" src={'../../../assets/images/catalog/product/16-813x1000.jpg'} title="Nikon D300"
                                       alt="Nikon D300" />
                                   </a>
                                   <div className="extra-info">
