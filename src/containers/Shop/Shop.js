@@ -7,6 +7,8 @@ import Category from '../Shop/Category/Category';
 import notFoundPage from '../../components/Shop/404/404';
 import ProductDetail from '../Shop/ProductDetail/ProductDetail';
 import Search from '../Shop/Search/Search';
+import Register from '../../components/Shop/Register/Register';
+import ForGotPassWord from '../../components/Shop/ForGotPassword/ForGotPassword';
 
 class Shop extends React.Component {
   render() {
@@ -18,12 +20,14 @@ class Shop extends React.Component {
           <Route path="/category/:first/:second" exact component={Category} />
           <Route path="/product/:product_id" exact component={ProductDetail} />
           <Route path="/search" exact component={Search}/>
+          <Route path="/register" exact component={Register}/>
+          <Route path="/forgotpassword" exact component={ForGotPassWord}/>
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
           <Redirect to="/pageNotFound" />
         </Switch>
         <Footer />
-        <div id="spinner" ></div>
+        {/* <div id="spinner" ></div> */}
       </>
     )
   }
