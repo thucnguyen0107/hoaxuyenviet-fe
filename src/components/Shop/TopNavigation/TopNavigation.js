@@ -2,16 +2,15 @@ import React from 'react';
 // import Logo from '../../assets/images/catalog/logo.png';
 import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
-import classes from './TopNavigation.scss';
+import  './TopNavigation.css';
 
 function focusSelected() {
   document.body.style.overflow = "hidden";
 
-  const UnDark = document.querySelector('.TopNavigation_UnDark__1gFit');
-  // TopNavigation_UnDark__1gFit
-  if (UnDark.classList.contains('TopNavigation_UnDark__1gFit')) {
-    UnDark.classList.remove('TopNavigation_UnDark__1gFit');
-    UnDark.classList.add('TopNavigation_Dark__3kJp_');
+  const UnDark = document.querySelector('.UnDark');
+  if (UnDark.classList.contains('UnDark')) {
+    UnDark.classList.remove('UnDark');
+    UnDark.classList.add('Dark');
 
     document.querySelector('.inputField').style.zIndex = '22000';
 
@@ -21,11 +20,10 @@ function focusSelected() {
 function blurSelected() {
   document.body.style.overflow = "visible";
 
-  const Dark = document.querySelector('.TopNavigation_Dark__3kJp_');
-  // TopNavigation_Dark__3kJp_
-  if (Dark.classList.contains('TopNavigation_Dark__3kJp_')) {
-    Dark.classList.remove('TopNavigation_Dark__3kJp_');
-    Dark.classList.add('TopNavigation_UnDark__1gFit');
+  const Dark = document.querySelector('.Dark');
+  if (Dark.classList.contains('Dark')) {
+    Dark.classList.remove('Dark');
+    Dark.classList.add('UnDark');
 
   }
 }
@@ -109,7 +107,7 @@ const topNavigation = (props) => {
                   <i className="fa fa-angle-down"></i>
                 </div>
 
-                <div className={classes.UnDark}></div>
+                <div className="UnDark"></div>
 
 
                 <div id="search" className="input-group" style={{ zIndex: '20000' }}>
