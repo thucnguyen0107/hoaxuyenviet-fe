@@ -1,0 +1,22 @@
+.Dark{
+  transition: opacity .5s ease-in;
+  display: block;
+  opacity: 0.5;
+  pointer-events: none;
+  background-color: rgba(45,45,45,.65);
+    position: fixed;
+    top: -40px;
+    left: 0;
+    right: 0;
+    height: calc(100vh + 40px);
+    z-index: 19000;
+    pointer-events: none;
+    overflow:hidden;
+}
+.UnDark{
+  transition: opacity .3s ease-in;
+  display: block;
+  pointer-events: all;
+  opacity: 1;
+  overflow: visible;
+}

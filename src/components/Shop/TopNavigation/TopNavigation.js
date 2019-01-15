@@ -2,6 +2,31 @@ import React from 'react';
 // import Logo from '../../assets/images/catalog/logo.png';
 import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
+import  './TopNavigation.css';
+
+function focusSelected() {
+  document.body.style.overflow = "hidden";
+
+  const UnDark = document.querySelector('.UnDark');
+  if (UnDark.classList.contains('UnDark')) {
+    UnDark.classList.remove('UnDark');
+    UnDark.classList.add('Dark');
+
+    document.querySelector('.inputField').style.zIndex = '22000';
+
+  }
+}
+
+function blurSelected() {
+  document.body.style.overflow = "visible";
+
+  const Dark = document.querySelector('.Dark');
+  if (Dark.classList.contains('Dark')) {
+    Dark.classList.remove('Dark');
+    Dark.classList.add('UnDark');
+
+  }
+}
 
 const topNavigation = (props) => {
 
@@ -24,8 +49,6 @@ const topNavigation = (props) => {
 
     </>
   )
-
-
 
   return (
     <header>
@@ -83,14 +106,19 @@ const topNavigation = (props) => {
                   <span className="text-search">Search</span>
                   <i className="fa fa-angle-down"></i>
                 </div>
-                <div id="search" className="input-group">
-                  <input type="text" name="search" placeholder="Nhập từ khóa..." className="form-control input-lg" />
+
+                <div className="UnDark"></div>
+
+
+                <div id="search" className="input-group" style={{ zIndex: '20000' }}>
+                  <input type="text" name="search" placeholder="Nhập từ khóa..." className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
                   <span className="input-group-btn">
                     <button type="button" className="btn-default btn-lg">
                       <span className="search_button"><i className="fa fa-search" aria-hidden="true"></i></span>
                     </button>
                   </span>
                 </div>
+
               </div>
               <div className="myaccount-wrapper">
                 <div className="dropdown myaccount">

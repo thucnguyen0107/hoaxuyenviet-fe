@@ -59,7 +59,7 @@ var widthClassOptions = ({
     testimonial: 'testimonial_default_width'
 });
 $(document).ready(function () {
-    $('#content select').customSelect();
+    // $('#content select').customSelect();
     $('ul.breadcrumb').appendTo('#breadcrumb .container .row');
     $('.aboutus h1, .affiliate-success h1').prependTo('#breadcrumb .container .row');
     /*$('#content select').customSelect();

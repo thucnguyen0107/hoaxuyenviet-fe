@@ -1,6 +1,7 @@
 import React from 'react';
 import { columnDropdownList } from "../../../../services/config";
 import { Link } from 'react-router-dom';
+import $ from 'jquery'
 let columnArr = [];
 let i = 0;
 while (i < columnDropdownList) {
@@ -10,6 +11,13 @@ while (i < columnDropdownList) {
 const styleList = {
   'display': 'grid',
   'gridTemplateColumns': columnArr.join(' ')
+}
+
+// hide Search Input when change page
+function hideSearchField() {
+  $("#search").css("display", "none");
+  $(".header-search.dropdown-toggle").removeClass('active');
+  return false;
 }
 
 const navigationItem = (props) => {
@@ -33,7 +41,7 @@ const navigationItem = (props) => {
             return (
               <li key={index}>
                 {/* <a href="index9328.html?route=common/home">{subNav.subName}</a> */}
-                <Link to={{ pathname: `/category/${props.parentNav}/${subNav.id}` }}>{subNav.subName}</Link>
+                <Link onClick={hideSearchField} to={{ pathname: `/category/${props.parentNav}/${subNav.id}` }}>{subNav.subName}</Link>
               </li>
             );
           })

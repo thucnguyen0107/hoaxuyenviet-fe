@@ -586,7 +586,8 @@ header .header-middle.fixed {
 	padding: 10px 50px 10px 10px;
 	vertical-align: top;
 	border: 0 none;
-	width: 831px;
+	/* width: 831px; */
+	width:325px;
 	border-radius: 0;
 	text-transform: capitalize;
 	letter-spacing: 1px;
@@ -7377,7 +7378,7 @@ body #content.col-sm-9 .col-sm-6.text-right {
 .col-sm-3.search_subcategory {width: auto; margin-top:7px;}
 #button-search{float:right;}
 .product-search h2{clear:both;}
-.checkout-cart .input-group.btn-block .form-control {
+.checkout-cart .input-group .btn-block .form-control {
     padding: 6px 5px;
     text-align: center;
     width: 40px;
@@ -7572,6 +7573,7 @@ body #content.col-sm-9 .col-sm-6.text-right {
 }
 #content .form-control {
 	height: 40px;
+	font-size: 14px; /*Fix font-size error change from detail page to category page */
 }
 .alert {
 	clear: both;
