@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
-import Shop from '../Shop/Shop';
-import { BrowserRouter } from 'react-router-dom';
-import '../../services/interceptors';
-
+import React, { Component } from "react";
+import Shop from "../Shop/Shop";
+import Admin from "../Admin/Admin";
+import { BrowserRouter } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router";
+import "../../services/interceptors";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Shop />
+        <Switch>
+          <Route path="/admin" component={Admin} />
+          <Route path="/" component={Shop} />
+        </Switch>
       </BrowserRouter>
     );
   }
