@@ -7378,7 +7378,7 @@ body #content.col-sm-9 .col-sm-6.text-right {
 .col-sm-3.search_subcategory {width: auto; margin-top:7px;}
 #button-search{float:right;}
 .product-search h2{clear:both;}
-.checkout-cart .input-group.btn-block .form-control {
+.checkout-cart .input-group .btn-block .form-control {
     padding: 6px 5px;
     text-align: center;
     width: 40px;

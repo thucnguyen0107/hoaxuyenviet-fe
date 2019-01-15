@@ -1,12 +1,142 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/Shop/UI/LoadingImage/Limg';
+import Input from '../../../components/Shop/UI/Input/Input';
+import Form from '../../../components/Shop/UI/Form/Form';
 
 class Checkout extends React.Component {
+
+  state = {
+    orderForm: {
+      firstName: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'First name'
+        },
+        value: '',
+        validation: {
+          required: true,
+          minLength:1,
+          maxLength:32
+        },
+        valid: false,
+        touched:false
+      },
+      lastName: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Last name'
+        },
+        value: '',
+        validation: {
+          required: true,
+          minLength:1,
+          maxLength:32
+        },
+        valid: false,
+        touched:false
+      },
+      email: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'email',
+          placeholder: 'E-Mail'
+        },
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched:false
+      },
+      telephone: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Telephone'
+        },
+        value: '',
+        validation: {
+          required: true,
+          minLength:1,
+          maxLength:32
+        },
+        valid: false,
+        touched:false
+      },
+    },
+    formIsValid: false
+  }
+
+  checkValidity(value, rules) {
+
+    let isValid = true;
+    if (rules.required) {
+      isValid = value.trim() !== '' && isValid
+    }
+    if(rules.minLength){
+      isValid = value.length >= rules.minLength  && isValid;
+    }
+    if(rules.maxLength){
+      isValid = value.length <= rules.maxLength  && isValid;
+    }
+    return isValid;
+  }
+
   componentDidMount() {
     loadingScreen.hideLoading();
   }
+
+  inputChangedHandler = (event, inputIdentifier) => {
+    
+    const updatedOrderForm = {
+      ...this.state.orderForm
+    }
+    const updatedFormElement = {
+      ...updatedOrderForm[inputIdentifier]
+    }    
+    updatedFormElement.value = event.target.value;
+    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.touched = true;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+    // console.log(updatedFormElement);
+    this.setState({orderForm:updatedOrderForm});    
+  }
+
   render() {
+    //   <div className="form-group required">
+    //   <label className="control-label" htmlFor="input-payment-firstname">First Name</label>
+    //   <input type="text" name="firstname" defaultValue="" placeholder="First Name" id="input-payment-firstname" className="form-control" />
+    // </div>
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
+    let form = (
+      <>
+        {formElementsArray.map(formElement => (   
+          <div className="form-group" required>
+            <Input
+              key={formElement.id}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              invalid={!formElement.config.valid}
+              touched={formElement.config.touched}
+              label={formElement.config.elementConfig.placeholder}
+              changed={(event) => this.inputChangedHandler(event, formElement.id)}
+            />
+          </div>
+
+        ))}
+        <button onClick={this.orderHandler}>Check</button>
+      </>
+    );
+
     return (
       <>
         <div id="breadcrumb">
@@ -50,11 +180,13 @@ class Checkout extends React.Component {
                         <p>I am a returning customer</p>
                         <div className="form-group">
                           <label className="control-label" htmlFor="input-email">E-Mail</label>
-                          <input type="text" name="email" defaultValue="" placeholder="E-Mail" id="input-email" className="form-control" />
+                          {/* <input type="text" name="email" defaultValue="" placeholder="E-Mail" id="input-email" className="form-control" /> */}
+                          <Input inputtype="input" name="email" defaultValue="" placeholder="E-Mail" id="input-email" className="form-control" />
                         </div>
                         <div className="form-group">
                           <label className="control-label" htmlFor="input-password">Password</label>
-                          <input type="password" name="password" defaultValue="" placeholder="Password" id="input-password" className="form-control" />
+                          {/* <input type="password" name="password" defaultValue="" placeholder="Password" id="input-password" className="form-control" /> */}
+                          <Input inputtype="password" name="password" defaultValue="" placeholder="Password" id="input-password" className="form-control" />
                           <a href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=account/forgotten">Forgotten Password</a></div>
                         <input type="button" defaultValue="Login" id="button-login" data-loading-text="Loading..." className="btn btn-primary" />
                       </div>
@@ -71,30 +203,16 @@ class Checkout extends React.Component {
                       <div className="col-sm-6">
                         <fieldset id="account">
                           <legend>Your Personal Details</legend>
-                          <div className="form-group" style={{ display: "none" }}>
+                          <div className="form-group" style={{display:  'none'}}>
                             <label className="control-label">Customer Group</label>
                             <div className="radio">
                               <label>
-                                <input type="radio" name="customer_group_id" defaultValue="1" defaultChecked="defaultChecked" />
+                                <input type="radio" name="customer_group_id" value="1" defaultChecked="checked" />
                                 Default</label>
                             </div>
                           </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-firstname">First Name</label>
-                            <input type="text" name="firstname" defaultValue="" placeholder="First Name" id="input-payment-firstname" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-lastname">Last Name</label>
-                            <input type="text" name="lastname" defaultValue="" placeholder="Last Name" id="input-payment-lastname" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-email">E-Mail</label>
-                            <input type="text" name="email" defaultValue="" placeholder="E-Mail" id="input-payment-email" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-telephone">Telephone</label>
-                            <input type="text" name="telephone" defaultValue="" placeholder="Telephone" id="input-payment-telephone" className="form-control" />
-                          </div>
+                          <Form formElementsArray={formElementsArray} changed={this.inputChangedHandler}/>
+                          {/* {form} */}
                         </fieldset>
                         <fieldset>
                           <legend>Your Password</legend>
@@ -166,12 +284,12 @@ class Checkout extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">Step 5: Payment Method</h4>
+                <div className="panel panel-default">
+                  <div className="panel-heading">
+                    <h4 className="panel-title">Step 5: Payment Method</h4>
                   </div>
-                  <div class="panel-collapse collapse" id="collapse-payment-method">
-                    <div class="panel-body"></div>
+                  <div className="panel-collapse collapse" id="collapse-payment-method">
+                    <div className="panel-body"></div>
                   </div>
                 </div>
               </div>

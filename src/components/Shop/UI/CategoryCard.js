@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Iimg from '../UI/LoadingImage/Limg'
 
+
+
 const categoryCard = (props) => {
   return (
     <div className="product-block product-thumb transition">
