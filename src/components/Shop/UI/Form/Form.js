@@ -19,6 +19,7 @@ const form = (props) => {
               changed={(event) => props.changed(event, formElement.id)}
             />
         ))}
+        
     </>
   );
 

@@ -102,14 +102,15 @@ class Checkout extends React.Component {
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
     // console.log(updatedFormElement);
-    this.setState({orderForm:updatedOrderForm});    
+
+    let formIsValid = true;
+        for (let inputIdentifier in updatedOrderForm) {
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid}); 
   }
 
   render() {
-    //   <div className="form-group required">
-    //   <label className="control-label" htmlFor="input-payment-firstname">First Name</label>
-    //   <input type="text" name="firstname" defaultValue="" placeholder="First Name" id="input-payment-firstname" className="form-control" />
-    // </div>
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
       formElementsArray.push({
@@ -117,25 +118,7 @@ class Checkout extends React.Component {
         config: this.state.orderForm[key]
       });
     }
-    let form = (
-      <>
-        {formElementsArray.map(formElement => (   
-          <div className="form-group" required>
-            <Input
-              key={formElement.id}
-              elementConfig={formElement.config.elementConfig}
-              value={formElement.config.value}
-              invalid={!formElement.config.valid}
-              touched={formElement.config.touched}
-              label={formElement.config.elementConfig.placeholder}
-              changed={(event) => this.inputChangedHandler(event, formElement.id)}
-            />
-          </div>
-
-        ))}
-        <button onClick={this.orderHandler}>Check</button>
-      </>
-    );
+   
 
     return (
       <>
@@ -159,7 +142,7 @@ class Checkout extends React.Component {
                   <div className="panel-heading">
                     <h4 className="panel-title"><a href="#collapse-checkout-option" data-toggle="collapse" data-parent="#accordion" className="accordion-toggle collapsed" aria-expanded="false">Step 1: Checkout Options <i className="fa fa-caret-down"></i></a></h4>
                   </div>
-                  <div className="panel-collapse collapse" id="collapse-checkout-option" aria-expanded="false" style={{ height: "0px" }}>
+                  <div className="panel-collapse collapse in" id="collapse-checkout-option" aria-expanded="false" style={{ height: "0px" }}>
                     <div className="panel-body"><div className="row">
                       <div className="col-sm-6">
                         <h2>New Customer</h2>
@@ -212,6 +195,7 @@ class Checkout extends React.Component {
                             </div>
                           </div>
                           <Form formElementsArray={formElementsArray} changed={this.inputChangedHandler}/>
+                          <button className="btn" disabled={!this.state.formIsValid}>Submit</button>
                           {/* {form} */}
                         </fieldset>
                         <fieldset>
