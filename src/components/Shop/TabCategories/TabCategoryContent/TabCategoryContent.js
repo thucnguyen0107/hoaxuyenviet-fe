@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryCard from '../../UI/CategoryCard';
+import CategoryCard from '../../../UI/CategoryCard';
 
 const tabCategoryContent = (props) => {
 

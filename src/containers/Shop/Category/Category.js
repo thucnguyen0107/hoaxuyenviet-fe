@@ -1,6 +1,6 @@
 import React from 'react';
-import FilterBar from '../../../components/Shop/UI/FilterBar';
-import ProductList from '../../../components/Shop/UI/ProductList';
+import FilterBar from '../../../components/UI/FilterBar';
+import ProductList from '../../../components/UI/ProductList';
 import classes from './Category.scss';
 import { visibleItems } from '../../../services/config'
 import { convertCategories, convertFilters } from '../../../utilities/categoriesUtil';

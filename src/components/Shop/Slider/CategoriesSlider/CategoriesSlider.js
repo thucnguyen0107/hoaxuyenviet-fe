@@ -1,7 +1,7 @@
 import React from 'react';
 import CategorySlider from '../CategoriesSlider/CategorySlider/CategorySlider';
-import SwiperSlider from '../../UI/SwiperSlider';
-import Slider from '../../UI/Slider';
+import SwiperSlider from '../../../UI/SwiperSlider';
+import Slider from '../../../UI/Slider';
 const categoriesSlider = (props) => {
 
 

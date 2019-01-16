@@ -1,7 +1,7 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 
-import Form from '../../../components/Shop/UI/Form/Form';
+import Form from '../../../components/UI/Form/Form';
 import { Tooltip, Button } from 'antd';
 
 

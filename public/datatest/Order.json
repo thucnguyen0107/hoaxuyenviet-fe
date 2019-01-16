@@ -1,0 +1,89 @@
+[
+    {
+        "_id":"1",
+        "customerInfo": {
+            "name":"Vương Trí Tài",
+            "email:": "taivt1195@gmail.com",
+            "phoneNumber": "0983408574",
+            "address": "63 Ngô Bệ, phường 13, quận Tân Bình, tp.HCM"
+        },
+        "receiveInfo":{
+            "name":"Vương Trí Tài",
+            "phoneNumber": "0983408574",
+            "address": "307/12 Nguyễn Văn Trỗi, phường 1, quận Tân Bình, tp.HCM"
+        },
+        "order":{
+            "note": "Giao hàng vào giờ hành chính",
+            "payment": "Thanh toán COD",
+            "orderDate": "30-01-2019"
+        },
+        "productOrder":{
+            "productId":"1",
+            "productName":"Hoa cẩm chướng",
+            "unitPrice": 699000,
+            "quantity": 5,
+            "discount": 0
+        },
+        "finalPrice": 999999,
+        "deliveryDate": "02-02-2019",
+        "status": "Chờ xác nhận"
+    },
+    {
+        "_id":"2",
+        "customerInfo": {
+            "name":"Nguyễn Quốc Thái",
+            "email:": "nqthai95@gmail.com",
+            "phoneNumber": "0932090909",
+            "address": "36 Nguyễn Sơn, quận Tân Phú, tp.HCM"
+        },
+        "receiveInfo":{
+            "name":"Nguyễn Quốc Thái",
+            "phoneNumber": "0932090909",
+            "address": "307/12 Nguyễn Văn Trỗi, phường 1, quận Tân Bình, tp.HCM"
+        },
+        "order":{
+            "note": "Giao hàng vào giờ hành chính",
+            "payment": "Thanh toán qua thẻ tín dụng",
+            "orderDate": "25-01-2019"
+        },
+        "productOrder":{
+            "productId":"2",
+            "productName":"Hoa thiên điển",
+            "unitPrice": 369000,
+            "quantity": 15,
+            "discount": 0
+        },
+        "finalPrice": 999999,
+        "deliveryDate": "03-02-2019",
+        "status": "Đã xác nhận, chờ giao hàng"
+    },
+    {
+        "_id":"3",
+        "customerInfo": {
+            "name":"Nguyễn Lê Xuân Thục",
+            "email:": "thucnguyen11111@gmail.com",
+            "phoneNumber": "0932090909",
+            "address": "102 Phan Văn Trị, quận Bình Thạnh, tp.HCM"
+        },
+        "receiveInfo":{
+            "name":"Nguyễn Lê Xuân Thục",
+            "phoneNumber": "0932090909",
+            "address": "307/12 Nguyễn Văn Trỗi, phường 1, quận Tân Bình, tp.HCM"
+        },
+        "order":{
+            "note": "Giao hàng vào giờ hành chính",
+            "payment": "Thanh toán qua Paypal",
+            "orderDate": "29-01-2019"
+        },
+        "productOrder":{
+            "productId":"3",
+            "productName":"Hoa hướng dương",
+            "unitPrice": 459000,
+            "quantity": 10,
+            "discount": 0
+        },
+        "finalPrice": 999999,
+        "deliveryDate": "02-02-2019",
+        "status": "Đang giao hàng"
+    }
+]

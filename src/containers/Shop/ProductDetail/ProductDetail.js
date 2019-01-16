@@ -1,10 +1,10 @@
 import React from 'react';
 import { arrProductList } from '../../../data/data';
-import ProductCard from '../../../components/Shop/UI/ProductCard';
+import ProductCard from '../../../components/UI/ProductCard';
 import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
-import Iimg from '../../../components/Shop/UI/LoadingImage/Limg';
+import Iimg from '../../../components/UI/LoadingImage/Limg';
 import $ from 'jquery'
 class ProductDetail extends React.Component {
 

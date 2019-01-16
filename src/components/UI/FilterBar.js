@@ -1,6 +1,6 @@
 import React from 'react';
 import DropdownSelect from './DropdownSelect';
-import filterUtils from '../../../utilities/filter';
+import filterUtils from '../../utilities/filter';
 
 
 

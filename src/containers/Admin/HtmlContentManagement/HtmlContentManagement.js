@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Table } from "antd";
-import Modal from "../../../components/Shop/UI/Modal/Modal";
+import Modal from "../../../components/UI/Modal/Modal";
 class HtmlContentManagement extends React.Component {
   render() {
     const columns = [
