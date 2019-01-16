@@ -6,9 +6,9 @@ const input = (props) => {
   const inputClasses = [classes.InputElement, "form-control"];
   let validationError = null;
 
-  if(props.invalid && props.touched ){
+  if (props.invalid) {
     inputClasses.push(classes.Invalid);
-    validationError = <p className={classes.ValidationError}>Please enter a valid value!</p>;
+    validationError = <p className={classes.ValidationError}>{props.errorMessage}</p>;
   }
 
   switch (props.inputtype) {
@@ -16,10 +16,10 @@ const input = (props) => {
       inputElement = <input {...props.elementConfig} defaultValue={props.value}
         onChange={props.changed} required
         className={inputClasses.join(' ')}
-        />
+      />
       break;
     case ('password'):
-      inputElement = <input {...props} type="password"  className={inputClasses.join(' ')}/>
+      inputElement = <input {...props} type="password" className={inputClasses.join(' ')} />
       break;
 
     default:
@@ -33,7 +33,7 @@ const input = (props) => {
 
   return (
     <>
-      <div className="form-group">
+      <div className="form-group required">
         <label className="control-label">{props.label}</label>
         {inputElement}
         {validationError}

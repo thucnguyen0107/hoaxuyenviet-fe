@@ -2,6 +2,7 @@ import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/Shop/UI/LoadingImage/Limg';
 import Input from '../../../components/Shop/UI/Input/Input';
+import { Link } from 'react-router-dom';
 class Cart extends React.Component {
 
   componentDidMount() {
@@ -55,8 +56,12 @@ class Cart extends React.Component {
                         </td>
                         <td className="text-left">Product 3</td>
                         <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                          {/* <input type="text" name="quantity[5]" defaultValue="1" size="1" className="form-control"></input> */}
-                          <Input inputtype="input" className="form-control" defaultValue="1" size="1"/>
+                          <input type="text" name="quantity[5]" defaultValue="1" size="1" className="form-control" style={{
+                            padding: '6px 5px',
+                            textAlign: 'center',
+                            width: '40px'
+                          }}></input>
+                          {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
                           <span className="input-group-btn">
                             <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button>
                             <button type="button" className="btn btn-danger"><i className="fa fa-times-circle"></i></button>
@@ -81,7 +86,7 @@ class Cart extends React.Component {
                       <label className="col-sm-2 control-label" htmlFor="input-coupon">Enter your coupon here</label>
                       <div className="input-group">
                         {/* <input type="text" name="coupon" defaultValue="" placeholder="Enter your coupon here" id="input-coupon" className="form-control" /> */}
-                        <Input inputtype="input" className="form-control" name="coupon" defaultValue="" placeholder="Enter your coupon here" id="input-coupon"/>
+                        <Input inputtype="input" className="form-control" name="coupon" defaultValue="" placeholder="Enter your coupon here" id="input-coupon" />
                         <span className="input-group-btn">
                           <input type="button" defaultValue="Apply Coupon" id="button-coupon" data-loading-text="Loading..." className="btn btn-primary" /></span></div>
 
@@ -166,8 +171,8 @@ class Cart extends React.Component {
                 </div>
               </div>
               <div className="buttons clearfix">
-                <div className="pull-left"><a href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=common/home" className="btn btn-default">Continue Shopping</a></div>
-                <div className="pull-right"><a href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=checkout/checkout" className="btn btn-primary">Checkout</a></div>
+                <div className="pull-left"><Link to="/" className="btn btn-default">Continue Shopping</Link></div>
+                <div className="pull-right"><Link to="/checkout" className="btn btn-primary">Checkout</Link></div>
               </div>
             </div>
           </div>
