@@ -1,14 +1,22 @@
 import React from "react";
-import { Layout } from "antd";
+import {
+  Layout
+} from "antd";
 import classes from "./Admin.scss";
 import SideBar from "../../components/Admin/SideBar/SideBar";
-import { Route, Switch, Redirect } from "react-router";
+import {
+  Route,
+  Switch,
+  Redirect
+} from "react-router";
 import ProductManagement from "./ProductManagement/ProductManagement";
 import HtmlContentManagement from "./HtmlContentManagement/HtmlContentManagement";
 import UserManagement from "./UserManagement/UserManagement";
 import OrderManagement from "./OrderManagement/OrderManagement";
 
-const { Content } = Layout;
+const {
+  Content
+} = Layout;
 
 class Admin extends React.Component {
   state = {
