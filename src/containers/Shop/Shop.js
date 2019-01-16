@@ -21,11 +21,11 @@ class Shop extends React.Component {
           <Route path="/home" exact component={Home} />
           <Route path="/category/:first/:second" exact component={Category} />
           <Route path="/product/:product_id" exact component={ProductDetail} />
-          <Route path="/search" exact component={Search}/>
-          <Route path="/cart" exact component={Cart}/>
-          <Route path="/checkout" exact component={Checkout}/>
-          <Route path="/register" exact component={Register}/>
-          <Route path="/forgotpassword" exact component={ForGotPassWord}/>
+          <Route path="/search" exact component={Search} />
+          <Route path="/cart" exact component={Cart} />
+          <Route path="/checkout" exact component={Checkout} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/forgotpassword" exact component={ForGotPassWord} />
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
           <Redirect to="/pageNotFound" />

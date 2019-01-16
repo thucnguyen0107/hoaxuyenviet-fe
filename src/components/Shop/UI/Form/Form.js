@@ -3,31 +3,35 @@ import Input from '../Input/Input'
 
 const form = (props) => {
 
-  
+  let idForm;
+  idForm = props.idForm
+
   let form = null;
 
   form = (
     <>
-      {props.formElementsArray.map(formElement => (   
-            <Input
-              key={formElement.id}
-              elementConfig={formElement.config.elementConfig}
-              value={formElement.config.value}
-              invalid={!formElement.config.valid}
-              touched={formElement.config.touched}
-              label={formElement.config.elementConfig.placeholder}
-              changed={(event) => props.changed(event, formElement.id)}
-            />
-        ))}
+      {props.formElementsArray.map(formElement => (
+        <Input
+          key={formElement.id}
+          elementConfig={formElement.config.elementConfig}
+          value={formElement.config.value}
+          invalid={!formElement.config.valid}
+          touched={formElement.config.touched}
+          errorMessage={formElement.config.validation.errorMessage}
+          label={formElement.config.elementConfig.placeholder}
+          changed={(event) => props.changed(event, formElement.id)}
+        />
+      ))}
+
     </>
   );
 
- return(
-   <form id="" name="">
+  return (
+    <form id={idForm} name="">
       {form}
-   </form>
+    </form>
 
- );
+  );
 
 }
 export default form;
