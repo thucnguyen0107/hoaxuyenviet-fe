@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Table } from "antd";
 import Modal from "../../../components/Shop/UI/Modal/Modal";
+import { getProductListFromSV } from '../../../redux/product/actions';
+import { connect } from 'react-redux';
 
 class ProductManagement extends React.Component {
   state = {
@@ -20,6 +22,12 @@ class ProductManagement extends React.Component {
         })
     }
   };
+
+  constructor(props) {
+    super(props);
+    console.log(props);
+    props.getListProduct();
+  }
   render() {
     const columns = [
       {
@@ -95,4 +103,16 @@ class ProductManagement extends React.Component {
   }
 }
 
-export default ProductManagement;
+const mapStateToProps = state => {
+  return {
+    productList: state.productList
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getListProduct: () => dispatch(getProductListFromSV())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductManagement);
