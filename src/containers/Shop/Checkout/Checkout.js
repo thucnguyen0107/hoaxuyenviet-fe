@@ -183,91 +183,19 @@ class Checkout extends React.Component {
                   <div className="panel-collapse collapse in" id="collapse-payment-address" aria-expanded="false" style={{ height: "0px" }}>
                     <div className="panel-body"><div className="row">
                       <div className="col-sm-12">
-                        <fieldset id="account">
+                        <fieldset id="account" >
                           <legend>Your Personal Details</legend>
-                          <div className="form-group" style={{ display: 'none' }}>
-                            <label className="control-label">Customer Group</label>
-                            <div className="radio">
-                              <label>
-                                <input type="radio" name="customer_group_id" value="1" defaultChecked="checked" />
-                                Default</label>
-                            </div>
-                          </div>
                           <Form idForm="checkoutForm" formElementsArray={formElementsArray} changed={this.inputChangedHandler} />
+                          <div className="col text-center">
+                            <Tooltip placement="bottom" title="Vui lòng điền đầy đủ thông tin">
+                              <Button style={{ marginBottom: '20px' }} type="primary" id="button-register" data-loading-text="Loading..." onClick={this.validateForm}>Submit</Button>
+                            </Tooltip>
+                          </div>
 
-                          <Tooltip placement="bottom" title="Vui lòng điền đầy đủ thông tin">
-                            <Button style={{ marginBottom: '20px' }} type="primary" id="button-register" data-loading-text="Loading..." onClick={this.validateForm}>Submit</Button>
-                          </Tooltip>
-                          {/*  */}
                           {/* {form} */}
                         </fieldset>
-                        {/* <fieldset>
-                          <legend>Your Password</legend>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-password">Password</label>
-                            <input type="password" name="password" defaultValue="" placeholder="Password" id="input-payment-password" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-confirm">Password Confirm</label>
-                            <input type="password" name="confirm" defaultValue="" placeholder="Password Confirm" id="input-payment-confirm" className="form-control" />
-                          </div>
-                        </fieldset> */}
                       </div>
-                      {/* <div className="col-sm-6">
-                        <fieldset id="address">
-                          <legend>Your Address</legend>
-                          <div className="form-group">
-                            <label className="control-label" htmlFor="input-payment-company">Company</label>
-                            <input type="text" name="company" defaultValue="" placeholder="Company" id="input-payment-company" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-address-1">Address 1</label>
-                            <input type="text" name="address_1" defaultValue="" placeholder="Address 1" id="input-payment-address-1" className="form-control" />
-                          </div>
-                          <div className="form-group">
-                            <label className="control-label" htmlFor="input-payment-address-2">Address 2</label>
-                            <input type="text" name="address_2" defaultValue="" placeholder="Address 2" id="input-payment-address-2" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-city">City</label>
-                            <input type="text" name="city" defaultValue="" placeholder="City" id="input-payment-city" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-postcode">Post Code</label>
-                            <input type="text" name="postcode" defaultValue="" placeholder="Post Code" id="input-payment-postcode" className="form-control" />
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-country">Country</label>
-                            <select name="country_id" id="input-payment-country" className="form-control">
-                              <option defaultValue=""> --- Please Select --- </option>
-
-                            </select>
-                          </div>
-                          <div className="form-group required">
-                            <label className="control-label" htmlFor="input-payment-zone">Region / State</label>
-                            <select name="zone_id" id="input-payment-zone" className="form-control"><option defaultValue=""> --- Please Select --- </option><option defaultValue="3513">Aberdeen</option></select>
-                          </div>
-                        </fieldset>
-
-                      </div> */}
                     </div>
-                      {/* <div className="checkbox">
-                        <label htmlFor="newsletter">
-                          <input type="checkbox" name="newsletter" defaultValue="1" id="newsletter" />
-                          I wish to subscribe to the Style-Light newsletter.</label>
-                      </div>
-                      <div className="checkbox">
-                        <label>
-                          <input type="checkbox" name="shipping_address" defaultValue="1" defaultChecked="defaultChecked" />
-                          My delivery and billing addresses are the same.</label>
-                      </div>
-                      <div className="buttons clearfix">
-                        <div className="pull-right">I have read and agree to the <a href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=information/information/agree&amp;information_id=3" className="agree"><b>Privacy Policy</b></a>
-                          &nbsp;
-                        <input type="checkbox" name="agree" defaultValue="1" />
-                          <input type="button" defaultValue="Continue" id="button-register" data-loading-text="Loading..." className="btn btn-primary" />
-                        </div>
-                      </div> */}
                     </div>
                   </div>
                 </div>

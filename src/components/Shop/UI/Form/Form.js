@@ -27,7 +27,7 @@ const form = (props) => {
   );
 
   return (
-    <form id={idForm} name="">
+    <form id={idForm} name="" style={{ width: '50%', margin: '0 auto' }}>
       {form}
     </form>
 
