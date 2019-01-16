@@ -28,7 +28,9 @@ class Admin extends React.Component {
           classTrigger={classes.trigger}
           toggle={() => this.toggle()}
         />
-        <Layout style={{ marginLeft: ml200 }}>
+        <Layout
+          style={{ marginLeft: ml200, transition: "margin 0.2s ease-out" }}
+        >
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Switch>
               <Route
