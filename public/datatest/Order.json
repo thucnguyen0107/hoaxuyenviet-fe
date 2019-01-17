@@ -24,7 +24,7 @@
             "quantity": 5,
             "discount": 0
         },
-        "finalPrice": 999999,
+        "finalPrice": 0,
         "deliveryDate": "02-02-2019",
         "status": "Chờ xác nhận"
     },
@@ -53,7 +53,7 @@
             "quantity": 15,
             "discount": 0
         },
-        "finalPrice": 999999,
+        "finalPrice": 0,
         "deliveryDate": "03-02-2019",
         "status": "Đã xác nhận, chờ giao hàng"
     },
@@ -82,7 +82,7 @@
             "quantity": 10,
             "discount": 0
         },
-        "finalPrice": 999999,
+        "finalPrice": 0,
         "deliveryDate": "02-02-2019",
         "status": "Đang giao hàng"
     }

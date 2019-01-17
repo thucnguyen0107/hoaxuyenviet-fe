@@ -178,13 +178,13 @@ class Checkout extends React.Component {
 
                 <div className="panel panel-default">
                   <div className="panel-heading">
-                    <h4 className="panel-title"><div data-toggle="collapse" data-parent="#accordion" className="accordion-toggle collapsed" aria-expanded="false">Step 2: Account &amp; Billing Details <i className="fa fa-caret-down"></i></div></h4>
+                    <h4 className="panel-title"><div data-toggle="collapse" data-parent="#accordion" className="accordion-toggle collapsed" aria-expanded="false">Bước 1: Thông tin &amp; Chi tiết thanh toán <i className="fa fa-caret-down"></i></div></h4>
                   </div>
                   <div className="panel-collapse collapse in" id="collapse-payment-address" aria-expanded="false" style={{ height: "0px" }}>
                     <div className="panel-body"><div className="row">
                       <div className="col-sm-12">
                         <fieldset id="account" >
-                          <legend>Your Personal Details</legend>
+                          <legend>Nhập thông tin</legend>
                           <Form idForm="checkoutForm" formElementsArray={formElementsArray} changed={this.inputChangedHandler} />
                           <div className="col text-center">
                             <Tooltip placement="bottom" title="Vui lòng điền đầy đủ thông tin">
@@ -201,7 +201,7 @@ class Checkout extends React.Component {
                 </div>
                 <div className="panel panel-default">
                   <div className="panel-heading">
-                    <h4 className="panel-title">Step 5: Payment Method</h4>
+                    <h4 className="panel-title">Bước 2: Phương thức thanh toán</h4>
                   </div>
                   <div className="panel-collapse collapse" id="collapse-payment-method">
                     <div className="panel-body"></div>

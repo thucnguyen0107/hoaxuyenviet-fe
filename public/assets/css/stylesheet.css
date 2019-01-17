@@ -4900,7 +4900,7 @@ ul.breadcrumb > li::after {
 	position: absolute;
 	right: -3px;
 	left: auto;
-	top: 0;
+	top: -5px;
 	bottom: 0;
 	margin: auto 0;
 }
