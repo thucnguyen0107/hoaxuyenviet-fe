@@ -2,6 +2,23 @@ import React from "react";
 import { Button, Table } from "antd";
 import Modal from "../../../components/UI/Modal/Modal";
 class OrderManagement extends React.Component {
+  state = {
+    createModal: {
+      show: false,
+      showModal: () =>
+        this.setState({
+          createModal: { ...this.state.createModal, ...{ show: true } }
+        }),
+      handleOk: () =>
+        this.setState({
+          createModal: { ...this.state.createModal, ...{ show: false } }
+        }),
+      handleCancel: () =>
+        this.setState({
+          createModal: { ...this.state.createModal, ...{ show: false } }
+        })
+    }
+  };
   render() {
     const columns = [
       {

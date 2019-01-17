@@ -16,3 +16,7 @@
 .ml-200 {
   margin-left: 200px;
 }
+
+:global .ant-table td {
+  white-space: nowrap;
+}
