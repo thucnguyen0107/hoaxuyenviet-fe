@@ -32,7 +32,7 @@ class Shop extends React.Component {
           <Route path="/forgotpassword" exact component={ForGotPassWord} />
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
-          {/* <Redirect to="/pageNotFound" /> */}
+          <Redirect to="/pageNotFound" />
         </Switch>
         <Footer />
         <div id="spinner" ></div>
