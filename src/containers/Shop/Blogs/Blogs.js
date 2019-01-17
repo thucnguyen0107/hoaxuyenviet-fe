@@ -4,7 +4,7 @@ import Iimg from '../../../components/UI/LoadingImage/Limg';
 import Input from '../../../components/UI/Input/Input';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-class Blog extends React.Component {
+class Blogs extends React.Component {
 
   state = {
     HTMLBlogModel: [],
@@ -39,7 +39,8 @@ class Blog extends React.Component {
                     <div className="blog_stats">
                       <div className="date-time hl">{blog.addedDate}</div>
                     </div>
-                    <h2 className="blog_title text-center"><Link to="/">{blog.title}</Link></h2>
+                    <h2 className="blog_title text-center"><Link to={"/blog/" + blog._id} >{blog.title}</Link></h2>
+                   
                     <div className="image" style={{
                         display: 'block',
                         marginLeft: ' auto',
@@ -51,13 +52,13 @@ class Blog extends React.Component {
                         <Link className="icon zoom" title="Click to view Full Image " to={blog.images[0]} data-lightbox="example-set">
                           <i className="fa fa-plus"></i>
                         </Link>
-                        <Link className="icon dots" title="Read More" to="/"><i className="fa fa-ellipsis-h"></i> </Link>
+                        <Link className="icon dots" title="Read More" to={"/blog/" + blog._id}><i className="fa fa-ellipsis-h"></i> </Link>
                       </p>
                     </div>
                   </div>
                   <div className="blog-right-content">
                     <p>{blog.content}</p>
-                    <Link className="read-more-link" to="/">Continue Reading</Link>
+                    <Link className="read-more-link" to={"/blog/" + blog._id}>Continue Reading</Link>
                   </div>
                 </div>
               </div>
@@ -83,16 +84,11 @@ class Blog extends React.Component {
         </div>
         <div className="container">
           <div className="row">
-            <div className="" style={{
-              display: 'block',
-              marginRight: 'auto',
-              marginLeft: 'auto',
-              width: '70%'
-            }}>
+            <div className="">
               <input type="text" name="search" defaultValue="" placeholder="Tìm kiếm bài viết" id="input-search" className="form-control" />
               <button type="button" id="button-search" className="btn btn-primary" style={{marginTop:'20px'}}>Tìm kiếm</button>
             </div>
-            <div id="content" className="col-sm-12">
+            <div id="content" className="">
               <div className="blog all-blogs">
                 <div className="blog_grid_holder">
                   <div className="row">
@@ -110,4 +106,4 @@ class Blog extends React.Component {
 
 }
 
-export default Blog;
+export default Blogs;

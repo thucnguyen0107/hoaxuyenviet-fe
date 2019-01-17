@@ -9,7 +9,8 @@ import ProductDetail from '../Shop/ProductDetail/ProductDetail';
 import Search from '../Shop/Search/Search';
 import Cart from '../Shop/Cart/Cart';
 import Checkout from '../Shop/Checkout/Checkout';
-import Blog from '../Shop/Blog/Blog';
+import Blogs from '../Shop/Blogs/Blogs';
+import BlogDetail from '../Shop/BlogDetail/BlogDetail';
 import Register from '../../components/Shop/Register/Register';
 import ForGotPassWord from '../../components/Shop/ForGotPassword/ForGotPassword';
 
@@ -25,12 +26,13 @@ class Shop extends React.Component {
           <Route path="/search" exact component={Search} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/checkout" exact component={Checkout} />
-          <Route path="/blog" exact component={Blog} />
+          <Route path="/blogs" exact component={Blogs} />
+          <Route path="/blog/:blog_id" exact component={BlogDetail} />
           <Route path="/register" exact component={Register} />
           <Route path="/forgotpassword" exact component={ForGotPassWord} />
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
-          <Redirect to="/pageNotFound" />
+          {/* <Redirect to="/pageNotFound" /> */}
         </Switch>
         <Footer />
         <div id="spinner" ></div>
