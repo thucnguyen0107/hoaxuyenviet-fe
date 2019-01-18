@@ -590,25 +590,60 @@ $(document).ready(function () {
 
 function responsivecolumn() {
     // ---------------- Fixed header responsive ----------------------
-    if ($(document).width() >= 980) {
-        $(window).bind('scroll', function () {
-            if ($(window).scrollTop() > 750) {
-                $('.header .header-middle').addClass('fixed');
-            } else {
-                $('.header .header-middle').removeClass('fixed');
-            }
-        });
-    }
 
-    if ($(document).width() <= 979) {
-        $(window).bind('scroll', function () {
-            if ($(window).scrollTop() > 250) {
-                $('.header .header-middle').addClass('fixed');
+    // determine the direction of a jQuery scroll event?
+
+    //Check current scrollTop vs previous scrollTop
+    /**
+     * var lastScrollTop = 0;
+        $(window).scroll(function(event){
+        var st = $(this).scrollTop();
+            if (st > lastScrollTop){
+                // downscroll code
             } else {
-                $('.header .header-middle').removeClass('fixed');
+                // upscroll code
             }
+            lastScrollTop = st;
         });
-    }
+     * 
+     */
+
+    var lastScrollTop = 0;
+    $(window).bind('scroll', function () {
+        var st = $(this).scrollTop();
+        if ($(this).scrollTop() > 400) {
+            if (st > lastScrollTop) {
+                $('.header .header-middle').removeClass('fixed');
+            } else {
+                $('.header .header-middle').addClass('fixed');
+
+            }
+        } else if ($(this).scrollTop() === 0) {
+            $('.header .header-middle').removeClass('fixed');
+
+        }
+        lastScrollTop = st;
+    });
+    // if ($(document).width() >= 980) {
+    //     $(window).bind('scroll', function () {
+    //         var st = $(this).scrollTop();
+    //         if ($(window).scrollTop() > 750) {
+    //             $('.header .header-middle').addClass('fixed');
+    //         } else {
+    //             $('.header .header-middle').removeClass('fixed');
+    //         }
+    //     });
+    // }
+
+    // if ($(document).width() <= 979) {
+    //     $(window).bind('scroll', function () {
+    //         if ($(window).scrollTop() > 250) {
+    //             $('.header .header-middle').addClass('fixed');
+    //         } else {
+    //             $('.header .header-middle').removeClass('fixed');
+    //         }
+    //     });
+    // }
 }
 $(document).ready(function () {
     responsivecolumn();

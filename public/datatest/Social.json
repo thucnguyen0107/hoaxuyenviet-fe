@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "facebook",
+    "visible": true,
+    "link": "https://facebook.com",
+    "iconName": "fa fa-facebook"
+  },
+  {
+    "_id": "twitter",
+    "visible": true,
+    "link": "https://twitter.com",
+    "iconName": "fa fa-twitter"
+  },
+  {
+    "_id": "googleplus",
+    "visible": true,
+    "link": "https://plus.google.com",
+    "iconName": "fa fa-google-plus"
+  },
+  {
+    "_id": "youtube-play",
+    "visible": true,
+    "link": "https://youtube.com",
+    "iconName": "fa fa-youtube-play"
+  },
+  {
+    "_id": "instagram",
+    "visible": true,
+    "link": "https://instagram.com",
+    "iconName": "fa fa-instagram"
+  }
+]

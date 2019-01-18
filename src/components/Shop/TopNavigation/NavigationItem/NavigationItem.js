@@ -1,6 +1,7 @@
 import React from 'react';
 import { columnDropdownList } from "../../../../services/config";
 import { Link } from 'react-router-dom';
+import classes from './NavigationItem.scss'
 import $ from 'jquery'
 let columnArr = [];
 let i = 0;
@@ -21,8 +22,10 @@ function hideSearchField() {
 }
 
 const navigationItem = (props) => {
-
-
+  let zIndexStyle;
+  zIndexStyle = {
+    zIndex: '30000'
+  }
 
   let subNavList = null, subNavListHTML = null;
   subNavList = props.subNavList;
@@ -53,7 +56,7 @@ const navigationItem = (props) => {
 
   if (props.type === 'dropdown') {
     return (
-      <li className={li.join(' ')}>
+      <li className={li.join(' ')} style={zIndexStyle}>
         {
           props.parentNav === 'home' ? <Link to="/home"> {props.children}</Link> : <a href="/" style={{ cursor: "default", pointerEvents: "none" }}> {props.children}</a>
         }
