@@ -6,11 +6,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 class Cart extends React.Component {
   state = {
-    HTMLOrderModel:[],
-    totalPrice:0
+    HTMLOrderModel: [],
+    totalPrice: 0
   }
 
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
@@ -22,14 +22,14 @@ class Cart extends React.Component {
     loadingScreen.showLoading();
     axios.get('/datatest/Order.json').then((res) => {
       console.log(res);
-       this.setState({ HTMLOrderModel: res }, loadingScreen.hideLoading)
+      this.setState({ HTMLOrderModel: res }, loadingScreen.hideLoading)
     }).catch((err) => {
       loadingScreen.hideLoading();
       console.error(err);
     })
   }
 
-  
+
   render() {
 
     let listOder = null;
@@ -37,44 +37,44 @@ class Cart extends React.Component {
       <>
         {
           this.state.HTMLOrderModel.map(order => {
-              this.state.totalPrice += order.productOrder.unitPrice * order.productOrder.quantity
-            return(
-                
-                <tbody key={order._id}>
-                  <tr>
-                    <td className="text-center">
-                      <Link to={`/product/${order.productOrder.productId}`}><Iimg src={'../../../assets/images/catalog/product/1-70x86.jpg'} alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
-                      </Link>
-                    </td>
-                    <td className="text-left"><Link to={`/product/${order.productOrder.productId}`}>{order.productOrder.productName}</Link><br />
-                      <small>Ngày giao hàng: {order.deliveryDate}</small><br />
-                      <small>Điểm nhận: 300</small>
-                    </td>
-                  
-                    <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                      <input type="text" name="quantity[5]" defaultValue={order.productOrder.quantity} size="1" className="form-control" style={{
-                        padding: '6px 5px',
-                        textAlign: 'center',
-                        width: '40px'
-                      }}></input>
-                      {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
-                      <span className="input-group-btn">
-                        <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button>
-                        <button type="button" className="btn btn-danger"><i className="fa fa-times-circle"></i></button>
-                      </span></div></td>
-                      <td className="text-right">{order.productOrder.discount} %</td>
-                    <td className="text-right">{order.productOrder.unitPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
-                   
-                    <td className="text-right">{(order.productOrder.unitPrice * order.productOrder.quantity).toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
-                  </tr>
-                </tbody>
+            this.state.totalPrice += order.productOrder.unitPrice * order.productOrder.quantity
+            return (
+
+              <tbody key={order._id}>
+                <tr>
+                  <td className="text-center">
+                    <Link to={`/product/${order.productOrder.productId}`}><Iimg src={'../../../assets/images/catalog/product/1-70x86.jpg'} alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
+                    </Link>
+                  </td>
+                  <td className="text-left"><Link to={`/product/${order.productOrder.productId}`}>{order.productOrder.productName}</Link><br />
+                    <small>Ngày giao hàng: {order.deliveryDate}</small><br />
+                    <small>Điểm nhận: 300</small>
+                  </td>
+
+                  <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
+                    <input type="text" name="quantity[5]" defaultValue={order.productOrder.quantity} size="1" className="form-control" style={{
+                      padding: '6px 5px',
+                      textAlign: 'center',
+                      width: '40px'
+                    }}></input>
+                    {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
+                    <span className="input-group-btn">
+                      <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button>
+                      <button type="button" className="btn btn-danger"><i className="fa fa-times-circle"></i></button>
+                    </span></div></td>
+                  <td className="text-right">{order.productOrder.discount} %</td>
+                  <td className="text-right">{order.productOrder.unitPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+
+                  <td className="text-right">{(order.productOrder.unitPrice * order.productOrder.quantity).toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                </tr>
+              </tbody>
 
             );
           })
         }
       </>
     );
-    
+
 
 
     return (
@@ -83,7 +83,7 @@ class Cart extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title">Giỏ hàng</h2>
+                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>Giỏ hàng</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
                 <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Giỏ hàng</a></li>
               </ul>
@@ -98,7 +98,7 @@ class Cart extends React.Component {
                 Danh sách sản phẩm đã chọn
               </h2>
               <form action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=checkout/cart/edit" method="post" encType="multipart/form-data">
-              <div className="table-responsive">
+                <div className="table-responsive">
                   <table className="table table-bordered shopping-cart">
                     <thead>
                       <tr>
@@ -110,12 +110,12 @@ class Cart extends React.Component {
                         <td className="text-right">Thành tiền</td>
                       </tr>
                     </thead>
-                        {listOder}
+                    {listOder}
                   </table>
                 </div>
               </form>
               <h2>Nhập mã giảm giá </h2>
-              
+
               <div className="panel-group" id="accordion">
                 <div className="panel panel-default">
                   <div className="panel-heading">
@@ -128,14 +128,14 @@ class Cart extends React.Component {
                         {/* <input type="text" name="coupon" defaultValue="" placeholder="Enter your coupon here" id="input-coupon" className="form-control" /> */}
                         <Input inputtype="input" className="form-control" name="coupon" defaultValue="" placeholder="Enter your coupon here" id="input-coupon" />
                         <span className="input-group-btn">
-                          <button style={{marginTop:'30px'}} type="button" defaultValue="Apply Coupon" id="button-coupon" data-loading-text="Loading..." className="btn btn-primary" >Xác nhận mã</button></span>
-                          </div>
+                          <button style={{ marginTop: '30px' }} type="button" defaultValue="Apply Coupon" id="button-coupon" data-loading-text="Loading..." className="btn btn-primary" >Xác nhận mã</button></span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
               </div>
-              <br/>
+              <br />
               <div className="row">
                 <div className="col-sm-4 col-sm-offset-8">
                   <table className="table table-bordered">

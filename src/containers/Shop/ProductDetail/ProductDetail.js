@@ -120,7 +120,7 @@ class ProductDetail extends React.Component {
       fontWeight: '700',
       textTransform: 'uppercase',
       color: '#fff',
-      marginTop:'20px'
+      marginTop: '20px'
     }
     this.styleHot = {
       fontSize: '12px',
@@ -133,7 +133,7 @@ class ProductDetail extends React.Component {
       fontWeight: '700',
       textTransform: 'uppercase',
       color: '#fff',
-      marginLeft:'20px'
+      marginLeft: '20px'
     }
     this.styleNew = {
       fontSize: '12px',
@@ -146,7 +146,7 @@ class ProductDetail extends React.Component {
       fontWeight: '700',
       textTransform: 'uppercase',
       color: '#fff',
-      marginLeft:'20px'
+      marginLeft: '20px'
     }
 
     this.stylePercentSaving = {
@@ -181,16 +181,16 @@ class ProductDetail extends React.Component {
       console.error(err);
     })
   }
-  
+
 
   componentDidMount() {
     window.productCarouselAutoSet();
     this.init();
   }
-// hide Search Input when change page
+  // hide Search Input when change page
   componentWillUnmount() {
     window.$('.zoomContainer').remove();
-     
+
   }
   render() {
 
@@ -221,7 +221,7 @@ class ProductDetail extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title">{this.state.product.productName}</h2>
+                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>{this.state.product.productName}</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
                 <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{this.state.product.productName}</a></li>
 
@@ -241,7 +241,7 @@ class ProductDetail extends React.Component {
                         {/* <!-- Cloud-Zoom Image Effect Start --> */}
                         <div className="image">
                           <a className="thumbnail" href={'../../../assets/images/catalog/product/11-813x1000.jpg'} title="MacBook" >
-                            <Iimg id="tmzoom" src={'../../../assets/images/catalog/product/11-813x1000.jpg'} data-zoom-image={'../../../assets/images/catalog/product/11-813x1000.jpg'} onLoad={() => this.createZoom()} 
+                            <Iimg id="tmzoom" src={'../../../assets/images/catalog/product/11-813x1000.jpg'} data-zoom-image={'../../../assets/images/catalog/product/11-813x1000.jpg'} onLoad={() => this.createZoom()}
                               title="MacBook" alt="MacBook" />
                           </a>
                         </div>
@@ -301,13 +301,9 @@ class ProductDetail extends React.Component {
                   <div className="col-sm-4 product-right">
                     <h3 className="product-title">{this.state.product.productName}</h3>
                     <ul className="list-unstyled" style={{ borderTop: 'none' }}>
-                      <li><span className="desc">Sự kiện</span>
-                      </li>
-                      <li><span className="desc">Ngày lễ</span>Valentine</li>
                       <li><span className="desc">Loại hoa:</span> Thiên Điển </li>
                       <li><span className="desc">Hình thức:</span> Bình Hoa</li>
                       <li><span className="desc">Màu sắc:</span> Tím </li>
-
                       <li><span className="desc"></span> </li>
 
                     </ul>
@@ -315,7 +311,7 @@ class ProductDetail extends React.Component {
                       <li>
                         <h2>{(this.state.product.price - (this.state.product.discount * this.state.product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</h2>
                       </li>
-                      {this.state.product.discount > 0 ? <span style={{fontSize:'18px'}}>Giảm</span> : null}
+                      {this.state.product.discount > 0 ? <span style={{ fontSize: '18px' }}>Giảm</span> : null}
                       {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
 
                       {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{this.state.product.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</span> : <span></span>}
@@ -331,7 +327,7 @@ class ProductDetail extends React.Component {
                       <div className="form-group cart">
                         <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
                         <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
-                        <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block" style={{marginLeft:'20px'}}>Thêm vào giỏ hàng</button>
+                        <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
 
                         <div className="btn-group">
                           <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>

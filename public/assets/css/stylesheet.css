@@ -4825,7 +4825,7 @@ footer hr {
 ul.breadcrumb {
 	display: inline-block;
 	width: 100%;
-	text-align: center;
+	/* text-align: center; */
 	padding: 0;
 	font-size: 0;
 }

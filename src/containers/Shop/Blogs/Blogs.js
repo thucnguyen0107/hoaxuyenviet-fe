@@ -26,6 +26,13 @@ class Blogs extends React.Component {
   }
 
   render() {
+    let style = null;
+    style = {
+      display: 'block',
+      marginLeft: ' auto',
+      marginRight: 'auto',
+      width: '60%'
+    }
 
     let listBlog = null;
     listBlog = (
@@ -40,14 +47,9 @@ class Blogs extends React.Component {
                       <div className="date-time hl">{blog.addedDate}</div>
                     </div>
                     <h2 className="blog_title text-center"><Link to={"/blog/" + blog._id} >{blog.title}</Link></h2>
-                   
-                    <div className="image" style={{
-                        display: 'block',
-                        marginLeft: ' auto',
-                        marginRight: 'auto',
-                        width: '60%'
-                      }}>
-                      <Iimg  src={blog.images[0]} alt="Blogs" title="Blogs" className="img-thumbnail" />
+
+                    <div className="image" style={style}>
+                      <Iimg src={blog.images[0]} alt="Blogs" title="Blogs" className="img-thumbnail" />
                       <p className="post_hover">
                         <Link className="icon zoom" title="Click to view Full Image " to={blog.images[0]} data-lightbox="example-set">
                           <i className="fa fa-plus"></i>
@@ -75,7 +77,7 @@ class Blogs extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title">Blog</h2>
+                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>Blog</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
                 <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Blog</a></li>
               </ul>
@@ -86,7 +88,7 @@ class Blogs extends React.Component {
           <div className="row">
             <div className="">
               <input type="text" name="search" defaultValue="" placeholder="Tìm kiếm bài viết" id="input-search" className="form-control" />
-              <button type="button" id="button-search" className="btn btn-primary" style={{marginTop:'20px'}}>Tìm kiếm</button>
+              <button type="button" id="button-search" className="btn btn-primary" style={{ marginTop: '20px' }}>Tìm kiếm</button>
             </div>
             <div id="content" className="">
               <div className="blog all-blogs">

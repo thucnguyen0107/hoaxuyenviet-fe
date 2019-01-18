@@ -15,16 +15,16 @@ class BlogDetail extends React.Component {
 		loadingScreen.showLoading();
 		axios.get('/datatest/Blog.json').then((res) => {
 			console.log(this.props.match.params.blog_id);
-			
-		  console.log(res);
-		  this.setState({
-			product: res,
-		  }, loadingScreen.hideLoading())
+
+			console.log(res);
+			this.setState({
+				product: res,
+			}, loadingScreen.hideLoading())
 		}).catch((err) => {
-		  loadingScreen.hideLoading();
-		  console.error(err);
+			loadingScreen.hideLoading();
+			console.error(err);
 		})
-	  }
+	}
 
 	render() {
 
@@ -38,7 +38,7 @@ class BlogDetail extends React.Component {
 					<div className="container">
 						<div className="row">
 							<ul className="breadcrumb">
-								<h2 className="page-title">Blog</h2>
+								<h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>Blog</h2>
 								<li><a href="/"><i className="fa fa-home"></i></a></li>
 								<li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Blog</a></li>
 							</ul>

@@ -163,7 +163,7 @@ class Checkout extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title">Thanh toán</h2>
+                <h2 className="page-title " style={{ fontFamily: 'Times New Roman' }}>Thanh toán</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
                 <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Thanh toán</a></li>
               </ul>
