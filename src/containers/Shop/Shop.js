@@ -9,8 +9,10 @@ import ProductDetail from '../Shop/ProductDetail/ProductDetail';
 import Search from '../Shop/Search/Search';
 import Cart from '../Shop/Cart/Cart';
 import Checkout from '../Shop/Checkout/Checkout'
-import Register from '../../components/Shop/Register/Register';
-import ForGotPassWord from '../../components/Shop/ForGotPassword/ForGotPassword';
+import Register from '../../containers/Shop/Register/Register';
+import ForGotPassWord from '../../containers/Shop/ForGotPassword/ForGotPassword';
+import MyAccount from '../../components/Shop/MyAccount/MyAccount';
+import Login from '../../containers/Shop/Login/Login';
 
 class Shop extends React.Component {
   render() {
@@ -26,6 +28,8 @@ class Shop extends React.Component {
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/register" exact component={Register} />
           <Route path="/forgotpassword" exact component={ForGotPassWord} />
+          <Route path="/myaccount" exact component={MyAccount}/>
+          <Route path="/login" exact component={Login} />
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />
           <Redirect to="/pageNotFound" />

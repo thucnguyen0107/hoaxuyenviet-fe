@@ -1,6 +1,12 @@
 import React from 'react';
+import loadingScreen from '../../../utilities/loadingScreen';
 
-const ForGotPassWord = () => {
+
+class ForGotPassWord extends React.Component{
+    componentDidMount() {
+        loadingScreen.hideLoading();
+      }
+      render(){
     return (
         <>
             <div id="breadcrumb">
@@ -15,26 +21,27 @@ const ForGotPassWord = () => {
                 </div>
             </div>
             <div id="content" style={{ margin: 'auto', width: '60%' }}>
-                <p>Enter the e-mail address associated with your account. Click submit to have a password reset link e-mailed to you.</p>
+                <p>Vui lòng nhập địa chỉ E-mail có liên kết với tài khoản của bạn. Sau đó bấm nút xác nhận để nhận mật khẩu mới qua E-mail.</p>
                 <form action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=account/forgotten" method="post" enctype="multipart/form-data" className="form-horizontal">
                     <fieldset>
-                        <legend>Your E-Mail Address</legend>
+                        <legend>E-mail của bạn</legend>
                         <div className="form-group required">
-                            <label className="col-sm-2 control-label" htmlFor="input-email">E-Mail Address</label>
+                            <label className="col-sm-2 control-label" htmlFor="input-email">E-Mail Address </label>
                             <div className="col-sm-10">
-                                <input type="text" name="email" defaultValue="" placeholder="E-Mail Address" id="input-email" className="form-control" />
+                                <input type="text" name="email" defaultValue="" placeholder="Vui lòng nhập địa chỉ E-mail" id="input-email" className="form-control" />
                             </div>
                         </div>
                     </fieldset>
                     <div className="buttons clearfix">
-                        <div className="pull-left"><a href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=account/login" className="btn btn-default">Back</a></div>
+                        <div className="pull-left"><a href="http://localhost:3000/login" className="btn btn-default">Trở về</a></div>
                         <div className="pull-right">
-                            <input type="submit" defaultValue="Continue" className="btn btn-primary" />
+                            <input defaultValue="Xác nhận" className="btn btn-primary" />
                         </div>
                     </div>
                 </form>
             </div>
         </>
     );
+}
 }
 export default ForGotPassWord;
