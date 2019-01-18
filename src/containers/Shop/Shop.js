@@ -8,7 +8,9 @@ import notFoundPage from '../../components/Shop/404/404';
 import ProductDetail from '../Shop/ProductDetail/ProductDetail';
 import Search from '../Shop/Search/Search';
 import Cart from '../Shop/Cart/Cart';
-import Checkout from '../Shop/Checkout/Checkout'
+import Checkout from '../Shop/Checkout/Checkout';
+import Blogs from '../Shop/Blogs/Blogs';
+import BlogDetail from '../Shop/BlogDetail/BlogDetail';
 import Register from '../../components/Shop/Register/Register';
 import ForGotPassWord from '../../components/Shop/ForGotPassword/ForGotPassword';
 
@@ -24,6 +26,8 @@ class Shop extends React.Component {
           <Route path="/search" exact component={Search} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/checkout" exact component={Checkout} />
+          <Route path="/blogs" exact component={Blogs} />
+          <Route path="/blog/:blog_id" exact component={BlogDetail} />
           <Route path="/register" exact component={Register} />
           <Route path="/forgotpassword" exact component={ForGotPassWord} />
           <Redirect from="/" to="/home" exact />
