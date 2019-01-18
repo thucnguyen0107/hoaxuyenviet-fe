@@ -26,13 +26,7 @@ class Blogs extends React.Component {
   }
 
   render() {
-    let style = null;
-    style = {
-      display: 'block',
-      marginLeft: ' auto',
-      marginRight: 'auto',
-      width: '60%'
-    }
+
 
     let listBlog = null;
     listBlog = (
@@ -46,9 +40,9 @@ class Blogs extends React.Component {
                     <div className="blog_stats">
                       <div className="date-time hl">{blog.addedDate}</div>
                     </div>
-                    <h2 className="blog_title text-center"><Link to={"/blog/" + blog._id} >{blog.title}</Link></h2>
+                    <h2 className="blog_title"><Link to={"/blog/" + blog._id} >{blog.title}</Link></h2>
 
-                    <div className="image" style={style}>
+                    <div className="image">
                       <Iimg src={blog.images[0]} alt="Blogs" title="Blogs" className="img-thumbnail" />
                       <p className="post_hover">
                         <Link className="icon zoom" title="Click to view Full Image " to={blog.images[0]} data-lightbox="example-set">
@@ -59,8 +53,9 @@ class Blogs extends React.Component {
                     </div>
                   </div>
                   <div className="blog-right-content">
+
                     <p>{blog.content}</p>
-                    <Link className="read-more-link" to={"/blog/" + blog._id}>Continue Reading</Link>
+                    <Link className="read-more-link" to={"/blog/" + blog._id}>Đọc tiếp</Link>
                   </div>
                 </div>
               </div>
@@ -84,13 +79,13 @@ class Blogs extends React.Component {
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container information-blogger-blogs">
           <div className="row">
             <div className="">
               <input type="text" name="search" defaultValue="" placeholder="Tìm kiếm bài viết" id="input-search" className="form-control" />
               <button type="button" id="button-search" className="btn btn-primary" style={{ marginTop: '20px' }}>Tìm kiếm</button>
             </div>
-            <div id="content" className="">
+            <div id="content" className="col-sm-12 col-md-8">
               <div className="blog all-blogs">
                 <div className="blog_grid_holder">
                   <div className="row">

@@ -614,15 +614,12 @@ function responsivecolumn() {
         if ($(this).scrollTop() > 400) {
             if (st > lastScrollTop) {
                 $('.header .header-middle').removeClass('fixed');
-                console.log('remove');
             } else {
                 $('.header .header-middle').addClass('fixed');
-                console.log('add');
 
             }
         } else if ($(this).scrollTop() === 0) {
             $('.header .header-middle').removeClass('fixed');
-            console.log('remove home');
 
         }
         lastScrollTop = st;

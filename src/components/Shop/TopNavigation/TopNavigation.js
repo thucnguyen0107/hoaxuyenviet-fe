@@ -30,6 +30,11 @@ function blurSelected() {
 
 const topNavigation = (props) => {
 
+  let zIndexStyle;
+  zIndexStyle = {
+    zIndex: '30000'
+  }
+
   let styleInput;
   styleInput = {
     width: '60%',
@@ -102,7 +107,7 @@ const topNavigation = (props) => {
                         <span className="single-item">0</span>
                       </span>
                     </button>
-                    <ul className="dropdown-menu pull-right cart-menu">
+                    <ul className="dropdown-menu pull-right cart-menu" style={zIndexStyle}>
                       <li>
                         <p className="text-center">Giỏ hàng của bạn rỗng!</p>
                       </li>
@@ -135,7 +140,7 @@ const topNavigation = (props) => {
                     <span className="account-title">My Account</span>
                     <i className="fa fa-angle-down"></i>
                   </a>
-                  <ul className="dropdown-menu dropdown-menu-right myaccount-menu">
+                  <ul className="dropdown-menu dropdown-menu-right myaccount-menu" style={zIndexStyle}>
                     <li><a href="index5502.html?route=account/register">Đăng ký</a></li>
                     <li><a href="indexe223.html?route=account/login">Đăng nhập</a></li>
                     <nav id="top">
@@ -152,7 +157,7 @@ const topNavigation = (props) => {
                 </div>
               </div>
             </div>
-            <div style={styleInput} id="search" className="input-group" >
+            <div style={styleInput} id="" className="input-group" >
               <input type="text" name="search" placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?" className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
             </div>
           </div>
