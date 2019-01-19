@@ -3,9 +3,7 @@ import { headerContent } from '../data/data';
 const filterArrFn = (array, params) => {
   let arrFilter = array.slice();
   for (const filterKey in params) {
-    console.log(filterKey);
     if (filterKey === 'price' && params[filterKey]) {
-      console.log('da tim thay price')
       if (params[filterKey] === 'increase') {
         arrFilter.sort((a, b) => {
           return (a.discount === 0 ? a.price : (a.price - a.price * a.discount / 100)) - (b.discount === 0 ? b.price : (b.price - b.price * b.discount / 100))
@@ -15,6 +13,10 @@ const filterArrFn = (array, params) => {
           return (b.discount === 0 ? b.price : (b.price - b.price * b.discount / 100)) - (a.discount === 0 ? a.price : (a.price - a.price * a.discount / 100))
         })
       }
+    } else if (filterKey === 'title') {
+      arrFilter = arrFilter.filter(item => {
+        return item[filterKey].includes(params[filterKey])
+      })
     }
     else if (params[filterKey]) {
       arrFilter = arrFilter.filter((item) => {

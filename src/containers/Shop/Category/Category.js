@@ -8,7 +8,6 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import filterUtils from '../../../utilities/filter';
-import $ from 'jquery'
 class Category extends React.Component {
 
   catParams;
@@ -46,8 +45,8 @@ class Category extends React.Component {
     let filteredProductList = filterUtils.filterArrFn(this.state.productList, params);
     this.setState({
       filteredProductList
-    })
-    loadingScreen.hideLoading();
+    }, loadingScreen.hideLoading);
+
   }
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { columnDropdownList } from "../../../../services/config";
 import { Link } from 'react-router-dom';
-import classes from './NavigationItem.scss'
 import $ from 'jquery'
 let columnArr = [];
 let i = 0;

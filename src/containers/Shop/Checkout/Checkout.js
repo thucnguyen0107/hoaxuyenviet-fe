@@ -2,7 +2,6 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 
 import Form from "../../../components/UI/Form/Form";
-import { Button } from "antd";
 
 class Checkout extends React.Component {
   state = {

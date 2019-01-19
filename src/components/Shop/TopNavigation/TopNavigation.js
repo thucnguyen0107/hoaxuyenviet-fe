@@ -3,6 +3,7 @@ import React from 'react';
 import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 import './TopNavigation.css';
+import { Link } from 'react-router-dom';
 
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -109,7 +110,45 @@ const topNavigation = (props) => {
                     </button>
                     <ul className="dropdown-menu pull-right cart-menu" style={zIndexStyle}>
                       <li>
-                        <p className="text-center">Giỏ hàng của bạn rỗng!</p>
+                        <table className="table table-striped">
+                          <tbody><tr>
+                            <td className="text-center">
+
+                              <Link to="/">
+                                <img src="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/image/cache/catalog/demo/product/3-70x86.jpg" alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
+                              </Link>
+                            </td>
+                            <td className="text-left"><Link to="">HP LP3065</Link>
+                              <br />
+                              - <small>Delivery Date 2011-04-22</small>
+                            </td>
+                            <td className="text-right">x 1</td>
+                            <td className="text-right">$122.00</td>
+                            <td className="text-center"><button type="button" title="Remove" className="btn btn-danger btn-xs"><i className="fa fa-times"></i></button></td>
+                          </tr>
+                          </tbody></table>
+                      </li><li>
+                        <div>
+                          <table className="table table-bordered">
+                            <tbody><tr>
+                              <td className="text-right"><strong>Sub-Total</strong></td>
+                              <td className="text-right">$100.00</td>
+                            </tr>
+                              <tr>
+                                <td className="text-right"><strong>Eco Tax (-2.00)</strong></td>
+                                <td className="text-right">$2.00</td>
+                              </tr>
+                              <tr>
+                                <td className="text-right"><strong>VAT (20%)</strong></td>
+                                <td className="text-right">$20.00</td>
+                              </tr>
+                              <tr>
+                                <td className="text-right"><strong>Total</strong></td>
+                                <td className="text-right">$122.00</td>
+                              </tr>
+                            </tbody></table>
+                          <div className="text-right button-container"><Link className="addtocart" to="/cart"><strong>Giỏ hàng</strong></Link>&nbsp;&nbsp;&nbsp;<Link to="/checkout" className="checkout"><strong>Thanh toán</strong></Link></div>
+                        </div>
                       </li>
                     </ul>
                   </div>
@@ -157,8 +196,8 @@ const topNavigation = (props) => {
                 </div>
               </div>
             </div>
-            <div style={styleInput} id="" className="input-group" >
-              <input type="text" name="search" placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?" className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
+            <div style={styleInput} id="flowerInput" className="input-group" >
+              <input id="" type="text" name="search" placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?" className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
             </div>
           </div>
         </div>

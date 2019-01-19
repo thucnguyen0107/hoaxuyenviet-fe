@@ -10,7 +10,6 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import { htmlContentModel } from '../../../models/htmlContentModel';
-import $ from 'jquery';
 class Body extends React.Component {
   state = {
     htmlContentModel
