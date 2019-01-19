@@ -64,12 +64,18 @@ const validateForm = (event, form, nameForm, fn) => {
 const form = props => {
   let idForm;
   idForm = props.idForm;
-
   let form = null;
+  const formElementsArray = [];
+  for (let key in props.originalForm) {
+    formElementsArray.push({
+      id: key,
+      config: props.originalForm[key]
+    });
+  }
 
   form = (
     <>
-      {props.formElementsArray.map(formElement => (
+      {formElementsArray.map(formElement => (
         <Input
           key={formElement.id}
           elementConfig={formElement.config.elementConfig}

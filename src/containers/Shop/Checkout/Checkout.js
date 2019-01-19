@@ -86,14 +86,6 @@ class Checkout extends React.Component {
   };
 
   render() {
-    const formElementsArray = [];
-    for (let key in this.state.orderForm) {
-      formElementsArray.push({
-        id: key,
-        config: this.state.orderForm[key]
-      });
-    }
-
     return (
       <>
         <div id="breadcrumb">
@@ -150,7 +142,6 @@ class Checkout extends React.Component {
                             <legend>Your Personal Details</legend>
                             <Form
                               idForm="checkoutForm"
-                              formElementsArray={formElementsArray}
                               nameForm="orderForm"
                               originalForm={this.state.orderForm}
                               setState={this.setStateForm}
