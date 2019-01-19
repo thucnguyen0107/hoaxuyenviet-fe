@@ -1,9 +1,6 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
-import Iimg from '../../../components/UI/LoadingImage/Limg';
-import Input from '../../../components/UI/Input/Input';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 class BlogDetail extends React.Component {
 
 

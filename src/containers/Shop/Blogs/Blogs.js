@@ -1,20 +1,41 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/UI/LoadingImage/Limg';
-import Input from '../../../components/UI/Input/Input';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import classes from './Blogs.scss';
+import filterUtils from '../../../utilities/filter';
+
 class Blogs extends React.Component {
 
-  state = {
-    HTMLBlogModel: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      HTMLBlogModel: [],
+      filteredHTMLBlogModel: [],
+      visible: 4
+    }
+    this.loadMore = this.loadMore.bind(this);
+  }
+
+  loadMore = () => {
+    this.setState((prev) => {
+      return {
+        visible: prev.visible + 4,
+      };
+    });
+
   }
 
   componentWillMount() {
     loadingScreen.showLoading();
     axios.get('/datatest/Blog.json').then((res) => {
       console.log(res);
-      this.setState({ HTMLBlogModel: res }, loadingScreen.hideLoading)
+      this.setState({
+        HTMLBlogModel: res,
+        filteredHTMLBlogModel: res
+      }, loadingScreen.hideLoading)
+
     }).catch((err) => {
       loadingScreen.hideLoading();
       console.error(err);
@@ -25,14 +46,39 @@ class Blogs extends React.Component {
     loadingScreen.hideLoading();
   }
 
-  render() {
+  // searchBlogsByName = () => {
+  //   let input, filter, blogItem, blogTitles;
 
+  //   blogTitles = [...this.state.HTMLBlogModel];
+
+  //   input = document.getElementById("input-search");
+  //   filter = input.value.toUpperCase();
+
+  //   blogItem = document.getElementsByClassName("blog_item");
+
+  //   for (let i = 0; i < blogTitles.length; i++) {
+  //     if (blogTitles[i].title.toUpperCase().includes(filter)) {
+  //       blogItem[i].style.display = "block";
+  //     } else {
+  //       blogItem[i].style.display = "none";
+  //     }
+  //   }
+  // }
+
+  filterProductFn = (params) => {
+    let filteredHTMLBlogModel = filterUtils.filterArrFn(this.state.HTMLBlogModel, params);
+    this.setState({
+      filteredHTMLBlogModel
+    });
+
+  }
+  render() {
 
     let listBlog = null;
     listBlog = (
       <>
         {
-          this.state.HTMLBlogModel.map(blog => {
+          !window.jQuery.isEmptyObject(this.state.filteredHTMLBlogModel) ? this.state.filteredHTMLBlogModel.slice(0, this.state.visible).map(blog => {
             return (
               <div className="blog_item" key={blog._id}>
                 <div className="summary">
@@ -53,19 +99,22 @@ class Blogs extends React.Component {
                     </div>
                   </div>
                   <div className="blog-right-content">
-
                     <p>{blog.content}</p>
                     <Link className="read-more-link" to={"/blog/" + blog._id}>Đọc tiếp</Link>
                   </div>
                 </div>
               </div>
             );
-          })
+          }) : null
+
+        }
+        <p className={classes.productsProgressBar} data-auto-id="productsProgressBar">You've viewed {this.state.visible > this.state.filteredHTMLBlogModel.length ? this.state.filteredHTMLBlogModel.length : this.state.visible} of {this.state.filteredHTMLBlogModel.length} blogs</p>
+
+        {this.state.visible < this.state.filteredHTMLBlogModel.length &&
+          <button onClick={this.loadMore} type="button" className={classes.loadMoreBtn}>Load more</button>
         }
       </>
     );
-
-
     return (
       <>
         <div id="breadcrumb">
@@ -82,8 +131,7 @@ class Blogs extends React.Component {
         <div className="container information-blogger-blogs">
           <div className="row">
             <div className="">
-              <input type="text" name="search" defaultValue="" placeholder="Tìm kiếm bài viết" id="input-search" className="form-control" />
-              <button type="button" id="button-search" className="btn btn-primary" style={{ marginTop: '20px' }}>Tìm kiếm</button>
+              <input type="text" name="search" defaultValue="" placeholder="Tìm kiếm bài viết" id="input-search" className="form-control" onChange={event => this.filterProductFn({ title: event.target.value })} />
             </div>
             <div id="content" className="col-sm-12 col-md-8">
               <div className="blog all-blogs">

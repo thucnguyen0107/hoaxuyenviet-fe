@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Iimg from '../../../../UI/LoadingImage/Limg';
 const categorySlider = (props) => {
 
   return (

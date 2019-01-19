@@ -5,10 +5,9 @@ import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import filterUtils from '../../../utilities/filter';
 import classes from './Search.scss';
-import { convertCategories, convertFilters } from '../../../utilities/categoriesUtil';
+import { convertFilters } from '../../../utilities/categoriesUtil';
 import FilterBar from '../../../components/UI/FilterBar';
 import { visibleItems } from '../../../services/config';
-import $ from 'jquery'
 class Search extends React.Component {
 
   catParams;

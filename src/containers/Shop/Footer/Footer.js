@@ -24,7 +24,7 @@ class Footer extends React.Component {
         {
           this.state.HTMLSocialModel.map(social => {
             return (
-              <li key={social._id} className={social._id}><a href={social.link} target="_blank">
+              <li key={social._id} className={social._id}><a href={social.link} rel="noopener noreferrer" target="_blank">
                 <i className={social.iconName}></i></a>
               </li>
             );

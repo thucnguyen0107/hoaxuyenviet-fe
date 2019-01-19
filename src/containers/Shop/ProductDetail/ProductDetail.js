@@ -5,7 +5,6 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/UI/LoadingImage/Limg';
-import $ from 'jquery'
 class ProductDetail extends React.Component {
 
   createZoom = () => {

@@ -10,9 +10,7 @@ class Cart extends React.Component {
     totalPrice: 0
   }
 
-  constructor(props) {
-    super(props)
-  }
+
 
   componentDidMount() {
     loadingScreen.hideLoading();
@@ -33,11 +31,12 @@ class Cart extends React.Component {
   render() {
 
     let listOder = null;
+    let tempTotalPrice = this.state.totalPrice;
     listOder = (
       <>
         {
           this.state.HTMLOrderModel.map(order => {
-            this.state.totalPrice += order.productOrder.unitPrice * order.productOrder.quantity
+            tempTotalPrice += order.productOrder.unitPrice * order.productOrder.quantity
             return (
 
               <tbody key={order._id}>
@@ -142,7 +141,7 @@ class Cart extends React.Component {
                     <tbody>
                       <tr>
                         <td className="text-right"><strong>Tổng tiền:</strong></td>
-                        <td className="text-right">{this.state.totalPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                        <td className="text-right">{tempTotalPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
                       </tr>
                     </tbody></table>
                 </div>
