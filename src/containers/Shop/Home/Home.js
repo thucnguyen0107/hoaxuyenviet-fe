@@ -10,7 +10,7 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import { htmlContentModel } from '../../../models/htmlContentModel';
-import $ from'jquery';
+import $ from 'jquery';
 class Body extends React.Component {
   state = {
     htmlContentModel
@@ -48,8 +48,8 @@ class Body extends React.Component {
       document.querySelector(element).swiper.startAutoplay()
     });
   }
- 
-  
+
+
 
   componentWillMount() {
     loadingScreen.showLoading();
@@ -72,11 +72,11 @@ class Body extends React.Component {
   render() {
     return (
       <>
-        <div className={classes.GlobalBanner}>
-          <strong>GIAO HÀNG MIỄN PHÍ</strong>
-        </div>
         <div id="common-home">
           <div className="content-top">
+            <div className={classes.GlobalBanner}>
+              <strong>Không chỉ là HOA …<br /> Mà còn là những Khoảnh Khắc ý nghĩa!</strong>
+            </div>
             <div id="content">
               {/**Slider */}
               {/* {<BannersSlider listBannerSlider={this.state.htmlContentModel.bannerSlider} />} */}

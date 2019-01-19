@@ -36,7 +36,7 @@ const tabCategoryHeader = (props) => {
   return (
     <div className="category-tab-heading-wrapper">
       <div className="box-heading">
-        <h2 className="products-section-title">Danh Mục</h2>
+        <h2 className="products-section-title">Yêu thương cho đi là yêu thương còn mãi…</h2>
       </div>
       <div className="etabs">
         <ul className="nav nav-tabs">

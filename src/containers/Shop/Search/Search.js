@@ -24,7 +24,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
-    
+
     // this.catParams = convertCategories(this.props.match.params.first, this.props.match.params.second, props.history.replace);
     this.state = {
       productList: [],
@@ -66,7 +66,7 @@ class Search extends React.Component {
       console.error(err);
     })
   }
- 
+
   componentWillReceiveProps() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_LIST).then((res) => {
@@ -94,7 +94,7 @@ class Search extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title">Search</h2>
+                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>Search</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
                 <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Tìm kiếm</a></li>
               </ul>
@@ -105,11 +105,11 @@ class Search extends React.Component {
           <div id="product-category" className="container">
             <div className="row">
               <div id="content" className="col-sm-12 categorypage">
-                <FilterBar 
-                filterParams={this.filterParams} 
-                catFilter={convertFilters()} 
-                filter={this.filterProductFn}/>
-                
+                <FilterBar
+                  filterParams={this.filterParams}
+                  catFilter={convertFilters()}
+                  filter={this.filterProductFn} />
+
                 <div className="row list-grid-wrapper">
                   {!window.jQuery.isEmptyObject(this.state.filteredProductList) ? <ProductList lstProduct={this.state.filteredProductList.slice(0, this.state.visible)} /> : null}
                 </div>

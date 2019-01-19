@@ -16,7 +16,7 @@ const myAccount = () => {
                         <ul className="breadcrumb">
                             <h2 className="page-title">TÀI KHOẢN CỦA TÔI</h2>
                             <li><a href="/"><i className="fa fa-home"></i></a></li>
-                            <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Tài Khoản Của Tôi</a></li>
+                            <li><a href="/" style={{ pointerEvents: 'none', cursor: "default"}}>Tài Khoản Của Tôi</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,6 +43,7 @@ const myAccount = () => {
                     <li><a href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=account/newsletter">Bản tin</a></li>
                 </ul>
             </div>
+            
             {hideLS()}
         </>
     );

@@ -4825,7 +4825,7 @@ footer hr {
 ul.breadcrumb {
 	display: inline-block;
 	width: 100%;
-	text-align: center;
+	/* text-align: center; */
 	padding: 0;
 	font-size: 0;
 }
@@ -4900,7 +4900,7 @@ ul.breadcrumb > li::after {
 	position: absolute;
 	right: -3px;
 	left: auto;
-	top: 0;
+	top: -5px;
 	bottom: 0;
 	margin: auto 0;
 }

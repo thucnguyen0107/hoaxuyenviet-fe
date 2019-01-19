@@ -2,7 +2,7 @@ import React from 'react';
 // import Logo from '../../assets/images/catalog/logo.png';
 import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
-import  './TopNavigation.css';
+import './TopNavigation.css';
 
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -12,7 +12,7 @@ function focusSelected() {
     UnDark.classList.remove('UnDark');
     UnDark.classList.add('Dark');
 
-    document.querySelector('.inputField').style.zIndex = '22000';
+    // document.querySelector('.inputField').style.zIndex = '22000';
 
   }
 }
@@ -29,6 +29,19 @@ function blurSelected() {
 }
 
 const topNavigation = (props) => {
+
+  let zIndexStyle;
+  zIndexStyle = {
+    zIndex: '30000'
+  }
+
+  let styleInput;
+  styleInput = {
+    width: '60%',
+    margin: '0 auto',
+    fontFamily: 'auto',
+    zIndex: '20000'
+  }
 
   let navList = [];
 
@@ -51,6 +64,7 @@ const topNavigation = (props) => {
   )
 
   return (
+
     <header>
       <div className="header">
         <div className="header-middle">
@@ -93,7 +107,7 @@ const topNavigation = (props) => {
                         <span className="single-item">0</span>
                       </span>
                     </button>
-                    <ul className="dropdown-menu pull-right cart-menu">
+                    <ul className="dropdown-menu pull-right cart-menu" style={zIndexStyle}>
                       <li>
                         <p className="text-center">Giỏ hàng của bạn rỗng!</p>
                       </li>
@@ -102,22 +116,22 @@ const topNavigation = (props) => {
                 </div>
               </div>
               <div className="search">
-                <div className="header-search dropdown-toggle" data-toggle="dropdown">
+                {/* <div className="header-search dropdown-toggle" data-toggle="dropdown">
                   <span className="text-search">Search</span>
                   <i className="fa fa-angle-down"></i>
-                </div>
+                </div> */}
 
                 <div className="UnDark"></div>
 
 
-                <div id="search" className="input-group" style={{ zIndex: '20000' }}>
+                {/* <div id="search" className="input-group" style={{ zIndex: '20000' }}>
                   <input type="text" name="search" placeholder="Nhập từ khóa..." className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
                   <span className="input-group-btn">
                     <button type="button" className="btn-default btn-lg">
                       <span className="search_button"><i className="fa fa-search" aria-hidden="true"></i></span>
                     </button>
                   </span>
-                </div>
+                </div> */}
 
               </div>
               <div className="myaccount-wrapper">
@@ -126,7 +140,7 @@ const topNavigation = (props) => {
                     <span className="account-title">My Account</span>
                     <i className="fa fa-angle-down"></i>
                   </a>
-                  <ul className="dropdown-menu dropdown-menu-right myaccount-menu">
+                  <ul className="dropdown-menu dropdown-menu-right myaccount-menu" style={zIndexStyle}>
                     <li><a href="index5502.html?route=account/register">Đăng ký</a></li>
                     <li><a href="indexe223.html?route=account/login">Đăng nhập</a></li>
                     <nav id="top">
@@ -142,6 +156,9 @@ const topNavigation = (props) => {
                   </ul>
                 </div>
               </div>
+            </div>
+            <div style={styleInput} id="" className="input-group" >
+              <input type="text" name="search" placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?" className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
             </div>
           </div>
         </div>
