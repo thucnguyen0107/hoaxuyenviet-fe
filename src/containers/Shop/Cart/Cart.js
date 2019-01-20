@@ -16,42 +16,90 @@ class Cart extends React.Component {
     loadingScreen.hideLoading();
   }
 
-  componentWillMount() {
+  componentWillMount =() => {
+    let arrayProductOrder = JSON.parse(localStorage.getItem('list'))
     loadingScreen.showLoading();
-    axios.get('/datatest/Order.json').then((res) => {
-      console.log(res);
-      this.setState({ HTMLOrderModel: res }, loadingScreen.hideLoading)
-    }).catch((err) => {
-      loadingScreen.hideLoading();
-      console.error(err);
-    })
+    console.log(arrayProductOrder);
+    
+    this.setState({ HTMLOrderModel: arrayProductOrder });
+
+    // axios.get('/datatest/Order.json').then((res) => {
+    //   this.setState({ HTMLOrderModel: res }, loadingScreen.hideLoading)
+    // }).catch((err) => {
+    //   loadingScreen.hideLoading();
+    //   console.error(err);
+    // })
   }
 
 
   render() {
 
+    // let listOder = null;
+    // let tempTotalPrice = this.state.totalPrice;
+    // listOder = (
+    //   <>
+    //     {
+    //       this.state.HTMLOrderModel.map(order => {
+    //         tempTotalPrice += ( order.productOrder.unitPrice - (order.productOrder.unitPrice * order.productOrder.discount/100)) * order.productOrder.quantity
+    //         return (
+
+    //           <tbody key={order._id}>
+    //             <tr>
+    //               <td className="text-center">
+    //                 <Link to={`/productDetail/${order.productOrder.productId}`}><Iimg src={'../../../assets/images/catalog/product/1-70x86.jpg'} alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
+    //                 </Link>
+    //               </td>
+    //               <td className="text-left"><Link to={`/productDetail/${order.productOrder.productId}`}>{order.productOrder.productName}</Link><br />
+    //                 <small>Ngày giao hàng: {order.deliveryDate}</small><br />
+    //                 <small>Điểm nhận: 300</small>
+    //               </td>
+
+    //               <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
+    //                 <input type="text" name="quantity[5]" defaultValue={order.productOrder.quantity} size="1" className="form-control" style={{
+    //                   padding: '6px 5px',
+    //                   textAlign: 'center',
+    //                   width: '40px'
+    //                 }}></input>
+    //                 {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
+    //                 <span className="input-group-btn">
+    //                   <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button>
+    //                   <button type="button" className="btn btn-danger"><i className="fa fa-times-circle"></i></button>
+    //                 </span></div></td>
+                  
+    //               <td className="text-right">{order.productOrder.unitPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+    //               <td className="text-right">{order.productOrder.discount} %</td>
+    //               <td className="text-right">{ ( order.productOrder.unitPrice - (order.productOrder.unitPrice * order.productOrder.discount/100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+    //               <td className="text-right">{(( order.productOrder.unitPrice - (order.productOrder.unitPrice * order.productOrder.discount/100)) * order.productOrder.quantity).toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+    //             </tr>
+    //           </tbody>
+
+    //         );
+    //       })
+    //     }
+    //   </>
+    // );
+
     let listOder = null;
-    let tempTotalPrice = this.state.totalPrice;
     listOder = (
       <>
         {
-          this.state.HTMLOrderModel.map(order => {
-            tempTotalPrice += order.productOrder.unitPrice * order.productOrder.quantity
+           !window.jQuery.isEmptyObject(this.state.HTMLOrderModel) ?
+          this.state.HTMLOrderModel.map((order,index) => {
             return (
 
-              <tbody key={order._id}>
+              <tbody key={index}>
                 <tr>
                   <td className="text-center">
-                    <Link to={`/product/${order.productOrder.productId}`}><Iimg src={'../../../assets/images/catalog/product/1-70x86.jpg'} alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
+                    <Link to={`/productDetail/${order._id}`}><Iimg src={order.images[0].replace(`${order._id}-813x1000.jpg`, `${order._id}-70x86.jpg`)} alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
                     </Link>
                   </td>
-                  <td className="text-left"><Link to={`/product/${order.productOrder.productId}`}>{order.productOrder.productName}</Link><br />
-                    <small>Ngày giao hàng: {order.deliveryDate}</small><br />
+                  <td className="text-left"><Link to={`/productDetail/`}>{order.productName}</Link><br />
+                    <small>Ngày giao hàng: </small><br />
                     <small>Điểm nhận: 300</small>
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <input type="text" name="quantity[5]" defaultValue={order.productOrder.quantity} size="1" className="form-control" style={{
+                    <input type="text" name="quantity[5]" defaultValue="" size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
                       width: '40px'
@@ -61,19 +109,19 @@ class Cart extends React.Component {
                       <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button>
                       <button type="button" className="btn btn-danger"><i className="fa fa-times-circle"></i></button>
                     </span></div></td>
-                  <td className="text-right">{order.productOrder.discount} %</td>
-                  <td className="text-right">{order.productOrder.unitPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
-
-                  <td className="text-right">{(order.productOrder.unitPrice * order.productOrder.quantity).toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                  
+                  <td className="text-right">{order.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                  <td className="text-right">{order.discount} %</td>
+                  <td className="text-right">{( order.price - (order.price * order.discount/100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                  <td className="text-right"> VND</td>
                 </tr>
               </tbody>
 
             );
-          })
+          }) :null
         }
       </>
     );
-
 
 
     return (
@@ -104,8 +152,9 @@ class Cart extends React.Component {
                         <td className="text-center">Hình ảnh</td>
                         <td className="text-left">Tên sản phẩm</td>
                         <td className="text-left">Số lượng</td>
-                        <td className="text-right">Giảm giá</td>
                         <td className="text-right">Đơn giá</td>
+                        <td className="text-right">Giảm giá</td>
+                        <td className="text-right">Giá sau khi giảm</td>
                         <td className="text-right">Thành tiền</td>
                       </tr>
                     </thead>
@@ -141,7 +190,7 @@ class Cart extends React.Component {
                     <tbody>
                       <tr>
                         <td className="text-right"><strong>Tổng tiền:</strong></td>
-                        <td className="text-right">{tempTotalPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                        <td className="text-right">VND</td>
                       </tr>
                     </tbody></table>
                 </div>

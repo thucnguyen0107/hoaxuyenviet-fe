@@ -22,7 +22,7 @@
             "productName":"Hoa cẩm chướng",
             "unitPrice": 699000,
             "quantity": 5,
-            "discount": 0
+            "discount": 10
         },
         "finalPrice": 0,
         "deliveryDate": "02-02-2019",
@@ -51,7 +51,7 @@
             "productName":"Hoa thiên điển",
             "unitPrice": 369000,
             "quantity": 15,
-            "discount": 0
+            "discount": 20
         },
         "finalPrice": 0,
         "deliveryDate": "03-02-2019",

@@ -4,7 +4,7 @@ export const headerContent = {
             id: 'home', name: 'Trang chủ', type: 'dropdown', subCategories:
                 [
                     { id: 'about-us', subName: 'About Us' },
-                    { id: 'blog', subName: 'Blog' },
+                    { id: 'blogs', subName: 'Blogs' },
                 ]
         },
         {
