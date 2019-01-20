@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { formatCurrency } from '../../utilities/fnUtil';
 
 const productList = (props) => {
 
@@ -30,8 +30,8 @@ const productList = (props) => {
                     <div className="product-deacription-wrapper">
                       <h4><Link to={'/product/' + product._id}>{product.productName} </Link></h4>
                       <span className="price">
-                        <span className="price-new">{(product.price - (product.discount * product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</span>
-                        {product.discount > 0 ? <span className="price-old">{product.price.toLocaleString('vi-VN', { currency: 'VND' })}</span> : <span className="price-old"></span>}
+                        <span className="price-new">{formatCurrency((product.price - (product.discount * product.price / 100)))} VND</span>
+                        {product.discount > 0 ? <span className="price-old">{formatCurrency(product.price)}</span> : <span className="price-old"></span>}
                         <div className="saleback">
                           {product.hot === true ? <span className="saleicon hot">Hot</span> : null}
                           {product.new === true ? <span className="saleicon new">New</span> : null}

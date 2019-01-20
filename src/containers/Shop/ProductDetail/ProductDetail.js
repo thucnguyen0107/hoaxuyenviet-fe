@@ -5,6 +5,7 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/UI/LoadingImage/Limg';
+import { formatCurrency } from '../../../utilities/fnUtil';
 class ProductDetail extends React.Component {
 
   createZoom = () => {
@@ -308,12 +309,12 @@ class ProductDetail extends React.Component {
                     </ul>
                     <ul className="list-unstyled price">
                       <li>
-                        <h2>{(this.state.product.price - (this.state.product.discount * this.state.product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</h2>
+                        <h2>{formatCurrency((this.state.product.price - (this.state.product.discount * this.state.product.price / 100)))} VND</h2>
                       </li>
                       {this.state.product.discount > 0 ? <span style={{ fontSize: '18px' }}>Giảm</span> : null}
                       {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
 
-                      {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{this.state.product.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</span> : <span></span>}
+                      {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{formatCurrency(this.state.product.price)} VND</span> : <span></span>}
                       {this.state.product.hot === true ? <span className="saleicon hot" style={this.styleHot}>Hot</span> : null}
                       {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
                       {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}

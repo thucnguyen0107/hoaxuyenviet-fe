@@ -1,5 +1,5 @@
 import actionTypes from "./actions";
-import updateObject from "../../utilities/updateObjectRedux";
+import {updateObject} from "../../utilities/fnUtil";
 
 const initialState = {
   userPhone: null,

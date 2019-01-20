@@ -2,8 +2,7 @@ import axios from 'axios';
 import { endPoints } from '../../services/config';
 
 const GET_PRODUCT_LIST = 'GET_PRODUCT_LIST';
-const GET_PRODUCT_LIST_FROM_SV = 'GET_PRODUCT_LIST_FROM_SV';
-
+const ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT';
 // get product list
 const getProductList = (res) => {
   return {
@@ -22,11 +21,32 @@ const getProductListFromSV = () => {
   }
 }
 
+// add new product to store
+const addNewProduct = (res) => {
+  return {
+    type: ADD_NEW_PRODUCT,
+    payload: res
+  }
+}
+
+// create new product
+const createNewProduct = (data) => {
+  return dispatch => {
+    axios.post(endPoints.CREATE_PRODUCT_BY_ADMIN, data)
+    .then(() => {
+      dispatch(addNewProduct(data))
+    })
+    .catch(err => alert('Mã Sản Phẩm Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!')); 
+  }
+}
+
 const actions = {
   GET_PRODUCT_LIST,
-  GET_PRODUCT_LIST_FROM_SV,
+  ADD_NEW_PRODUCT,
   getProductList,
-  getProductListFromSV
+  getProductListFromSV,
+  addNewProduct,
+  createNewProduct
 }
 
 export default actions;

@@ -4,6 +4,8 @@ import Iimg from '../../../components/UI/LoadingImage/Limg';
 import Input from '../../../components/UI/Input/Input';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { formatCurrency } from '../../../utilities/fnUtil';
+
 class Cart extends React.Component {
   state = {
     HTMLOrderModel: [],
@@ -62,9 +64,9 @@ class Cart extends React.Component {
                       <button type="button" className="btn btn-danger"><i className="fa fa-times-circle"></i></button>
                     </span></div></td>
                   <td className="text-right">{order.productOrder.discount} %</td>
-                  <td className="text-right">{order.productOrder.unitPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                  <td className="text-right">{formatCurrency(order.productOrder.unitPrice)} VND</td>
 
-                  <td className="text-right">{(order.productOrder.unitPrice * order.productOrder.quantity).toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                  <td className="text-right">{formatCurrency((order.productOrder.unitPrice * order.productOrder.quantity))} VND</td>
                 </tr>
               </tbody>
 
@@ -141,7 +143,7 @@ class Cart extends React.Component {
                     <tbody>
                       <tr>
                         <td className="text-right"><strong>Tổng tiền:</strong></td>
-                        <td className="text-right">{tempTotalPrice.toLocaleString('vi-VN', { currency: 'VND' })} VND</td>
+                        <td className="text-right">{formatCurrency(tempTotalPrice)} VND</td>
                       </tr>
                     </tbody></table>
                 </div>
