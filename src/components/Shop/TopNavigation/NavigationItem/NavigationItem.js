@@ -42,8 +42,8 @@ const navigationItem = (props) => {
           subNavList.map((subNav, index) => {
             return (
               <li key={index}>
-                {/* <a href="index9328.html?route=common/home">{subNav.subName}</a> */}
-                <Link onClick={hideSearchField} to={{ pathname: `/category/${props.parentNav}/${subNav.id}` }}>{subNav.subName}</Link>
+              {subNav.id === 'blogs' ?  <Link onClick={hideSearchField} to="/blogs">Blogs</Link> 
+              :<Link onClick={hideSearchField} to={{ pathname: `/category/${props.parentNav}/${subNav.id}` }}>{subNav.subName}</Link> }
               </li>
             );
           })
@@ -51,6 +51,15 @@ const navigationItem = (props) => {
       </>
     );
   }
+
+  //  if(subNavList.id === 'blogs'){
+  //   return (
+  //     <li >
+  //     {/* <a href="index9328.html?route=common/home">{subNav.subName}</a> */}
+  //     <Link onClick={hideSearchField} to="/blogss">Blogs</Link>
+  //   </li>
+  //   );
+  // }
 
 
   if (props.type === 'dropdown') {
@@ -74,9 +83,8 @@ const navigationItem = (props) => {
   else {
     return (
       <li className={li.join(' ')}>
-        {/* <a href="/">{props.children}</a> */}
-        <Link to={{ pathname: `/${props.parentNav}` }}> {props.children}
-
+        <Link to={{ pathname: `/${props.parentNav}` }}>
+          {props.children}
         </Link>
 
       </li>);
