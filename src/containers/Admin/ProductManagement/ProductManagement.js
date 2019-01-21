@@ -1,11 +1,15 @@
 import React from "react";
-import { Button, Table, Divider, Tag, Switch } from "antd";
+import { Button, Table, Divider, Popconfirm } from "antd";
 import Modal from "../../../components/UI/Modal/Modal";
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
-import { formatDate, formatCurrency, initGalleryZoom, getDataForm, convertToDataForm, cloneData } from '../../../utilities/fnUtil';
-import { createNewProductFormModel } from '../../../models/formModel';
-import { productTable } from '../../../models/tableModel';
+import {
+  getDataForm,
+  convertToDataForm,
+  cloneData
+} from "../../../utilities/fnUtil";
+import { ProductFormModel } from "../../../models/formModel";
+import { productTable } from "../../../models/tableModel";
 
 class ProductManagement extends React.Component {
   state = {
@@ -27,8 +31,8 @@ class ProductManagement extends React.Component {
           editModal: { ...this.state.editModal, ...{ show: false } }
         })
     },
-    createProductForm: cloneData(createNewProductFormModel),
-    editProductForm: cloneData(createNewProductFormModel)
+    createProductForm: cloneData(ProductFormModel),
+    editProductForm: cloneData(ProductFormModel)
   };
 
   constructor(props) {
@@ -37,17 +41,18 @@ class ProductManagement extends React.Component {
     props.getListProduct();
   }
 
-  
-
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
         const product = getDataForm(this.state.createProductForm);
         this.props.createNewProduct(product);
-        this.setState({
-          createModal: {...this.state.createModal, ...{show: false}},
-          createProductForm: cloneData(createNewProductFormModel)
-        },() => document.getElementById('createProductForm').reset() )
+        this.setState(
+          {
+            createModal: { ...this.state.createModal, ...{ show: false } },
+            createProductForm: cloneData(ProductFormModel)
+          },
+          () => document.getElementById("createProductForm").reset()
+        );
       }
     });
   };
@@ -55,167 +60,48 @@ class ProductManagement extends React.Component {
   setStateEditForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
-        console.log('EDITED');
-        // const product = getDataForm(this.state.createProductForm);
-        // this.props.createNewProduct(product);
-        // this.setState({
-        //   createModal: {...this.state.createModal, ...{show: false}},
-        //   createProductForm: this.state.originCreateProductForm
-        // },() => document.getElementById('createProductForm').reset() )
+        const product = getDataForm(this.state.editProductForm);
+        this.props.updateProductById(product._id, product);
+        this.setState({
+          editModal: { ...this.state.editModal, ...{ show: false } }
+        });
       }
     });
   };
 
-  setDataEditForm = (data) => {
-    const newDataForm = convertToDataForm(data, cloneData(this.state.editProductForm));
+  setDataEditForm = data => {
+    const newDataForm = convertToDataForm(
+      data,
+      cloneData(this.state.editProductForm)
+    );
     this.setState({
       editModal: { ...this.state.editModal, ...{ show: true } },
       editProductForm: newDataForm
-    })
-  }
+    });
+  };
   render() {
-    const columns = [
-      {
-        title: "Mã",
-        dataIndex: "_id",
-        key: "_id",
-        fixed: "left"
-      },
-      {
-        title: "Tên",
-        dataIndex: "productName",
-        key: "productName",
-        fixed: "left"
-      },
-      {
-        title: "Hình Ảnh",
-        key: "images",
-        dataIndex: "images",
-        render: (images, record) => (
-          <div className={"gallery_zoom_admin" + record._id} onLoad={initGalleryZoom(".gallery_zoom_admin" + record._id)}>
-            {
-              images.map((img, index) => (
-              <a href={img} key={index} style={{width: "50px", height: "50px", display: "inline-block", marginRight: "5px"}}>
-              <img src={img} alt="Error" width="50" height="50" style={{pointerEvents: "none"}}/>
-              </a>
-              ))}
-          </div>
-        )
-      },
-      {
-        title: "Giá",
-        dataIndex: "price",
-        key: "price",
-        render: item => formatCurrency(item)
-      },
-      {
-        title: "Giảm Giá (%)",
-        dataIndex: "discount",
-        key: "discount"
-      },
-      {
-        title: "Kiểu",
-        key: "type",
-        dataIndex: "type",
-        render: items => (
-          <span>
-            {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-        </span>
-        )
-      },
-      {
-        title: "Hình Thức",
-        key: "form",
-        dataIndex: "form",
-        render: items => (
-          <span>
-            {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-        </span>
-        )
-      },
-      {
-        title: "Màu Sắc",
-        key: "color",
-        dataIndex: "color",
-        render: items => (
-          <span>
-            {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-        </span>
-        )
-      },
-      {
-        title: "Sự Kiện",
-        key: "event",
-        dataIndex: "event",
-        render: items => (
-          <span>
-            {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-        </span>
-        )
-      },
-      {
-        title: "Ngày Lễ",
-        key: "holiday",
-        dataIndex: "holiday",
-        render: items => (
-          <span>
-            {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-        </span>
-        )
-      },
-      {
-        title: "Hàng Sale",
-        key: "sale",
-        dataIndex: "sale",
-        render: item => (
-          <Switch size="small" checked={item} disabled/>
-        )
-      },
-      {
-        title: "Hàng Mới",
-        key: "new",
-        dataIndex: "new",
-        render: item => (
-          <Switch size="small" checked={item} disabled/>
-        )
-      },
-      {
-        title: "Hàng Hot",
-        key: "hot",
-        dataIndex: "hot",
-        render: item => (
-          <Switch size="small" checked={item} disabled/>
-        )
-      },
-      {
-        title: "Mô Tả",
-        key: "description",
-        dataIndex: "description",
-      },
-      {
-        title: "Ngày Tạo",
-        key: "createdAt",
-        dataIndex: "createdAt",
-        render: item => formatDate(item)
-      },
-      {
-        title: "Ngày Chỉnh Sửa",
-        key: "updatedAt",
-        dataIndex: "updatedAt",
-        render: item => formatDate(item)
-      },
-      {
-        title: "Action",
-        key: "action",
-        render: (record) => (
-          <>
-            <Button type="primary" onClick={() => this.setDataEditForm(record)}>Sửa</Button>
-            <Divider type="vertical" />
+    const dataColumns = productTable.slice();
+    dataColumns.push({
+      title: "Action",
+      key: "action",
+      render: record => (
+        <>
+          <Button type="primary" onClick={() => this.setDataEditForm(record)}>
+            Sửa
+          </Button>
+          <Divider type="vertical" />
+          <Popconfirm
+            title="Bạn có chắc chắn muốn xóa?"
+            onConfirm={() => this.props.deleteProductById(record._id)}
+            okText="Đồng Ý"
+            cancelText="Hủy"
+          >
             <Button type="danger">Xóa</Button>
-          </>
-        )
-      }
-    ];
+          </Popconfirm>
+        </>
+      )
+    });
+    const columns = dataColumns;
 
     let data = !this.props.productStore.productList.length
       ? []
@@ -235,7 +121,7 @@ class ProductManagement extends React.Component {
             new: item.new,
             hot: item.hot,
             sale: item.sale,
-            description: item.description.join(','),
+            description: item.description,
             createdAt: item.createdAt,
             updatedAt: item.updatedAt
           };
@@ -272,7 +158,9 @@ class ProductManagement extends React.Component {
           onCancel={this.state.createModal.handleCancel}
           maskClosable={false}
           footer={[
-            <Button key="back" onClick={this.state.createModal.handleCancel}>Hủy</Button>
+            <Button key="back" onClick={this.state.createModal.handleCancel}>
+              Hủy
+            </Button>
           ]}
         />
 
@@ -284,14 +172,17 @@ class ProductManagement extends React.Component {
           idForm="editProductForm"
           nameForm="editProductForm"
           btnName="Lưu"
-          // setStateForm={this.setStateEditForm}
+          setStateForm={this.setStateEditForm}
           originalForm={this.state.editProductForm}
           cancelText="Hủy"
           visible={this.state.editModal.show}
           onCancel={this.state.editModal.handleCancel}
+          editForm={true}
           maskClosable={false}
           footer={[
-            <Button key="back" onClick={this.state.editModal.handleCancel}>Hủy</Button>
+            <Button key="back" onClick={this.state.editModal.handleCancel}>
+              Hủy
+            </Button>
           ]}
         />
         {/* End Modals */}
@@ -310,8 +201,12 @@ const mapDispatchToProps = dispatch => {
   return {
     getListProduct: () =>
       dispatch(Actions.productActions.getProductListFromSV()),
-    createNewProduct: (data) =>
-      dispatch(Actions.productActions.createNewProduct(data))
+    createNewProduct: data =>
+      dispatch(Actions.productActions.createNewProduct(data)),
+    updateProductById: (id, data) =>
+      dispatch(Actions.productActions.updateProductToSV(id, data)),
+    deleteProductById: id =>
+      dispatch(Actions.productActions.deleteProductToSV(id))
   };
 };
 
