@@ -82,40 +82,43 @@ class Cart extends React.Component {
     // );
 
     let listOder = null;
+    let tempTotalPrice = this.state.totalPrice;
     listOder = (
+     
       <>
         {
            !window.jQuery.isEmptyObject(this.state.HTMLOrderModel) ?
           this.state.HTMLOrderModel.map((order,index) => {
+            tempTotalPrice += (( order.price - (order.price * order.discount/100)) * JSON.parse(order.quantity))
             return (
 
               <tbody key={index}>
                 <tr>
                   <td className="text-center">
-                    <Link to={`/productDetail/${order._id}`}><Iimg src={order.images[0].replace(`${order._id}-813x1000.jpg`, `${order._id}-70x86.jpg`)} alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
+                    <Link to={`/productDetail/${order._id}`}><Iimg src={order.images[0].replace(`${order._id}-813x1000.jpg`, `${order._id}-70x86.jpg`)} alt={order.productName} title={order.productName} className="img-thumbnail" />
                     </Link>
                   </td>
-                  <td className="text-left"><Link to={`/productDetail/`}>{order.productName}</Link><br />
+                  <td className="text-left"><Link to={`/productDetail/${order._id}`}>{order.productName}</Link><br />
                     <small>Ngày giao hàng: </small><br />
                     <small>Điểm nhận: 300</small>
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <input type="text" name="quantity[5]" defaultValue="" size="1" className="form-control" style={{
+                    <input type="text" name="quantity[5]" defaultValue={JSON.parse(order.quantity)} size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
                       width: '40px'
                     }}></input>
                     {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
                     <span className="input-group-btn">
-                      <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button>
+                      {/* <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button> */}
                       <button type="button" className="btn btn-danger"><i className="fa fa-times-circle"></i></button>
                     </span></div></td>
                   
                   <td className="text-right">{formatCurrency(order.price)} VND</td>
                   <td className="text-right">{order.discount} %</td>
                   <td className="text-right">{formatCurrency(( order.price - (order.price * order.discount/100)))} VND</td>
-                  <td className="text-right"> VND</td>
+                  <td className="text-right">{formatCurrency(( order.price - (order.price * order.discount/100)) * JSON.parse(order.quantity))} VND</td>
                 </tr>
               </tbody>
 
@@ -192,7 +195,7 @@ class Cart extends React.Component {
                     <tbody>
                       <tr>
                         <td className="text-right"><strong>Tổng tiền:</strong></td>
-                        <td className="text-right">VND</td>
+                        <td className="text-right">{formatCurrency(tempTotalPrice)} VND</td>
                       </tr>
                     </tbody></table>
                 </div>

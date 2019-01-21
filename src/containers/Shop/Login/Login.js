@@ -11,7 +11,8 @@ class Login extends React.Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Số điện thoại'
+                    placeholder: 'Số điện thoại',
+                    name: 'Số Điện Thoại'
                 },
                 value: '',
                 validation: {
@@ -27,7 +28,8 @@ class Login extends React.Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Mật khẩu'
+                    placeholder: 'Mật khẩu',
+                    name: 'Mật Khẩu'
                 },
                 value: '',
                 validation: {

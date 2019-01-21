@@ -64,7 +64,7 @@ export const headerContent = {
                     { id: 'peony', subName: 'Hoa mẫu đơn' },
                     { id: 'lavender', subName: 'Hoa oải hương' },
                     { id: 'tulip', subName: 'Hoa tu líp' },
-                    { id: 'cymbidium ', subName: 'Hoa địa lan' },
+                    { id: 'cymbidium', subName: 'Hoa địa lan' },
                     { id: 'azalea', subName: 'Hoa đỗ quyên' },
                     { id: 'import-flower', subName: 'Hoa nhập khẩu' },
                     { id: 'other', subName: 'khác' },

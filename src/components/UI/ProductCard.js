@@ -4,6 +4,7 @@ const productCard = (props) => {
 
 
   return (
+    <div className="slider-item">
     <div className="product-block product-thumb transition">
       <div className="product-block-inner">
         <div className="image">
@@ -34,25 +35,13 @@ const productCard = (props) => {
               <button type="button" className="btn btn-primary addtocart" >
                 <i className="fa fa-shopping-basket"></i>
                 Add to Cart
-                                </button>
-              <button className="btn btn-primary wishlist" type="button" >
-                <i className="fa fa-heart"></i>
-                Add to Wish List
-                                </button>
-              <button className="btn btn-primary compare" type="button" >
-                <i className="fa fa-clone"></i>
-                Add to Compare
-                                </button>
-              <div className="quickview">
-                <a className="btn btn-primary" href="index7f5a.html?route=product/quick_view&amp;product_id=47">
-                  <i className="fa fa-eye"></i>
-
-                </a>
-              </div>
+              </button>
             </div>
           </div>
         </div>
+        <span className="related_default_width" style={{ display: 'none', visibility: "hidden" }}></span>
       </div>
+    </div>
     </div>
   );
 }

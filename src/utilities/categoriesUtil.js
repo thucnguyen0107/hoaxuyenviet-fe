@@ -39,3 +39,30 @@ export const convertFilters = (catParent) => {
   let arrFilters = arrayCategories.filter((item) => catParent !== item.id);
   return arrFilters;
 }
+
+// export const convertArr = () => {
+//   let array = ["rose", "chrysanthemum", "peony"];
+//   let catParent = "type"
+//   // Clone categories array
+//   let arrayCategories = headerContent.categories.slice();
+//  // Find catParentItem
+//  let catParentItem = arrayCategories.find((item) => {
+//   return catParent === item.id
+//   })
+//   let arrayFilters = catParentItem.subCategories.filter((item) => array.includes(item.id) );
+  
+//   return arrayFilters;
+  
+// }
+
+export const convertItemToName = (arr, cat) => {
+  let arrayCategories = headerContent.categories.find(item => cat === item.id);
+  let arrCat = [];
+  arrCat = arr.map(catId => {
+    let item = arrayCategories.subCategories.find(item => item.id === catId);
+    return item;
+  })
+  return arrCat;
+ 
+  
+}

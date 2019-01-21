@@ -9,6 +9,7 @@ class CustomForm extends React.Component {
       clonedForm: cloneData(props.originalForm),
       originalForm: cloneData(props.originalForm)
     };
+    console.log(this.state.clonedForm)
   }
 
   componentWillReceiveProps = nextProps => {
@@ -24,8 +25,8 @@ class CustomForm extends React.Component {
         typeof value === "object"
           ? value.length && isValid
           : typeof value === "boolean" || typeof value === "number"
-          ? value && isValid
-          : value.trim() !== "" && isValid;
+            ? value && isValid
+            : value.trim() !== "" && isValid;
     }
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
@@ -44,7 +45,8 @@ class CustomForm extends React.Component {
     }
 
     if (rules.numberValid) {
-      isValid = rules.numberValid.test(value) && isValid;
+      let reg = new RegExp(rules.numberValid)
+      isValid = reg.test(value) && isValid;
     }
 
     return isValid;
