@@ -7002,7 +7002,7 @@ body #content.col-sm-9 .col-sm-6.text-right {
 }
 .productpage h3 {
 	margin-top:0;
-	width: 100%;
+	/* width: 100%; */
 }
 .product-info .zoomContainer{ z-index:9; } /* It need for ie7 */
 .product-info .additional-carousel{ position:relative;}

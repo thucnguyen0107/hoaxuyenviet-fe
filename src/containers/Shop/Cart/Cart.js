@@ -5,6 +5,7 @@ import Input from '../../../components/UI/Input/Input';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { formatCurrency } from '../../../utilities/fnUtil';
+import classes from './Cart.scss'
 
 class Cart extends React.Component {
   state = {
@@ -95,7 +96,7 @@ class Cart extends React.Component {
               <tbody key={index}>
                 <tr>
                   <td className="text-center">
-                    <Link to={`/productDetail/${order._id}`}><Iimg src={order.images[0].replace(`${order._id}-813x1000.jpg`, `${order._id}-70x86.jpg`)} alt={order.productName} title={order.productName} className="img-thumbnail" />
+                    <Link to={`/productDetail/${order._id}`}><Iimg className={classes.imageSmall}  src={order.images[0]} alt={order.productName} title={order.productName} />
                     </Link>
                   </td>
                   <td className="text-left"><Link to={`/productDetail/${order._id}`}>{order.productName}</Link><br />

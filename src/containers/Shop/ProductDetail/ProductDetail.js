@@ -95,25 +95,22 @@ class ProductDetail extends React.Component {
       product: {},
     }
     this.styleSale = {
-      fontSize: '12px',
       background: '#ffc107',
       padding: '0 5px',
       letterSpacing: '1px',
       textAlign: 'center',
-      display: 'inline-block',
       verticalAlign: 'middle',
       fontWeight: '700',
       textTransform: 'uppercase',
       color: '#fff',
-      marginTop: '20px'
+      marginTop: '20px',
+      marginLeft: '20px'
     }
     this.styleHot = {
-      fontSize: '12px',
       background: '#ff6e07',
       padding: '0 5px',
       letterSpacing: '1px',
       textAlign: 'center',
-      display: 'inline-block',
       verticalAlign: 'middle',
       fontWeight: '700',
       textTransform: 'uppercase',
@@ -121,12 +118,10 @@ class ProductDetail extends React.Component {
       marginLeft: '20px'
     }
     this.styleNew = {
-      fontSize: '12px',
       background: '#07ff31',
       padding: '0 5px',
       letterSpacing: '1px',
       textAlign: 'center',
-      display: 'inline-block',
       verticalAlign: 'middle',
       fontWeight: '700',
       textTransform: 'uppercase',
@@ -308,6 +303,9 @@ class ProductDetail extends React.Component {
                   </div>
                   <div className="col-sm-4 product-right">
                     <h3 className="product-title">{this.state.product.productName}</h3>
+                    {this.state.product.hot === true ? <span className="saleicon hot" style={this.styleHot}>Hot</span> : null}
+                      {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
+                      {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
                     <ul className="list-unstyled" style={{ borderTop: 'none' }}>
                       <li className={classes.Category}><span className="desc">Loại hoa: {!window.jQuery.isEmptyObject(this.state.product) ? convertItemToName(this.state.product.type, 'type').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>) : null}</span></li>
                       <li className={classes.Category}><span className="desc">Hình thức: {!window.jQuery.isEmptyObject(this.state.product) ? convertItemToName(this.state.product.form, 'form').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>) : null}</span></li>
@@ -322,9 +320,7 @@ class ProductDetail extends React.Component {
                       {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
 
                       {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{formatCurrency(this.state.product.price)} VND</span> : <span></span>}
-                      {this.state.product.hot === true ? <span className="saleicon hot" style={this.styleHot}>Hot</span> : null}
-                      {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
-                      {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
+                     
 
                     </ul>
                     <div id="product">
