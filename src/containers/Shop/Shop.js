@@ -25,12 +25,12 @@ class Shop extends React.Component {
         <Switch>
           <Route path="/home" exact component={Home} />
           <Route path="/category/:first/:second" exact component={Category} />
-          <Route path="/product/:product_id" exact component={ProductDetail} />
+          <Route path="/productDetail/:product_id" exact component={ProductDetail} />
           <Route path="/search" exact component={Search} />
           <Route path="/cart" exact component={Cart} />
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/blogs" exact component={Blogs} />
-          <Route path="/blog/:blog_id" exact component={BlogDetail} />
+          <Route path="/blogDetail/:blog_id" exact component={BlogDetail} />
           <Route path="/account" exact component={Account} />
           <Route path="/register" exact component={Register} />
           <Route path="/forgotpassword" exact component={ForGotPassWord} />

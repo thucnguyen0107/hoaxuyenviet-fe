@@ -46,24 +46,6 @@ class Blogs extends React.Component {
     loadingScreen.hideLoading();
   }
 
-  // searchBlogsByName = () => {
-  //   let input, filter, blogItem, blogTitles;
-
-  //   blogTitles = [...this.state.HTMLBlogModel];
-
-  //   input = document.getElementById("input-search");
-  //   filter = input.value.toUpperCase();
-
-  //   blogItem = document.getElementsByClassName("blog_item");
-
-  //   for (let i = 0; i < blogTitles.length; i++) {
-  //     if (blogTitles[i].title.toUpperCase().includes(filter)) {
-  //       blogItem[i].style.display = "block";
-  //     } else {
-  //       blogItem[i].style.display = "none";
-  //     }
-  //   }
-  // }
 
   filterProductFn = (params) => {
     let filteredHTMLBlogModel = filterUtils.filterArrFn(this.state.HTMLBlogModel, params);
@@ -73,6 +55,11 @@ class Blogs extends React.Component {
 
   }
   render() {
+    let styleCenter;
+    styleCenter = {
+      margin: '40px auto 0',
+      width:'70%',
+    }
 
     let listBlog = null;
     listBlog = (
@@ -86,7 +73,7 @@ class Blogs extends React.Component {
                     <div className="blog_stats">
                       <div className="date-time hl">{blog.addedDate}</div>
                     </div>
-                    <h2 className="blog_title"><Link to={"/blog/" + blog._id} >{blog.title}</Link></h2>
+                    <h2 className="blog_title"><Link to={"/blogDetail/" + blog._id} >{blog.title}</Link></h2>
 
                     <div className="image">
                       <Iimg src={blog.images[0]} alt="Blogs" title="Blogs" className="img-thumbnail" />
@@ -94,13 +81,13 @@ class Blogs extends React.Component {
                         <Link className="icon zoom" title="Click to view Full Image " to={blog.images[0]} data-lightbox="example-set">
                           <i className="fa fa-plus"></i>
                         </Link>
-                        <Link className="icon dots" title="Read More" to={"/blog/" + blog._id}><i className="fa fa-ellipsis-h"></i> </Link>
+                        <Link className="icon dots" title="Read More" to={"/blogDetail/" + blog._id}><i className="fa fa-ellipsis-h"></i> </Link>
                       </p>
                     </div>
                   </div>
                   <div className="blog-right-content">
                     <p>{blog.content}</p>
-                    <Link className="read-more-link" to={"/blog/" + blog._id}>Đọc tiếp</Link>
+                    <Link className="read-more-link" to={"/blogDetail/" + blog._id}>Đọc tiếp</Link>
                   </div>
                 </div>
               </div>
@@ -121,19 +108,19 @@ class Blogs extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>Blog</h2>
+                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>Blogs</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
-                <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Blog</a></li>
+                <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Blogs</a></li>
               </ul>
             </div>
           </div>
         </div>
         <div className="container information-blogger-blogs">
           <div className="row">
-            <div className="">
+            <div className={classes.align_center}>
               <input type="text" name="search" defaultValue="" placeholder="Tìm kiếm bài viết" id="input-search" className="form-control" onChange={event => this.filterProductFn({ title: event.target.value })} />
             </div>
-            <div id="content" className="col-sm-12 col-md-8">
+            <div id="content"  style={styleCenter}>
               <div className="blog all-blogs">
                 <div className="blog_grid_holder">
                   <div className="row">

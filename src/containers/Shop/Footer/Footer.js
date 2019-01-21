@@ -9,7 +9,6 @@ class Footer extends React.Component {
 
   componentWillMount() {
     axios.get('/datatest/Social.json').then((res) => {
-      console.log(res);
       this.setState({ HTMLSocialModel: res })
     }).catch((err) => {
       console.error(err);

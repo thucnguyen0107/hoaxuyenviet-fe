@@ -5,6 +5,8 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/UI/LoadingImage/Limg';
+import { formatCurrency } from '../../../utilities/fnUtil';
+import {Link} from 'react-router-dom';
 class ProductDetail extends React.Component {
 
   createZoom = () => {
@@ -191,6 +193,20 @@ class ProductDetail extends React.Component {
     window.$('.zoomContainer').remove();
 
   }
+
+  SaveDataToLocalStorage = () => {
+    let data;
+    data = this.state.product
+    // create array in local storage
+    let arrProductListLocalStorage = [];
+    // Parse the serialized data back into an aray of objects
+     arrProductListLocalStorage = JSON.parse(localStorage.getItem('list')) || [];
+     // Push the new data (whether it be an object or anything else) onto the array
+     arrProductListLocalStorage.push(data)
+    // Re-serialize the array back into a string and store it in localStorage
+    localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
+  }
+
   render() {
 
     let listProductCardHTML = [];
@@ -308,12 +324,12 @@ class ProductDetail extends React.Component {
                     </ul>
                     <ul className="list-unstyled price">
                       <li>
-                        <h2>{(this.state.product.price - (this.state.product.discount * this.state.product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</h2>
+                        <h2>{formatCurrency((this.state.product.price - (this.state.product.discount * this.state.product.price / 100)))} VND</h2>
                       </li>
                       {this.state.product.discount > 0 ? <span style={{ fontSize: '18px' }}>Giảm</span> : null}
                       {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
 
-                      {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{this.state.product.price.toLocaleString('vi-VN', { currency: 'VND' })} VND</span> : <span></span>}
+                      {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{formatCurrency(this.state.product.price)} VND</span> : <span></span>}
                       {this.state.product.hot === true ? <span className="saleicon hot" style={this.styleHot}>Hot</span> : null}
                       {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
                       {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
@@ -326,7 +342,7 @@ class ProductDetail extends React.Component {
                       <div className="form-group cart">
                         <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
                         <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
-                        <button type="button" id="button-cart" data-loading-text="Loading..." className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
+                        <button type="button" id="button-cart" data-loading-text="Loading..." onClick={this.SaveDataToLocalStorage} className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
 
                         <div className="btn-group">
                           <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>
@@ -490,24 +506,24 @@ class ProductDetail extends React.Component {
                                       <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
                                     </div>
                                     <div className="button-group">
-                                      <button type="button" className="btn btn-primary addtocart" >
+                                      <Link to="/cart" className="btn btn-primary addtocart" >
                                         <i className="fa fa-shopping-basket"></i>
                                         Add to Cart
-																</button>
-                                      <button className="btn btn-primary wishlist" type="button" >
+																      </Link>
+                                      {/* <button className="btn btn-primary wishlist" type="button" >
                                         <i className="fa fa-heart"></i>
                                         Add to Wish List
 																</button>
                                       <button className="btn btn-primary compare" type="button">
                                         <i className="fa fa-clone"></i>
                                         Add to Compare
-																</button>
-                                      <div className="quickview">
+																</button> */}
+                                      {/* <div className="quickview">
                                         <a href="/" className="btn btn-primary">
                                           <i className="fa fa-eye"></i>
 
                                         </a>
-                                      </div>
+                                      </div> */}
                                     </div>
                                   </div>
                                 </div>

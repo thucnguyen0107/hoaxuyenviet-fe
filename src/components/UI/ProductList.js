@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { formatCurrency } from '../../utilities/fnUtil';
 
 const productList = (props) => {
 
@@ -16,7 +16,7 @@ const productList = (props) => {
               <div className="product-block product-thumb transition">
                 <div className="product-block-inner">
                   <div className="image">
-                    <Link to={'/product/' + product._id}>
+                    <Link to={'/productDetail/' + product._id}>
                       <img src={(product.images)} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
                         className="img-responsive reg-image" />
                       <img className="img-responsive hover-image" src={product.images}
@@ -28,10 +28,10 @@ const productList = (props) => {
                   </div>
                   <div className="caption">
                     <div className="product-deacription-wrapper">
-                      <h4><Link to={'/product/' + product._id}>{product.productName} </Link></h4>
+                      <h4><Link to={'/productDetail/' + product._id}>{product.productName} </Link></h4>
                       <span className="price">
-                        <span className="price-new">{(product.price - (product.discount * product.price / 100)).toLocaleString('vi-VN', { currency: 'VND' })} VND</span>
-                        {product.discount > 0 ? <span className="price-old">{product.price.toLocaleString('vi-VN', { currency: 'VND' })}</span> : <span className="price-old"></span>}
+                        <span className="price-new">{formatCurrency((product.price - (product.discount * product.price / 100)))} VND</span>
+                        {product.discount > 0 ? <span className="price-old">{formatCurrency(product.price)}</span> : <span className="price-old"></span>}
                         <div className="saleback">
                           {product.hot === true ? <span className="saleicon hot">Hot</span> : null}
                           {product.new === true ? <span className="saleicon new">New</span> : null}
@@ -49,10 +49,10 @@ const productList = (props) => {
                         resolution. Designed specifically htmlFor the creative professional, this display provides more
                         space htmlFor easier access to all the tools and...</p> */}
                       <div className="button-group">
-                        <button type="button" className="btn btn-primary addtocart" >
+                        <Link to="/cart" className="btn btn-primary addtocart" >
                           <i className="fa fa-shopping-basket"></i>
                           Add to Cart
-                        </button>
+                        </Link>
                         {/* <button className="btn btn-primary wishlist" type="button" >
                           <i className="fa fa-heart"></i>
                           Add to Wish List
