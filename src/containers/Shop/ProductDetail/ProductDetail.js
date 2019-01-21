@@ -152,24 +152,25 @@ class ProductDetail extends React.Component {
   componentWillMount() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_BY_ID + this.props.match.params.product_id).then((res) => {
-      console.log(res);
       this.setState({
         product: res,
-      }, loadingScreen.hideLoading())
+      })
     }).catch((err) => {
       loadingScreen.hideLoading();
-      console.error(err);
+      this.props.history.replace('/pageNotFound');
     })
 
   }
   componentDidUpdate() {
-    this.init();
-    window.productCarouselAutoSet();
+    if(!window.jQuery.isEmptyObject(this.state.product)) {
+      window.productCarouselAutoSet();
+      this.init();
+    }
   }
 
-  componentDidMount() {
-    this.init();
-  }
+  // componentDidMount() {
+  //   this.init();
+  // }
 
   componentWillUnmount() {
     window.$('.zoomContainer').remove()
@@ -209,8 +210,8 @@ class ProductDetail extends React.Component {
 
 
   render() {
-
-    let listProductCardHTML = [];
+    if(!window.jQuery.isEmptyObject(this.state.product)) {
+      let listProductCardHTML = [];
 
     listProductCardHTML = (
       <>
@@ -231,8 +232,6 @@ class ProductDetail extends React.Component {
     let listAdditionalProductHTML = [];
 
     listAdditionalProductHTML = (
-      <>
-        {!window.jQuery.isEmptyObject(this.state.product) ?
           this.state.product.images.map((img, index) => {
             return (
               <div className="slider-item" key={index}>
@@ -245,13 +244,9 @@ class ProductDetail extends React.Component {
                 </div>
               </div>
             )
-          }) : null
-        }
-      </>
+          })
     );
-
-
-
+    loadingScreen.hideLoading();
     return (
       <>
         <div id="breadcrumb">
@@ -277,8 +272,8 @@ class ProductDetail extends React.Component {
 
                         {/* <!-- Cloud-Zoom Image Effect Start --> */}
                         <div className="image">
-                          <a className="thumbnail" href={this.state.product.images ? this.state.product.images[0] : null} title="MacBook" >
-                            <Iimg id="tmzoom" src={this.state.product.images ? this.state.product.images[0] : null} data-zoom-image={this.state.product.images ? this.state.product.images[0] : null}
+                          <a className="thumbnail" href={ this.state.product.images[0]} title="MacBook" >
+                            <Iimg id="tmzoom" src={this.state.product.images[0]} data-zoom-image={this.state.product.images[0]}
                               onLoad={() => this.createZoom()}
                               title="MacBook" alt="MacBook" />
                           </a>
@@ -307,9 +302,9 @@ class ProductDetail extends React.Component {
                       {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
                       {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
                     <ul className="list-unstyled" style={{ borderTop: 'none' }}>
-                      <li className={classes.Category}><span className="desc">Loại hoa: {!window.jQuery.isEmptyObject(this.state.product) ? convertItemToName(this.state.product.type, 'type').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>) : null}</span></li>
-                      <li className={classes.Category}><span className="desc">Hình thức: {!window.jQuery.isEmptyObject(this.state.product) ? convertItemToName(this.state.product.form, 'form').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>) : null}</span></li>
-                      <li className={classes.Category}><span className="desc">Màu sắc: {!window.jQuery.isEmptyObject(this.state.product) ? convertItemToName(this.state.product.color, 'color').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>) : null}</span> </li>
+                      <li className={classes.Category}><span className="desc">Loại hoa: {convertItemToName(this.state.product.type, 'type').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>)}</span></li>
+                      <li className={classes.Category}><span className="desc">Hình thức: {convertItemToName(this.state.product.form, 'form').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>)}</span></li>
+                      <li className={classes.Category}><span className="desc">Màu sắc: {convertItemToName(this.state.product.color, 'color').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>)}</span> </li>
 
                     </ul>
                     <ul className="list-unstyled price">
@@ -383,7 +378,14 @@ class ProductDetail extends React.Component {
 
       </>
     );
+  } else {
+    // loadingScreen.showLoading();
+      return (
+      null
+    )
   }
+  }
+    
 }
 
 export default ProductDetail;

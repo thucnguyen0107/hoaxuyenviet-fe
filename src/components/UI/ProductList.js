@@ -20,7 +20,7 @@ const productList = (props) => {
                     <Link to={'/productDetail/' + product._id}>
                       <Limg src={(product.images[0])} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
                         className="img-responsive reg-image" />
-                      <Limg className="img-responsive hover-image" src={product.images[1]}
+                      <img className="img-responsive hover-image" src={product.images[1]}
                         title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;" />
                     </Link>
                     <div className="extra-info">
