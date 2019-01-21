@@ -32,9 +32,6 @@ function blurSelected() {
 let cartList = [];
 function loadCart(){
   let  arrayProductOrder = JSON.parse(localStorage.getItem('list'));
-  console.log(arrayProductOrder);
-  
-
   cartList = (
     <>
     {
