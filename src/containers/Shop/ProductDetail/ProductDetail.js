@@ -8,7 +8,6 @@ import Iimg from '../../../components/UI/LoadingImage/Limg';
 import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
 import { convertItemToName } from '../../../utilities/categoriesUtil';
 import classes from './ProductDetail.scss'
-import { headerContent } from '../../../data/data';
 import { Tag } from 'antd';
 class ProductDetail extends React.Component {
 
@@ -93,6 +92,7 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       product: {},
+      randomList: {}
     }
     this.styleSale = {
       background: '#ffc107',
@@ -152,8 +152,11 @@ class ProductDetail extends React.Component {
   componentWillMount() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_BY_ID + this.props.match.params.product_id).then((res) => {
-      this.setState({
-        product: res,
+      axios.get(endPoints.GET_RANDOM_LIST + res.type[0]).then((rl) => {
+        this.setState({
+          product: res,
+          randomList: rl
+        })
       })
     }).catch((err) => {
       loadingScreen.hideLoading();
@@ -161,6 +164,28 @@ class ProductDetail extends React.Component {
     })
 
   }
+
+  shouldComponentUpdate(nextProps) {
+    loadingScreen.showLoading();
+    if (this.props.match.params.product_id !== nextProps.match.params.product_id) {
+      axios.get(endPoints.GET_PRODUCT_BY_ID + nextProps.match.params.product_id).then((res) => {
+        axios.get(endPoints.GET_RANDOM_LIST + res.type[0]).then((rl) => {
+          this.setState({
+            product: res,
+            randomList: rl
+          }, () => true)
+        })
+      }).catch((err) => {
+        loadingScreen.hideLoading();
+        this.props.history.replace('/pageNotFound');
+      })
+    }
+    return true;
+  }
+  componentWillUpdate() {
+    loadingScreen.showLoading();
+  }
+
   componentDidUpdate() {
     if (isNotEmpty(this.state.product)) {
       window.productCarouselAutoSet();
@@ -175,39 +200,6 @@ class ProductDetail extends React.Component {
   componentWillUnmount() {
     window.$('.zoomContainer').remove()
   }
-  // hide Search Input when change page
-
-  SaveDataToLocalStorage = () => {
-    let data;
-    let quantity = document.getElementById("input-quantity");
-    data = this.state.product
-    // Add quantity to product data
-    data.quantity = quantity.value;
-    // create array in local storage
-    let arrProductListLocalStorage = [];
-    // Parse the serialized data back into an aray of objects
-    arrProductListLocalStorage = JSON.parse(localStorage.getItem('list')) || [];
-    // Push the new data (whether it be an object or anything else) onto the array
-    arrProductListLocalStorage.push(data)
-    // Re-serialize the array back into a string and store it in localStorage
-    localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
-  }
-
-  convertArr = () => {
-    let array = this.state.product.type;
-    let catParent = "type"
-    // Clone categories array
-    let arrayCategories = headerContent.categories.slice();
-    // Find catParentItem
-    let catParentItem = arrayCategories.find((item) => {
-      return catParent === item.id
-    })
-    let arrayFilters = catParentItem.subCategories.filter((item) => array.includes(item.id));
-
-    return arrayFilters;
-
-  }
-
 
   render() {
     if (isNotEmpty(this.state.product)) {
@@ -216,7 +208,7 @@ class ProductDetail extends React.Component {
       listProductCardHTML = (
         <>
           {
-            arrProductList.map((card, index) => {
+            this.state.randomList.map((card, index) => {
               return (
                 <div className="slider-item" key={index}>
                   <ProductCard cardContent={card}>

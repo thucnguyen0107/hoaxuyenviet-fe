@@ -4,11 +4,12 @@ export const slideShowDelayTime = 5000;
 
 export const visibleItems = 20;
 
-export const baseURL = "https://hoaxuyenviet-be-kr4r35eht.now.sh";
+export const baseURL = "https://hoaxuyenviet-be-n86p7q4ds.now.sh/";
 
 export const endPoints = {
   HTML_CONTENT: `${baseURL}/htmlContent`,
   GET_PRODUCT_LIST: `${baseURL}/productList`,
+  GET_RANDOM_LIST: `${baseURL}/product/randomlist/`,
   GET_PRODUCT_BY_ID: `${baseURL}/product/`,
   CREATE_PRODUCT_BY_ADMIN: `${baseURL}/product`,
   UPDATE_PRODUCT_BY_ADMIN: `${baseURL}/product/`,
