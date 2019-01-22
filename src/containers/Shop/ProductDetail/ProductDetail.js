@@ -152,7 +152,9 @@ class ProductDetail extends React.Component {
   componentWillMount() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_BY_ID + this.props.match.params.product_id).then((res) => {
-      axios.get(endPoints.GET_RANDOM_LIST + res.type[0]).then((rl) => {
+      axios.get(endPoints.GET_RANDOM_LIST + res.type[0], {params: {
+        productId: res._id
+      }}).then((rl) => {
         this.setState({
           product: res,
           randomList: rl
