@@ -57,12 +57,12 @@ export const convertFilters = (catParent) => {
 
 export const convertItemToName = (arr, cat) => {
   let arrayCategories = headerContent.categories.find(item => cat === item.id);
-  let arrCat = [];
-  arrCat = arr.map(catId => {
+  let arrCatName = [];
+  arrCatName = arr.map(catId => {
     let item = arrayCategories.subCategories.find(item => item.id === catId);
-    return item;
+    return item.subName;
   })
-  return arrCat;
+  return arrCatName;
  
   
 }

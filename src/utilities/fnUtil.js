@@ -52,3 +52,10 @@ export const convertToDataForm = (data, form) => {
 export const cloneData = (data) => {
   return JSON.parse(JSON.stringify(data));
 }
+
+export const isNotEmpty = (data) => {
+  if(window.jQuery.isEmptyObject(data) || !data){
+    return false;
+  }
+  return true;
+}

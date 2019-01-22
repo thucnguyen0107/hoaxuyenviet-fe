@@ -5,7 +5,8 @@ import Input from '../../../components/UI/Input/Input';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { formatCurrency } from '../../../utilities/fnUtil';
-import classes from './Cart.scss'
+import classes from './Cart.scss';
+import {isNotEmpty} from '../../../utilities/fnUtil'
 
 class Cart extends React.Component {
   state = {
@@ -88,7 +89,7 @@ class Cart extends React.Component {
      
       <>
         {
-           !window.jQuery.isEmptyObject(this.state.HTMLOrderModel) ?
+           isNotEmpty(this.state.HTMLOrderModel) ?
           this.state.HTMLOrderModel.map((order,index) => {
             tempTotalPrice += (( order.price - (order.price * order.discount/100)) * JSON.parse(order.quantity))
             return (

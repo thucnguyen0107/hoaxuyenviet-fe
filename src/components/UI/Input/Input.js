@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./Input.scss";
 import { initGalleryZoom } from "../../../utilities/fnUtil";
-import { Select, Switch } from "antd";
-
+import { Select, Switch, Radio } from "antd";
+const RadioGroup = Radio.Group;
 const input = props => {
   let inputElement = null;
   const inputClasses = [classes.InputElement, "form-control"];
@@ -126,6 +126,15 @@ const input = props => {
         />
       );
       break;
+
+    case "radioPayment":
+      inputElement = (
+        <RadioGroup onChange={props.changed} value={props.value} required={props.mandatory} style={{ marginLeft: "10px" }}>
+          <Radio value={'VISA'}>VISA</Radio>
+          <Radio value={'COD'}>Giao Hàng Nhận Tiền</Radio>
+        </RadioGroup>
+      );
+      break;
     default:
       inputElement = (
         <input
@@ -144,8 +153,7 @@ const input = props => {
       <div className="form-group required">
         <label
           className={props.mandatory ? "control-label" : ""}
-          style={{ fontWeight: "bold" }}
-        >
+          style={{ fontWeight: "bold" }}>
           {props.label}
         </label>
         {inputElement}

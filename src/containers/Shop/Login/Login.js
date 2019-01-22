@@ -36,7 +36,6 @@ class Login extends React.Component {
                     required: true,
                     minLength: 1,
                     maxLength: 32,
-                    letterValid: /^[a-zA-Z]+$/,
                     errorMessage: "Mật khẩu không đúng. Vui lòng nhập lại!"
                 },
                 valid: true,

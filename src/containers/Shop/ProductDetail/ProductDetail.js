@@ -5,7 +5,7 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Iimg from '../../../components/UI/LoadingImage/Limg';
-import { formatCurrency } from '../../../utilities/fnUtil';
+import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
 import { convertItemToName } from '../../../utilities/categoriesUtil';
 import classes from './ProductDetail.scss'
 import { headerContent } from '../../../data/data';
@@ -162,7 +162,7 @@ class ProductDetail extends React.Component {
 
   }
   componentDidUpdate() {
-    if(!window.jQuery.isEmptyObject(this.state.product)) {
+    if (isNotEmpty(this.state.product)) {
       window.productCarouselAutoSet();
       this.init();
     }
@@ -210,182 +210,182 @@ class ProductDetail extends React.Component {
 
 
   render() {
-    if(!window.jQuery.isEmptyObject(this.state.product)) {
+    if (isNotEmpty(this.state.product)) {
       let listProductCardHTML = [];
 
-    listProductCardHTML = (
-      <>
-        {
-          arrProductList.map((card, index) => {
-            return (
-              <div className="slider-item" key={index}>
-                <ProductCard cardContent={card}>
-                </ProductCard>
-              </div>
-            )
-          })
-        }
-
-      </>
-    );
-
-    let listAdditionalProductHTML = [];
-
-    listAdditionalProductHTML = (
-          this.state.product.images.map((img, index) => {
-            return (
-              <div className="slider-item" key={index}>
-                <div className="product-block">
-                  <a href={img} title={this.state.product.productName} className="elevatezoom-gallery"
-                    data-image={img}
-                    data-zoom-image={img} >
-                    <Iimg src={img} width="74" height="74" title={`${this.state.product.productName}`} alt={`${this.state.product.productName}`} />
-                  </a>
+      listProductCardHTML = (
+        <>
+          {
+            arrProductList.map((card, index) => {
+              return (
+                <div className="slider-item" key={index}>
+                  <ProductCard cardContent={card}>
+                  </ProductCard>
                 </div>
-              </div>
-            )
-          })
-    );
-    loadingScreen.hideLoading();
-    return (
-      <>
-        <div id="breadcrumb">
-          <div className="container">
-            <div className="row">
-              <ul className="breadcrumb">
-                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>{this.state.product.productName}</h2>
-                <li><a href="/"><i className="fa fa-home"></i></a></li>
-                <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{this.state.product.productName}</a></li>
+              )
+            })
+          }
 
-              </ul>
+        </>
+      );
+
+      let listAdditionalProductHTML = [];
+
+      listAdditionalProductHTML = (
+        this.state.product.images.map((img, index) => {
+          return (
+            <div className="slider-item" key={index}>
+              <div className="product-block">
+                <a href={img} title={this.state.product.productName} className="elevatezoom-gallery"
+                  data-image={img}
+                  data-zoom-image={img} >
+                  <Iimg src={img} title={`${this.state.product.productName}`} alt={`${this.state.product.productName}`} />
+                </a>
+              </div>
+            </div>
+          )
+        })
+      );
+      loadingScreen.hideLoading();
+      return (
+        <>
+          <div id="breadcrumb">
+            <div className="container">
+              <div className="row">
+                <ul className="breadcrumb">
+                  <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>{this.state.product.productName}</h2>
+                  <li><a href="/"><i className="fa fa-home"></i></a></li>
+                  <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>{this.state.product.productName}</a></li>
+
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="productpage">
-          <div id="product-product" className="container">
-            <div className="row">
-              <div id="content" className="col-sm-12 productpage">
-                <div className="row">
-                  <div className="col-sm-8 product-left">
-                    <div className="product-info">
-                      <div className="left product-image thumbnails">
+          <div className="productpage">
+            <div id="product-product" className="container">
+              <div className="row">
+                <div id="content" className="col-sm-12 productpage">
+                  <div className="row">
+                    <div className="col-sm-8 product-left">
+                      <div className="product-info">
+                        <div className="left product-image thumbnails">
 
-                        {/* <!-- Cloud-Zoom Image Effect Start --> */}
-                        <div className="image">
-                          <a className="thumbnail" href={ this.state.product.images[0]} title="MacBook" >
-                            <Iimg id="tmzoom" src={this.state.product.images[0]} data-zoom-image={this.state.product.images[0]}
-                              onLoad={() => this.createZoom()}
-                              title="MacBook" alt="MacBook" />
-                          </a>
+                          {/* <!-- Cloud-Zoom Image Effect Start --> */}
+                          <div className="image">
+                            <a className="thumbnail" href={this.state.product.images[0]} title="MacBook" >
+                              <Iimg id="tmzoom" src={this.state.product.images[0]} data-zoom-image={this.state.product.images[0]}
+                                onLoad={() => this.createZoom()}
+                                title="MacBook" alt="MacBook" />
+                            </a>
+                          </div>
+
+                          <div className="additional-carousel">
+                            <div className="customNavigation">
+                              <a className="fa prev fa-angle-left"></a>
+                              <a className="fa next fa-angle-right"></a>
+                            </div>
+
+                            <div id="additional-carousel" className="image-additional product-carousel">
+                              {listAdditionalProductHTML}
+
+                            </div>
+                            <span className="additional_default_width" style={{ display: 'none', visibility: "hidden" }}></span>
+                          </div>
+
+                          {/* <!-- Cloud-Zoom Image Effect End--> */}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-sm-4 product-right">
+                      <h3 className="product-title">{this.state.product.productName}</h3>
+                      {this.state.product.hot === true ? <span className="saleicon hot" style={this.styleHot}>Hot</span> : null}
+                      {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
+                      {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
+                      <ul className="list-unstyled" style={{ borderTop: 'none' }}>
+                        <li className={classes.Category}><span className="desc">Loại hoa: {convertItemToName(this.state.product.type, 'type').map((name, index) => <Tag color="cyan" key={index}>{name}</Tag>)}</span></li>
+                        <li className={classes.Category}><span className="desc">Hình thức: {convertItemToName(this.state.product.form, 'form').map((name, index) => <Tag color="cyan" key={index}>{name}</Tag>)}</span></li>
+                        <li className={classes.Category}><span className="desc">Màu sắc: {convertItemToName(this.state.product.color, 'color').map((name, index) => <Tag color="cyan" key={index}>{name}</Tag>)}</span> </li>
+
+                      </ul>
+                      <ul className="list-unstyled price">
+                        <li>
+                          <h2>{formatCurrency((this.state.product.price - (this.state.product.discount * this.state.product.price / 100)))} VND</h2>
+                        </li>
+                        {this.state.product.discount > 0 ? <span style={{ fontSize: '18px' }}>Giảm</span> : null}
+                        {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
+
+                        {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{formatCurrency(this.state.product.price)} VND</span> : <span></span>}
+
+
+                      </ul>
+                      <div id="product">
+                        <div className="form-group cart">
+                          <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
+                          <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
+                          <button type="button" id="button-cart" data-loading-text="Loading..." onClick={this.SaveDataToLocalStorage} className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
+
+                          <div className="btn-group">
+                            <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>
+                          </div>
                         </div>
 
-                        <div className="additional-carousel">
+                      </div>
+                    </div>
+                    {/* <!-- product page tab code start--> */}
+                    <div className="col-md-12">
+                      <div id="tabs_info" className="product-tab col-sm-12">
+                        <ul className="nav nav-tabs">
+                          <li className="active"><a href="/" data-toggle="tab">Description</a></li>
+                        </ul>
+                        <div className="tab-content">
+                          <div className="tab-pane active" id="tab-description">
+                            <div>
+                              {this.state.product.description}
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="box related">
+                    <div className="box-heading">
+                      <h2 className="products-section-title">Related Products</h2>
+                    </div>
+                    <div className="tabs">
+                      <div className="box-content">
+                        <div id="products-related" className="related-products">
+
                           <div className="customNavigation">
                             <a className="fa prev fa-angle-left"></a>
                             <a className="fa next fa-angle-right"></a>
                           </div>
+                          <div className="box-product product-carousel" id="related-carousel">
 
-                          <div id="additional-carousel" className="image-additional product-carousel">
-                            {listAdditionalProductHTML}
-
+                            {listProductCardHTML}
                           </div>
-                          <span className="additional_default_width" style={{ display: 'none', visibility: "hidden" }}></span>
+
                         </div>
-
-                        {/* <!-- Cloud-Zoom Image Effect End--> */}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-4 product-right">
-                    <h3 className="product-title">{this.state.product.productName}</h3>
-                    {this.state.product.hot === true ? <span className="saleicon hot" style={this.styleHot}>Hot</span> : null}
-                      {this.state.product.new === true ? <span className="saleicon new" style={this.styleNew}>New</span> : null}
-                      {this.state.product.sale === true ? <span className="saleicon sale" style={this.styleSale}>Sale</span> : null}
-                    <ul className="list-unstyled" style={{ borderTop: 'none' }}>
-                      <li className={classes.Category}><span className="desc">Loại hoa: {convertItemToName(this.state.product.type, 'type').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>)}</span></li>
-                      <li className={classes.Category}><span className="desc">Hình thức: {convertItemToName(this.state.product.form, 'form').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>)}</span></li>
-                      <li className={classes.Category}><span className="desc">Màu sắc: {convertItemToName(this.state.product.color, 'color').map((item, index) => <Tag color="cyan" key={index}>{item.subName}</Tag>)}</span> </li>
-
-                    </ul>
-                    <ul className="list-unstyled price">
-                      <li>
-                        <h2>{formatCurrency((this.state.product.price - (this.state.product.discount * this.state.product.price / 100)))} VND</h2>
-                      </li>
-                      {this.state.product.discount > 0 ? <span style={{ fontSize: '18px' }}>Giảm</span> : null}
-                      {this.state.product.discount > 0 ? <span style={this.stylePercentSaving} className="stylePercentSaving">{`${this.state.product.discount}%`}</span> : null}
-
-                      {this.state.product.discount > 0 ? <span style={{ display: 'block', color: '#ffc107', textDecoration: 'line-through', fontSize: '20px' }}>{formatCurrency(this.state.product.price)} VND</span> : <span></span>}
-                     
-
-                    </ul>
-                    <div id="product">
-                      <div className="form-group cart">
-                        <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
-                        <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
-                        <button type="button" id="button-cart" data-loading-text="Loading..." onClick={this.SaveDataToLocalStorage} className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
-
-                        <div className="btn-group">
-                          <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  {/* <!-- product page tab code start--> */}
-                  <div className="col-md-12">
-                    <div id="tabs_info" className="product-tab col-sm-12">
-                      <ul className="nav nav-tabs">
-                        <li className="active"><a href="/" data-toggle="tab">Description</a></li>
-                      </ul>
-                      <div className="tab-content">
-                        <div className="tab-pane active" id="tab-description">
-                          <div>
-                            {this.state.product.description}
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="box related">
-                  <div className="box-heading">
-                    <h2 className="products-section-title">Related Products</h2>
-                  </div>
-                  <div className="tabs">
-                    <div className="box-content">
-                      <div id="products-related" className="related-products">
-
-                        <div className="customNavigation">
-                          <a className="fa prev fa-angle-left"></a>
-                          <a className="fa next fa-angle-right"></a>
-                        </div>
-                        <div className="box-product product-carousel" id="related-carousel">
-
-                          {listProductCardHTML}
-                        </div>
-
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
 
-        </div>
 
-
-      </>
-    );
-  } else {
-    // loadingScreen.showLoading();
+        </>
+      );
+    } else {
+      // loadingScreen.showLoading();
       return (
-      null
-    )
+        null
+      )
+    }
   }
-  }
-    
+
 }
 
 export default ProductDetail;

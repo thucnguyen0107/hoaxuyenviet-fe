@@ -1,55 +1,41 @@
 import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
-
 import Form from "../../../components/UI/Form/Form";
 
 class Checkout extends React.Component {
   state = {
-    orderForm: {
+    checkoutForm: {
       firstName: {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "First name"
+          placeholder: "Họ và Tên",
+          name: "Họ và Tên"
         },
         value: "",
         validation: {
           required: true,
-          minLength: 1,
+          minLength: 10,
           maxLength: 32,
           errorMessage:
-            "First name must be between 1 and 32 characters and only letters!"
+            "Họ và tên phải từ 10 đến 32 ký tự!"
         },
         valid: true
       },
-      lastName: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Last name"
-        },
-        value: "",
-        validation: {
-          required: true,
-          minLength: 1,
-          maxLength: 32,
-          errorMessage:
-            "First name must be between 1 and 32 characters and only letters!"
-        },
-        valid: true
-      },
+
       email: {
         elementType: "input",
         elementConfig: {
           type: "email",
-          placeholder: "E-Mail"
+          placeholder: "E-Mail",
+          name: "E-Mail"
         },
         value: "",
         validation: {
           required: true,
-          minLength: 1,
+          minLength: 10,
           maxLength: 32,
-          errorMessage: "Email must be between 1 and 32 characters!"
+          errorMessage: "Email chưa hợp lệ!"
         },
         valid: true
       },
@@ -57,20 +43,60 @@ class Checkout extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Telephone"
+          placeholder: "Số điện thoại",
+          name: "Số điện thoại"
         },
         value: "",
         validation: {
           required: true,
           minLength: 9,
           maxLength: 32,
-          numberValid: /^\+?[0-9]+$/,
-          errorMessage: "Phone must be between 9 and 32 numbers!"
+          numberValid: '^[0-9]+$',
+          errorMessage: "Số điện thoại phải từ 9 đến 32 chữ số!"
+        },
+        valid: true
+      },
+      address: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Địa chỉ",
+          name: "Địa chỉ"
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 15,
+          errorMessage: "Địa chỉ phải trên 15 ký tự!"
+        },
+        valid: true
+      },
+      paymentMethod: {
+        elementType: "radioPayment",
+        elementConfig: {
+          type: "text",
+          name: "Hình Thức Thanh Toán"
+        },
+        value: "",
+        validation: {
+          required: true,
+          errorMessage: "Vui Lòng Chọn Hình Thức Thanh Toán!"
+        },
+        valid: true
+      },
+      note: {
+        elementType: "textarea",
+        elementConfig: {
+          type: "text",
+          placeholder: "Ghi chú",
+          name: "Ghi chú"
+        },
+        value: "",
+        validation: {
         },
         valid: true
       }
     },
-    formIsValid: false
   };
 
   componentDidMount() {
@@ -118,15 +144,16 @@ class Checkout extends React.Component {
                 <div className="panel panel-default">
                   <div className="panel-heading">
                     <h4 className="panel-title">
-                      <div
+                      <a
+                        href="collapse-payment-address"
                         data-toggle="collapse"
                         data-parent="#accordion"
                         className="accordion-toggle collapsed"
                         aria-expanded="false"
                       >
-                        Step 2: Account &amp; Billing Details{" "}
+                        Tài khoản  &amp; Chi tiết hóa đơn{" "}
                         <i className="fa fa-caret-down" />
-                      </div>
+                      </a>
                     </h4>
                   </div>
                   <div
@@ -139,13 +166,13 @@ class Checkout extends React.Component {
                       <div className="row">
                         <div className="col-sm-12">
                           <fieldset id="account">
-                            <legend>Your Personal Details</legend>
+                            <legend>Thông tin cá nhân</legend>
                             <Form
                               idForm="checkoutForm"
-                              nameForm="orderForm"
-                              originalForm={this.state.orderForm}
+                              nameForm="checkoutForm"
+                              originalForm={this.state.checkoutForm}
                               setState={this.setStateForm}
-                              btnName="Thanh Toán"
+                              btnName="Xác nhận"
                             />
                             {/* {form} */}
                           </fieldset>
@@ -154,19 +181,7 @@ class Checkout extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="panel panel-default">
-                  <div className="panel-heading">
-                    <h4 className="panel-title">
-                      Bước 2: Phương thức thanh toán
-                    </h4>
-                  </div>
-                  <div
-                    className="panel-collapse collapse"
-                    id="collapse-payment-method"
-                  >
-                    <div className="panel-body" />
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>

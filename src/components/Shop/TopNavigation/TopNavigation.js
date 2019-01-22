@@ -4,7 +4,7 @@ import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 import './TopNavigation.css';
 import { Link } from 'react-router-dom';
-import {formatCurrency} from '../../../utilities/fnUtil'
+import {formatCurrency, isNotEmpty} from '../../../utilities/fnUtil'
 let  tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -35,7 +35,7 @@ function loadCart(){
   cartList = (
     <>
     {
-       !window.jQuery.isEmptyObject(arrayProductOrder) ?
+       isNotEmpty(arrayProductOrder) ?
       arrayProductOrder.map((order,index) => {
         tempTotalPrice += (( order.price - (order.price * order.discount/100)) * JSON.parse(order.quantity))
         return(
