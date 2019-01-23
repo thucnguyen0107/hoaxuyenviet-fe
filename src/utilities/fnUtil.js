@@ -79,3 +79,9 @@ export const showNotification = (notiData) => {
   }
 }
 
+export const clearAuthUser = () => {
+  localStorage.removeItem('authUser');
+  alert('Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng');
+  window.location.replace('/admin');
+}
+

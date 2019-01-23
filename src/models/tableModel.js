@@ -4,6 +4,7 @@ import {
   formatCurrency,
   initGalleryZoom
 } from "../utilities/fnUtil";
+import { convertItemToName } from '../utilities/categoriesUtil';
 import { Tag, Switch, Input, Button, Icon } from "antd";
 import Highlighter from "react-highlight-words";
 
@@ -14,7 +15,8 @@ const getColumnSearchProps = (
   handleReset,
   searchText,
   searchInput,
-  renderType
+  renderType,
+  categoryType
 ) => ({
   filterDropdown: ({
     setSelectedKeys,
@@ -40,14 +42,14 @@ const getColumnSearchProps = (
         size="small"
         style={{ width: 90, marginRight: 8 }}
       >
-        Search
+        Tìm
       </Button>
       <Button
         onClick={() => handleReset(clearFilters)}
         size="small"
         style={{ width: 90 }}
       >
-        Reset
+        Xóa
       </Button>
     </div>
   ),
@@ -61,7 +63,11 @@ const getColumnSearchProps = (
           .toString()
           .toLowerCase()
           .includes(value.toLowerCase());
-
+      case "category":
+      return convertItemToName(record[dataIndex], categoryType)
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase());
       default:
         return record[dataIndex]
           .toString()
@@ -74,17 +80,27 @@ const getColumnSearchProps = (
       setTimeout(() => searchInput.select());
     }
   },
-  render: text => {
+  render: item => {
     switch (renderType) {
       case "date":
-        return formatDate(text);
+        return formatDate(item);
+      case "category":
+        return (
+          <span>
+          {convertItemToName(item, categoryType).map(tag => (
+            <Tag color="blue" key={tag}>
+              {tag}
+            </Tag>
+          ))}
+        </span>
+        )
       default:
         return (
           <Highlighter
             highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
             searchWords={[searchText]}
             autoEscape
-            textToHighlight={text.toString()}
+            textToHighlight={item.toString()}
           />
         );
     }
@@ -173,70 +189,75 @@ export const createDataProductListColumns = (
       title: "Kiểu",
       key: "type",
       dataIndex: "type",
-      render: items => (
-        <span>
-          {items.map(tag => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </span>
+      ...getColumnSearchProps(
+        "type",
+        "Kiểu Loại",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "category",
+        "type"
       )
     },
     {
       title: "Hình Thức",
       key: "form",
       dataIndex: "form",
-      render: items => (
-        <span>
-          {items.map(tag => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </span>
+      ...getColumnSearchProps(
+        "form",
+        "Hình Thức",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "category",
+        "form"
       )
     },
     {
       title: "Màu Sắc",
       key: "color",
       dataIndex: "color",
-      render: items => (
-        <span>
-          {items.map(tag => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </span>
+      ...getColumnSearchProps(
+        "color",
+        "Màu Sắc",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "category",
+        "color"
       )
     },
     {
       title: "Sự Kiện",
       key: "event",
       dataIndex: "event",
-      render: items => (
-        <span>
-          {items.map(tag => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </span>
+      ...getColumnSearchProps(
+        "event",
+        "Sự Kiện",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "category",
+        "event"
       )
     },
     {
       title: "Ngày Lễ",
       key: "holiday",
       dataIndex: "holiday",
-      render: items => (
-        <span>
-          {items.map(tag => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </span>
+      ...getColumnSearchProps(
+        "holiday",
+        "Ngày Lễ",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "category",
+        "holiday"
       )
     },
     {

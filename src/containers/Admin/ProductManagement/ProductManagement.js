@@ -154,17 +154,6 @@ class ProductManagement extends React.Component {
             Tạo Mới
           </Button>
         </div>
-        <div className="row" style={{ marginBottom: "20px" }}>
-          <div className="col-md-3">
-            <label>Tìm Theo Mã</label>
-            <input type="text" className="form-control" />
-          </div>
-
-          <div className="col-md-3">
-            <label>Tìm Theo Tên</label>
-            <input type="text" className="form-control" />
-          </div>
-        </div>
         <div>
           <Table
             columns={columns}
