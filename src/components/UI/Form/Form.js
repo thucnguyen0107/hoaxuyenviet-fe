@@ -1,6 +1,6 @@
 import React from "react";
 import Input from "../Input/Input";
-import { cloneData, isNotEmpty } from "../../../utilities/fnUtil";
+import { cloneData } from "../../../utilities/fnUtil";
 
 class CustomForm extends React.Component {
   constructor(props) {

@@ -4,8 +4,9 @@ import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 import './TopNavigation.css';
 import { Link } from 'react-router-dom';
-import {formatCurrency, isNotEmpty} from '../../../utilities/fnUtil'
-let  tempTotalPrice = 0;
+import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
+import { Popconfirm } from "antd";
+let tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
 
@@ -30,42 +31,45 @@ function blurSelected() {
   }
 }
 let cartList = [];
-function loadCart(){
-  let  arrayProductOrder = JSON.parse(localStorage.getItem('list'));
+function loadCart() {
+  let arrayProductOrder = JSON.parse(localStorage.getItem('list'));
+  tempTotalPrice = 0;
   cartList = (
     <>
-    {
-       isNotEmpty(arrayProductOrder) ?
-      arrayProductOrder.map((order,index) => {
-        tempTotalPrice += (( order.price - (order.price * order.discount/100)) * JSON.parse(order.quantity))
-        return(
-          <li key={index}>
-          <table className="table table-striped">
-            <tbody><tr>
-              <td className="text-center">
-  
-                <Link to="/">
-                  <img src={order.images[0].replace(`${order._id}-813x1000.jpg`, `${order._id}-70x86.jpg`)} alt={order.productName} title={order.productName} className="img-thumbnail" />
-                </Link>
-              </td>
-              <td className="text-left"><Link to="">{order.productName}</Link>
-                <br />
-                - <small>Delivery Date 2011-04-22</small>
-              </td>
-              <td className="text-right">{order.quantity}</td>
-              <td className="text-right">{formatCurrency(( order.price - (order.price * order.discount/100)) * JSON.parse(order.quantity))} VND</td>
-              <td className="text-center"><button type="button" title="Remove" className="btn btn-danger btn-xs"><i className="fa fa-times"></i></button></td>
-            </tr>
-            </tbody></table>
-        </li>
-        );
-        
-      }) : <p>Giỏ hàng của bạn rỗng</p>
-  }
-    
+      {
+        isNotEmpty(arrayProductOrder) ?
+          arrayProductOrder.map((order, index) => {
+            tempTotalPrice += ((order.price - (order.price * order.discount / 100)) * order.quantity)
+            return (
+              <li key={index}>
+                <table className="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td className="text-left">
+                        <Link to={`/productDetail/${order._id}`}>
+                          <img src={order.images[0]} alt={order.productName} title={order.productName} className="img-thumbnail imageSmall" />
+                        </Link>
+                      </td>
+                      <td className="text-left">
+                        <Link to={`/productDetail/${order._id}`}>{order.productName}</Link>
+                        <p>Số lượng: {order.quantity}</p>
+                        <p>Giá: {formatCurrency((order.price - (order.price * order.discount / 100)) * JSON.parse(order.quantity))} VND </p>
+                      </td>
+
+
+                      <td className="text-center"><button type="button" title="Remove" className="btn btn-danger btn-xs"><i className="fa fa-times"></i></button></td>
+
+                    </tr>
+                  </tbody></table>
+              </li>
+            );
+
+          }) : <p>Giỏ hàng của bạn rỗng</p>
+      }
+
     </>
   );
-    
+
 }
 const topNavigation = (props) => {
 
@@ -87,7 +91,7 @@ const topNavigation = (props) => {
   navList = (
     <>
       {
-        
+
         props.listCategoriesName.map((category, index) => {
           return (
             <NavigationItem
@@ -103,7 +107,7 @@ const topNavigation = (props) => {
     </>
   )
 
-  
+
 
   return (
 
@@ -155,7 +159,7 @@ const topNavigation = (props) => {
                         <div>
                           <table className="table table-bordered">
                             <tbody>
-                             
+
                               <tr>
                                 <td className="text-right"><strong>Tổng tiền</strong></td>
                                 <td className="text-right">{formatCurrency(tempTotalPrice)} VND</td>

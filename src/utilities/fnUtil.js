@@ -1,3 +1,5 @@
+import { message } from 'antd'
+
 export const updateObject = (oldObject, updatedValues) => {
   return {
     ...oldObject,
@@ -7,14 +9,14 @@ export const updateObject = (oldObject, updatedValues) => {
 
 export const formatDate = (dateString) => {
   let date;
-  if(!dateString) {
-     date = new Date();
+  if (!dateString) {
+    date = new Date();
   }
   else {
     let timestamp = Date.parse(dateString);
-     date = new Date(timestamp);
+    date = new Date(timestamp);
   }
-  return `${date.toLocaleDateString('vi-VN')} ${date.toLocaleTimeString('vi-VN')}`  
+  return `${date.toLocaleDateString('vi-VN')} ${date.toLocaleTimeString('vi-VN')}`
 }
 
 export const formatCurrency = (price) => {
@@ -27,9 +29,9 @@ export const initGalleryZoom = (name) => {
     type: 'image',
     mainClass: 'mfp-with-zoom',
     gallery: {
-    enabled: true,
-    navigateByImgClick: true,
-    preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+      enabled: true,
+      navigateByImgClick: true,
+      preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
     }
   })
 }
@@ -54,8 +56,26 @@ export const cloneData = (data) => {
 }
 
 export const isNotEmpty = (data) => {
-  if(window.jQuery.isEmptyObject(data) || !data){
+  if (window.jQuery.isEmptyObject(data) || !data) {
     return false;
   }
   return true;
 }
+
+export const showNotification = (notiData) => {
+  const options = {
+    top: 150,
+    duration: 2
+  }
+  message.config(options);
+  switch (notiData.type) {
+    case 'error':
+      message.error(notiData.message);
+      break;
+
+    default:
+      message.success(notiData.message);
+      break;
+  }
+}
+

@@ -25,13 +25,13 @@ export const convertCategories = (catParent, cat, fn) => {
         fn('/pageNotFound');
         return false;
       }
-      
+
     }
   } else {
     fn('/pageNotFound');
     return false;
   }
-  
+
 }
 
 export const convertFilters = (catParent) => {
@@ -50,9 +50,9 @@ export const convertFilters = (catParent) => {
 //   return catParent === item.id
 //   })
 //   let arrayFilters = catParentItem.subCategories.filter((item) => array.includes(item.id) );
-  
+
 //   return arrayFilters;
-  
+
 // }
 
 export const convertItemToName = (arr, cat) => {
@@ -63,6 +63,6 @@ export const convertItemToName = (arr, cat) => {
     return item.subName;
   })
   return arrCatName;
- 
-  
+
+
 }

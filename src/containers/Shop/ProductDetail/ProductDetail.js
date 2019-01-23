@@ -1,5 +1,4 @@
 import React from 'react';
-import { arrProductList } from '../../../data/data';
 import ProductCard from '../../../components/UI/ProductCard';
 import axios from 'axios';
 import { endPoints } from '../../../services/config';
@@ -9,6 +8,7 @@ import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
 import { convertItemToName } from '../../../utilities/categoriesUtil';
 import classes from './ProductDetail.scss'
 import { Tag } from 'antd';
+import cartService from '../../../services/cartService'
 class ProductDetail extends React.Component {
 
   createZoom = () => {
@@ -152,9 +152,11 @@ class ProductDetail extends React.Component {
   componentWillMount() {
     loadingScreen.showLoading();
     axios.get(endPoints.GET_PRODUCT_BY_ID + this.props.match.params.product_id).then((res) => {
-      axios.get(endPoints.GET_RANDOM_LIST + res.type[0], {params: {
-        productId: res._id
-      }}).then((rl) => {
+      axios.get(endPoints.GET_RANDOM_LIST + res.type[0], {
+        params: {
+          productId: res._id
+        }
+      }).then((rl) => {
         this.setState({
           product: res,
           randomList: rl
@@ -202,6 +204,8 @@ class ProductDetail extends React.Component {
   componentWillUnmount() {
     window.$('.zoomContainer').remove()
   }
+
+
 
   render() {
     if (isNotEmpty(this.state.product)) {
@@ -315,8 +319,8 @@ class ProductDetail extends React.Component {
                       <div id="product">
                         <div className="form-group cart">
                           <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
-                          <input type="text" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
-                          <button type="button" id="button-cart" data-loading-text="Loading..." onClick={this.SaveDataToLocalStorage} className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
+                          <input type="number" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
+                          <button type="button" id="button-cart" data-loading-text="Loading..." onClick={() => cartService.saveCartItemLS(this.state.product)} className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
 
                           <div className="btn-group">
                             <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>
@@ -329,7 +333,7 @@ class ProductDetail extends React.Component {
                     <div className="col-md-12">
                       <div id="tabs_info" className="product-tab col-sm-12">
                         <ul className="nav nav-tabs">
-                          <li className="active"><a href="/" data-toggle="tab">Description</a></li>
+                          <li className="active"><a href="/" data-toggle="tab">Mô tả</a></li>
                         </ul>
                         <div className="tab-content">
                           <div className="tab-pane active" id="tab-description">
@@ -344,7 +348,7 @@ class ProductDetail extends React.Component {
                   </div>
                   <div className="box related">
                     <div className="box-heading">
-                      <h2 className="products-section-title">Related Products</h2>
+                      <h2 className="products-section-title">Có thể bạn muốn mua</h2>
                     </div>
                     <div className="tabs">
                       <div className="box-content">

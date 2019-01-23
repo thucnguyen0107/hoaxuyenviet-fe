@@ -1,7 +1,6 @@
 import React from 'react';
 import Iimg from '../../components/UI/LoadingImage/Limg';
-import { formatCurrency, isNotEmpty } from '../../utilities/fnUtil';
-import { Link } from 'react-router-dom';
+import { formatCurrency } from '../../utilities/fnUtil';
 const productCard = (props) => {
 
 
