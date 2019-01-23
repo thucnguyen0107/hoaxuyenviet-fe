@@ -4943,9 +4943,9 @@ body .btn:hover {
 	background-color: #ffc107;
 	border: 1px solid #ffc107;
 }
-body .form-control {
+/* body .form-control {
 	border: 1px solid #f1eee7;
-}
+} */
 .special .special-products .product-thumb .caption .addtocart .fa {
 	display: none;
 }

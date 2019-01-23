@@ -49,6 +49,7 @@
     "react-content-loader": "^3.4.2",
     "react-dev-utils": "^7.0.0",
     "react-dom": "^16.7.0",
+    "react-highlight-words": "^0.16.0",
     "react-image": "^2.0.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",

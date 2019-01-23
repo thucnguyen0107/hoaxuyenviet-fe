@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Table, Divider, Popconfirm } from "antd";
+import { Button, Table, Divider, Popconfirm, Input, Icon } from "antd";
 import Modal from "../../../components/UI/Modal/Modal";
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
@@ -9,10 +9,11 @@ import {
   cloneData
 } from "../../../utilities/fnUtil";
 import { ProductFormModel } from "../../../models/formModel";
-import { productTable } from "../../../models/tableModel";
+import { createDataProductListColumns } from "../../../models/tableModel";
 
 class ProductManagement extends React.Component {
   state = {
+    searchText: "",
     createModal: {
       show: false,
       showModal: () =>
@@ -57,6 +58,7 @@ class ProductManagement extends React.Component {
     });
   };
 
+  // Create new product
   setStateEditForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
@@ -69,6 +71,7 @@ class ProductManagement extends React.Component {
     });
   };
 
+  // Update product
   setDataEditForm = data => {
     const newDataForm = convertToDataForm(
       data,
@@ -79,8 +82,26 @@ class ProductManagement extends React.Component {
       editProductForm: newDataForm
     });
   };
+
+  // search on table
+  handleSearch = (selectedKeys, confirm) => {
+    confirm();
+    this.setState({ searchText: selectedKeys[0] });
+  };
+
+  // reset search field on table
+  handleReset = clearFilters => {
+    clearFilters();
+    this.setState({ searchText: "" });
+  };
+
   render() {
-    const dataColumns = productTable.slice();
+    const dataColumns = createDataProductListColumns(
+      this.handleSearch,
+      this.handleReset,
+      this.state.searchText,
+      this.searchInput
+    ).slice();
     dataColumns.push({
       title: "Action",
       key: "action",
@@ -133,6 +154,17 @@ class ProductManagement extends React.Component {
             Tạo Mới
           </Button>
         </div>
+        <div className="row" style={{ marginBottom: "20px" }}>
+          <div className="col-md-3">
+            <label>Tìm Theo Mã</label>
+            <input type="text" className="form-control" />
+          </div>
+
+          <div className="col-md-3">
+            <label>Tìm Theo Tên</label>
+            <input type="text" className="form-control" />
+          </div>
+        </div>
         <div>
           <Table
             columns={columns}
@@ -141,7 +173,6 @@ class ProductManagement extends React.Component {
             scroll={{ x: true }}
           />
         </div>
-
         {/* Modals */}
         {/* Create Modal */}
         <Modal
