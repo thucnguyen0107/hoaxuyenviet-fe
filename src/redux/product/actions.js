@@ -1,6 +1,6 @@
 import axios from "axios";
 import { endPoints } from "../../services/config";
-import { clearAuthUser } from '../../utilities/fnUtil';
+import { clearAuthUser } from "../../utilities/fnUtil";
 
 const GET_PRODUCT_LIST = "GET_PRODUCT_LIST";
 const ADD_NEW_PRODUCT = "ADD_NEW_PRODUCT";
@@ -40,9 +40,11 @@ const createNewProduct = data => {
         dispatch(addNewProduct(data));
       })
       .catch(err =>
-        err.response.data.code === '002' ? clearAuthUser() : alert(
-          "Mã Sản Phẩm Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!"
-        )
+        err.response.data.code === "002"
+          ? clearAuthUser()
+          : alert(
+              "Mã Sản Phẩm Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!"
+            )
       );
   };
 };
@@ -68,11 +70,12 @@ const updateProductToSV = (id, data) => {
         dispatch(updateProductById(id, data));
       })
       .catch(err => {
-        err.response.data.code === '002' ? clearAuthUser() : alert(
-          "Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!"
-        )
-      }
-      );
+        err.response.data.code === "002"
+          ? clearAuthUser()
+          : alert(
+              "Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!"
+            );
+      });
   };
 };
 
@@ -91,7 +94,9 @@ const deleteProductToSV = id => {
       .delete(endPoints.DELETE_PRODUCT_BY_ADMIN + id)
       .then(() => dispatch(deleteProductById(id)))
       .catch(err =>
-        err.response.data.code === '002' ? clearAuthUser() : alert("Lỗi Xóa Sản Phẩm Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!")
+        err.response.data.code === "002"
+          ? clearAuthUser()
+          : alert("Lỗi Xóa Sản Phẩm Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!")
       );
   };
 };

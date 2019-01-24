@@ -56,6 +56,9 @@ const input = props => {
       break;
 
     case "images":
+      let classname =
+        "gallery_create_product" +
+        (props.elementConfig.id ? props.elementConfig.id : "");
       inputElement = (
         <>
           <input
@@ -68,8 +71,12 @@ const input = props => {
           />
           {props.value.length ? (
             <div
-              className="gallery_create_product"
-              onLoad={initGalleryZoom(".gallery_create_product")}
+              className={classname}
+              onLoad={initGalleryZoom(
+                ".gallery_create_product" + props.elementConfig.id
+                  ? props.elementConfig.id
+                  : ""
+              )}
               style={{ marginTop: "5px" }}
             >
               {props.value.map((img, index) => (
@@ -129,9 +136,14 @@ const input = props => {
 
     case "radioPayment":
       inputElement = (
-        <RadioGroup onChange={props.changed} value={props.value} required={props.mandatory} style={{ marginLeft: "10px" }}>
-          <Radio value={'VISA'}>VISA</Radio>
-          <Radio value={'COD'}>Giao Hàng Nhận Tiền</Radio>
+        <RadioGroup
+          onChange={props.changed}
+          value={props.value}
+          required={props.mandatory}
+          style={{ marginLeft: "10px" }}
+        >
+          <Radio value={"VISA"}>VISA</Radio>
+          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio>
         </RadioGroup>
       );
       break;
@@ -153,7 +165,8 @@ const input = props => {
       <div className="form-group required">
         <label
           className={props.mandatory ? "control-label" : ""}
-          style={{ fontWeight: "bold" }}>
+          style={{ fontWeight: "bold" }}
+        >
           {props.label}
         </label>
         {inputElement}

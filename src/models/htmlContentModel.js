@@ -1,7 +1,7 @@
 export const htmlContentModel = {
-  "bannerSlide": [],
-  "eventSlide": {},
-  "otherSlide": {},
-  "productList": {}
-}
-
+  bannerSlide: [],
+  eventSlide: {},
+  otherSlide: {},
+  productList: {},
+  social: {}
+};
