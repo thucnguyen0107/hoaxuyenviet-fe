@@ -8,10 +8,12 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import productReducer from "./redux/product/reducer";
 import userReducer from "./redux/user/reducer";
+import htmlContentReducer from "./redux/htmlContent/reducer";
 
 const rootReducer = combineReducers({
   productList: productReducer,
-  authUser: userReducer
+  authUser: userReducer,
+  htmlContent: htmlContentReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
