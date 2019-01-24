@@ -1,7 +1,6 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
-import { Tooltip } from 'antd';
 import { Link } from 'react-router-dom';
 
 
@@ -91,72 +90,18 @@ class Register extends React.Component {
 
 
 
-  checkValidity(value, rules) {
-
-    let isValid = true;
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-    if (rules.letterValid) {
-      isValid = rules.letterValid.test(value) && isValid;
-    }
-
-    if (rules.numberValid) {
-      isValid = rules.numberValid.test(value) && isValid;
-    }
-
-    return isValid;
-  }
-
   componentDidMount() {
     loadingScreen.hideLoading();
   }
 
-  inputChangedHandler = (event, inputIdentifier) => {
-
-    // clone form object
-    const updatedOrderForm = {
-      ...this.state.orderForm
-    }
-
-    // get changed input element from cloned form object
-    const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier]
-    }
-
-    // update value for changed input element
-    updatedFormElement.value = event.target.value;
-
-    // update changed input element in cloned form object
-    updatedOrderForm[inputIdentifier] = updatedFormElement;
-
-    this.setState({ orderForm: updatedOrderForm });
-
-  }
-
-  validateForm = () => {
-    if (!this.state.submitIsClick) {
-      this.setState({ submitIsClick: true });
-    }
-
-    const form = {
-      ...this.state.orderForm
-    }
-
-    let formIsValid = true;
-    for (let input in form) {
-      // validate input element
-      form[input].valid = this.checkValidity(form[input].value, form[input].validation);
-      formIsValid = form[input].valid && formIsValid;
-    }
-    this.setState({ orderForm: form, formIsValid: formIsValid });
-  }
+  setStateForm = (object, submit = false) => {
+    this.setState(object, () => {
+      if (this.state.formIsValid && submit) {
+        console.log("Valid Form Successfully");
+      }
+    });
+  };
+  
   render() {
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
@@ -183,12 +128,19 @@ class Register extends React.Component {
           <form className="form-horizontal">
             <fieldset id="account">
               <legend>Thông tin cá nhân</legend>
-              <Form idForm="registerForm" formElementsArray={formElementsArray} changed={this.inputChangedHandler} />
-              <div className="col text-center">
-                <Tooltip placement="bottom" title="Vui lòng điền đầy đủ thông tin">
-                <button style={{ marginBottom: '20px' }} className="btn btn-default" id="button-register" data-loading-text="Loading..." onClick={this.validateForm}>Đăng ký</button>
-                </Tooltip>
-              </div>
+              <Form
+              idForm="registerForm"
+              nameForm="rgisterForm"
+              originalForm={this.state.orderForm}
+              setState={this.setStateForm}
+              noEdit={this.state.noEdit}
+              btnName="Lưu Lại"
+            />
+            { this.state.noEdit ? 
+          <div className="text-center">
+            <button className="btn" style={{ marginBottom: "20px" }} onClick={() => this.setState({noEdit: false})}> Đăng ký</button>
+          </div> : null}
+            {/* {form} */}
             </fieldset>
           </form>
         </div>

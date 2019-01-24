@@ -1,20 +1,20 @@
-import { headerContent } from '../data/data';
+import { headerContent } from "../data/data";
 
-export const createNewProductFormModel = {
+export const ProductFormModel = {
   _id: {
     elementType: "input",
     elementConfig: {
       type: "text",
-      name: 'Mã Sản Phẩm',
-      placeholder: "Nhập Mã Sản Phẩm"
+      name: "Mã Sản Phẩm",
+      placeholder: "Nhập Mã Sản Phẩm",
+      unique: 1
     },
     value: "",
     validation: {
       required: true,
       minLength: 1,
       maxLength: 32,
-      errorMessage:
-        "Chưa Nhập Mã Sản Phẩm"
+      errorMessage: "Chưa Nhập Mã Sản Phẩm"
     },
     valid: true
   },
@@ -27,8 +27,7 @@ export const createNewProductFormModel = {
     value: [],
     validation: {
       required: true,
-      errorMessage:
-        "Chưa Nhập Link Hình"
+      errorMessage: "Chưa Nhập Link Hình"
     },
     valid: true
   },
@@ -42,8 +41,7 @@ export const createNewProductFormModel = {
     value: [],
     validation: {
       required: true,
-      errorMessage:
-        "Chưa Nhập Loại Hoa"
+      errorMessage: "Chưa Nhập Loại Hoa"
     },
     valid: true
   },
@@ -55,8 +53,7 @@ export const createNewProductFormModel = {
       data: headerContent.categories[4]
     },
     value: [],
-    validation: {
-    },
+    validation: {},
     valid: true
   },
   event: {
@@ -67,8 +64,7 @@ export const createNewProductFormModel = {
       data: headerContent.categories[1]
     },
     value: [],
-    validation: {
-    },
+    validation: {},
     valid: true
   },
   holiday: {
@@ -79,8 +75,7 @@ export const createNewProductFormModel = {
       data: headerContent.categories[2]
     },
     value: [],
-    validation: {
-    },
+    validation: {},
     valid: true
   },
   color: {
@@ -93,8 +88,7 @@ export const createNewProductFormModel = {
     value: [],
     validation: {
       required: true,
-      errorMessage:
-      "Chưa Nhập Màu Hoa"
+      errorMessage: "Chưa Nhập Màu Hoa"
     },
     valid: true
   },
@@ -102,15 +96,14 @@ export const createNewProductFormModel = {
     elementType: "input",
     elementConfig: {
       type: "number",
-      name: 'Giá',
+      name: "Giá",
       placeholder: "Nhập Giá"
     },
     value: 0,
     validation: {
       required: true,
       minNumber: 10000,
-      errorMessage:
-        "Chưa Nhập Giá Hoặc Giá Chưa Đủ"
+      errorMessage: "Chưa Nhập Giá Hoặc Giá Chưa Đủ"
     },
     valid: true
   },
@@ -118,14 +111,13 @@ export const createNewProductFormModel = {
     elementType: "input",
     elementConfig: {
       type: "number",
-      name: 'Giảm Giá (%)',
+      name: "Giảm Giá (%)",
       placeholder: "Nhập Giảm Giá"
     },
     value: 0,
     validation: {
       maxNumber: 100,
-      errorMessage:
-        "Giảm Giá Không Thể Hơn 100%"
+      errorMessage: "Giảm Giá Không Thể Hơn 100%"
     },
     valid: true
   },
@@ -133,7 +125,7 @@ export const createNewProductFormModel = {
     elementType: "input",
     elementConfig: {
       type: "text",
-      name: 'Tên Sản Phẩm',
+      name: "Tên Sản Phẩm",
       placeholder: "Nhập Tên Sản Phẩm"
     },
     value: "",
@@ -141,54 +133,49 @@ export const createNewProductFormModel = {
       required: true,
       minLength: 6,
       maxLength: 32,
-      errorMessage:
-        "Chưa Nhập Tên Hoặc Độ Dài Chưa Đủ"
+      errorMessage: "Chưa Nhập Tên Hoặc Độ Dài Chưa Đủ"
     },
     valid: true
   },
   new: {
     elementType: "switch",
     elementConfig: {
-      name: 'Hàng Mới',
+      name: "Hàng Mới"
     },
     value: false,
-    validation: {
-    },
+    validation: {},
     valid: true
   },
   sale: {
     elementType: "switch",
     elementConfig: {
-      name: 'Hàng Giảm Giá',
+      name: "Hàng Giảm Giá"
     },
     value: false,
-    validation: {
-    },
+    validation: {},
     valid: true
   },
   hot: {
     elementType: "switch",
     elementConfig: {
-      name: 'Hàng Ưa Chuộng',
+      name: "Hàng Ưa Chuộng"
     },
     value: false,
-    validation: {
-    },
+    validation: {},
     valid: true
   },
   description: {
     elementType: "textarea",
     elementConfig: {
       type: "text",
-      name: 'Mô Tả Sản Phẩm',
+      name: "Mô Tả Sản Phẩm",
       placeholder: "Nhập Mô Tả Sản Phẩm"
     },
     value: [],
     validation: {
       required: true,
-      errorMessage:
-        "Chưa Nhập Mô Tả"
+      errorMessage: "Chưa Nhập Mô Tả"
     },
     valid: true
   }
-}
+};

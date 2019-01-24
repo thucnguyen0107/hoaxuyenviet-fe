@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SlideBarAccount from '../../components/Shop/SlideBarAccount/SlideBarAccount';
 import { Layout } from "antd";
@@ -21,7 +22,6 @@ class Account extends React.Component {
     });
   };
   render() {
-    const ml200 = this.state.collapsed ? "100px" : "200px";
     return (
       <>
         <div id="breadcrumb">
@@ -63,7 +63,7 @@ class Account extends React.Component {
                   exact
                   component={Reward}
                 />
-                <Redirect from="/admin" to="/account/editinformation" />
+                <Redirect from="/account" to="/account/editinformation" />
               </Switch>
             </div>
           </div>

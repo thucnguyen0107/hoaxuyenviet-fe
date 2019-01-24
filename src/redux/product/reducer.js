@@ -6,13 +6,33 @@ const initState = {
 };
 
 const reducer = (state = initState, action) => {
+  let clonedProductList;
   switch (action.type) {
     case actionTypes.GET_PRODUCT_LIST:
       return updateObject(state, { productList: action.payload });
+
     case actionTypes.ADD_NEW_PRODUCT:
-      const clonedProductList = state.productList.slice();
+      clonedProductList = state.productList.slice();
       clonedProductList.unshift(action.payload);
-      return updateObject(state, { productList: clonedProductList })
+      return updateObject(state, { productList: clonedProductList });
+
+    case actionTypes.UPDATE_PRODUCT_BY_ID:
+      clonedProductList = state.productList.slice();
+      let updateElement = clonedProductList.find(item => {
+        return item._id === action.payload.id;
+      });
+      clonedProductList[clonedProductList.indexOf(updateElement)] =
+        action.payload.data;
+      return updateObject(state, { productList: clonedProductList });
+
+    case actionTypes.DELETE_PRODUCT_BY_ID:
+      clonedProductList = state.productList.slice();
+      let deleteElement = clonedProductList.find(item => {
+        return item._id === action.payload;
+      });
+      clonedProductList.splice(clonedProductList.indexOf(deleteElement), 1);
+      return updateObject(state, { productList: clonedProductList });
+
     default:
       return state;
   }

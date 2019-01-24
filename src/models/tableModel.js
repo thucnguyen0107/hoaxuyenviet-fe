@@ -1,6 +1,10 @@
-import React from 'react';
-import { formatDate, formatCurrency, initGalleryZoom } from '../utilities/fnUtil';
-import { Button, Divider, Tag, Switch } from "antd";
+import React from "react";
+import {
+  formatDate,
+  formatCurrency,
+  initGalleryZoom
+} from "../utilities/fnUtil";
+import { Tag, Switch } from "antd";
 
 export const productTable = [
   {
@@ -20,13 +24,30 @@ export const productTable = [
     key: "images",
     dataIndex: "images",
     render: (images, record) => (
-      <div className={"gallery_zoom_admin" + record._id} onLoad={initGalleryZoom(".gallery_zoom_admin" + record._id)}>
-        {
-          images.map((img, index) => (
-          <a href={img} key={index} style={{width: "50px", height: "50px", display: "inline-block", marginRight: "5px"}}>
-          <img src={img} alt="Error" width="50" height="50" style={{pointerEvents: "none"}}/>
+      <div
+        className={"gallery_zoom_admin" + record._id}
+        onLoad={initGalleryZoom(".gallery_zoom_admin" + record._id)}
+      >
+        {images.map((img, index) => (
+          <a
+            href={img}
+            key={index}
+            style={{
+              width: "50px",
+              height: "50px",
+              display: "inline-block",
+              marginRight: "5px"
+            }}
+          >
+            <img
+              src={img}
+              alt="Error"
+              width="50"
+              height="50"
+              style={{ pointerEvents: "none" }}
+            />
           </a>
-          ))}
+        ))}
       </div>
     )
   },
@@ -47,8 +68,12 @@ export const productTable = [
     dataIndex: "type",
     render: items => (
       <span>
-        {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-    </span>
+        {items.map(tag => (
+          <Tag color="blue" key={tag}>
+            {tag}
+          </Tag>
+        ))}
+      </span>
     )
   },
   {
@@ -57,8 +82,12 @@ export const productTable = [
     dataIndex: "form",
     render: items => (
       <span>
-        {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-    </span>
+        {items.map(tag => (
+          <Tag color="blue" key={tag}>
+            {tag}
+          </Tag>
+        ))}
+      </span>
     )
   },
   {
@@ -67,8 +96,12 @@ export const productTable = [
     dataIndex: "color",
     render: items => (
       <span>
-        {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-    </span>
+        {items.map(tag => (
+          <Tag color="blue" key={tag}>
+            {tag}
+          </Tag>
+        ))}
+      </span>
     )
   },
   {
@@ -77,8 +110,12 @@ export const productTable = [
     dataIndex: "event",
     render: items => (
       <span>
-        {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-    </span>
+        {items.map(tag => (
+          <Tag color="blue" key={tag}>
+            {tag}
+          </Tag>
+        ))}
+      </span>
     )
   },
   {
@@ -87,38 +124,36 @@ export const productTable = [
     dataIndex: "holiday",
     render: items => (
       <span>
-        {items.map(tag => <Tag color="blue" key={tag}>{tag}</Tag>)}
-    </span>
+        {items.map(tag => (
+          <Tag color="blue" key={tag}>
+            {tag}
+          </Tag>
+        ))}
+      </span>
     )
   },
   {
     title: "Hàng Sale",
     key: "sale",
     dataIndex: "sale",
-    render: item => (
-      <Switch size="small" checked={item} disabled/>
-    )
+    render: item => <Switch size="small" checked={item} disabled />
   },
   {
     title: "Hàng Mới",
     key: "new",
     dataIndex: "new",
-    render: item => (
-      <Switch size="small" checked={item} disabled/>
-    )
+    render: item => <Switch size="small" checked={item} disabled />
   },
   {
     title: "Hàng Hot",
     key: "hot",
     dataIndex: "hot",
-    render: item => (
-      <Switch size="small" checked={item} disabled/>
-    )
+    render: item => <Switch size="small" checked={item} disabled />
   },
   {
     title: "Mô Tả",
     key: "description",
-    dataIndex: "description",
+    dataIndex: "description"
   },
   {
     title: "Ngày Tạo",
@@ -131,16 +166,5 @@ export const productTable = [
     key: "updatedAt",
     dataIndex: "updatedAt",
     render: item => formatDate(item)
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: () => (
-      <>
-        <Button type="primary" >Sửa</Button>
-        <Divider type="vertical" />
-        <Button type="danger">Xóa</Button>
-      </>
-    )
   }
-]
+];

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Shop from "../Shop/Shop";
 import Admin from "../Admin/Admin";
 import { BrowserRouter } from "react-router-dom";
-import { Route, Switch, Redirect } from "react-router";
+import { Route, Switch } from "react-router";
 import "../../services/interceptors";
 import Login from "../Admin/Login/Login";
 import { connect } from "react-redux";
