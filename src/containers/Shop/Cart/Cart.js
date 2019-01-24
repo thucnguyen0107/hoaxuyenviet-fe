@@ -111,11 +111,11 @@ class Cart extends React.Component {
                     </td>
 
                     <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                      <input type="text" name="quantity[5]" defaultValue={JSON.parse(order.quantity)} size="1" className="form-control" style={{
+                      <p type="text" name="quantity[5]" defaultValue={order.quantity} size="1" className="form-control" style={{
                         padding: '6px 5px',
                         textAlign: 'center',
                         width: '40px'
-                      }}></input>
+                      }}>{order.quantity}</p>
                       {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
                       <span className="input-group-btn">
                         {/* <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button> */}
@@ -134,7 +134,7 @@ class Cart extends React.Component {
                     <td className="text-right">{formatCurrency(order.price)} VND</td>
                     <td className="text-right">{order.discount} %</td>
                     <td className="text-right">{formatCurrency((order.price - (order.price * order.discount / 100)))} VND</td>
-                    <td className="text-right">{formatCurrency((order.price - (order.price * order.discount / 100)) * JSON.parse(order.quantity))} VND</td>
+                    <td className="text-right">{formatCurrency((order.price - (order.price * order.discount / 100)) * order.quantity)} VND</td>
                   </tr>
                 </tbody>
 

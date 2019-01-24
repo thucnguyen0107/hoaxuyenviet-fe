@@ -2,10 +2,11 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 
+
 class Checkout extends React.Component {
   state = {
     checkoutForm: {
-      firstName: {
+      fullName: {
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -43,8 +44,8 @@ class Checkout extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Số điện thoại",
-          name: "Số điện thoại"
+          placeholder: "Số Điện Thoại",
+          name: "Số Điện Thoại"
         },
         value: "",
         validation: {
@@ -60,14 +61,65 @@ class Checkout extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Địa chỉ",
-          name: "Địa chỉ"
+          placeholder: "Địa Chỉ",
+          name: "Địa Chỉ"
         },
         value: "",
         validation: {
           required: true,
           minLength: 15,
           errorMessage: "Địa chỉ phải trên 15 ký tự!"
+        },
+        valid: true
+      },
+      fullNameReceivePerson: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Họ và Tên ",
+          name: "Họ và Tên Người Nhận (nếu có)"
+        },
+        value: "",
+        validation: {
+          required: false,
+        },
+        valid: true
+      },
+      telephoneReceivePerson: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Số Điện Thoại",
+          name: "Số Điện Thoại Người Nhận (nếu có)"
+        },
+        value: "",
+        validation: {
+          required: false,
+        },
+        valid: true
+      },
+      addressReivePerson: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Địa Chỉ",
+          name: "Địa Chỉ Người Nhận (nếu không nhập thì địa chỉ cá nhân của bạn sẽ là địa chỉ nhận hàng)"
+        },
+        value: "",
+        validation: {
+          required: false,
+        },
+        valid: true
+      },
+      orderDate: {
+        elementType: "orderDate",
+        elementConfig: {
+          type: "text",
+          name: "Ngày Đặt Hàng"
+        },
+        value: "",
+        validation: {
+
         },
         valid: true
       },
@@ -88,8 +140,8 @@ class Checkout extends React.Component {
         elementType: "textarea",
         elementConfig: {
           type: "text",
-          placeholder: "Ghi chú",
-          name: "Ghi chú"
+          placeholder: "Ghi Chú",
+          name: "Ghi Chú"
         },
         value: "",
         validation: {

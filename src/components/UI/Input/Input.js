@@ -1,7 +1,13 @@
 import React from "react";
 import classes from "./Input.scss";
 import { initGalleryZoom } from "../../../utilities/fnUtil";
-import { Select, Switch, Radio } from "antd";
+import { Select, Switch, Radio, DatePicker } from "antd";
+import moment from 'moment';
+import { getCurrentDate } from '../../../utilities/fnUtil';
+const { MonthPicker, RangePicker } = DatePicker;
+
+const dateFormat = 'DD/MM/YYYY';
+
 const RadioGroup = Radio.Group;
 const input = props => {
   let inputElement = null;
@@ -135,6 +141,17 @@ const input = props => {
         </RadioGroup>
       );
       break;
+
+    case "orderDate":
+      inputElement = (
+        <>
+          <br />
+          <DatePicker defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat} disabled />
+        </>
+      );
+      break;
+
+
     default:
       inputElement = (
         <input

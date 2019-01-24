@@ -1,6 +1,6 @@
 import { showNotification } from '../utilities/fnUtil';
 const saveCartItemLS = (item) => {
-  let productData;
+  let productData, temp;
   let quantity = document.getElementById("input-quantity");
   // assign item to data variable
   productData = item;
@@ -16,11 +16,14 @@ const saveCartItemLS = (item) => {
     arrProductListLocalStorage = JSON.parse(localStorage.getItem('list')) || [];
 
     // if duplicate product, just add quantity
-    // arrProductListLocalStorage.forEach(element => {
-    //   if (element._id === productData._id) {
-    //     productData.quantity += productData.quantity;
-    //   }
-    // });
+    arrProductListLocalStorage.forEach(element => {
+      if (element._id === productData._id) {
+        productData.quantity += element.quantity;
+      }
+
+    });
+
+
     // prevent duplicate product
     arrProductListLocalStorage = arrProductListLocalStorage.filter(ele => ele._id !== productData._id)
     // Push the new data (whether it be an object or anything else) onto the array
