@@ -5,6 +5,7 @@ import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 import './TopNavigation.css';
 import { Link } from 'react-router-dom';
 import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
+import cartService from '../../../services/cartService';
 let tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -31,7 +32,7 @@ function blurSelected() {
 }
 let cartList = [];
 function loadCart() {
-  let arrayProductOrder = JSON.parse(localStorage.getItem('list')) || [];
+  let arrayProductOrder = cartService.getProductToCart();
   tempTotalPrice = 0;
   cartList = (
     <>

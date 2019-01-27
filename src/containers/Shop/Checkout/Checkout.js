@@ -151,8 +151,13 @@ class Checkout extends React.Component {
     },
   };
 
+  init(){
+    
+  }
+
   componentDidMount() {
     loadingScreen.hideLoading();
+   
   }
 
   setStateForm = (object, submit = false) => {

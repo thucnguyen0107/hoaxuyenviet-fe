@@ -11,28 +11,34 @@ import {
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
 import cartService from "../../../services/cartService";
+import loginService from '../../../services/loginService';
 import { Popconfirm } from "antd";
 class Cart extends React.Component {
   state = {
     cartList: [],
-    totalPrice: 0
+    totalPrice: 0,
   };
+
+  
 
   componentDidMount() {
     loadingScreen.hideLoading();
+    
   }
 
   componentWillMount = () => {
-    let arrayProductOrder = JSON.parse(localStorage.getItem("list"));
+    // let arrayProductOrder = JSON.parse(localStorage.getItem("listAuth"));
+    let arrayProductOrder = cartService.getProductToCart();
     loadingScreen.showLoading();
-    this.setState({ cartList: arrayProductOrder });
+    this.setState({ cartList: arrayProductOrder});
   };
 
   removeCartItemLS = (cartList, itemID) => {
     const newCartList = cartService.removeCartItemLS(cartList, itemID);
     this.setState({ cartList: newCartList });
     showNotification({ message: "Xóa thành công!" });
-    localStorage.setItem("list", JSON.stringify(newCartList));
+    
+   
   };
 
   render() {
