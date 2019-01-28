@@ -1,95 +1,63 @@
 import React from "react";
-import { Button, Table } from "antd";
-import Modal from "../../../components/UI/Modal/Modal";
+import { Table } from "antd";
+import { createDataProductListColumns } from "../../../models/tableModel";
 
 class UserManagement extends React.Component {
   state = {
-    createModal: {
-      show: false,
-      showModal: () =>
-        this.setState({
-          createModal: { ...this.state.createModal, ...{ show: true } }
-        }),
-      handleOk: () =>
-        this.setState({
-          createModal: { ...this.state.createModal, ...{ show: false } }
-        }),
-      handleCancel: () =>
-        this.setState({
-          createModal: { ...this.state.createModal, ...{ show: false } }
-        })
-    }
+    searchText: "",
+    userList: []
   };
-  render() {
-    const columns = [
-      {
-        title: "Name",
-        dataIndex: "name",
-        key: "name"
-      },
-      {
-        title: "Age",
-        dataIndex: "age",
-        key: "age"
-      },
-      {
-        title: "Address",
-        dataIndex: "address",
-        key: "address"
-      },
-      {
-        title: "Tags",
-        key: "tags",
-        dataIndex: "tags"
-      },
-      {
-        title: "Action",
-        key: "action",
-        render: () => <Button type="primary">Sửa</Button>
-      }
-    ];
 
-    const data = [
-      {
-        key: "1",
-        name: "John Brown",
-        age: 32,
-        address: "New York No. 1 Lake Park",
-        tags: "nice"
-      },
-      {
-        key: "2",
-        name: "Jim Green",
-        age: 42,
-        address: "London No. 1 Lake Park",
-        tags: "loser"
-      },
-      {
-        key: "3",
-        name: "Joe Black",
-        age: 32,
-        address: "Sidney No. 1 Lake Park",
-        tags: "cool"
-      }
-    ];
+  // search on table
+  handleSearch = (selectedKeys, confirm) => {
+    confirm();
+    this.setState({ searchText: selectedKeys[0] });
+  };
+
+  // reset search field on table
+  handleReset = clearFilters => {
+    clearFilters();
+    this.setState({ searchText: "" });
+  };
+
+  render() {
+    const dataColumns = createDataProductListColumns(
+      this.handleSearch,
+      this.handleReset,
+      this.state.searchText,
+      this.searchInput
+    ).slice();
+
+    const columns = dataColumns;
+    let data = !this.state.userList.length
+      ? []
+      : this.state.userList.map(item => {
+          return {
+            key: item._id,
+            _id: item._id,
+            productName: item.productName,
+            images: item.images,
+            price: item.price,
+            discount: item.discount,
+            type: item.type,
+            form: item.form,
+            event: item.event,
+            holiday: item.holiday,
+            color: item.color,
+            new: item.new,
+            hot: item.hot,
+            sale: item.sale,
+            description: item.description,
+            createdAt: item.createdAt,
+            updatedAt: item.updatedAt
+          };
+        });
+
     return (
       <>
-        <div style={{ marginBottom: "20px" }}>
-          <Button type="primary" onClick={this.state.createModal.showModal}>
-            Tạo Mới
-          </Button>
-        </div>
         <div>
           <Table columns={columns} dataSource={data} />
         </div>
-
-        {/* Modals */}
-        <Modal
-          id="hello"
-          modal={this.state.createModal}
-          title="Tạo Sản Phẩm Mới"
-        />
-        {/* End Modals */}
       </>
     );
   }
