@@ -142,15 +142,17 @@ const input = props => {
 
     case "radioPayment":
       inputElement = (
-        <RadioGroup
+        <div
           onChange={props.changed}
           value={props.value}
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          <Radio value={"VISA"}>VISA</Radio>
-          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio>
-        </RadioGroup>
+          {/* <Radio value={"VISA"}>VISA</Radio>
+          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
+          <input className="payment" type="radio" name="payment" value="VISA" /> VISA<br />
+          <input className="payment" type="radio" name="payment" value="COD" /> Giao Hàng Nhận Tiền<br />
+        </div>
       );
       break;
 
@@ -158,7 +160,7 @@ const input = props => {
       inputElement = (
         <>
           <br />
-          <DatePicker defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat} disabled />
+          <DatePicker name="Ngày Đặt Hàng" defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat} disabled />
         </>
       );
       break;

@@ -1,7 +1,10 @@
 import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
-
+import checkoutService from '../../../services/checkoutService';
+import loginService from '../../../services/loginService';
+import axios from 'axios';
+import { isNotEmpty } from '../../../utilities/fnUtil'
 
 class Checkout extends React.Component {
   state = {
@@ -149,21 +152,44 @@ class Checkout extends React.Component {
         valid: true
       }
     },
+    order: {}
   };
 
-  init(){
-    
+  init() {
+    const userLogin = JSON.parse(localStorage.getItem('user')) || [];
+    // if (loginService.isAuthenticated() && isNotEmpty(this.state.order)) {
+    //   this.state.order.forEach(element => {
+    //     if (userLogin.userPhone === element.customerInfo.phoneNumber) {
+    //       this.state.checkoutForm.fullName.value = element.customerInfo.name;
+    //     }
+    //   });
+    // }
+
+    if (loginService.isAuthenticated()) {
+
+      this.state.checkoutForm.fullName.value = "Test";
+      this.state.checkoutForm.email.value = "test@gmail.com";
+      this.state.checkoutForm.telephone.value = "0164512";
+      this.state.checkoutForm.address.value = "fdfffffffffffffffffff";
+      this.state.checkoutForm.fullName.value = "fasdf";
+
+    }
   }
 
   componentDidMount() {
     loadingScreen.hideLoading();
-   
+    axios.get('datatest/Order.json').then(response => {
+      this.setState({ order: response })
+
+    });
+    this.init();
   }
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
         console.log("Valid Form Successfully");
+        checkoutService.addUserInfoLS();
       }
     });
   };

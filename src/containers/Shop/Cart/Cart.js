@@ -19,26 +19,26 @@ class Cart extends React.Component {
     totalPrice: 0,
   };
 
-  
+
 
   componentDidMount() {
     loadingScreen.hideLoading();
-    
+
   }
 
   componentWillMount = () => {
     // let arrayProductOrder = JSON.parse(localStorage.getItem("listAuth"));
     let arrayProductOrder = cartService.getProductToCart();
     loadingScreen.showLoading();
-    this.setState({ cartList: arrayProductOrder});
+    this.setState({ cartList: arrayProductOrder });
   };
 
   removeCartItemLS = (cartList, itemID) => {
     const newCartList = cartService.removeCartItemLS(cartList, itemID);
     this.setState({ cartList: newCartList });
     showNotification({ message: "Xóa thành công!" });
-    
-   
+
+
   };
 
   render() {
@@ -75,11 +75,11 @@ class Cart extends React.Component {
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <p type="text" name="quantity[5]" defaultValue={order.quantity} size="1" className="form-control" style={{
+                    <input type="number" name="quantity[5]" defaultValue={order.quantity} size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
                       width: '40px'
-                    }}>{order.quantity}</p>
+                    }}></input>
                     {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
                     <span className="input-group-btn">
                       {/* <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button> */}
@@ -90,24 +90,6 @@ class Cart extends React.Component {
                         okText="Đồng Ý"
                         cancelText="Hủy">
                         <button type="button" className="btn btn-danger"><i className="fa fa-times-circle" ></i></button></Popconfirm>
-
-
-
-                      <Popconfirm
-                        title="Bạn có chắc chắn muốn xóa?"
-                        onConfirm={() =>
-                          this.removeCartItemLS(
-                            this.state.cartList,
-                            order._id
-                          )
-                        }
-                        okText="Đồng Ý"
-                        cancelText="Hủy"
-                      >
-                        <button type="button" className="btn btn-danger">
-                          <i className="fa fa-times-circle" />
-                        </button>
-                      </Popconfirm>
                     </span>
                   </div>
                   </td>

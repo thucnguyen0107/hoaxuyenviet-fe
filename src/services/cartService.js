@@ -1,4 +1,4 @@
-import { showNotification,isNotEmpty } from '../utilities/fnUtil';
+import { showNotification, isNotEmpty } from '../utilities/fnUtil';
 import loginService from './loginService';
 const saveCartItemLSGuess = (item) => {
   let productData;
@@ -42,19 +42,19 @@ const saveCartItemLSUser = (item) => {
     // Add quantity use input to product data
     productData.quantity = parseFloat(quantity.value);
     // Add userId to authenticated
-   
+
     // get userInfo client from LS
     const user = JSON.parse(localStorage.getItem('user')) || []
     // productData.userPhone = user.userPhone;
     // create array in local storage	
     let arrProductListLocalStorage = [];
     // Parse the serialized data back into an aray of objects	
-    if(JSON.parse(localStorage.getItem('listAuth'))){
+    if (JSON.parse(localStorage.getItem('listAuth'))) {
       arrProductListLocalStorage = JSON.parse(localStorage.getItem('listAuth')).arrProductListLocalStorage
-    }else{
+    } else {
       arrProductListLocalStorage = [];
     }
-    
+
     // if duplicate product, just add quantity
     arrProductListLocalStorage.forEach(element => {
       if (element._id === productData._id) {
@@ -68,9 +68,9 @@ const saveCartItemLSUser = (item) => {
     // Re-serialize the array back into a string and store it in localStorage	
 
     const arrProductListAuthLS = {
-      arrProductListLocalStorage : arrProductListLocalStorage,
+      arrProductListLocalStorage: arrProductListLocalStorage,
       userPhone: user.userPhone
-      
+
     }
 
     localStorage.setItem("listAuth", JSON.stringify(arrProductListAuthLS));
@@ -81,48 +81,47 @@ const saveCartItemLSUser = (item) => {
 
 const removeCartItemLS = (cartList, itemID) => {
 
-     cartList = cartList.filter(ele => ele._id !== itemID);
-     
-    let cartListTemp = cartList.slice(0);
+  cartList = cartList.filter(ele => ele._id !== itemID);
 
-    const user = JSON.parse(localStorage.getItem('user')) || []
-    const arrProductListAuthLS = {
-      arrProductListLocalStorage : cartListTemp,
-      userPhone: user.userPhone
-      
-    }
-    if (loginService.isAuthenticated()) {
-      localStorage.setItem("listAuth", JSON.stringify(arrProductListAuthLS));
-    }else{
-      localStorage.setItem("list", JSON.stringify(cartListTemp));
-    }
-  
-    return cartList;
+  let cartListTemp = cartList.slice(0);
+
+  const user = JSON.parse(localStorage.getItem('user')) || []
+  const arrProductListAuthLS = {
+    arrProductListLocalStorage: cartListTemp,
+    userPhone: user.userPhone
+
+  }
+  if (loginService.isAuthenticated()) {
+    localStorage.setItem("listAuth", JSON.stringify(arrProductListAuthLS));
+  } else {
+    localStorage.setItem("list", JSON.stringify(cartListTemp));
+  }
+
+  return cartList;
 }
 
 const addProductToLS = (productInfo) => {
-  const userLogin = JSON.parse(localStorage.getItem('user')) || [] ;
-  if(isNotEmpty(userLogin)){
-   return saveCartItemLSUser(productInfo)
-  }else{
-   return saveCartItemLSGuess(productInfo)
+  const userLogin = JSON.parse(localStorage.getItem('user')) || [];
+  if (isNotEmpty(userLogin)) {
+    return saveCartItemLSUser(productInfo)
+  } else {
+    return saveCartItemLSGuess(productInfo)
   }
 }
 
 
 const getProductToCart = () => {
   if (loginService.isAuthenticated()) {
-   if(JSON.parse(localStorage.getItem("listAuth"))){
-    return JSON.parse(localStorage.getItem("listAuth")).arrProductListLocalStorage
-   }else{
-     return [];
-   }
-  }else{
-   return JSON.parse(localStorage.getItem("list")) || [];
+    if (JSON.parse(localStorage.getItem("listAuth"))) {
+      return JSON.parse(localStorage.getItem("listAuth")).arrProductListLocalStorage
+    } else {
+      return [];
+    }
+  } else {
+    return JSON.parse(localStorage.getItem("list")) || [];
   }
- 
-}
 
+}
 
 
 const cartService = {
