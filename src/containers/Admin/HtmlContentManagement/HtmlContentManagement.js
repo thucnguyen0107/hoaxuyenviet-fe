@@ -199,7 +199,7 @@ class HtmlContentManagement extends React.Component {
               eventLink: formData.eventLinkFirstEventSlide.value[i]
             });
           }
-
+          
           imgLength = formData.secondEventSlide.value.length;
           elLength = formData.eventLinkSecondEventSlide.value.length;
           for (
