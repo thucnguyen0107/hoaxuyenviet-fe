@@ -4,7 +4,7 @@ export const slideShowDelayTime = 5000;
 
 export const visibleItems = 20;
 
-export const baseURL = "http://localhost:8000";
+export const baseURL = "https://hoaxuyenviet-be-3eca5jq1l.now.sh/";
 
 export const endPoints = {
   HTML_CONTENT: `${baseURL}/htmlContent`,
@@ -14,7 +14,7 @@ export const endPoints = {
   CREATE_PRODUCT_BY_ADMIN: `${baseURL}/product`,
   UPDATE_PRODUCT_BY_ADMIN: `${baseURL}/product/`,
   DELETE_PRODUCT_BY_ADMIN: `${baseURL}/product/`,
-  ADMIN_LOGIN: `${baseURL}/adminLogin`
+  HOAXUYENVIET_LOGIN: `${baseURL}/hoaxuyenvietLogin`
 };
 
 // userphone: 0274985402

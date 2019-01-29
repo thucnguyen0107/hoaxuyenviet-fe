@@ -156,11 +156,14 @@ class Checkout extends React.Component {
   };
 
   init() {
-    const userLogin = JSON.parse(localStorage.getItem('user')) || [];
+    // const userLogin = JSON.parse(localStorage.getItem('user')) || [];
     // if (loginService.isAuthenticated() && isNotEmpty(this.state.order)) {
     //   this.state.order.forEach(element => {
+
     //     if (userLogin.userPhone === element.customerInfo.phoneNumber) {
+    //       console.log(element.customerInfo.name);
     //       this.state.checkoutForm.fullName.value = element.customerInfo.name;
+    //       console.log(element.customerInfo.name);
     //     }
     //   });
     // }
@@ -171,7 +174,6 @@ class Checkout extends React.Component {
       this.state.checkoutForm.email.value = "test@gmail.com";
       this.state.checkoutForm.telephone.value = "0164512";
       this.state.checkoutForm.address.value = "fdfffffffffffffffffff";
-      this.state.checkoutForm.fullName.value = "fasdf";
 
     }
   }
@@ -182,6 +184,10 @@ class Checkout extends React.Component {
       this.setState({ order: response })
 
     });
+
+  }
+
+  componentDidUpdate() {
     this.init();
   }
 
