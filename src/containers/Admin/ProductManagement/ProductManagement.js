@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Table, Divider, Popconfirm, Input, Icon } from "antd";
+import { Button, Table, Divider, Popconfirm } from "antd";
 import Modal from "../../../components/UI/Modal/Modal";
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";

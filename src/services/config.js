@@ -17,6 +17,5 @@ export const endPoints = {
   ADMIN_LOGIN: `${baseURL}/adminLogin`
 };
 
-
 // userphone: 0274985402
-// pass: thai 
+// pass: thai

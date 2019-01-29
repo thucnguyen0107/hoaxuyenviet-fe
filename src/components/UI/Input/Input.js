@@ -1,7 +1,13 @@
 import React from "react";
 import classes from "./Input.scss";
 import { initGalleryZoom } from "../../../utilities/fnUtil";
-import { Select, Switch, Radio } from "antd";
+import { Select, Switch, Radio, DatePicker } from "antd";
+import moment from 'moment';
+import { getCurrentDate } from '../../../utilities/fnUtil';
+const { MonthPicker, RangePicker } = DatePicker;
+
+const dateFormat = 'DD/MM/YYYY';
+
 const RadioGroup = Radio.Group;
 const input = props => {
   let inputElement = null;
@@ -57,6 +63,9 @@ const input = props => {
       break;
 
     case "images":
+      let classname =
+        "gallery_create_product" +
+        (props.elementConfig.id ? props.elementConfig.id : "");
       inputElement = (
         <>
           <input
@@ -69,8 +78,12 @@ const input = props => {
           />
           {props.value.length ? (
             <div
-              className="gallery_create_product"
-              onLoad={initGalleryZoom(".gallery_create_product")}
+              className={classname}
+              onLoad={initGalleryZoom(
+                ".gallery_create_product" + props.elementConfig.id
+                  ? props.elementConfig.id
+                  : ""
+              )}
               style={{ marginTop: "5px" }}
             >
               {props.value.map((img, index) => (
@@ -130,12 +143,39 @@ const input = props => {
 
     case "radioPayment":
       inputElement = (
-        <RadioGroup onChange={props.changed} value={props.value} required={props.mandatory} style={{ marginLeft: "10px" }}>
-          <Radio value={'VISA'}>VISA</Radio>
-          <Radio value={'COD'}>Giao Hàng Nhận Tiền</Radio>
-        </RadioGroup>
+        <div
+          onChange={props.changed}
+          value={props.value}
+          required={props.mandatory}
+          style={{ marginLeft: "10px" }}
+        >
+          {/* <Radio value={"VISA"}>VISA</Radio>
+          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
+          <input className="payment" type="radio" name="payment" value="VISA" /> VISA<br />
+          <input className="payment" type="radio" name="payment" value="COD" /> Giao Hàng Nhận Tiền<br />
+        </div>
       );
       break;
+
+    case "orderDate":
+      inputElement = (
+        <>
+          <br />
+          <DatePicker name="Ngày Đặt Hàng" defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat} disabled />
+        </>
+      );
+      break;
+
+      case "date": 
+      inputElement = (
+        <>
+          <br />
+          <DatePicker name="date" defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat}  />
+        </>
+      );
+      break;
+
+
     default:
       inputElement = (
         <input
@@ -154,7 +194,8 @@ const input = props => {
       <div className="form-group required">
         <label
           className={props.mandatory ? "control-label" : ""}
-          style={{ fontWeight: "bold" }}>
+          style={{ fontWeight: "bold", width: "auto" }}
+        >
           {props.label}
         </label>
         {inputElement}

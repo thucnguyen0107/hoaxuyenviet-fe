@@ -5,7 +5,7 @@ import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 import './TopNavigation.css';
 import { Link } from 'react-router-dom';
 import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
-import { Popconfirm } from "antd";
+import cartService from '../../../services/cartService';
 let tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -32,7 +32,7 @@ function blurSelected() {
 }
 let cartList = [];
 function loadCart() {
-  let arrayProductOrder = JSON.parse(localStorage.getItem('list'));
+  let arrayProductOrder = cartService.getProductToCart();
   tempTotalPrice = 0;
   cartList = (
     <>
@@ -53,7 +53,7 @@ function loadCart() {
                       <td className="text-left">
                         <Link to={`/productDetail/${order._id}`}>{order.productName}</Link>
                         <p>Số lượng: {order.quantity}</p>
-                        <p>Giá: {formatCurrency((order.price - (order.price * order.discount / 100)) * JSON.parse(order.quantity))} VND </p>
+                        <p>Giá: {formatCurrency((order.price - (order.price * order.discount / 100)) * order.quantity)} VND </p>
                       </td>
 
 

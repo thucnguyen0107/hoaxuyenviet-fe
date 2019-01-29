@@ -1,8 +1,8 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
-import { Tooltip } from 'antd';
 import { Link } from 'react-router-dom';
+import loginService from '../../../services/loginService'; 
 
 class Login extends React.Component {
     state = {
@@ -42,7 +42,7 @@ class Login extends React.Component {
             },
         },
         formIsValid: false
-    };
+    }
 
     componentDidMount() {
         loadingScreen.hideLoading();
@@ -50,14 +50,17 @@ class Login extends React.Component {
 
     setStateForm = (object, submit = false) => {
         this.setState(object, () => {
-            if (this.state.formIsValid && submit) {
-                console.log("Valid Form Successfully");
-            }
+          if (this.state.formIsValid && submit) {
+            console.log("Valid Form Successfully");
+            loginService.loginLS();
+            this.props.history.push({pathname:'/home'})
+          }
         });
-    };
+      };
+
     
     render() {
-        
+       
         return (
             <>
                 <div id="breadcrumb">
@@ -85,18 +88,13 @@ class Login extends React.Component {
                             <div className="well">
                                 <h2>Đăng Nhập</h2>
                                 <p><strong>Chào mừng bạn quay trở lại!</strong></p>
-                                <Form
-                                    idForm="loginForm"
-                                    nameForm="loginForm"
-                                    originalForm={this.state.loginForm}
-                                    setState={this.setStateForm}
-                                    btnName="Lưu Lại"
+                                <Form idForm="loginForm" 
+                                nameForm="loginForm"
+                                originalForm={this.state.loginForm}
+                                setState={this.setStateForm}
+                                btnName="Đăng nhập" 
                                 />
-                                {/* {this.state.noEdit ?
-                                    <div className="text-center">
-                                        <button className="btn" style={{ marginBottom: "20px" }} onClick={() => this.setState({ noEdit: false })}> Đăng ký</button>
-                                    </div> : null}
-                                {form} */}
+                                
                             </div>
                         </div>
                     </div>

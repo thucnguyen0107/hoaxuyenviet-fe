@@ -12,7 +12,7 @@ class Register extends React.Component {
         elementConfig: {
           type: 'number',
           placeholder: 'Vui lòng nhập số điện thoại của bạn',
-          name: 'Tài khoản đăng nhập'
+          name: 'Tài khoản đăng nhập (số điện thoại)'
         },
         value: '',
         validation: {
@@ -84,10 +84,10 @@ class Register extends React.Component {
         value: '',
         validation: {
           required: true,
-          minLength: 15,
-          maxLength: 32,
+          minLength: 10,
+          maxLength: 50,
           letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Email không hợp lệ"
+          errorMessage: "Email phải có nhiều hơn 10 ký tự và ít hơn 50 ký tự"
         },
         valid: true,
       },
@@ -104,21 +104,39 @@ class Register extends React.Component {
           minLength: 15,
           maxLength: 50,
           letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Địa chỉ không hợp lệ"
+          errorMessage: "Địa chỉ phải có nhiều hơn 10 ký tự và ít hơn 100 ký tự"
         },
         valid: true,
       },
-      // birth: {
-      //   elementType: 'input',
-      //   elementConfig: {
-      //     type: 'datepicker',
-          
-      //     name: 'Ngày tháng năm sinh'
-      //   },
-      //   value: '',
-        
-      //   valid: true,
-      // },
+      birth: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'date',
+          name: 'Ngày tháng năm sinh'
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: true,
+      },
+      gender: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Vui lòng nhập giới tính của bạn',
+          name: 'Giới tính'
+        },
+        value: '',
+        validation: {
+          required: true,
+          minLength: 2,
+          maxLength: 3,
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Giới tính không hợp lệ"
+        },
+        valid: true,
+      },
     },
     formIsValid: false
   }
@@ -155,14 +173,14 @@ class Register extends React.Component {
           <p>Nếu bạn đã có tài khoản. Vui lòng đăng nhập <Link to="/login" >tại đây</Link>.</p>
           <form className="form-horizontal">
             <fieldset id="account">
-              <legend>Thông tin cá nhân</legend>
+              <h2>THÔNG TIN CÁ NHÂN</h2>
               <Form
               idForm="registerForm1"
               nameForm="registerForm1"
               originalForm={this.state.registerForm1}
               setState={this.setStateForm}
               noEdit={this.state.noEdit}
-              btnName="Lưu Lại"
+              btnName="Đăng ký"
             />
             { this.state.noEdit ? 
           <div className="text-center">

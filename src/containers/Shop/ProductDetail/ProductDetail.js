@@ -8,7 +8,8 @@ import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
 import { convertItemToName } from '../../../utilities/categoriesUtil';
 import classes from './ProductDetail.scss'
 import { Tag } from 'antd';
-import cartService from '../../../services/cartService'
+import cartService from '../../../services/cartService';
+import loginService from '../../../services/loginService'
 class ProductDetail extends React.Component {
 
   createZoom = () => {
@@ -88,6 +89,8 @@ class ProductDetail extends React.Component {
 
   }
 
+  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -166,7 +169,6 @@ class ProductDetail extends React.Component {
       loadingScreen.hideLoading();
       this.props.history.replace('/pageNotFound');
     })
-
   }
 
   shouldComponentUpdate(nextProps) {
@@ -197,15 +199,29 @@ class ProductDetail extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.init();
+  // isAuthenticated(){
+  //   if(isNotEmpty(this.state.userLogin)){
+     
+  //     cartService.saveCartItemLSUser(this.state.product)
+  //   }else{
+  //     cartService.saveCartItemLSGuess(this.state.product)
+  //   }
   // }
+
+  addProductToLS(){
+    return cartService.addProductToLS(this.state.product );
+  }
+
+
+  componentDidMount() {
+    // this.isAuthenticated();
+  }
 
   componentWillUnmount() {
     window.$('.zoomContainer').remove()
   }
 
-
+  
 
   render() {
     if (isNotEmpty(this.state.product)) {
@@ -320,7 +336,7 @@ class ProductDetail extends React.Component {
                         <div className="form-group cart">
                           <label className="control-label qty" htmlFor="input-quantity">Số lượng</label>
                           <input type="number" name="quantity" defaultValue="1" size="2" id="input-quantity" className="form-control" />
-                          <button type="button" id="button-cart" data-loading-text="Loading..." onClick={() => cartService.saveCartItemLS(this.state.product)} className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
+                          <button type="button" id="button-cart" data-loading-text="Loading..." onClick={() => this.addProductToLS() } className="btn btn-primary btn-lg btn-block" style={{ marginLeft: '20px' }}>Thêm vào giỏ hàng</button>
 
                           <div className="btn-group">
                             <button type="button" className="btn btn-primary wishlist" >Thanh Toán</button>

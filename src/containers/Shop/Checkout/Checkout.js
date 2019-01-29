@@ -1,11 +1,15 @@
 import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
+import checkoutService from '../../../services/checkoutService';
+import loginService from '../../../services/loginService';
+import axios from 'axios';
+import { isNotEmpty } from '../../../utilities/fnUtil'
 
 class Checkout extends React.Component {
   state = {
     checkoutForm: {
-      firstName: {
+      fullName: {
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -43,8 +47,8 @@ class Checkout extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Số điện thoại",
-          name: "Số điện thoại"
+          placeholder: "Số Điện Thoại",
+          name: "Số Điện Thoại"
         },
         value: "",
         validation: {
@@ -60,14 +64,65 @@ class Checkout extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Địa chỉ",
-          name: "Địa chỉ"
+          placeholder: "Địa Chỉ",
+          name: "Địa Chỉ"
         },
         value: "",
         validation: {
           required: true,
           minLength: 15,
           errorMessage: "Địa chỉ phải trên 15 ký tự!"
+        },
+        valid: true
+      },
+      fullNameReceivePerson: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Họ và Tên ",
+          name: "Họ và Tên Người Nhận (nếu có)"
+        },
+        value: "",
+        validation: {
+          required: false,
+        },
+        valid: true
+      },
+      telephoneReceivePerson: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Số Điện Thoại",
+          name: "Số Điện Thoại Người Nhận (nếu có)"
+        },
+        value: "",
+        validation: {
+          required: false,
+        },
+        valid: true
+      },
+      addressReivePerson: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Địa Chỉ",
+          name: "Địa Chỉ Người Nhận (nếu không nhập thì địa chỉ cá nhân của bạn sẽ là địa chỉ nhận hàng)"
+        },
+        value: "",
+        validation: {
+          required: false,
+        },
+        valid: true
+      },
+      orderDate: {
+        elementType: "orderDate",
+        elementConfig: {
+          type: "text",
+          name: "Ngày Đặt Hàng"
+        },
+        value: "",
+        validation: {
+
         },
         valid: true
       },
@@ -88,8 +143,8 @@ class Checkout extends React.Component {
         elementType: "textarea",
         elementConfig: {
           type: "text",
-          placeholder: "Ghi chú",
-          name: "Ghi chú"
+          placeholder: "Ghi Chú",
+          name: "Ghi Chú"
         },
         value: "",
         validation: {
@@ -97,16 +152,44 @@ class Checkout extends React.Component {
         valid: true
       }
     },
+    order: {}
   };
+
+  init() {
+    const userLogin = JSON.parse(localStorage.getItem('user')) || [];
+    // if (loginService.isAuthenticated() && isNotEmpty(this.state.order)) {
+    //   this.state.order.forEach(element => {
+    //     if (userLogin.userPhone === element.customerInfo.phoneNumber) {
+    //       this.state.checkoutForm.fullName.value = element.customerInfo.name;
+    //     }
+    //   });
+    // }
+
+    if (loginService.isAuthenticated()) {
+
+      this.state.checkoutForm.fullName.value = "Test";
+      this.state.checkoutForm.email.value = "test@gmail.com";
+      this.state.checkoutForm.telephone.value = "0164512";
+      this.state.checkoutForm.address.value = "fdfffffffffffffffffff";
+      this.state.checkoutForm.fullName.value = "fasdf";
+
+    }
+  }
 
   componentDidMount() {
     loadingScreen.hideLoading();
+    axios.get('datatest/Order.json').then(response => {
+      this.setState({ order: response })
+
+    });
+    this.init();
   }
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
         console.log("Valid Form Successfully");
+        checkoutService.addUserInfoLS();
       }
     });
   };
