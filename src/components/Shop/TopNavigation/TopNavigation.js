@@ -4,7 +4,9 @@ import Logo from '../../../assets/images/catalog/logo.png';
 import NavigationItem from '../TopNavigation/NavigationItem/NavigationItem';
 import './TopNavigation.css';
 import { Link } from 'react-router-dom';
-
+import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
+import { Popconfirm } from "antd";
+let tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
 
@@ -28,7 +30,47 @@ function blurSelected() {
 
   }
 }
+let cartList = [];
+function loadCart() {
+  let arrayProductOrder = JSON.parse(localStorage.getItem('list'));
+  tempTotalPrice = 0;
+  cartList = (
+    <>
+      {
+        isNotEmpty(arrayProductOrder) ?
+          arrayProductOrder.map((order, index) => {
+            tempTotalPrice += ((order.price - (order.price * order.discount / 100)) * order.quantity)
+            return (
+              <li key={index}>
+                <table className="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td className="text-left">
+                        <Link to={`/productDetail/${order._id}`}>
+                          <img src={order.images[0]} alt={order.productName} title={order.productName} className="img-thumbnail imageSmall" />
+                        </Link>
+                      </td>
+                      <td className="text-left">
+                        <Link to={`/productDetail/${order._id}`}>{order.productName}</Link>
+                        <p>Số lượng: {order.quantity}</p>
+                        <p>Giá: {formatCurrency((order.price - (order.price * order.discount / 100)) * JSON.parse(order.quantity))} VND </p>
+                      </td>
 
+
+                      <td className="text-center"><button type="button" title="Remove" className="btn btn-danger btn-xs"><i className="fa fa-times"></i></button></td>
+
+                    </tr>
+                  </tbody></table>
+              </li>
+            );
+
+          }) : <p>Giỏ hàng của bạn rỗng</p>
+      }
+
+    </>
+  );
+
+}
 const topNavigation = (props) => {
 
   let zIndexStyle;
@@ -49,6 +91,7 @@ const topNavigation = (props) => {
   navList = (
     <>
       {
+
         props.listCategoriesName.map((category, index) => {
           return (
             <NavigationItem
@@ -63,6 +106,9 @@ const topNavigation = (props) => {
 
     </>
   )
+
+
+
   return (
     <header>
       <div className="header">
@@ -99,7 +145,7 @@ const topNavigation = (props) => {
               <div className="header-cart-wrapper">
                 <div className="header-cart">
                   <div id="cart" className="btn-group btn-block">
-                    <button type="button" data-toggle="dropdown" data-loading-text="Loading..." className="btn btn-inverse btn-block btn-lg dropdown-toggle">
+                    <button type="button" data-toggle="dropdown" data-loading-text="Loading..." className="btn btn-inverse btn-block btn-lg dropdown-toggle" onClick={loadCart()}>
                       <span id="cart-title">Giỏ hàng</span>
                       <i className="fa fa-angle-down"></i>
                       <span id="cart-total">
@@ -107,42 +153,15 @@ const topNavigation = (props) => {
                       </span>
                     </button>
                     <ul className="dropdown-menu pull-right cart-menu" style={zIndexStyle}>
+                      {cartList}
                       <li>
-                        <table className="table table-striped">
-                          <tbody><tr>
-                            <td className="text-center">
-
-                              <Link to="/">
-                                <img src="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/image/cache/catalog/demo/product/3-70x86.jpg" alt="HP LP3065" title="HP LP3065" className="img-thumbnail" />
-                              </Link>
-                            </td>
-                            <td className="text-left"><Link to="">HP LP3065</Link>
-                              <br />
-                              - <small>Delivery Date 2011-04-22</small>
-                            </td>
-                            <td className="text-right">x 1</td>
-                            <td className="text-right">$122.00</td>
-                            <td className="text-center"><button type="button" title="Remove" className="btn btn-danger btn-xs"><i className="fa fa-times"></i></button></td>
-                          </tr>
-                          </tbody></table>
-                      </li><li>
                         <div>
                           <table className="table table-bordered">
-                            <tbody><tr>
-                              <td className="text-right"><strong>Sub-Total</strong></td>
-                              <td className="text-right">$100.00</td>
-                            </tr>
+                            <tbody>
+
                               <tr>
-                                <td className="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                                <td className="text-right">$2.00</td>
-                              </tr>
-                              <tr>
-                                <td className="text-right"><strong>VAT (20%)</strong></td>
-                                <td className="text-right">$20.00</td>
-                              </tr>
-                              <tr>
-                                <td className="text-right"><strong>Total</strong></td>
-                                <td className="text-right">$122.00</td>
+                                <td className="text-right"><strong>Tổng tiền</strong></td>
+                                <td className="text-right">{formatCurrency(tempTotalPrice)} VND</td>
                               </tr>
                             </tbody></table>
                           <div className="text-right button-container"><Link className="addtocart" to="/cart"><strong>Giỏ hàng</strong></Link>&nbsp;&nbsp;&nbsp;<Link to="/checkout" className="checkout"><strong>Thanh toán</strong></Link></div>

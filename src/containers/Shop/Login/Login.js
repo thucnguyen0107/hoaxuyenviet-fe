@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
     state = {
-        orderForm: {
+        loginForm: {
             telephone: {
                 elementType: 'input',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Số điện thoại'
+                    placeholder: 'Số điện thoại',
+                    name: 'Số Điện Thoại'
                 },
                 value: '',
                 validation: {
@@ -27,21 +28,22 @@ class Login extends React.Component {
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
-                    placeholder: 'Mật khẩu'
+                    placeholder: 'Mật khẩu',
+                    name: 'Mật Khẩu'
                 },
                 value: '',
                 validation: {
                     required: true,
-                    minLength: 1,
+                    minLength: 10,
                     maxLength: 32,
-                    letterValid: /^[a-zA-Z]+$/,
                     errorMessage: "Mật khẩu không đúng. Vui lòng nhập lại!"
                 },
                 valid: true,
             },
         },
         formIsValid: false
-    }
+    };
+
     componentDidMount() {
         loadingScreen.hideLoading();
     }
@@ -53,14 +55,9 @@ class Login extends React.Component {
             }
         });
     };
+    
     render() {
-        const formElementsArray = [];
-        for (let key in this.state.orderForm) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.orderForm[key]
-            });
-        }
+        
         return (
             <>
                 <div id="breadcrumb">
@@ -89,9 +86,9 @@ class Login extends React.Component {
                                 <h2>Đăng Nhập</h2>
                                 <p><strong>Chào mừng bạn quay trở lại!</strong></p>
                                 <Form
-                                    idForm="registerForm"
-                                    nameForm="rgisterForm"
-                                    originalForm={this.state.orderForm}
+                                    idForm="loginForm"
+                                    nameForm="loginForm"
+                                    originalForm={this.state.loginForm}
                                     setState={this.setStateForm}
                                     btnName="Lưu Lại"
                                 />

@@ -8,6 +8,7 @@ import classes from './Search.scss';
 import { convertFilters } from '../../../utilities/categoriesUtil';
 import FilterBar from '../../../components/UI/FilterBar';
 import { visibleItems } from '../../../services/config';
+import {isNotEmpty} from '../../../utilities/fnUtil'
 class Search extends React.Component {
 
   catParams;
@@ -110,7 +111,7 @@ class Search extends React.Component {
                   filter={this.filterProductFn} />
 
                 <div className="row list-grid-wrapper">
-                  {!window.jQuery.isEmptyObject(this.state.filteredProductList) ? <ProductList lstProduct={this.state.filteredProductList.slice(0, this.state.visible)} /> : null}
+                  {isNotEmpty(this.state.filteredProductList) ? <ProductList lstProduct={this.state.filteredProductList.slice(0, this.state.visible)} /> : null}
                 </div>
                 <p className={classes.productsProgressBar} data-auto-id="productsProgressBar">You've viewed {this.state.visible > this.state.filteredProductList.length ? this.state.filteredProductList.length : this.state.visible} of {this.state.filteredProductList.length} products</p>
                 {this.state.visible < this.state.filteredProductList.length &&

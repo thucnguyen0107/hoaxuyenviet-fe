@@ -25,17 +25,29 @@ export const convertCategories = (catParent, cat, fn) => {
         fn('/pageNotFound');
         return false;
       }
-      
+
     }
   } else {
     fn('/pageNotFound');
     return false;
   }
-  
+
 }
 
 export const convertFilters = (catParent) => {
   let arrayCategories = headerContent.categories.slice(1, 6);
   let arrFilters = arrayCategories.filter((item) => catParent !== item.id);
   return arrFilters;
+}
+
+export const convertItemToName = (arr, cat) => {
+  let arrayCategories = headerContent.categories.find(item => cat === item.id);
+  let arrCatName = [];
+  arrCatName = arr.map(catId => {
+    let item = arrayCategories.subCategories.find(item => item.id === catId);
+    return item.subName;
+  })
+  return arrCatName;
+
+
 }

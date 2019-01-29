@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import classes from './Blogs.scss';
 import filterUtils from '../../../utilities/filter';
+import {isNotEmpty} from '../../../utilities/fnUtil';
 
 class Blogs extends React.Component {
 
@@ -65,7 +66,7 @@ class Blogs extends React.Component {
     listBlog = (
       <>
         {
-          !window.jQuery.isEmptyObject(this.state.filteredHTMLBlogModel) ? this.state.filteredHTMLBlogModel.slice(0, this.state.visible).map(blog => {
+         isNotEmpty(this.state.filteredHTMLBlogModel) ? this.state.filteredHTMLBlogModel.slice(0, this.state.visible).map(blog => {
             return (
               <div className="blog_item" key={blog._id}>
                 <div className="summary">

@@ -6,20 +6,21 @@ import { Link } from 'react-router-dom';
 
 class Register extends React.Component {
   state = {
-    orderForm: {
-      name: {
+    registerForm1: {
+      id: {
         elementType: 'input',
         elementConfig: {
-          type: 'text',
-          placeholder: 'Họ và tên'
+          type: 'number',
+          placeholder: 'Vui lòng nhập số điện thoại của bạn',
+          name: 'Tài khoản đăng nhập'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
-          maxLength: 32,
-          letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Họ và tên phải nhiều hơn 3 ký tự và ít hơn 32 ký tự"
+          minLength: 10,
+          maxLength: 11,
+          letterValid: /^\+?[0-9]+$/,
+          errorMessage: "Số điện thoại không hợp lệ"
         },
         valid: true
       },
@@ -27,29 +28,49 @@ class Register extends React.Component {
         elementType: 'input',
         elementConfig: {
           type: 'password',
-          placeholder: 'Mật khẩu'
+          placeholder: 'Vui lòng nhập mật khẩu của bạn',
+          name: 'Mật khẩu'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
+          minLength: 5,
           maxLength: 32,
-          errorMessage: "Mật khẩu phải nhiều hơn 3 ký tự và ít hơn 32 ký tự"
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Mật khẩu phải nhiều hơn 5 ký tự và ít hơn 32 ký tự"
         },
         valid: true,
       },
-      passwordConfirm: {
+      // passwordConfirm: {
+      //   elementType: 'input',
+      //   elementConfig: {
+      //     type: 'password',
+      //     placeholder: 'Xác nhận mật khẩu'
+      //   },
+      //   value: '',
+      //   validation: {
+      //     required: true,
+      //     minLength: 5,
+      //     maxLength: 32,
+      //     letterValid: /^[a-zA-Z]+$/,
+      //     errorMessage: "Xác nhận mật khẩu không chính xác"
+      //   },
+      //   valid: true,
+      // },
+      name: {
         elementType: 'input',
         elementConfig: {
-          type: 'password',
-          placeholder: 'Xác nhận mật khẩu'
+          type: 'text',
+          placeholder: 'Vui lòng nhập họ và tên của bạn',
+          name: 'Họ và tên'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
-          maxLength: 32,
-          errorMessage: "Xác nhận mật khẩu không chính xác"
+          minLength: 10,
+          maxLength: 50,
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Họ và tên phải có nhiều hơn 10 ký tự và ít hơn 50 ký tự"
         },
         valid: true,
       },
@@ -57,33 +78,47 @@ class Register extends React.Component {
         elementType: 'input',
         elementConfig: {
           type: 'email',
-          placeholder: 'E-Mail'
+          placeholder: 'Vui lòng nhập địa chỉ E-Mail của bạn',
+          name: 'E-Mail'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
+          minLength: 15,
           maxLength: 32,
+          letterValid: /^[a-zA-Z]+$/,
           errorMessage: "Email không hợp lệ"
         },
         valid: true,
       },
-      telephone: {
+      address: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Số điện thoại'
+          placeholder: 'Vui lòng nhập địa chỉ của bạn',
+          name: 'Địa chỉ'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 9,
-          maxLength: 32,
-          numberValid: /^\+?[0-9]+$/,
-          errorMessage: "Số điện thoại không hợp lệ"
+          minLength: 15,
+          maxLength: 50,
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Địa chỉ không hợp lệ"
         },
         valid: true,
       },
+      // birth: {
+      //   elementType: 'input',
+      //   elementConfig: {
+      //     type: 'datepicker',
+          
+      //     name: 'Ngày tháng năm sinh'
+      //   },
+      //   value: '',
+        
+      //   valid: true,
+      // },
     },
     formIsValid: false
   }
@@ -103,13 +138,6 @@ class Register extends React.Component {
   };
   
   render() {
-    const formElementsArray = [];
-    for (let key in this.state.orderForm) {
-      formElementsArray.push({
-        id: key,
-        config: this.state.orderForm[key]
-      });
-    }
     return (
       <>
         <div id="breadcrumb">
@@ -129,9 +157,9 @@ class Register extends React.Component {
             <fieldset id="account">
               <legend>Thông tin cá nhân</legend>
               <Form
-              idForm="registerForm"
-              nameForm="rgisterForm"
-              originalForm={this.state.orderForm}
+              idForm="registerForm1"
+              nameForm="registerForm1"
+              originalForm={this.state.registerForm1}
               setState={this.setStateForm}
               noEdit={this.state.noEdit}
               btnName="Lưu Lại"
@@ -141,7 +169,7 @@ class Register extends React.Component {
             <button className="btn" style={{ marginBottom: "20px" }} onClick={() => this.setState({noEdit: false})}> Đăng ký</button>
           </div> : null}
             {/* {form} */}
-            </fieldset>
+            </fieldset> 
           </form>
         </div>
       </>

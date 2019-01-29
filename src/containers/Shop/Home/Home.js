@@ -10,6 +10,8 @@ import axios from 'axios';
 import { endPoints } from '../../../services/config';
 import loadingScreen from '../../../utilities/loadingScreen';
 import { htmlContentModel } from '../../../models/htmlContentModel';
+import {isNotEmpty} from '../../../utilities/fnUtil'
+
 class Body extends React.Component {
   state = {
     htmlContentModel
@@ -84,7 +86,7 @@ class Body extends React.Component {
 
               {/**Test Category Block SlideShow */}
 
-              {!window.jQuery.isEmptyObject(this.state.htmlContentModel.eventSlide) ? <CategoriesSlider listCatBannerSlider={this.state.htmlContentModel.eventSlide} /> : null}
+              {isNotEmpty(this.state.htmlContentModel.eventSlide) ? <CategoriesSlider listCatBannerSlider={this.state.htmlContentModel.eventSlide} /> : null}
               {/**END Test Category Block SlideShow */}
 
 
@@ -110,7 +112,7 @@ class Body extends React.Component {
 
               {/*--------------TAB CATEGORY --------------- */}
               <div id="Tab_Category_Slider" className="category_tab box">
-                {!window.jQuery.isEmptyObject(this.state.htmlContentModel.otherSlide) ? <TabCategories listTabCategory={this.state.htmlContentModel.otherSlide} /> : null}
+                {isNotEmpty(this.state.htmlContentModel.otherSlide) ? <TabCategories listTabCategory={this.state.htmlContentModel.otherSlide} /> : null}
                 {/**------------- END--TAB CATEGORY--------------------- */}
 
 

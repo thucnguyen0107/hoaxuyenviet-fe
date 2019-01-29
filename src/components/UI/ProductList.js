@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatCurrency } from '../../utilities/fnUtil';
+import Limg from './LoadingImage/Limg';
 
 const productList = (props) => {
 
@@ -17,9 +18,9 @@ const productList = (props) => {
                 <div className="product-block-inner">
                   <div className="image">
                     <Link to={'/productDetail/' + product._id}>
-                      <img src={(product.images)} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
+                      <Limg src={(product.images[0])} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
                         className="img-responsive reg-image" />
-                      <img className="img-responsive hover-image" src={product.images}
+                      <img className="img-responsive hover-image" src={product.images[1]}
                         title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;" />
                     </Link>
                     <div className="extra-info">
@@ -38,35 +39,11 @@ const productList = (props) => {
                           {product.sale === true ? <span className="saleicon sale">Sale</span> : null}
                         </div>
                       </span>
-                      {/* <div className="rating">
-                        <span className="fa fa-stack"><i className="fa fa-star"></i></span>
-                        <span className="fa fa-stack"><i className="fa fa-star"></i></span>
-                        <span className="fa fa-stack"><i className="fa fa-star"></i></span>
-                        <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
-                        <span className="fa fa-stack"><i className="fa fa-star off"></i></span>
-                      </div>
-                      <p className="desc">The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel
-                        resolution. Designed specifically htmlFor the creative professional, this display provides more
-                        space htmlFor easier access to all the tools and...</p> */}
                       <div className="button-group">
                         <Link to="/cart" className="btn btn-primary addtocart" >
                           <i className="fa fa-shopping-basket"></i>
                           Add to Cart
                         </Link>
-                        {/* <button className="btn btn-primary wishlist" type="button" >
-                          <i className="fa fa-heart"></i>
-                          Add to Wish List
-                        </button>
-                        <button className="btn btn-primary compare" type="button" >
-                          <i className="fa fa-clone"></i>
-                          Add to Compare
-                        </button>
-                        <div className="quickview">
-                          <a className="btn btn-primary" href="indexc691.html?route=product/quick_view&amp;path=25_30&amp;product_id=42">
-                            <i className="fa fa-eye"></i>
-
-                          </a>
-                        </div> */}
                       </div>
                     </div>
                   </div>

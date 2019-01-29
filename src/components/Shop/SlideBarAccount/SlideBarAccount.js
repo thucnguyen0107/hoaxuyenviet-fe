@@ -4,12 +4,12 @@ import loadingScreen from '../../../utilities/loadingScreen';
 import { Link } from "react-router-dom";
 
 
-
-const hideLS = () => {
-  window.$(document).ready(() => {
-    loadingScreen.hideLoading();
-  })
-}
+const SubMenu = Menu.SubMenu;
+// const hideLS = () => {
+//   window.$(document).ready(() => {
+//     loadingScreen.hideLoading();
+//   })
+// }
 
 
 class SlideBarAccount extends React.Component {
@@ -80,7 +80,7 @@ class SlideBarAccount extends React.Component {
     );
   }
 }; 
-{ hideLS() };
+// { hideLS() }
 
 
 
