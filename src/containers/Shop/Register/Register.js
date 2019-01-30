@@ -1,26 +1,26 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
-import { Tooltip } from 'antd';
 import { Link } from 'react-router-dom';
 
 
 class Register extends React.Component {
   state = {
-    orderForm: {
-      name: {
+    registerForm1: {
+      id: {
         elementType: 'input',
         elementConfig: {
-          type: 'text',
-          placeholder: 'Họ và tên'
+          type: 'number',
+          placeholder: 'Vui lòng nhập số điện thoại của bạn',
+          name: 'Tài khoản đăng nhập (số điện thoại)'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
-          maxLength: 32,
-          letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Họ và tên phải nhiều hơn 3 ký tự và ít hơn 32 ký tự"
+          minLength: 10,
+          maxLength: 11,
+          letterValid: /^\+?[0-9]+$/,
+          errorMessage: "Số điện thoại không hợp lệ"
         },
         valid: true
       },
@@ -28,29 +28,49 @@ class Register extends React.Component {
         elementType: 'input',
         elementConfig: {
           type: 'password',
-          placeholder: 'Mật khẩu'
+          placeholder: 'Vui lòng nhập mật khẩu của bạn',
+          name: 'Mật khẩu'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
+          minLength: 5,
           maxLength: 32,
-          errorMessage: "Mật khẩu phải nhiều hơn 3 ký tự và ít hơn 32 ký tự"
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Mật khẩu phải nhiều hơn 5 ký tự và ít hơn 32 ký tự"
         },
         valid: true,
       },
-      passwordConfirm: {
+      // passwordConfirm: {
+      //   elementType: 'input',
+      //   elementConfig: {
+      //     type: 'password',
+      //     placeholder: 'Xác nhận mật khẩu'
+      //   },
+      //   value: '',
+      //   validation: {
+      //     required: true,
+      //     minLength: 5,
+      //     maxLength: 32,
+      //     letterValid: /^[a-zA-Z]+$/,
+      //     errorMessage: "Xác nhận mật khẩu không chính xác"
+      //   },
+      //   valid: true,
+      // },
+      name: {
         elementType: 'input',
         elementConfig: {
-          type: 'password',
-          placeholder: 'Xác nhận mật khẩu'
+          type: 'text',
+          placeholder: 'Vui lòng nhập họ và tên của bạn',
+          name: 'Họ và tên'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
-          maxLength: 32,
-          errorMessage: "Xác nhận mật khẩu không chính xác"
+          minLength: 10,
+          maxLength: 50,
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Họ và tên phải có nhiều hơn 10 ký tự và ít hơn 50 ký tự"
         },
         valid: true,
       },
@@ -58,30 +78,62 @@ class Register extends React.Component {
         elementType: 'input',
         elementConfig: {
           type: 'email',
-          placeholder: 'E-Mail'
+          placeholder: 'Vui lòng nhập địa chỉ E-Mail của bạn',
+          name: 'E-Mail'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 1,
-          maxLength: 32,
-          errorMessage: "Email không hợp lệ"
+          minLength: 10,
+          maxLength: 50,
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Email phải có nhiều hơn 10 ký tự và ít hơn 50 ký tự"
         },
         valid: true,
       },
-      telephone: {
+      address: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Số điện thoại'
+          placeholder: 'Vui lòng nhập địa chỉ của bạn',
+          name: 'Địa chỉ'
         },
         value: '',
         validation: {
           required: true,
-          minLength: 9,
-          maxLength: 32,
-          numberValid: /^\+?[0-9]+$/,
-          errorMessage: "Số điện thoại không hợp lệ"
+          minLength: 15,
+          maxLength: 50,
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Địa chỉ phải có nhiều hơn 10 ký tự và ít hơn 100 ký tự"
+        },
+        valid: true,
+      },
+      birth: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'date',
+          name: 'Ngày tháng năm sinh'
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: true,
+      },
+      gender: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Vui lòng nhập giới tính của bạn',
+          name: 'Giới tính'
+        },
+        value: '',
+        validation: {
+          required: true,
+          minLength: 2,
+          maxLength: 3,
+          letterValid: /^[a-zA-Z]+$/,
+          errorMessage: "Giới tính không hợp lệ"
         },
         valid: true,
       },
@@ -91,80 +143,19 @@ class Register extends React.Component {
 
 
 
-  checkValidity(value, rules) {
-
-    let isValid = true;
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-    if (rules.letterValid) {
-      isValid = rules.letterValid.test(value) && isValid;
-    }
-
-    if (rules.numberValid) {
-      isValid = rules.numberValid.test(value) && isValid;
-    }
-
-    return isValid;
-  }
-
   componentDidMount() {
     loadingScreen.hideLoading();
   }
 
-  inputChangedHandler = (event, inputIdentifier) => {
-
-    // clone form object
-    const updatedOrderForm = {
-      ...this.state.orderForm
-    }
-
-    // get changed input element from cloned form object
-    const updatedFormElement = {
-      ...updatedOrderForm[inputIdentifier]
-    }
-
-    // update value for changed input element
-    updatedFormElement.value = event.target.value;
-
-    // update changed input element in cloned form object
-    updatedOrderForm[inputIdentifier] = updatedFormElement;
-
-    this.setState({ orderForm: updatedOrderForm });
-
-  }
-
-  validateForm = () => {
-    if (!this.state.submitIsClick) {
-      this.setState({ submitIsClick: true });
-    }
-
-    const form = {
-      ...this.state.orderForm
-    }
-
-    let formIsValid = true;
-    for (let input in form) {
-      // validate input element
-      form[input].valid = this.checkValidity(form[input].value, form[input].validation);
-      formIsValid = form[input].valid && formIsValid;
-    }
-    this.setState({ orderForm: form, formIsValid: formIsValid });
-  }
+  setStateForm = (object, submit = false) => {
+    this.setState(object, () => {
+      if (this.state.formIsValid && submit) {
+        console.log("Valid Form Successfully");
+      }
+    });
+  };
+  
   render() {
-    const formElementsArray = [];
-    for (let key in this.state.orderForm) {
-      formElementsArray.push({
-        id: key,
-        config: this.state.orderForm[key]
-      });
-    }
     return (
       <>
         <div id="breadcrumb">
@@ -182,14 +173,21 @@ class Register extends React.Component {
           <p>Nếu bạn đã có tài khoản. Vui lòng đăng nhập <Link to="/login" >tại đây</Link>.</p>
           <form className="form-horizontal">
             <fieldset id="account">
-              <legend>Thông tin cá nhân</legend>
-              <Form idForm="registerForm" formElementsArray={formElementsArray} changed={this.inputChangedHandler} />
-              <div className="col text-center">
-                <Tooltip placement="bottom" title="Vui lòng điền đầy đủ thông tin">
-                <button style={{ marginBottom: '20px' }} className="btn btn-default" id="button-register" data-loading-text="Loading..." onClick={this.validateForm}>Đăng ký</button>
-                </Tooltip>
-              </div>
-            </fieldset>
+              <h2>THÔNG TIN CÁ NHÂN</h2>
+              <Form
+              idForm="registerForm1"
+              nameForm="registerForm1"
+              originalForm={this.state.registerForm1}
+              setState={this.setStateForm}
+              noEdit={this.state.noEdit}
+              btnName="Đăng ký"
+            />
+            { this.state.noEdit ? 
+          <div className="text-center">
+            <button className="btn" style={{ marginBottom: "20px" }} onClick={() => this.setState({noEdit: false})}> Đăng ký</button>
+          </div> : null}
+            {/* {form} */}
+            </fieldset> 
           </form>
         </div>
       </>

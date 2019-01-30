@@ -1,8 +1,14 @@
 import React from "react";
 import Input from "../Input/Input";
-import { cloneData } from "../../../utilities/fnUtil";
+import { cloneData, formatDate } from "../../../utilities/fnUtil";
 
 class CustomForm extends React.Component {
+
+  // set default props
+  static defaultProps = {
+    noEdit: false,
+    clearForm: true
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -30,10 +36,10 @@ class CustomForm extends React.Component {
             : value.trim() !== "" && isValid;
     }
     if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
+      isValid = value.toString().length >= rules.minLength && isValid;
     }
     if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
+      isValid = value.toString().length <= rules.maxLength && isValid;
     }
     if (rules.minNumber) {
       isValid = value >= rules.minNumber && isValid;
@@ -87,7 +93,9 @@ class CustomForm extends React.Component {
       case "textarea":
         updatedFormElement.value = event.target.value.split(",");
         break;
-
+      case "date":
+        updatedFormElement.value = formatDate(event, true);
+        break;
       default:
         updatedFormElement.value = event.target.value;
         break;
@@ -116,7 +124,7 @@ class CustomForm extends React.Component {
       );
       formIsValid = form[input].valid && formIsValid;
     }
-    if (formIsValid) {
+    if (this.props.clearForm && formIsValid) {
       this.setState({ clonedForm: cloneData(this.state.originalForm) });
     }
     fn({ [nameForm]: form, formIsValid }, true);
@@ -139,7 +147,7 @@ class CustomForm extends React.Component {
         {formElementsArray.map(formElement => (
           <Input
             key={formElement.id}
-            editForm={this.props.editForm}
+            notUpdate={this.props.notUpdate}
             elementConfig={formElement.config.elementConfig}
             elementType={formElement.config.elementType}
             value={formElement.config.value}
@@ -147,6 +155,7 @@ class CustomForm extends React.Component {
             mandatory={formElement.config.validation.required} // field required valid
             errorMessage={formElement.config.validation.errorMessage}
             label={formElement.config.elementConfig.name}
+            noEdit={this.props.noEdit}
             changed={event => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
@@ -161,11 +170,11 @@ class CustomForm extends React.Component {
           this.validateForm(event, this.props.nameForm, this.props.setState)
         }>
         {form}
-        <div className="text-center">
+        {!this.props.noEdit ? <div className="text-center">
           <button style={{ marginBottom: "20px" }} className="btn">
             {this.props.btnName}
           </button>
-        </div>
+        </div> : null}
       </form>
     );
   }

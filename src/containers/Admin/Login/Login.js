@@ -56,7 +56,7 @@ class Login extends React.Component {
       password: this.state.loginForm.password.value
     };
     axios
-      .post(endPoints.ADMIN_LOGIN, user)
+      .post(endPoints.HOAXUYENVIET_LOGIN, user)
       .then(res => {
         localStorage.setItem("authUser", JSON.stringify(res));
         this.props.updateAuthUser(res);

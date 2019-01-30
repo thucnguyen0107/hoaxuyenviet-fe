@@ -376,3 +376,98 @@ export const htmlContentFormModel = {
     valid: true
   }
 };
+
+export const userProfileFormModel = {
+  fullName: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Họ và Tên",
+      name: "Họ và Tên"
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 10,
+      maxLength: 32,
+      errorMessage:
+        "Họ và tên phải từ 10 đến 32 ký tự!"
+    },
+    valid: true
+  },
+  gender: {
+    elementType: "radioGender",
+    elementConfig: {
+      type: "text",
+      name: "Giới Tính"
+    },
+    value: "male",
+    validation: {
+      required: true,
+      errorMessage: "Vui Lòng Chọn Giới Tính!"
+    },
+    valid: true
+  },
+  birthDate: {
+    elementType: "date",
+    elementConfig: {
+      type: "text",
+      name: "Ngày Tháng Năm Sinh"
+    },
+
+    value: "",
+    validation: {
+      required: false,
+      errorMessage: "Vui Lòng Chọn Ngày Tháng Năm Sinh!"
+    },
+    valid: true
+  },
+  email: {
+    elementType: "input",
+    elementConfig: {
+      type: "email",
+      placeholder: "E-Mail",
+      name: "E-Mail"
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 10,
+      maxLength: 32,
+      errorMessage: "Email chưa hợp lệ!"
+    },
+    valid: true
+  },
+  telephone: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Số Điện Thoại",
+      name: "Số Điện Thoại",
+      unique: 1
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 9,
+      maxLength: 32,
+      numberValid: '^[0-9]+$',
+      errorMessage: "Số điện thoại phải từ 9 đến 32 chữ số!"
+    },
+    valid: true
+  },
+  address: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Địa Chỉ",
+      name: "Địa Chỉ"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Chưa Nhập Địa Chỉ!"
+    },
+    valid: true
+  }
+}

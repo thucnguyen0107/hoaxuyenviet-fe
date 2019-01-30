@@ -31,7 +31,7 @@ const input = props => {
           type={props.elementConfig.type}
           className={inputClasses.join(" ")}
           value={props.value}
-          disabled={props.editForm && props.elementConfig.unique}
+          disabled={props.notUpdate && props.elementConfig.unique || props.noEdit}
         />
       );
       break;
@@ -57,6 +57,7 @@ const input = props => {
           className={inputClasses.join(" ")}
           required={props.mandatory}
           value={props.value.join(",")}
+          disabled={props.noEdit}
         />
       );
       break;
@@ -142,24 +143,50 @@ const input = props => {
 
     case "radioPayment":
       inputElement = (
-        <RadioGroup
+        <div
           onChange={props.changed}
           value={props.value}
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          <Radio value={"VISA"}>VISA</Radio>
-          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio>
-        </RadioGroup>
+          {/* <Radio value={"VISA"}>VISA</Radio>
+          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
+          <input className="payment" type="radio" name="payment" value="VISA" /> VISA<br />
+          <input className="payment" type="radio" name="payment" value="COD" /> Giao Hàng Nhận Tiền<br />
+        </div>
+      );
+      break;
+
+    case "radioGender":
+      inputElement = (
+        <div
+          value={props.value}
+          required={props.mandatory}
+          style={{ marginLeft: "10px" }}
+        >
+          {/* <Radio value={"VISA"}>VISA</Radio>
+          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
+          <input className="gender" type="radio" name="gender" value="male" checked={props.value === 'male' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nam
+          <input className="gender" type="radio" name="gender" value="female" checked={props.value === 'female' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nữ<br />
+        </div>
       );
       break;
 
     case "orderDate":
       inputElement = (
-        <>
+        <div>
           <br />
-          <DatePicker defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat} disabled />
-        </>
+          <DatePicker name="Ngày Đặt Hàng" defaultValue={moment(props.value, dateFormat)} format={dateFormat} disabled onChange={props.changed} />
+        </div>
+      );
+      break;
+
+    case "date":
+      inputElement = (
+        <div>
+          <br />
+          <DatePicker name="date" value={moment(props.value, dateFormat)} format={dateFormat} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} />
+        </div>
       );
       break;
 
@@ -182,7 +209,7 @@ const input = props => {
       <div className="form-group required">
         <label
           className={props.mandatory ? "control-label" : ""}
-          style={{ fontWeight: "bold" }}
+          style={{ fontWeight: "bold", width: "auto" }}
         >
           {props.label}
         </label>

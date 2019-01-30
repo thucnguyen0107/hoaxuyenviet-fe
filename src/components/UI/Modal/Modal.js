@@ -11,7 +11,7 @@ const CustomModal = props => {
         originalForm={props.originalForm}
         setState={props.setStateForm}
         btnName={props.btnName}
-        editForm={props.editForm}
+        notUpdate={props.notUpdate}
       />
     </Modal>
   );

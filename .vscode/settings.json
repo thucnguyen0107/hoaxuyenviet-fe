@@ -2,8 +2,8 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "editor.formatOnSave": true,
-  "editor.fontFamily": "Fira Code",
-  "editor.fontLigatures": true,
+  // "editor.fontFamily": "Fira Code",
+  // "editor.fontLigatures": false,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,

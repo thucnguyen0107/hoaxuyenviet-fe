@@ -11,7 +11,6 @@ import Search from '../Shop/Search/Search';
 import Cart from '../Shop/Cart/Cart';
 import Checkout from '../Shop/Checkout/Checkout';
 import Login from '../../containers/Shop/Login/Login';
-import MyAccount from '../../components/Shop/MyAccount/MyAccount';
 import Blogs from '../Shop/Blogs/Blogs';
 import Account from '../../containers/Account/Account';
 import BlogDetail from '../Shop/BlogDetail/BlogDetail';
@@ -35,8 +34,7 @@ class Shop extends React.Component {
           <Route path="/account" exact component={Account} />
           <Route path="/register" exact component={Register} />
           <Route path="/forgotpassword" exact component={ForGotPassWord} />
-          <Route path="/account" exact component={Account} />
-          <Route path="/myaccount" exact component={MyAccount}/>
+          <Route path="/account" component={Account} />
           <Route path="/login" exact component={Login} />
           <Redirect from="/" to="/home" exact />
           <Route path="/pageNotFound" exact component={notFoundPage} />

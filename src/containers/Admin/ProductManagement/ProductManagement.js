@@ -196,7 +196,7 @@ class ProductManagement extends React.Component {
           cancelText="Hủy"
           visible={this.state.editModal.show}
           onCancel={this.state.editModal.handleCancel}
-          editForm={true}
+          notUpdate={true}
           maskClosable={false}
           footer={[
             <Button key="back" onClick={this.state.editModal.handleCancel}>
