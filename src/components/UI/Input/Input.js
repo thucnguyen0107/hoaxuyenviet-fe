@@ -31,7 +31,7 @@ const input = props => {
           type={props.elementConfig.type}
           className={inputClasses.join(" ")}
           value={props.value}
-          disabled={props.noEdit || props.notUpdate && props.elementConfig.unique}
+          disabled={props.notUpdate && props.elementConfig.unique || props.noEdit}
         />
       );
       break;
@@ -157,21 +157,36 @@ const input = props => {
       );
       break;
 
-    case "orderDate":
+    case "radioGender":
       inputElement = (
-        <>
-          <br />
-          <DatePicker name="Ngày Đặt Hàng" defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat} disabled />
-        </>
+        <div
+          value={props.value}
+          required={props.mandatory}
+          style={{ marginLeft: "10px" }}
+        >
+          {/* <Radio value={"VISA"}>VISA</Radio>
+          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
+          <input className="gender" type="radio" name="gender" value="male" checked={props.value === 'male' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nam
+          <input className="gender" type="radio" name="gender" value="female" checked={props.value === 'female' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nữ<br />
+        </div>
       );
       break;
 
-      case "date": 
+    case "orderDate":
       inputElement = (
-        <>
+        <div>
           <br />
-          <DatePicker name="date" defaultValue={moment(getCurrentDate(), dateFormat)} format={dateFormat}  />
-        </>
+          <DatePicker name="Ngày Đặt Hàng" defaultValue={moment(props.value, dateFormat)} format={dateFormat} disabled onChange={props.changed} />
+        </div>
+      );
+      break;
+
+    case "date":
+      inputElement = (
+        <div>
+          <br />
+          <DatePicker name="date" value={moment(props.value, dateFormat)} format={dateFormat} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} />
+        </div>
       );
       break;
 

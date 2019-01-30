@@ -44,7 +44,7 @@ const saveCartItemLSUser = (item) => {
     // Add userId to authenticated
 
     // get userInfo client from LS
-    const user = JSON.parse(localStorage.getItem('user')) || []
+    const user = JSON.parse(localStorage.getItem('authUser')) || []
     // productData.userPhone = user.userPhone;
     // create array in local storage	
     let arrProductListLocalStorage = [];
@@ -85,7 +85,7 @@ const removeCartItemLS = (cartList, itemID) => {
 
   let cartListTemp = cartList.slice(0);
 
-  const user = JSON.parse(localStorage.getItem('user')) || []
+  const user = JSON.parse(localStorage.getItem('authUser')) || []
   const arrProductListAuthLS = {
     arrProductListLocalStorage: cartListTemp,
     userPhone: user.userPhone
@@ -101,7 +101,7 @@ const removeCartItemLS = (cartList, itemID) => {
 }
 
 const addProductToLS = (productInfo) => {
-  const userLogin = JSON.parse(localStorage.getItem('user')) || [];
+  const userLogin = JSON.parse(localStorage.getItem('authUser')) || [];
   if (isNotEmpty(userLogin)) {
     return saveCartItemLSUser(productInfo)
   } else {

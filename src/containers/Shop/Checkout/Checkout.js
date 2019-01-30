@@ -4,7 +4,7 @@ import Form from "../../../components/UI/Form/Form";
 import checkoutService from '../../../services/checkoutService';
 import loginService from '../../../services/loginService';
 import axios from 'axios';
-import { isNotEmpty } from '../../../utilities/fnUtil'
+import { isNotEmpty, getCurrentDate } from '../../../utilities/fnUtil'
 
 class Checkout extends React.Component {
   state = {
@@ -120,7 +120,7 @@ class Checkout extends React.Component {
           type: "text",
           name: "Ngày Đặt Hàng"
         },
-        value: "",
+        value: getCurrentDate(),
         validation: {
 
         },
@@ -156,40 +156,32 @@ class Checkout extends React.Component {
   };
 
   init() {
-    // const userLogin = JSON.parse(localStorage.getItem('user')) || [];
-    // if (loginService.isAuthenticated() && isNotEmpty(this.state.order)) {
-    //   this.state.order.forEach(element => {
-
-    //     if (userLogin.userPhone === element.customerInfo.phoneNumber) {
-    //       console.log(element.customerInfo.name);
-    //       this.state.checkoutForm.fullName.value = element.customerInfo.name;
-    //       console.log(element.customerInfo.name);
-    //     }
-    //   });
-    // }
 
     if (loginService.isAuthenticated()) {
 
-      this.state.checkoutForm.fullName.value = "Test";
-      this.state.checkoutForm.email.value = "test@gmail.com";
-      this.state.checkoutForm.telephone.value = "0164512";
-      this.state.checkoutForm.address.value = "fdfffffffffffffffffff";
+      const userInfo = checkoutService.getInfoIfUserLogin();
+      const authUser = JSON.parse(localStorage.getItem("authUser")) || {}
+      const userPhone = authUser.userPhone
+
+      let checkoutForm = { ...this.state.checkoutForm };    //creating copy of object
+      checkoutForm.fullName.value = userInfo.name;                        //updating value
+      checkoutForm.email.value = userInfo.email;                        //updating value
+      checkoutForm.telephone.value = userPhone;                        //updating value
+      checkoutForm.address.value = userInfo.address;                        //updating value
+      this.setState({ checkoutForm });
+
+
 
     }
   }
 
   componentDidMount() {
     loadingScreen.hideLoading();
-    axios.get('datatest/Order.json').then(response => {
-      this.setState({ order: response })
 
-    });
-
-  }
-
-  componentDidUpdate() {
     this.init();
   }
+
+
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {

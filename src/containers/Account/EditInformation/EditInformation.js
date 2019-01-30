@@ -2,86 +2,77 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
-
+import { connect } from "react-redux";
+import loginService from '../../../services/loginService';
+import checkoutService from '../../../services/checkoutService';
+import axios from 'axios';
+import { endPoints } from "../../../services/config";
+import { getDate, getCurrentDate, cloneData } from '../../../utilities/fnUtil';
+import { userProfileFormModel } from '../../../models/formModel';
 class EditInformation extends React.Component {
   state = {
     noEdit: true,
-    orderForm: {
-      name: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          name: "Họ và tên"
-        },
-        value: "Thục",
-        validation: {
-          required: true,
-          minLength: 1,
-          maxLength: 32,
-          errorMessage:
-            "First name must be between 1 and 32 characters and only letters!"
-        },
-        valid: true
-      },
-      password: {
-        elementType: "input",
-        elementConfig: {
-          type: "password",
-          name: "Password"
-        },
-        value: "abc123",
-        validation: {
-          required: true,
-          minLength: 1,
-          maxLength: 32,
-          errorMessage:
-            "First name must be between 1 and 32 characters and only letters!"
-        },
-        valid: true
-      },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          name: "E-mail"
-        },
-        value: "abc@gmail.com",
-        validation: {
-          required: true,
-          minLength: 1,
-          maxLength: 32,
-          errorMessage: "Email must be between 1 and 32 characters!"
-        },
-        valid: true
-      },
-      telephone: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          name: "Số điện thoại"
-        },
-        value: "032456016",
-        validation: {
-          required: true,
-          minLength: 9,
-          maxLength: 32,
-          numberValid: /^\+?[0-9]+$/,
-          errorMessage: "Phone must be between 9 and 32 numbers!"
-        },
-        valid: true
-      }
-    },
-    formIsValid: false
+    infoForm: cloneData(userProfileFormModel),
+    user: null
   };
 
+  init() {
+    const userPhone = JSON.parse(localStorage.getItem('authUser')).userPhone;
+    axios.get(endPoints.GET_USER_BY_ID + userPhone)
+      .then(res => {
+        console.log(res);
+        let infoForm = cloneData(this.state.infoForm);    //creating copy of object
+        infoForm.fullName.value = res.userInfo.name;                        //updating value
+        infoForm.email.value = res.userInfo.email;                        //updating value
+        infoForm.address.value = res.userInfo.address;                    //updating value
+        infoForm.telephone.value = userPhone;
+        infoForm.birthDate.value = getDate(res.userInfo.birth)
+        if (res.userInfo.gender === 'male') {
+          infoForm.gender.value = "male"
+        } else {
+          infoForm.gender.value = "female"
+        }
+        this.setState({ infoForm, user: res });
+      })
+
+  }
+
+  onUpdateUser = () => {
+    loadingScreen.showLoading();
+    const updatedUser = cloneData(this.state.user);
+    updatedUser.userInfo.name = this.state.infoForm.fullName.value;
+    updatedUser.userInfo.email = this.state.infoForm.email.value;
+    updatedUser.userInfo.address = this.state.infoForm.address.value;
+    updatedUser.userInfo.gender = this.state.infoForm.gender.value;
+    updatedUser.userInfo.birth = this.state.infoForm.birthDate.value;
+
+    axios
+      .patch(endPoints.EDIT_USER + this.state.infoForm.telephone.value, updatedUser)
+      .then(res => {
+        console.log(res);
+        this.setState({ user: updatedUser });
+        loadingScreen.hideLoading();
+      })
+      .catch(err => {
+        loadingScreen.hideLoading();
+        alert(err);
+      });
+  }
+  componentWillMount() {
+    this.init();
+  }
   componentDidMount() {
     loadingScreen.hideLoading();
   }
+
+
+
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
         console.log("Valid Form Successfully");
+        this.onUpdateUser();
       }
     });
   };
@@ -91,24 +82,36 @@ class EditInformation extends React.Component {
 
         <div className="col-sm-12">
           <fieldset id="account">
-            <legend>Your Personal Details</legend>
+            <legend>Thông Tin Tài Khoản</legend>
             <Form
-              idForm="editInforForm"
-              nameForm="editInforForm"
-              originalForm={this.state.orderForm}
+              idForm="infoForm"
+              nameForm="infoForm"
+              originalForm={this.state.infoForm}
               setState={this.setStateForm}
               noEdit={this.state.noEdit}
+              clearForm={false}
+              notUpdate={true}
               btnName="Lưu Lại"
             />
-            { this.state.noEdit ? 
-          <div className="text-center">
-            <button className="btn" style={{ marginBottom: "20px" }} onClick={() => this.setState({noEdit: false})}>  Chỉnh Sửa Tài Khoản</button>
-          </div> : null}
+            {this.state.noEdit ?
+              <div className="text-center">
+                <button className="btn" style={{ marginBottom: "20px" }} onClick={() => this.setState({ noEdit: false })}>  Chỉnh Sửa Tài Khoản</button>
+              </div> : null}
             {/* {form} */}
-          </fieldset>        
+          </fieldset>
         </div>
       </>
     );
   }
 }
-export default EditInformation;
+
+
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(EditInformation);

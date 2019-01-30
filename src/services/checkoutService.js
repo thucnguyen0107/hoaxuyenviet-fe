@@ -140,7 +140,12 @@ const addUserInfoLS = () => {
   }
 }
 
+const getInfoIfUserLogin = () => {
+  const authUser = JSON.parse(localStorage.getItem("authUser")) || {}
+  return authUser.userInfo
+}
+
 const checkoutService = {
-  saveUserInfoLSGuess, addUserInfoLS
+  saveUserInfoLSGuess, addUserInfoLS, getInfoIfUserLogin
 }
 export default checkoutService;

@@ -6,6 +6,7 @@ import './TopNavigation.css';
 import { Link } from 'react-router-dom';
 import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
 import cartService from '../../../services/cartService';
+import { connect } from "react-redux";
 let tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -192,24 +193,32 @@ const topNavigation = (props) => {
               </div>
               <div className="myaccount-wrapper">
                 <div className="dropdown myaccount">
-                  <a href="indexe223.html?route=account/account" title="My Account" className="dropdown-toggle" data-toggle="dropdown">
-                    <span className="account-title">My Account</span>
+                  <a href="#" title={props.authUser.auth ? props.authUser.userInfo.name : 'My Account'} className="dropdown-toggle" data-toggle="dropdown">
                     <i className="fa fa-angle-down"></i>
                   </a>
-                  <ul className="dropdown-menu dropdown-menu-right myaccount-menu" style={zIndexStyle}>
-                    <li><Link to="register">Đăng ký</Link></li>
+                  {!props.authUser.auth ? <ul className="dropdown-menu dropdown-menu-right myaccount-menu" style={zIndexStyle}>
+                    <li><Link to="/register">Đăng ký</Link></li>
                     <li><Link to="/login">Đăng nhập</Link></li>
                     <nav id="top">
                       <div id="top-links" className="nav">
                         <ul className="list-inline">
-
-
-                          <li><Link to="checkout" title="Checkout"><span className="checkout">Kiểm tra</span></Link></li>
+                          <li><Link to="/checkout" title="Checkout"><span className="checkout">Thanh toán</span></Link></li>
                         </ul>
                       </div>
                     </nav>
 
-                  </ul>
+                  </ul> : <ul className="dropdown-menu dropdown-menu-right myaccount-menu" style={zIndexStyle}>
+                      <nav id="top">
+                        <div id="top-links" className="nav">
+                          <ul className="list-inline">
+                            <li><Link to="/account" title="Checkout"><span className="checkout">Tài Khoản</span></Link></li>
+                            <li><Link to="/checkout" title="Checkout"><span className="checkout">Thanh Toán</span></Link></li>
+                            <li><Link to="/logout" title="Logout"><span className="logout">Thoát</span></Link></li>
+                          </ul>
+                        </div>
+                      </nav>
+
+                    </ul>}
                 </div>
               </div>
             </div>
@@ -224,4 +233,12 @@ const topNavigation = (props) => {
   );
 }
 
-export default topNavigation;
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(topNavigation);

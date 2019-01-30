@@ -14,7 +14,9 @@ export const endPoints = {
   CREATE_PRODUCT_BY_ADMIN: `${baseURL}/product`,
   UPDATE_PRODUCT_BY_ADMIN: `${baseURL}/product/`,
   DELETE_PRODUCT_BY_ADMIN: `${baseURL}/product/`,
-  HOAXUYENVIET_LOGIN: `${baseURL}/hoaxuyenvietLogin`
+  HOAXUYENVIET_LOGIN: `${baseURL}/hoaxuyenvietLogin`,
+  EDIT_USER: `${baseURL}/user/`,
+  GET_USER_BY_ID: `${baseURL}/user/`
 };
 
 // userphone: 0274985402

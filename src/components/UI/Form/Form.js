@@ -1,12 +1,13 @@
 import React from "react";
 import Input from "../Input/Input";
-import { cloneData } from "../../../utilities/fnUtil";
+import { cloneData, formatDate } from "../../../utilities/fnUtil";
 
 class CustomForm extends React.Component {
 
   // set default props
   static defaultProps = {
-    noEdit: false
+    noEdit: false,
+    clearForm: true
   }
   constructor(props) {
     super(props);
@@ -35,10 +36,10 @@ class CustomForm extends React.Component {
             : value.trim() !== "" && isValid;
     }
     if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
+      isValid = value.toString().length >= rules.minLength && isValid;
     }
     if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
+      isValid = value.toString().length <= rules.maxLength && isValid;
     }
     if (rules.minNumber) {
       isValid = value >= rules.minNumber && isValid;
@@ -92,7 +93,9 @@ class CustomForm extends React.Component {
       case "textarea":
         updatedFormElement.value = event.target.value.split(",");
         break;
-
+      case "date":
+        updatedFormElement.value = formatDate(event, true);
+        break;
       default:
         updatedFormElement.value = event.target.value;
         break;
@@ -121,7 +124,7 @@ class CustomForm extends React.Component {
       );
       formIsValid = form[input].valid && formIsValid;
     }
-    if (formIsValid) {
+    if (this.props.clearForm && formIsValid) {
       this.setState({ clonedForm: cloneData(this.state.originalForm) });
     }
     fn({ [nameForm]: form, formIsValid }, true);
@@ -168,10 +171,10 @@ class CustomForm extends React.Component {
         }>
         {form}
         {!this.props.noEdit ? <div className="text-center">
-         <button style={{ marginBottom: "20px" }} className="btn"> 
+          <button style={{ marginBottom: "20px" }} className="btn">
             {this.props.btnName}
           </button>
-        </div>: null}
+        </div> : null}
       </form>
     );
   }
