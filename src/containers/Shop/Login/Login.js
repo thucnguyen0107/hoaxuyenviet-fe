@@ -3,7 +3,10 @@ import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
 import { Link } from 'react-router-dom';
 import loginService from '../../../services/loginService'; 
-
+import axios from "axios";
+import { endPoints } from "../../../services/config";
+import Actions from "../../../redux/rootActions"
+import { connect } from "react-redux";
 class Login extends React.Component {
     state = {
         loginForm: {
@@ -52,10 +55,32 @@ class Login extends React.Component {
         this.setState(object, () => {
           if (this.state.formIsValid && submit) {
             console.log("Valid Form Successfully");
-            loginService.loginLS();
-            this.props.history.push({pathname:'/home'})
+            // loginService.loginLS();
+            // this.props.history.push({pathname:'/home'})
+
+            this.onLogin();
           }
         });
+      };
+
+      onLogin = () => {
+        loadingScreen.showLoading();
+        const user = {
+          userphone: this.state.loginForm.telephone.value,
+          password: this.state.loginForm.password.value
+        };
+        axios
+          .post(endPoints.HOAXUYENVIET_LOGIN, user)
+          .then(res => {
+            localStorage.setItem("authUser", JSON.stringify(res));
+            this.props.updateAuthUser(res);
+            this.props.history.push("/home");
+            loadingScreen.hideLoading();
+          })
+          .catch(err => {
+            loadingScreen.hideLoading();
+            alert(err);
+          });
       };
 
     
@@ -103,4 +128,14 @@ class Login extends React.Component {
         );
     }
 }
-export default Login;
+
+const mapDispatchToProps = dispatch => {
+    return {
+      updateAuthUser: authUser =>
+        dispatch(Actions.userActions.getAuthUser(authUser))
+    };
+  };
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(Login);

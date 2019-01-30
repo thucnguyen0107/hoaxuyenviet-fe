@@ -197,14 +197,14 @@ const topNavigation = (props) => {
                     <i className="fa fa-angle-down"></i>
                   </a>
                   <ul className="dropdown-menu dropdown-menu-right myaccount-menu" style={zIndexStyle}>
-                    <li><a href="index5502.html?route=account/register">Đăng ký</a></li>
-                    <li><a href="indexe223.html?route=account/login">Đăng nhập</a></li>
+                    <li><Link to="register">Đăng ký</Link></li>
+                    <li><Link to="/login">Đăng nhập</Link></li>
                     <nav id="top">
                       <div id="top-links" className="nav">
                         <ul className="list-inline">
 
 
-                          <li><a href="index630e.html?route=checkout/checkout" title="Checkout"><span className="checkout">Kiểm tra</span></a></li>
+                          <li><Link to="checkout" title="Checkout"><span className="checkout">Kiểm tra</span></Link></li>
                         </ul>
                       </div>
                     </nav>
