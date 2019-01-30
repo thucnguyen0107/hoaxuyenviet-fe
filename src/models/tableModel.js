@@ -5,7 +5,7 @@ import {
   initGalleryZoom
 } from "../utilities/fnUtil";
 import { convertItemToName } from "../utilities/categoriesUtil";
-import { Tag, Switch, Input, Button, Icon } from "antd";
+import { Tag, Switch, Input, Button, Icon, Collapse } from "antd";
 import Highlighter from "react-highlight-words";
 
 const getColumnSearchProps = (
@@ -59,6 +59,11 @@ const getColumnSearchProps = (
   onFilter: (value, record) => {
     switch (renderType) {
       case "date":
+        return formatDate(record[dataIndex], true)
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase());
+      case "birthDate":
         return formatDate(record[dataIndex])
           .toString()
           .toLowerCase()
@@ -84,6 +89,13 @@ const getColumnSearchProps = (
     switch (renderType) {
       case "date":
         return formatDate(item);
+      case "birthDate":
+        return formatDate(item, true);
+      case "status":
+        if (item === "PENDING") return <Tag color="#87d068">{item}</Tag>;
+        if (item === "DELIVERING") return <Tag color="#108ee9">{item}</Tag>;
+        if (item === "COMPLETED") return <Tag color="#9e0b0b">{item}</Tag>;
+        break;
       case "category":
         return (
           <span>
@@ -298,7 +310,7 @@ export const createDataProductListColumns = (
       )
     },
     {
-      title: "Ngày Chỉnh Sửa",
+      title: "Ngày Cập Nhật",
       key: "updatedAt",
       dataIndex: "updatedAt",
       ...getColumnSearchProps(
@@ -323,13 +335,13 @@ export const createDataUserListColumns = (
 ) => {
   const arr = [
     {
-      title: "Số",
+      title: "Số Di Động",
       dataIndex: "_id",
       key: "_id",
       fixed: "left",
       ...getColumnSearchProps(
         "_id",
-        "Mã SP",
+        "Số ĐT",
         handleSearch,
         handleReset,
         searchText,
@@ -338,12 +350,12 @@ export const createDataUserListColumns = (
     },
     {
       title: "Tên",
-      dataIndex: "productName",
-      key: "productName",
+      dataIndex: "name",
+      key: "name",
       fixed: "left",
       ...getColumnSearchProps(
-        "productName",
-        "Tên SP",
+        "name",
+        "Tên Khách",
         handleSearch,
         handleReset,
         searchText,
@@ -351,145 +363,70 @@ export const createDataUserListColumns = (
       )
     },
     {
-      title: "Hình Ảnh",
-      key: "images",
-      dataIndex: "images",
-      render: (images, record) => (
-        <div
-          className={"gallery_zoom_admin" + record._id}
-          onLoad={initGalleryZoom(".gallery_zoom_admin" + record._id)}
-        >
-          {images.map((img, index) => (
-            <a
-              href={img}
-              key={index}
-              style={{
-                width: "50px",
-                height: "50px",
-                display: "inline-block",
-                marginRight: "5px"
-              }}
-            >
-              <img
-                src={img}
-                alt="Error"
-                width="50"
-                height="50"
-                style={{ pointerEvents: "none" }}
-              />
-            </a>
-          ))}
-        </div>
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      ...getColumnSearchProps(
+        "email",
+        "Email",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput
       )
     },
     {
-      title: "Giá",
-      dataIndex: "price",
-      key: "price",
-      render: item => formatCurrency(item)
-    },
-    {
-      title: "Giảm Giá (%)",
-      dataIndex: "discount",
-      key: "discount"
-    },
-    {
-      title: "Kiểu",
-      key: "type",
-      dataIndex: "type",
+      title: "Địa Chỉ",
+      dataIndex: "address",
+      key: "address",
       ...getColumnSearchProps(
-        "type",
-        "Kiểu Loại",
+        "address",
+        "Địa Chỉ",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput
+      )
+    },
+    {
+      title: "Giới Tính",
+      dataIndex: "gender",
+      key: "gender",
+      ...getColumnSearchProps(
+        "gender",
+        "Giới Tính",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput
+      )
+    },
+    {
+      title: "Ngày Sinh",
+      dataIndex: "birth",
+      key: "birth",
+      ...getColumnSearchProps(
+        "birth",
+        "Ngày Sinh",
         handleSearch,
         handleReset,
         searchText,
         searchInput,
-        "category",
-        "type"
+        "birthDate"
       )
     },
     {
-      title: "Hình Thức",
-      key: "form",
-      dataIndex: "form",
+      title: "Điểm Tích Lũy",
+      dataIndex: "rewardPoints",
+      key: "rewardPoints",
       ...getColumnSearchProps(
-        "form",
-        "Hình Thức",
+        "rewardPoints",
+        "Điểm",
         handleSearch,
         handleReset,
         searchText,
-        searchInput,
-        "category",
-        "form"
+        searchInput
       )
-    },
-    {
-      title: "Màu Sắc",
-      key: "color",
-      dataIndex: "color",
-      ...getColumnSearchProps(
-        "color",
-        "Màu Sắc",
-        handleSearch,
-        handleReset,
-        searchText,
-        searchInput,
-        "category",
-        "color"
-      )
-    },
-    {
-      title: "Sự Kiện",
-      key: "event",
-      dataIndex: "event",
-      ...getColumnSearchProps(
-        "event",
-        "Sự Kiện",
-        handleSearch,
-        handleReset,
-        searchText,
-        searchInput,
-        "category",
-        "event"
-      )
-    },
-    {
-      title: "Ngày Lễ",
-      key: "holiday",
-      dataIndex: "holiday",
-      ...getColumnSearchProps(
-        "holiday",
-        "Ngày Lễ",
-        handleSearch,
-        handleReset,
-        searchText,
-        searchInput,
-        "category",
-        "holiday"
-      )
-    },
-    {
-      title: "Hàng Sale",
-      key: "sale",
-      dataIndex: "sale",
-      render: item => <Switch size="small" checked={item} disabled />
-    },
-    {
-      title: "Hàng Mới",
-      key: "new",
-      dataIndex: "new",
-      render: item => <Switch size="small" checked={item} disabled />
-    },
-    {
-      title: "Hàng Hot",
-      key: "hot",
-      dataIndex: "hot",
-      render: item => <Switch size="small" checked={item} disabled />
-    },
-    {
-      title: "Mô Tả",
-      key: "description",
-      dataIndex: "description"
     },
     {
       title: "Ngày Tạo",
@@ -506,7 +443,7 @@ export const createDataUserListColumns = (
       )
     },
     {
-      title: "Ngày Chỉnh Sửa",
+      title: "Ngày Cập Nhật",
       key: "updatedAt",
       dataIndex: "updatedAt",
       ...getColumnSearchProps(
@@ -517,6 +454,162 @@ export const createDataUserListColumns = (
         searchText,
         searchInput,
         "date"
+      )
+    }
+  ];
+  return arr;
+};
+
+export const createDataOrderListColumns = (
+  handleSearch,
+  handleReset,
+  searchText,
+  searchInput
+) => {
+  const arr = [
+    {
+      title: "Mã Đơn Hàng",
+      dataIndex: "_id",
+      key: "_id",
+      fixed: "left",
+      ...getColumnSearchProps(
+        "_id",
+        "Mã Đơn",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput
+      )
+    },
+    {
+      title: "Hàng Đặt",
+      dataIndex: "productOrder",
+      key: "productOrder",
+      render: record => (
+        <>
+          <Collapse>
+            <Collapse.Panel header="Chi Tiết">
+              {record.map(item => {
+                return (
+                  <div key={item._id}>
+                    <span style={{ marginRight: "10px" }}>{`Tên: ${
+                      item.name
+                    }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
+                      item.quantity
+                    }, Giảm Giá: ${item.discount}`}</span>
+                    {item.images.map((img, index) => {
+                      return (
+                        <img
+                          style={{ marginRight: "5px" }}
+                          key={index}
+                          src={img}
+                          alt="productImage"
+                          height="40"
+                          width="40"
+                        />
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </Collapse.Panel>
+          </Collapse>
+        </>
+      )
+    },
+    {
+      title: "Tổng Giá",
+      dataIndex: "finalPrice",
+      key: "finalPrice",
+      render: item => formatCurrency(item)
+    },
+    {
+      title: "Thông Tin Thêm",
+      dataIndex: "note",
+      key: "note"
+    },
+    {
+      title: "Thanh Toán",
+      dataIndex: "payment",
+      key: "payment"
+    },
+    {
+      title: "Người Đặt",
+      dataIndex: "customerInfo",
+      key: "customerInfo",
+      render: record => (
+        <>
+          <Collapse>
+            <Collapse.Panel header="Chi Tiết">
+              <p>Tên: {record.name}</p>
+              <p>Di Động: {record.phone}</p>
+              <p>Email: {record.email}</p>
+              <p>Địa Chỉ: {record.address}</p>
+            </Collapse.Panel>
+          </Collapse>
+        </>
+      )
+    },
+    {
+      title: "Người Nhận",
+      dataIndex: "receiverInfo",
+      key: "receiverInfo",
+      render: record => {
+        if (!record) {
+          return null;
+        }
+        return (
+          <Collapse>
+            <Collapse.Panel header="Chi Tiết">
+              <p>Tên: {record.name}</p>
+              <p>Di Động: {record.phone}</p>
+              <p>Email: {record.email}</p>
+              <p>Địa Chỉ: {record.address}</p>
+            </Collapse.Panel>
+          </Collapse>
+        );
+      }
+    },
+    {
+      title: "Ngày Đặt",
+      key: "createdAt",
+      dataIndex: "createdAt",
+      ...getColumnSearchProps(
+        "createdAt",
+        "Ngày Đặt",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "date"
+      )
+    },
+    {
+      title: "Ngày Cập Nhật",
+      key: "updatedAt",
+      dataIndex: "updatedAt",
+      ...getColumnSearchProps(
+        "updatedAt",
+        "Ngày Cập Nhật",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "date"
+      )
+    },
+    {
+      title: "Trạng Thái",
+      dataIndex: "status",
+      key: "status",
+      ...getColumnSearchProps(
+        "status",
+        "Trạng Thái",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "status"
       )
     }
   ];

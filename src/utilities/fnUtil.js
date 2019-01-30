@@ -7,7 +7,7 @@ export const updateObject = (oldObject, updatedValues) => {
   };
 };
 
-export const formatDate = dateString => {
+export const formatDate = (dateString, onlyDate = false) => {
   let date;
   if (!dateString) {
     date = new Date();
@@ -15,9 +15,9 @@ export const formatDate = dateString => {
     let timestamp = Date.parse(dateString);
     date = new Date(timestamp);
   }
-  return `${date.toLocaleDateString("vi-VN")} ${date.toLocaleTimeString(
-    "vi-VN"
-  )}`;
+  return onlyDate
+    ? date.toLocaleDateString("vi-VN")
+    : `${date.toLocaleDateString("vi-VN")} ${date.toLocaleTimeString("vi-VN")}`;
 };
 
 export const formatCurrency = price => {
@@ -81,10 +81,12 @@ export const showNotification = notiData => {
 };
 
 export const clearAuthUser = () => {
-  localStorage.removeItem('authUser');
-  alert('Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng');
-  window.location.replace('/admin');
-}
+  localStorage.removeItem("authUser");
+  alert(
+    "Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng"
+  );
+  window.location.replace("/admin");
+};
 
 export const getCurrentDate = () => {
   var today = new Date();
@@ -93,14 +95,13 @@ export const getCurrentDate = () => {
   var yyyy = today.getFullYear();
 
   if (dd < 10) {
-    dd = '0' + dd
+    dd = "0" + dd;
   }
 
   if (mm < 10) {
-    mm = '0' + mm
+    mm = "0" + mm;
   }
 
-  today = dd + '/' + mm + '/' + yyyy;
+  today = dd + "/" + mm + "/" + yyyy;
   return today;
-}
-
+};

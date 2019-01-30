@@ -7,13 +7,17 @@ import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import productReducer from "./redux/product/reducer";
-import userReducer from "./redux/user/reducer";
+import authReducer from "./redux/auth/reducer";
 import htmlContentReducer from "./redux/htmlContent/reducer";
+import userReducer from "./redux/user/reducer";
+import orderReducer from "./redux/order/reducer";
 
 const rootReducer = combineReducers({
   productList: productReducer,
-  authUser: userReducer,
-  htmlContent: htmlContentReducer
+  authUser: authReducer,
+  htmlContent: htmlContentReducer,
+  userList: userReducer,
+  orderList: orderReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,97 +1,135 @@
 import React from "react";
-import { Button, Table } from "antd";
-import Modal from "../../../components/UI/Modal/Modal";
+import { Table, Button, Divider, Popconfirm } from "antd";
+import { createDataOrderListColumns } from "../../../models/tableModel";
+import Actions from "../../../redux/rootActions";
+import { connect } from "react-redux";
+import { cloneData } from "../../../utilities/fnUtil";
+
 class OrderManagement extends React.Component {
   state = {
-    createModal: {
-      show: false,
-      showModal: () =>
-        this.setState({
-          createModal: { ...this.state.createModal, ...{ show: true } }
-        }),
-      handleOk: () =>
-        this.setState({
-          createModal: { ...this.state.createModal, ...{ show: false } }
-        }),
-      handleCancel: () =>
-        this.setState({
-          createModal: { ...this.state.createModal, ...{ show: false } }
-        })
-    }
+    searchText: ""
   };
-  render() {
-    const columns = [
-      {
-        title: "Name",
-        dataIndex: "name",
-        key: "name"
-      },
-      {
-        title: "Age",
-        dataIndex: "age",
-        key: "age"
-      },
-      {
-        title: "Address",
-        dataIndex: "address",
-        key: "address"
-      },
-      {
-        title: "Tags",
-        key: "tags",
-        dataIndex: "tags"
-      },
-      {
-        title: "Action",
-        key: "action",
-        render: () => <Button type="primary">Sửa</Button>
-      }
-    ];
 
-    const data = [
-      {
-        key: "1",
-        name: "John Brown",
-        age: 32,
-        address: "New York No. 1 Lake Park",
-        tags: "nice"
-      },
-      {
-        key: "2",
-        name: "Jim Green",
-        age: 42,
-        address: "London No. 1 Lake Park",
-        tags: "loser"
-      },
-      {
-        key: "3",
-        name: "Joe Black",
-        age: 32,
-        address: "Sidney No. 1 Lake Park",
-        tags: "cool"
-      }
-    ];
+  constructor(props) {
+    super(props);
+    props.getOrderList();
+  }
+
+  // search on table
+  handleSearch = (selectedKeys, confirm) => {
+    confirm();
+    this.setState({ searchText: selectedKeys[0] });
+  };
+
+  // reset search field on table
+  handleReset = clearFilters => {
+    clearFilters();
+    this.setState({ searchText: "" });
+  };
+
+  updateOrderStatus = (id, statusName) => {
+    const clonedOrder = cloneData(
+      this.props.orderStore.orderList.find(item => item._id === id)
+    );
+    if (clonedOrder.order.status === statusName) {
+      return alert("Trạng Thái Đang Tồn Tại! Không Cần Cập Nhật");
+    }
+    clonedOrder.order.status = statusName;
+    this.props.updateOrderById(id, clonedOrder);
+  };
+
+  render() {
+    const dataColumns = createDataOrderListColumns(
+      this.handleSearch,
+      this.handleReset,
+      this.state.searchText,
+      this.searchInput
+    ).slice();
+    dataColumns.push({
+      title: "Cập Nhật Trạng Thái",
+      key: "action",
+      render: record => (
+        <>
+          <Popconfirm
+            title="Bạn có chắc chắn muốn thay đổi trạng thái đơn hàng?"
+            onConfirm={() => this.updateOrderStatus(record._id, "PENDING")}
+            okText="Đồng Ý"
+            cancelText="Hủy"
+          >
+            <Button type="default">PENDING</Button>
+          </Popconfirm>
+          <Divider type="vertical" />
+          <Popconfirm
+            title="Bạn có chắc chắn muốn xóaBạn có chắc chắn muốn thay đổi trạng thái đơn hàng?"
+            onConfirm={() => this.updateOrderStatus(record._id, "DELIVERING")}
+            okText="Đồng Ý"
+            cancelText="Hủy"
+          >
+            <Button type="default">DELIVERING</Button>
+          </Popconfirm>
+          <Divider type="vertical" />
+          <Popconfirm
+            title="Bạn có chắc chắn muốn thay đổi trạng thái đơn hàng?"
+            onConfirm={() => this.updateOrderStatus(record._id, "COMPLETED")}
+            okText="Đồng Ý"
+            cancelText="Hủy"
+          >
+            <Button type="default">COMPLETED</Button>
+          </Popconfirm>
+        </>
+      )
+    });
+
+    const columns = dataColumns;
+    let data = !this.props.orderStore.orderList.length
+      ? []
+      : this.props.orderStore.orderList.map(item => {
+          return {
+            key: item._id,
+            _id: item._id,
+            customerInfo: item.customerInfo,
+            receiverInfo: item.receiverInfo ? item.receiverInfo : "",
+            deliveryDate: item.order.deliveryDate,
+            note: item.order.note,
+            payment: item.order.payment,
+            finalPrice: item.order.finalPrice,
+            status: item.order.status,
+            productOrder: item.order.productOrder,
+            createdAt: item.createdAt,
+            updatedAt: item.updatedAt
+          };
+        });
+
     return (
       <>
-        <div style={{ marginBottom: "20px" }}>
-          <Button type="primary" onClick={this.state.createModal.showModal}>
-            Tạo Mới
-          </Button>
-        </div>
         <div>
-          <Table columns={columns} dataSource={data} />
+          <Table
+            columns={columns}
+            dataSource={data}
+            bordered
+            scroll={{ x: true }}
+          />
         </div>
-
-        {/* Modals */}
-        <Modal
-          id="hello"
-          modal={this.state.createModal}
-          title="Tạo Sản Phẩm Mới"
-        />
-        {/* End Modals */}
       </>
     );
   }
 }
 
-export default OrderManagement;
+const mapStateToProps = state => {
+  return {
+    orderStore: state.orderList
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getOrderList: () => dispatch(Actions.orderActions.getOrderListFromSV()),
+    updateOrderById: (id, data) =>
+      dispatch(Actions.orderActions.updateOrderToSV(id, data))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OrderManagement);

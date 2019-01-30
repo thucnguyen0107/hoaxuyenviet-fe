@@ -1,12 +1,19 @@
 import React from "react";
-import { Table } from "antd";
-import { createDataProductListColumns } from "../../../models/tableModel";
+import { Table, Button, Popconfirm } from "antd";
+import { createDataUserListColumns } from "../../../models/tableModel";
+import Actions from "../../../redux/rootActions";
+import { connect } from "react-redux";
 
 class UserManagement extends React.Component {
   state = {
     searchText: "",
     userList: []
   };
+
+  constructor(props) {
+    super(props);
+    props.getUserList();
+  }
 
   // search on table
   handleSearch = (selectedKeys, confirm) => {
@@ -21,33 +28,44 @@ class UserManagement extends React.Component {
   };
 
   render() {
-    const dataColumns = createDataProductListColumns(
+    const dataColumns = createDataUserListColumns(
       this.handleSearch,
       this.handleReset,
       this.state.searchText,
       this.searchInput
     ).slice();
+    dataColumns.push({
+      title: "Action",
+      key: "action",
+      render: record => (
+        <>
+          <Popconfirm
+            title="Bạn có chắc chắn muốn xóa?"
+            onConfirm={() => this.props.deleteUserById(record._id)}
+            okText="Đồng Ý"
+            cancelText="Hủy"
+          >
+            <Button type="danger">Xóa</Button>
+          </Popconfirm>
+        </>
+      )
+    });
 
     const columns = dataColumns;
-    let data = !this.state.userList.length
+    let data = !this.props.userStore.userList.length
       ? []
-      : this.state.userList.map(item => {
+      : this.props.userStore.userList.map(item => {
           return {
             key: item._id,
             _id: item._id,
-            productName: item.productName,
-            images: item.images,
-            price: item.price,
-            discount: item.discount,
-            type: item.type,
-            form: item.form,
-            event: item.event,
-            holiday: item.holiday,
-            color: item.color,
-            new: item.new,
-            hot: item.hot,
-            sale: item.sale,
-            description: item.description,
+            name: !item.userInfo ? "" : item.userInfo.name,
+            email: !item.userInfo ? "" : item.userInfo.email,
+            address: !item.userInfo ? "" : item.userInfo.address,
+            birth: !item.userInfo ? "" : item.userInfo.birth,
+            gender: !item.userInfo ? "" : item.userInfo.gender,
+            rewardPoints: !item.userInfo.rewardPoints
+              ? ""
+              : item.userInfo.rewardPoints,
             createdAt: item.createdAt,
             updatedAt: item.updatedAt
           };
@@ -56,11 +74,32 @@ class UserManagement extends React.Component {
     return (
       <>
         <div>
-          <Table columns={columns} dataSource={data} />
+          <Table
+            columns={columns}
+            dataSource={data}
+            bordered
+            scroll={{ x: true }}
+          />
         </div>
       </>
     );
   }
 }
 
-export default UserManagement;
+const mapStateToProps = state => {
+  return {
+    userStore: state.userList
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserList: () => dispatch(Actions.userActions.getUserListFromSV()),
+    deleteUserById: id => dispatch(Actions.userActions.deleteUserToSV(id))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserManagement);

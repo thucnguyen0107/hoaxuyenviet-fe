@@ -38,7 +38,6 @@ class ProductManagement extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     props.getListProduct();
   }
 
@@ -103,7 +102,7 @@ class ProductManagement extends React.Component {
       this.searchInput
     ).slice();
     dataColumns.push({
-      title: "Action",
+      title: "Hành Động",
       key: "action",
       render: record => (
         <>

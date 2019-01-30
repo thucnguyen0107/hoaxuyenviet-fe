@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAuthUserFromLS: () => dispatch(Actions.userActions.getAuthUserFromLS())
+    getAuthUserFromLS: () => dispatch(Actions.authActions.getAuthUserFromLS())
   };
 };
 

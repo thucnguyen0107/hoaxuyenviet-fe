@@ -20,7 +20,7 @@ class Login extends React.Component {
           required: true,
           minLength: 9,
           maxLength: 32,
-          numberValid: '^\\+?[0-9]+$',
+          numberValid: "^\\+?[0-9]+$",
           errorMessage: "Phone must be between 9 and 32 numbers!"
         },
         valid: true
@@ -88,7 +88,7 @@ class Login extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     updateAuthUser: authUser =>
-      dispatch(Actions.userActions.getAuthUser(authUser))
+      dispatch(Actions.authActions.getAuthUser(authUser))
   };
 };
 export default connect(

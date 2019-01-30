@@ -1,19 +1,24 @@
 import actionTypes from "./actions";
-import {updateObject} from "../../utilities/fnUtil";
+import { updateObject } from "../../utilities/fnUtil";
 
-const initialState = {
-  userPhone: null,
-  auth: null,
-  role: null,
-  token: null
+const initState = {
+  userList: []
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initState, action) => {
+  let clonedUserList;
   switch (action.type) {
-    case actionTypes.GET_AUTH_USER:
-      return updateObject(state, action.payload);
-    case actionTypes.GET_AUTH_USER_FROM_LS:
-      return updateObject(state, action.payload);
+    case actionTypes.GET_USER_LIST:
+      return updateObject(state, { userList: action.payload });
+
+    case actionTypes.DELETE_USER_BY_ID:
+      clonedUserList = state.userList.slice();
+      let deleteElement = clonedUserList.find(item => {
+        return item._id === action.payload;
+      });
+      clonedUserList.splice(clonedUserList.indexOf(deleteElement), 1);
+      return updateObject(state, { userList: clonedUserList });
+
     default:
       return state;
   }

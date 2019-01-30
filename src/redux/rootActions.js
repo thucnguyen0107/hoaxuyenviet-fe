@@ -1,11 +1,15 @@
 import productActions from "./product/actions";
+import authActions from "./auth/actions";
+import htmlContentActions from "./htmlContent/actions";
 import userActions from "./user/actions";
-import htmlContentActions from './htmlContent/actions';
+import orderActions from "./order/actions";
 
 const Actions = {
   productActions,
+  authActions,
+  htmlContentActions,
   userActions,
-  htmlContentActions
+  orderActions
 };
 
 export default Actions;

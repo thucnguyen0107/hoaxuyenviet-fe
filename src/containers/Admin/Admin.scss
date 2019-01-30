@@ -17,6 +17,7 @@
   margin-left: 200px;
 }
 
-:global .ant-table td {
+:global .ant-table td,
+:global .ant-table th {
   white-space: nowrap;
 }

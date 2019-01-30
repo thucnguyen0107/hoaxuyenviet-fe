@@ -14,6 +14,11 @@ export const endPoints = {
   CREATE_PRODUCT_BY_ADMIN: `${baseURL}/product`,
   UPDATE_PRODUCT_BY_ADMIN: `${baseURL}/product/`,
   DELETE_PRODUCT_BY_ADMIN: `${baseURL}/product/`,
+  GET_USER_LIST: `${baseURL}/userList`,
+  DELETE_USER_BY_ADMIN: `${baseURL}/user/`,
+  GET_ORDER_LIST: `${baseURL}/orderList`,
+  CREATE_ORDER_LIST: `${baseURL}/order`,
+  UPDATE_ORDER_BY_ADMIN: `${baseURL}/order/`,
   ADMIN_LOGIN: `${baseURL}/adminLogin`
 };
 

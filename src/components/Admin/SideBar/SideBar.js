@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const { Sider } = Layout;
 
 const SideBar = props => {
+  const defaultKey = window.location.pathname.split("/admin/")[1];
   return (
     <Sider
       trigger={null}
@@ -22,26 +23,26 @@ const SideBar = props => {
         type={props.collapsed ? "menu-unfold" : "menu-fold"}
         onClick={props.toggle}
       />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-        <Menu.Item key="1">
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={[defaultKey]}>
+        <Menu.Item key="productManagement">
           <Link to={{ pathname: "/admin/productManagement" }}>
             <Icon type="database" />
             <span>Quản lý sản phẩm</span>
           </Link>
         </Menu.Item>
-        <Menu.Item key="2">
+        <Menu.Item key="orderManagement">
           <Link to={{ pathname: "/admin/orderManagement" }}>
             <Icon type="shopping-cart" />
             <span>Quản lý đơn hàng</span>
           </Link>
         </Menu.Item>
-        <Menu.Item key="3">
+        <Menu.Item key="userManagement">
           <Link to={{ pathname: "/admin/userManagement" }}>
             <Icon type="user" />
             <span>Quản lý người dùng</span>
           </Link>
         </Menu.Item>
-        <Menu.Item key="4">
+        <Menu.Item key="htmlContentManagement">
           <Link to={{ pathname: "/admin/htmlContentManagement" }}>
             <Icon type="shop" />
             <span>Quản lý nội dung</span>
