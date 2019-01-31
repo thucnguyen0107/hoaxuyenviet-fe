@@ -54,9 +54,14 @@ class Search extends React.Component {
   };
 
   componentWillMount() {
+    const searchText =
+      document.getElementById("searchInput") &&
+      document.getElementById("searchInput").value
+        ? document.getElementById("searchInput").value
+        : "";
     loadingScreen.showLoading();
     axios
-      .get(endPoints.PRODUCT_LIST_API)
+      .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText })
       .then(res => {
         console.log(res);
         this.setState(
@@ -74,9 +79,14 @@ class Search extends React.Component {
   }
 
   componentWillReceiveProps() {
+    const searchText =
+      document.getElementById("searchInput") &&
+      document.getElementById("searchInput").value
+        ? document.getElementById("searchInput").value
+        : "";
     loadingScreen.showLoading();
     axios
-      .get(endPoints.PRODUCT_LIST_API)
+      .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText })
       .then(res => {
         console.log(res);
         this.setState(
@@ -113,7 +123,7 @@ class Search extends React.Component {
                   className="page-title"
                   style={{ fontFamily: "Times New Roman" }}
                 >
-                  Search
+                  TRANG TÌM KIẾM
                 </h2>
                 <li>
                   <a href="/">

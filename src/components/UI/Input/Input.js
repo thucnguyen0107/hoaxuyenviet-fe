@@ -176,7 +176,7 @@ const input = props => {
       inputElement = (
         <div>
           <br />
-          <DatePicker name="Ngày Đặt Hàng" defaultValue={moment(props.value, dateFormat)} format={dateFormat} disabled onChange={props.changed} />
+          <DatePicker name="Ngày Đặt Hàng" value={moment(props.value, dateFormat)} format={dateFormat} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} />
         </div>
       );
       break;

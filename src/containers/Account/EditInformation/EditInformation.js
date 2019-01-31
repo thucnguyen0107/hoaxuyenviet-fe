@@ -2,8 +2,6 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import { connect } from "react-redux";
-import loginService from "../../../services/loginService";
-import checkoutService from "../../../services/checkoutService";
 import axios from "axios";
 import { endPoints } from "../../../services/config";
 import { getDate, getCurrentDate, cloneData } from "../../../utilities/fnUtil";
@@ -16,8 +14,9 @@ class EditInformation extends React.Component {
   };
 
   init() {
-    const userPhone = JSON.parse(localStorage.getItem("authUser")).userPhone;
-    axios.get(endPoints.USER_API + userPhone).then(res => {
+    const authUser = JSON.parse(localStorage.getItem("authUser")) || {};
+    const userPhone = authUser.userPhone;
+    axios.get(endPoints.GET_USER_BY_ID + userPhone).then(res => {
       console.log(res);
       let infoForm = cloneData(this.state.infoForm); //creating copy of object
       infoForm.fullName.value = res.userInfo.name; //updating value
