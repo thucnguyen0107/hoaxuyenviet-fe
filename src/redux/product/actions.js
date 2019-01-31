@@ -17,7 +17,7 @@ const getProductList = res => {
 // get product list from server
 const getProductListFromSV = () => {
   return dispatch => {
-    axios.get(endPoints.GET_PRODUCT_LIST).then(data => {
+    axios.get(endPoints.PRODUCT_LIST_API).then(data => {
       dispatch(getProductList(data));
     });
   };
@@ -35,7 +35,7 @@ const addNewProduct = res => {
 const createNewProduct = data => {
   return dispatch => {
     axios
-      .post(endPoints.CREATE_PRODUCT_BY_ADMIN, data)
+      .post(endPoints.PRODUCT_API, data)
       .then(() => {
         dispatch(addNewProduct(data));
       })
@@ -65,7 +65,7 @@ const updateProductById = (id, data) => {
 const updateProductToSV = (id, data) => {
   return dispatch => {
     axios
-      .patch(endPoints.UPDATE_PRODUCT_BY_ADMIN + id, data)
+      .patch(endPoints.PRODUCT_API + id, data)
       .then(() => {
         dispatch(updateProductById(id, data));
       })
@@ -91,7 +91,7 @@ const deleteProductById = id => {
 const deleteProductToSV = id => {
   return dispatch => {
     axios
-      .delete(endPoints.DELETE_PRODUCT_BY_ADMIN + id)
+      .delete(endPoints.PRODUCT_API + id)
       .then(() => dispatch(deleteProductById(id)))
       .catch(err =>
         err.response.data.code === "002"

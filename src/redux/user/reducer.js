@@ -2,7 +2,8 @@ import actionTypes from "./actions";
 import { updateObject } from "../../utilities/fnUtil";
 
 const initState = {
-  userList: []
+  userList: [],
+  user: {}
 };
 
 const reducer = (state = initState, action) => {
@@ -19,6 +20,11 @@ const reducer = (state = initState, action) => {
       clonedUserList.splice(clonedUserList.indexOf(deleteElement), 1);
       return updateObject(state, { userList: clonedUserList });
 
+    case actionTypes.GET_USER_BY_ID:
+      return updateObject(state, { user: action.payload });
+
+    case actionTypes.UPDATE_USER_BY_ID:
+      return updateObject(state, { user: action.payload });
     default:
       return state;
   }

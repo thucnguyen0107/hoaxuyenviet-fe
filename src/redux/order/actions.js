@@ -16,7 +16,7 @@ const getOrderList = res => {
 // get ORDER list from server
 const getOrderListFromSV = () => {
   return dispatch => {
-    axios.get(endPoints.GET_ORDER_LIST).then(data => {
+    axios.get(endPoints.ORDER_LIST_API).then(data => {
       dispatch(getOrderList(data));
     });
   };
@@ -38,7 +38,7 @@ const updateOrderById = (id, data) => {
 const updateOrderToSV = (id, data) => {
   return dispatch => {
     axios
-      .patch(endPoints.UPDATE_ORDER_BY_ADMIN + id, data)
+      .patch(endPoints.ORDER_API + id, data)
       .then(() => {
         dispatch(updateOrderById(id, data));
       })

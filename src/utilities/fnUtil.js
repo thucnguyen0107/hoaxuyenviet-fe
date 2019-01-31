@@ -80,12 +80,12 @@ export const showNotification = notiData => {
   }
 };
 
-export const clearAuthUser = () => {
+export const clearAuthUser = (path = "/admin") => {
   localStorage.removeItem("authUser");
   alert(
     "Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng"
   );
-  window.location.replace("/admin");
+  window.location.replace(path);
 };
 
 export const getCurrentDate = () => {

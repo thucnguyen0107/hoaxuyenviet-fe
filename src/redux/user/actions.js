@@ -6,6 +6,9 @@ const GET_USER_LIST = "GET_USER_LIST";
 // const ADD_NEW_USER = "ADD_NEW_User";
 // const UPDATE_User_BY_ID = "UPDATE_USER_BY_ID";
 const DELETE_USER_BY_ID = "DELETE_USER_BY_ID";
+const GET_USER_BY_ID = "GET_USER_BY_ID";
+const UPDATE_USER_BY_ID = "UPDATE_USER_BY_ID";
+
 // get User list
 const getUserList = res => {
   return {
@@ -17,10 +20,43 @@ const getUserList = res => {
 // get User list from server
 const getUserListFromSV = () => {
   return dispatch => {
-    axios.get(endPoints.GET_USER_LIST).then(data => {
+    axios.get(endPoints.USER_LIST_API).then(data => {
       dispatch(getUserList(data));
     });
   };
+};
+
+// get user by id
+const getUserById = res => {
+  return {
+    type: GET_USER_BY_ID,
+    payload: res
+  };
+};
+
+// get user by id from sv
+const getUserFromSV = id => {
+  return dispatch => {
+    axios.get(endPoints.USER_API + id).then(data => {
+      dispatch(getUserById(data));
+    });
+  };
+};
+
+// update user by id
+const updateUserById = res => {
+  return {
+    type: UPDATE_USER_BY_ID,
+    payload: res
+  };
+};
+
+// update user by id from server
+const updateUserFromSV = (id, data) => {
+  return dispatch =>
+    axios.patch(endPoints.PRODUCT_LIST_API + id, data).then(data => {
+      return dispatch(updateUserById(data));
+    });
 };
 
 // add new User to store
@@ -91,7 +127,7 @@ const deleteUserById = id => {
 const deleteUserToSV = id => {
   return dispatch => {
     axios
-      .delete(endPoints.DELETE_USER_BY_ADMIN + id)
+      .delete(endPoints.USER_API + id)
       .then(() => dispatch(deleteUserById(id)))
       .catch(err =>
         err.response.data.code === "002"
@@ -104,8 +140,12 @@ const deleteUserToSV = id => {
 const actions = {
   GET_USER_LIST,
   DELETE_USER_BY_ID,
+  GET_USER_BY_ID,
+  UPDATE_USER_BY_ID,
   getUserListFromSV,
-  deleteUserToSV
+  deleteUserToSV,
+  getUserFromSV,
+  updateUserFromSV
 };
 
 export default actions;
