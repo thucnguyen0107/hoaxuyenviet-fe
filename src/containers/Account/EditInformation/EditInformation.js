@@ -17,7 +17,8 @@ class EditInformation extends React.Component {
   };
 
   init() {
-    const userPhone = JSON.parse(localStorage.getItem('authUser')).userPhone;
+    const authUser = JSON.parse(localStorage.getItem('authUser')) || {};
+    const userPhone = authUser.userPhone;
     axios.get(endPoints.GET_USER_BY_ID + userPhone)
       .then(res => {
         console.log(res);

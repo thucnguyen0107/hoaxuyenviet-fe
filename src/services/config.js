@@ -4,11 +4,12 @@ export const slideShowDelayTime = 5000;
 
 export const visibleItems = 20;
 
-export const baseURL = "https://hoaxuyenviet-be-3eca5jq1l.now.sh/";
+export const baseURL = "https://hoaxuyenviet-be-jrt8u2hna.now.sh";
 
 export const endPoints = {
   HTML_CONTENT: `${baseURL}/htmlContent`,
   GET_PRODUCT_LIST: `${baseURL}/productList`,
+  GET_PRODUCT_LIST_BY_SEARCH: `${baseURL}/productList/search`,
   GET_RANDOM_LIST: `${baseURL}/product/randomlist/`,
   GET_PRODUCT_BY_ID: `${baseURL}/product/`,
   CREATE_PRODUCT_BY_ADMIN: `${baseURL}/product`,
@@ -22,7 +23,7 @@ export const endPoints = {
   ADMIN_LOGIN: `${baseURL}/adminLogin`,
   HOAXUYENVIET_LOGIN: `${baseURL}/hoaxuyenvietLogin`,
   EDIT_USER: `${baseURL}/user/`,
-  GET_USER_BY_ID: `${baseURL}/user/`
+  GET_USER_BY_ID: `${baseURL}/user/`,
 };
 
 // userphone: 0274985402

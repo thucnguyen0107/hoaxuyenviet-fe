@@ -8,7 +8,7 @@ import classes from './Search.scss';
 import { convertFilters } from '../../../utilities/categoriesUtil';
 import FilterBar from '../../../components/UI/FilterBar';
 import { visibleItems } from '../../../services/config';
-import {isNotEmpty} from '../../../utilities/fnUtil'
+import { isNotEmpty } from '../../../utilities/fnUtil'
 class Search extends React.Component {
 
   catParams;
@@ -54,8 +54,9 @@ class Search extends React.Component {
   }
 
   componentWillMount() {
+    const searchText = document.getElementById('searchInput') && document.getElementById('searchInput').value ? document.getElementById('searchInput').value : '';
     loadingScreen.showLoading();
-    axios.get(endPoints.GET_PRODUCT_LIST).then((res) => {
+    axios.post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText }).then((res) => {
       console.log(res);
       this.setState({
         productList: res,
@@ -68,8 +69,9 @@ class Search extends React.Component {
   }
 
   componentWillReceiveProps() {
+    const searchText = document.getElementById('searchInput') && document.getElementById('searchInput').value ? document.getElementById('searchInput').value : '';
     loadingScreen.showLoading();
-    axios.get(endPoints.GET_PRODUCT_LIST).then((res) => {
+    axios.post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText }).then((res) => {
       console.log(res);
       this.setState({
         productList: res,
@@ -94,7 +96,7 @@ class Search extends React.Component {
           <div className="container">
             <div className="row">
               <ul className="breadcrumb">
-                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>Search</h2>
+                <h2 className="page-title" style={{ fontFamily: 'Times New Roman' }}>TRANG TÌM KIẾM</h2>
                 <li><a href="/"><i className="fa fa-home"></i></a></li>
                 <li><a href="/" style={{ pointerEvents: 'none', cursor: "default" }}>Tìm kiếm</a></li>
               </ul>

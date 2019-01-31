@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { formatCurrency, isNotEmpty } from '../../../utilities/fnUtil';
 import cartService from '../../../services/cartService';
 import { connect } from "react-redux";
+import loadingScreen from '../../../utilities/loadingScreen';
 let tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -31,6 +32,13 @@ function blurSelected() {
 
   }
 }
+
+
+
+// function onLogout() {
+//   localStorage.removeItem("authUser");
+// }
+
 let cartList = [];
 function loadCart() {
   let arrayProductOrder = cartService.getProductToCart();
@@ -72,6 +80,7 @@ function loadCart() {
   );
 
 }
+
 const topNavigation = (props) => {
 
   let zIndexStyle;
@@ -159,7 +168,6 @@ const topNavigation = (props) => {
                         <div>
                           <table className="table table-bordered">
                             <tbody>
-
                               <tr>
                                 <td className="text-right"><strong>Tổng tiền</strong></td>
                                 <td className="text-right">{formatCurrency(tempTotalPrice)} VND</td>
@@ -213,7 +221,7 @@ const topNavigation = (props) => {
                           <ul className="list-inline">
                             <li><Link to="/account" title="Checkout"><span className="checkout">Tài Khoản</span></Link></li>
                             <li><Link to="/checkout" title="Checkout"><span className="checkout">Thanh Toán</span></Link></li>
-                            <li><Link to="/logout" title="Logout"><span className="logout">Thoát</span></Link></li>
+                            <li><Link to="/logout" title="Logout"><span className="logout" >Thoát</span></Link></li>
                           </ul>
                         </div>
                       </nav>
@@ -223,7 +231,12 @@ const topNavigation = (props) => {
               </div>
             </div>
             <div style={styleInput} id="flowerInput" className="input-group" >
-              <input id="" type="text" name="search" placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?" className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} />
+              <input id="searchInput" type="text" name="search" placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?" className="form-control input-lg inputField" onFocus={focusSelected} onBlur={blurSelected} onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  props.history('/search');
+                  document.getElementById("searchInput").blur();
+                }
+              }} />
             </div>
           </div>
         </div>

@@ -16,6 +16,7 @@ import Account from '../../containers/Account/Account';
 import BlogDetail from '../Shop/BlogDetail/BlogDetail';
 import Register from '../../containers/Shop/Register/Register';
 import ForGotPassWord from '../../containers/Shop/ForGotPassword/ForGotPassword';
+import { connect } from "react-redux";
 
 class Shop extends React.Component {
   render() {
@@ -31,7 +32,7 @@ class Shop extends React.Component {
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/blogs" exact component={Blogs} />
           <Route path="/blogDetail/:blog_id" exact component={BlogDetail} />
-          <Route path="/account" exact component={Account} />
+          {this.props.authUser.auth ? <Route path="/account" exact component={Account} /> : <Route path="/pageNotFound" exact component={notFoundPage} />}
           <Route path="/register" exact component={Register} />
           <Route path="/forgotpassword" exact component={ForGotPassWord} />
           <Route path="/account" component={Account} />
@@ -47,4 +48,12 @@ class Shop extends React.Component {
   }
 }
 
-export default Shop;
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(Shop);
