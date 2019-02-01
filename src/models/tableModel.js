@@ -24,35 +24,35 @@ const getColumnSearchProps = (
     confirm,
     clearFilters
   }) => (
-    <div style={{ padding: 8 }}>
-      <Input
-        ref={node => {
-          searchInput = node;
-        }}
-        placeholder={`Tìm Theo ${name}`}
-        value={selectedKeys[0]}
-        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-        onPressEnter={() => handleSearch(selectedKeys, confirm)}
-        style={{ width: 188, marginBottom: 8, display: "block" }}
-      />
-      <Button
-        type="primary"
-        onClick={() => handleSearch(selectedKeys, confirm)}
-        icon="search"
-        size="small"
-        style={{ width: 90, marginRight: 8 }}
-      >
-        Tìm
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={node => {
+            searchInput = node;
+          }}
+          placeholder={`Tìm Theo ${name}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm)}
+          style={{ width: 188, marginBottom: 8, display: "block" }}
+        />
+        <Button
+          type="primary"
+          onClick={() => handleSearch(selectedKeys, confirm)}
+          icon="search"
+          size="small"
+          style={{ width: 90, marginRight: 8 }}
+        >
+          Tìm
       </Button>
-      <Button
-        onClick={() => handleReset(clearFilters)}
-        size="small"
-        style={{ width: 90 }}
-      >
-        Xóa
+        <Button
+          onClick={() => handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
+          Xóa
       </Button>
-    </div>
-  ),
+      </div>
+    ),
   filterIcon: filtered => (
     <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
   ),
@@ -494,9 +494,9 @@ export const createDataOrderListColumns = (
                   <div key={item._id}>
                     <span style={{ marginRight: "10px" }}>{`Tên: ${
                       item.name
-                    }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
+                      }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
                       item.quantity
-                    }, Giảm Giá: ${item.discount}`}</span>
+                      }, Giảm Giá: ${item.discount}`}</span>
                     {item.images.map((img, index) => {
                       return (
                         <img

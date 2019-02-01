@@ -4,7 +4,7 @@ export const slideShowDelayTime = 5000;
 
 export const visibleItems = 20;
 
-export const baseURL = "http://localhost:8000";
+export const baseURL = "https://hoaxuyenviet-be-1tpzkh26g.now.sh";
 
 export const endPoints = {
   HTML_CONTENT: `${baseURL}/htmlContent`,
@@ -16,6 +16,8 @@ export const endPoints = {
   USER_LIST_API: `${baseURL}/userList`,
   ORDER_LIST_API: `${baseURL}/orderList`,
   ORDER_API: `${baseURL}/order/`,
+  BLOG_API: `${baseURL}/blog/`,
+  BLOG_LIST_API: `${baseURL}/blogs`,
   HOAXUYENVIET_LOGIN: `${baseURL}/hoaxuyenvietLogin`
 };
 

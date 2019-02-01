@@ -32,7 +32,7 @@ class Shop extends React.Component {
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/blogs" exact component={Blogs} />
           <Route path="/blogDetail/:blog_id" exact component={BlogDetail} />
-          {this.props.authUser.auth ? <Route path="/account" exact component={Account} /> : <Route path="/pageNotFound" exact component={notFoundPage} />}
+          {/* {this.props.authUser.auth ? <Route path="/account" exact component={Account} /> : <Route path="/pageNotFound" exact component={notFoundPage} />} */}
           <Route path="/register" exact component={Register} />
           <Route path="/forgotpassword" exact component={ForGotPassWord} />
           <Route path="/account" component={Account} />

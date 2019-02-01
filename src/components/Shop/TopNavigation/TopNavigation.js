@@ -68,7 +68,7 @@ function loadCart() {
                         Giá:{" "}
                         {formatCurrency(
                           (order.price - (order.price * order.discount) / 100) *
-                            order.quantity
+                          order.quantity
                         )}{" "}
                         VND{" "}
                       </p>
@@ -90,8 +90,8 @@ function loadCart() {
           );
         })
       ) : (
-        <p>Giỏ hàng của bạn rỗng</p>
-      )}
+          <p>Giỏ hàng của bạn rỗng</p>
+        )}
     </>
   );
 }
@@ -136,14 +136,14 @@ const topNavigation = props => {
             <div className="header-left">
               <div className="header-logo">
                 <div id="logo">
-                  <a href="index9328.html?route=common/home">
+                  <Link to="/home">
                     <img
                       src={Logo}
                       title="Style-Light"
                       alt="Style-Light"
                       className="img-responsive"
                     />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -247,11 +247,6 @@ const topNavigation = props => {
                         <div id="top-links" className="nav">
                           <ul className="list-inline">
                             <li>
-                              <Link to="/account" title="Checkout">
-                                <span className="checkout">Tài Khoản</span>
-                              </Link>
-                            </li>
-                            <li>
                               <Link to="/checkout" title="Checkout">
                                 <span className="checkout">Thanh Toán</span>
                               </Link>
@@ -266,40 +261,40 @@ const topNavigation = props => {
                       </nav>
                     </ul>
                   ) : (
-                    <ul
-                      className="dropdown-menu dropdown-menu-right myaccount-menu"
-                      style={zIndexStyle}
-                    >
-                      <nav id="top">
-                        <div id="top-links" className="nav">
-                          <ul className="list-inline">
-                            <li>
-                              <Link to="/account" title="Checkout">
-                                <span className="checkout">Tài Khoản</span>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/checkout" title="Checkout">
-                                <span className="checkout">Thanh Toán</span>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/logout" title="Logout">
-                                <span className="logout">Thoát</span>
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </nav>
-                    </ul>
-                  )}
+                      <ul
+                        className="dropdown-menu dropdown-menu-right myaccount-menu"
+                        style={zIndexStyle}
+                      >
+                        <nav id="top">
+                          <div id="top-links" className="nav">
+                            <ul className="list-inline">
+                              <li>
+                                <Link to="/account" title="Checkout">
+                                  <span className="checkout">Tài Khoản</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="/checkout" title="Checkout">
+                                  <span className="checkout">Thanh Toán</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="/logout" title="Logout">
+                                  <span className="logout">Thoát</span>
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </nav>
+                      </ul>
+                    )}
                 </div>
               </div>
             </div>
             <div style={styleInput} id="flowerInput" className="input-group">
               <input
                 id="searchInput"
-                type="text"
+                type="search"
                 name="search"
                 placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?"
                 className="form-control input-lg inputField"

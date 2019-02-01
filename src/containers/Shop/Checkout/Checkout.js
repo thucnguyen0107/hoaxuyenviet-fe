@@ -4,69 +4,35 @@ import Form from "../../../components/UI/Form/Form";
 import checkoutService from '../../../services/checkoutService';
 import loginService from '../../../services/loginService';
 import axios from 'axios';
-import { isNotEmpty, getCurrentDate, cloneData } from '../../../utilities/fnUtil'
+import { isNotEmpty, cloneData } from '../../../utilities/fnUtil'
 import { checkoutFormModel } from '../../../models/formModel';
 import { endPoints } from "../../../services/config";
+import { connect } from "react-redux";
 class Checkout extends React.Component {
   state = {
     checkoutForm: cloneData(checkoutFormModel),
-    order: {},
-    user: null
+
   };
 
-  // init() {
 
-  //   if (loginService.isAuthenticated()) {
+  initForm = (user) => {
+    let checkoutForm = cloneData(this.state.checkoutForm);
+    checkoutForm.fullName.value = user.userInfo.name;
+    checkoutForm.email.value = user.userInfo.email;
+    checkoutForm.address.value = user.userInfo.address;
+    checkoutForm.telephone.value = user._id;
 
-  //     const userInfo = checkoutService.getInfoIfUserLogin();
-  //     const authUser = JSON.parse(localStorage.getItem("authUser")) || {}
-  //     const userPhone = authUser.userPhone
-
-  //     let checkoutForm = { ...this.state.checkoutForm };    
-  //     checkoutForm.fullName.value = userInfo.name;                        
-  //     checkoutForm.email.value = userInfo.email;                        
-  //     checkoutForm.telephone.value = userPhone;                        
-  //     checkoutForm.address.value = userInfo.address;                       
-  //     this.setState({ checkoutForm });
-
-
-
-  //   }
-  // }
-
-  init() {
-    const authUser = JSON.parse(localStorage.getItem('authUser')) || {};
-    const userPhone = authUser.userPhone;
-    axios.get(endPoints.GET_USER_BY_ID + userPhone)
-      .then(res => {
-        console.log(res);
-        let checkoutForm = cloneData(this.state.checkoutForm);
-        checkoutForm.fullName.value = res.userInfo.name;
-        checkoutForm.email.value = res.userInfo.email;
-        checkoutForm.address.value = res.userInfo.address;
-        checkoutForm.telephone.value = userPhone;
-        checkoutForm.orderDate.value = getCurrentDate();
-
-        this.setState({ checkoutForm, user: res });
-      })
-
+    this.setState({ checkoutForm });
   }
 
-
-
-
-
-
-
-  componentWillMount() {
-    this.init();
+  componentWillReceiveProps(nextProps) {
+    if (isNotEmpty(nextProps.user))
+      this.initForm(nextProps.user);
   }
 
   componentDidMount() {
     loadingScreen.hideLoading();
   }
-
-
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
@@ -157,4 +123,12 @@ class Checkout extends React.Component {
   }
 }
 
-export default Checkout;
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser,
+    user: state.userList.user
+  };
+};
+
+export default connect(mapStateToProps)(Checkout);
+

@@ -7,6 +7,7 @@ import axios from "axios";
 import { endPoints } from "../../../services/config";
 import Actions from "../../../redux/rootActions"
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 class Login extends React.Component {
     state = {
         loginForm: {
@@ -73,7 +74,7 @@ class Login extends React.Component {
             .then(res => {
                 localStorage.setItem("authUser", JSON.stringify(res));
                 this.props.updateAuthUser(res);
-                this.props.history.push("/home");
+                this.props.history.push("/account");
                 loadingScreen.hideLoading();
             })
             .catch(err => {
@@ -84,7 +85,9 @@ class Login extends React.Component {
 
 
     render() {
-
+        if (this.props.authUser.auth) {
+            return <Redirect to="/account" />
+        }
         return (
             <>
                 <div id="breadcrumb">
@@ -127,14 +130,18 @@ class Login extends React.Component {
         );
     }
 }
-
+const mapStateToProps = state => {
+    return {
+        authUser: state.authUser
+    };
+};
 const mapDispatchToProps = dispatch => {
     return {
         updateAuthUser: authUser =>
-            dispatch(Actions.userActions.getAuthUser(authUser))
+            dispatch(Actions.authActions.getAuthUser(authUser))
     };
 };
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Login);

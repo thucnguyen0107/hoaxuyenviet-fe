@@ -32,7 +32,7 @@ class ProductDetail extends React.Component {
           scrollZoom : true*/
         });
       } else {
-        $(document).on("click", ".thumbnail", function() {
+        $(document).on("click", ".thumbnail", function () {
           $(".thumbnails").magnificPopup("open", 0);
           return false;
         });
@@ -42,14 +42,14 @@ class ProductDetail extends React.Component {
 
   init = () => {
     let $ = window.$;
-    $(document).ready(function() {
+    $(document).ready(function () {
       if ($(window).width() > 767) {
         var z_index = 0;
-        $(document).on("click", ".thumbnail", function() {
+        $(document).on("click", ".thumbnail", function () {
           $(".thumbnails").magnificPopup("open", z_index);
           return false;
         });
-        $(".additional-carousel a").click(function() {
+        $(".additional-carousel a").click(function () {
           var smallImage = $(this).attr("data-image");
           var largeImage = $(this).attr("data-zoom-image");
           var ez = $("#tmzoom").data("elevateZoom");
@@ -59,13 +59,13 @@ class ProductDetail extends React.Component {
           return false;
         });
       } else {
-        $(document).on("click", ".thumbnail", function() {
+        $(document).on("click", ".thumbnail", function () {
           $(".thumbnails").magnificPopup("open", 0);
           return false;
         });
       }
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
       $(".thumbnails").magnificPopup({
         delegate: "a.elevatezoom-gallery",
         type: "image",
@@ -78,7 +78,7 @@ class ProductDetail extends React.Component {
         },
         image: {
           tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-          titleSrc: function(item) {
+          titleSrc: function (item) {
             return item.el.attr("title");
           }
         }
@@ -86,12 +86,13 @@ class ProductDetail extends React.Component {
     });
   };
 
+  state = {
+    product: {},
+    randomList: []
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      product: {},
-      randomList: {}
-    };
     this.styleSale = {
       background: "#ffc107",
       padding: "0 5px",
@@ -230,18 +231,19 @@ class ProductDetail extends React.Component {
   render() {
     if (isNotEmpty(this.state.product)) {
       let listProductCardHTML = [];
-
-      listProductCardHTML = (
-        <>
-          {this.state.randomList.map((card, index) => {
-            return (
-              <div className="slider-item" key={index}>
-                <ProductCard cardContent={card} />
-              </div>
-            );
-          })}
-        </>
-      );
+      if (this.state.randomList) {
+        listProductCardHTML = (
+          <>
+            {this.state.randomList.map((card, index) => {
+              return (
+                <div className="slider-item" key={index}>
+                  <ProductCard cardContent={card} />
+                </div>
+              );
+            })}
+          </>
+        );
+      }
 
       let listAdditionalProductHTML = [];
 
@@ -414,9 +416,9 @@ class ProductDetail extends React.Component {
                           <h2>
                             {formatCurrency(
                               this.state.product.price -
-                                (this.state.product.discount *
-                                  this.state.product.price) /
-                                  100
+                              (this.state.product.discount *
+                                this.state.product.price) /
+                              100
                             )}{" "}
                             VND
                           </h2>
@@ -443,8 +445,8 @@ class ProductDetail extends React.Component {
                             {formatCurrency(this.state.product.price)} VND
                           </span>
                         ) : (
-                          <span />
-                        )}
+                            <span />
+                          )}
                       </ul>
                       <div id="product">
                         <div className="form-group cart">
@@ -502,7 +504,7 @@ class ProductDetail extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="box related">
+                  {this.state.randomList ? <div className="box related">
                     <div className="box-heading">
                       <h2 className="products-section-title">
                         Có thể bạn muốn mua
@@ -524,7 +526,7 @@ class ProductDetail extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> : null}
                 </div>
               </div>
             </div>

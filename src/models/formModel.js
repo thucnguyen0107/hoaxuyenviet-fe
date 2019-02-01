@@ -1,4 +1,5 @@
 import { headerContent } from "../data/data";
+import { getCurrentDate } from '../utilities/fnUtil'
 
 export const ProductFormModel = {
   _id: {
@@ -584,7 +585,7 @@ export const checkoutFormModel = {
       type: "text",
       name: "Ngày Đặt Hàng"
     },
-    value: "",
+    value: getCurrentDate(),
     validation: {
 
     },

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { endPoints } from "../../services/config";
 import { clearAuthUser } from "../../utilities/fnUtil";
+import loadingScreen from "../../utilities/loadingScreen";
 
 const GET_USER_LIST = "GET_USER_LIST";
 // const ADD_NEW_USER = "ADD_NEW_User";
@@ -53,9 +54,15 @@ const updateUserById = res => {
 
 // update user by id from server
 const updateUserFromSV = (id, data) => {
+  loadingScreen.showLoading();
   return dispatch =>
-    axios.patch(endPoints.PRODUCT_LIST_API + id, data).then(data => {
+    axios.patch(endPoints.USER_API + id, data).then(() => {
+      loadingScreen.hideLoading()
       return dispatch(updateUserById(data));
+    }).catch(err => {
+      if (err === '002') {
+        clearAuthUser('/login');
+      }
     });
 };
 
