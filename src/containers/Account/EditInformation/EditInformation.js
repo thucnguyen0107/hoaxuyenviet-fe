@@ -2,9 +2,7 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import { connect } from "react-redux";
-import axios from "axios";
-import { endPoints } from "../../../services/config";
-import { getDate, getCurrentDate, cloneData, isNotEmpty } from "../../../utilities/fnUtil";
+import { getDate, cloneData, isNotEmpty } from "../../../utilities/fnUtil";
 import { userProfileFormModel } from "../../../models/formModel";
 import Actions from '../../../redux/rootActions';
 class EditInformation extends React.Component {
@@ -25,7 +23,7 @@ class EditInformation extends React.Component {
     } else {
       infoForm.gender.value = "female";
     }
-    this.setState({ infoForm });
+    this.setState({ infoForm }, loadingScreen.hideLoading());
   }
 
   onUpdateUser = () => {
@@ -39,13 +37,18 @@ class EditInformation extends React.Component {
     this.props.updatedUserById(this.state.infoForm.telephone.value, updatedUser);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (isNotEmpty(nextProps.user))
-      this.initForm(nextProps.user);
+  componentWillMount() {
+    loadingScreen.showLoading();
+    if (isNotEmpty(this.props.user)) {
+      this.initForm(this.props.user);
+    }
   }
 
-  componentDidMount() {
-    loadingScreen.hideLoading();
+  componentWillReceiveProps(nextProps) {
+    if (isNotEmpty(nextProps.user)) {
+      loadingScreen.showLoading();
+      this.initForm(nextProps.user);
+    }
   }
 
   setStateForm = (object, submit = false) => {

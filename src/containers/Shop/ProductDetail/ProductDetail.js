@@ -4,12 +4,13 @@ import axios from "axios";
 import { endPoints } from "../../../services/config";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Iimg from "../../../components/UI/LoadingImage/Limg";
-import { formatCurrency, isNotEmpty } from "../../../utilities/fnUtil";
+import { formatCurrency, isNotEmpty, cloneData } from "../../../utilities/fnUtil";
 import { convertItemToName } from "../../../utilities/categoriesUtil";
 import classes from "./ProductDetail.scss";
 import { Tag } from "antd";
 import cartService from "../../../services/cartService";
-import loginService from "../../../services/loginService";
+import { connect } from 'react-redux';
+import Actions from "../../../redux/rootActions";
 class ProductDetail extends React.Component {
   createZoom = () => {
     let $ = window.$;
@@ -207,17 +208,16 @@ class ProductDetail extends React.Component {
     }
   }
 
-  // isAuthenticated(){
-  //   if(isNotEmpty(this.state.userLogin)){
 
-  //     cartService.saveCartItemLSUser(this.state.product)
-  //   }else{
-  //     cartService.saveCartItemLSGuess(this.state.product)
-  //   }
-  // }
-
-  addProductToLS() {
-    return cartService.addProductToLS(this.state.product);
+  addProductToCart() {
+    if(this.props.authUser.auth) {
+      let cart = cloneData(this.props.cart);
+      const cartItem = cloneData(this.state.product);
+      cartItem.quantity = +document.getElementById("input-quantity").value;
+      cart.productOrder = cartService.checkExistingItem(cartItem, cart.productOrder);
+      this.props.updateCart(this.props.cart._id, cart);
+    } else
+    cartService.saveCartItemLSGuest(this.state.product);
   }
 
   componentDidMount() {
@@ -468,7 +468,7 @@ class ProductDetail extends React.Component {
                             type="button"
                             id="button-cart"
                             data-loading-text="Loading..."
-                            onClick={() => this.addProductToLS()}
+                            onClick={() => this.addProductToCart()}
                             className="btn btn-primary btn-lg btn-block"
                             style={{ marginLeft: "20px" }}
                           >
@@ -540,4 +540,18 @@ class ProductDetail extends React.Component {
   }
 }
 
-export default ProductDetail;
+const mapStateToProps = state => {
+  return {
+    cart: state.userList.cart,
+    authUser: state.authUser
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateCart: (cartId, cartData) => dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

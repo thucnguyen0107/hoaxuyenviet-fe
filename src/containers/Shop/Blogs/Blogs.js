@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import classes from './Blogs.scss';
 import filterUtils from '../../../utilities/filter';
-import { isNotEmpty, formatDate } from '../../../utilities/fnUtil';
+import { isNotEmpty, formatDate, createContentHtmlString } from '../../../utilities/fnUtil';
 import { endPoints } from '../../../services/config';
 
 class Blogs extends React.Component {
@@ -57,11 +57,6 @@ class Blogs extends React.Component {
 
   }
 
-  createContentBlog = (content) => {
-    return {
-      __html: content.split('</p>')[0] + "...</p>"
-    }
-  }
   render() {
     let styleCenter;
     styleCenter = {
@@ -94,7 +89,7 @@ class Blogs extends React.Component {
                     </div>
                   </div>
                   <div className="blog-right-content" id="blog-short-content">
-                    <p dangerouslySetInnerHTML={this.createContentBlog(blog.content)}></p>
+                    <p dangerouslySetInnerHTML={createContentHtmlString(blog.content, true)}></p>
                     <Link className="read-more-link" to={"/blogDetail/" + blog._id}>Đọc tiếp</Link>
                   </div>
                 </div>

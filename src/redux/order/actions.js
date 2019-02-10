@@ -1,6 +1,6 @@
 import axios from "axios";
 import { endPoints } from "../../services/config";
-import { clearAuthUser } from "../../utilities/fnUtil";
+import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
 
 const GET_ORDER_LIST = "GET_PRODUCT_LIST";
 const UPDATE_ORDER_BY_ID = "UPDATE_PRODUCT_BY_ID";
@@ -45,9 +45,7 @@ const updateOrderToSV = (id, data) => {
       .catch(err => {
         err.response.data.code === "002"
           ? clearAuthUser()
-          : alert(
-              "Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!"
-            );
+          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!'})
       });
   };
 };

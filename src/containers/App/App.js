@@ -11,10 +11,10 @@ import Actions from "../../redux/rootActions";
 class App extends Component {
   componentWillMount() {
     if (localStorage.getItem("authUser")) {
-      this.props.getUserFromSV(
-        JSON.parse(localStorage.getItem("authUser")).userPhone
-      );
+      const userPhone = JSON.parse(localStorage.getItem("authUser")).userPhone;
       this.props.getAuthUserFromLS();
+      this.props.getUserFromSV(userPhone);
+      this.props.getCartFromSV(userPhone);
     }
   }
   render() {
@@ -45,7 +45,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAuthUserFromLS: () => dispatch(Actions.authActions.getAuthUserFromLS()),
-    getUserFromSV: id => dispatch(Actions.userActions.getUserFromSV(id))
+    getUserFromSV: id => dispatch(Actions.userActions.getUserFromSV(id)),
+    getCartFromSV: id => dispatch(Actions.userActions.getCartFromSV(id))
   };
 };
 

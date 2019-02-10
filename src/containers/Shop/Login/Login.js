@@ -2,12 +2,11 @@ import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
 import { Link } from 'react-router-dom';
-import loginService from '../../../services/loginService';
 import axios from "axios";
 import { endPoints } from "../../../services/config";
 import Actions from "../../../redux/rootActions"
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { showNotification } from '../../../utilities/fnUtil';
 class Login extends React.Component {
     state = {
         loginForm: {
@@ -79,15 +78,12 @@ class Login extends React.Component {
             })
             .catch(err => {
                 loadingScreen.hideLoading();
-                alert(err);
+                showNotification({type: 'error', message: err});
             });
     };
 
 
     render() {
-        if (this.props.authUser.auth) {
-            return <Redirect to="/account" />
-        }
         return (
             <>
                 <div id="breadcrumb">

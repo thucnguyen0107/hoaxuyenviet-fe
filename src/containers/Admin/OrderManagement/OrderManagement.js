@@ -3,7 +3,7 @@ import { Table, Button, Divider, Popconfirm } from "antd";
 import { createDataOrderListColumns } from "../../../models/tableModel";
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
-import { cloneData } from "../../../utilities/fnUtil";
+import { cloneData, showNotification } from "../../../utilities/fnUtil";
 
 class OrderManagement extends React.Component {
   state = {
@@ -32,7 +32,7 @@ class OrderManagement extends React.Component {
       this.props.orderStore.orderList.find(item => item._id === id)
     );
     if (clonedOrder.order.status === statusName) {
-      return alert("Trạng Thái Đang Tồn Tại! Không Cần Cập Nhật");
+      return showNotification({type: 'warning', message: "Trạng Thái Đang Tồn Tại! Không Cần Cập Nhật"});
     }
     clonedOrder.order.status = statusName;
     this.props.updateOrderById(id, clonedOrder);
@@ -87,14 +87,14 @@ class OrderManagement extends React.Component {
           return {
             key: item._id,
             _id: item._id,
-            customerInfo: item.customerInfo,
+            customerInfo: item.customerInfo ? item.customerInfo : "",
             receiverInfo: item.receiverInfo ? item.receiverInfo : "",
-            deliveryDate: item.order.deliveryDate,
-            note: item.order.note,
-            payment: item.order.payment,
-            finalPrice: item.order.finalPrice,
-            status: item.order.status,
-            productOrder: item.order.productOrder,
+            deliveryDate: item.order ? item.order.deliveryDate : "",
+            note: item.order ? item.order.note : "",
+            payment: item.order ? item.order.payment : "",
+            finalPrice: item.order ? item.order.finalPrice : "",
+            status: item.order ? item.order.status : "",
+            productOrder: item.order ? item.order.productOrder : "",
             createdAt: item.createdAt,
             updatedAt: item.updatedAt
           };

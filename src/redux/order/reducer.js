@@ -1,5 +1,5 @@
 import actionTypes from "./actions";
-import { updateObject } from "../../utilities/fnUtil";
+import { updateObject, showNotification } from "../../utilities/fnUtil";
 
 const initState = {
   orderList: []
@@ -18,6 +18,7 @@ const reducer = (state = initState, action) => {
       });
       clonedOrderList[clonedOrderList.indexOf(updateElement)] =
         action.payload.data;
+      showNotification({message: 'Cập Nhật Đơn Hàng Thành Công!'})
       return updateObject(state, { orderList: clonedOrderList });
 
     default:

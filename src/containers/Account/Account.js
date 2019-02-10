@@ -1,7 +1,6 @@
 
 import React from 'react';
 import SlideBarAccount from '../../components/Shop/SlideBarAccount/SlideBarAccount';
-import { Layout } from "antd";
 import { Route, Switch, Redirect } from "react-router";
 import EditInformation from './EditInformation/EditInformation';
 import Order from './Order/Order';
@@ -9,10 +8,6 @@ import Cart from './Cart/Cart';
 import Reward from './Reward/Reward';
 import { connect } from 'react-redux';
 
-
-const {
-  Content
-} = Layout;
 class Account extends React.Component {
   state = {
     collapsed: false
@@ -23,7 +18,6 @@ class Account extends React.Component {
     });
   };
   render() {
-    if (this.props.authUser.auth) {
       return (
         <>
           <div id="breadcrumb">
@@ -72,9 +66,6 @@ class Account extends React.Component {
           </div>
         </>
       );
-    }
-    return <Redirect to="/login" />
-
   }
 }
 

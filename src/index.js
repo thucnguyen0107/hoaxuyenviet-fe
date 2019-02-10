@@ -11,13 +11,15 @@ import authReducer from "./redux/auth/reducer";
 import htmlContentReducer from "./redux/htmlContent/reducer";
 import userReducer from "./redux/user/reducer";
 import orderReducer from "./redux/order/reducer";
+import blogReducer from "./redux/blog/reducer";
 
 const rootReducer = combineReducers({
   productList: productReducer,
   authUser: authReducer,
   htmlContent: htmlContentReducer,
   userList: userReducer,
-  orderList: orderReducer
+  orderList: orderReducer,
+  blogList: blogReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

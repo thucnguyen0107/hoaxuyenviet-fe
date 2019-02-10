@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { endPoints } from "../../services/config";
-import { clearAuthUser } from "../../utilities/fnUtil";
+import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
 
 const UPDATE_HTML_CONTENT = "UPDATE_HTML_CONTENT";
 const GET_HTML_CONTENT = "GET_HTML_CONTENT";
@@ -19,7 +19,7 @@ const updateHtmlContentToSV = data => {
       .catch(err => {
         err.response.data.code === "002"
           ? clearAuthUser()
-          : alert("Lỗi Cập Nhật Sản Phẩm! Vui Lòng Cập Nhật Lại!");
+          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Sản Phẩm! Vui Lòng Cập Nhật Lại!'});
       });
 };
 
@@ -35,9 +35,7 @@ const getHtmlContentFromSV = () => {
     Axios.get(endPoints.HTML_CONTENT)
       .then(res => dispatch(getHtmlContent(res)))
       .catch(err =>
-        alert(
-          "Không Thể Lấy Dữ Liệu Từ Server! Vui Lòng Kiểm Tra Server Hoặc Thử Lại!"
-        )
+        showNotification({type: 'error', message: 'Không Thể Lấy Dữ Liệu Từ Server! Vui Lòng Kiểm Tra Server Hoặc Thử Lại!'})
       );
 };
 

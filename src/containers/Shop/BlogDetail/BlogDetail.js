@@ -2,6 +2,7 @@ import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import axios from 'axios';
 import { endPoints } from '../../../services/config';
+import { createContentHtmlString } from '../../../utilities/fnUtil';
 class BlogDetail extends React.Component {
 
 	state = {
@@ -24,11 +25,6 @@ class BlogDetail extends React.Component {
 			loadingScreen.hideLoading();
 			console.error(err);
 		})
-	}
-	createContentBlog = (content) => {
-		return {
-			__html: content
-		}
 	}
 
 	render() {
@@ -58,7 +54,7 @@ class BlogDetail extends React.Component {
 							<div className="blog-img" style={{ marginBottom: "10px" }}>
 								<img src={this.state.blog.image} alt="Nullam ullamcorper nisl quis" title="Nullam ullamcorper nisl quis" className="img-thumbnail" />
 							</div>
-							<p dangerouslySetInnerHTML={this.createContentBlog(this.state.blog.content)}></p>
+							<p dangerouslySetInnerHTML={createContentHtmlString(this.state.blog.content)}></p>
 						</div>
 					</div>
 				</div>

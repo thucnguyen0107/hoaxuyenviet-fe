@@ -617,3 +617,65 @@ export const checkoutFormModel = {
     valid: true
   }
 }
+
+export const BlogFormModel = {
+  _id: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      name: "Mã Blog",
+      placeholder: "Nhập Mã Blog",
+      unique: 1
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 1,
+      maxLength: 32,
+      errorMessage: "Chưa Nhập Mã Blog"
+    },
+    valid: true
+  },
+  image: {
+    elementType: "image",
+    elementConfig: {
+      name: "Hình Ảnh",
+      placeholder: "Nhập Đường Dẫn Hình Ảnh"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Chưa Nhập Link Hình"
+    },
+    valid: true
+  },
+  title: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      name: "Tên Blog",
+      placeholder: "Nhập Tên Blog"
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 6,
+      maxLength: 32,
+      errorMessage: "Chưa Nhập Tên Hoặc Độ Dài Chưa Đủ"
+    },
+    valid: true
+  },
+  content: {
+    elementType: "editor",
+    elementConfig: {
+      name: "Mô Tả Nội Dung Blog",
+      placeholder: "Nhập Mô Tả Nội Dung Blog"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Chưa Nhập Mô Tả Nội Dung Blog"
+    },
+    valid: true
+  }
+};

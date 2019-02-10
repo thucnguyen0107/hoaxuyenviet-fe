@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { formatCurrency, isNotEmpty } from "../../../utilities/fnUtil";
 import cartService from "../../../services/cartService";
 import { connect } from "react-redux";
-import loadingScreen from "../../../utilities/loadingScreen";
 let tempTotalPrice = 0;
 function focusSelected() {
   document.body.style.overflow = "hidden";
@@ -29,17 +28,31 @@ function blurSelected() {
   }
 }
 
+const closeMenu = () => {
+  window.$('.myaccount a.dropdown-toggle').click();
+}
+
+const closeCartMenu = () => {
+  window.$("#cart .dropdown-toggle").click();
+}
+
 // function onLogout() {
 //   localStorage.removeItem("authUser");
 // }
 
 let cartList = [];
-function loadCart() {
-  let arrayProductOrder = cartService.getProductToCart();
+function loadCart(authUser, productOrder = []) {
+  let arrayProductOrder = [];
+  if(authUser.auth) {
+    arrayProductOrder = productOrder.slice();
+  } else {
+    arrayProductOrder = cartService.getProductToCart();
+  }
+  
   tempTotalPrice = 0;
   cartList = (
     <>
-      {isNotEmpty(arrayProductOrder) ? (
+      {arrayProductOrder.length ? (
         arrayProductOrder.map((order, index) => {
           tempTotalPrice +=
             (order.price - (order.price * order.discount) / 100) *
@@ -164,14 +177,13 @@ const topNavigation = props => {
             </div>
             <div className="header-right">
               <div className="header-cart-wrapper">
-                <div className="header-cart">
+                <div className="header-cart" onLoad={loadCart(props.authUser, props.cart.productOrder)}>
                   <div id="cart" className="btn-group btn-block">
                     <button
                       type="button"
                       data-toggle="dropdown"
                       data-loading-text="Loading..."
                       className="btn btn-inverse btn-block btn-lg dropdown-toggle"
-                      onClick={loadCart()}
                     >
                       <span id="cart-title">Giỏ hàng</span>
                       <i className="fa fa-angle-down" />
@@ -181,7 +193,7 @@ const topNavigation = props => {
                     </button>
                     <ul
                       className="dropdown-menu pull-right cart-menu"
-                      style={zIndexStyle}
+                      style={zIndexStyle} onClick={() => closeCartMenu()}
                     >
                       {cartList}
                       <li>
@@ -235,7 +247,7 @@ const topNavigation = props => {
                   {!props.authUser.auth ? (
                     <ul
                       className="dropdown-menu dropdown-menu-right myaccount-menu"
-                      style={zIndexStyle}
+                      style={zIndexStyle} onClick={() => closeMenu()}
                     >
                       <li>
                         <Link to="/register">Đăng ký</Link>
@@ -263,7 +275,7 @@ const topNavigation = props => {
                   ) : (
                       <ul
                         className="dropdown-menu dropdown-menu-right myaccount-menu"
-                        style={zIndexStyle}
+                        style={zIndexStyle} onClick={() => closeMenu()}
                       >
                         <nav id="top">
                           <div id="top-links" className="nav">
@@ -318,7 +330,8 @@ const topNavigation = props => {
 const mapStateToProps = state => {
   return {
     authUser: state.authUser,
-    user: state.userList.user
+    user: state.userList.user,
+    cart: state.userList.cart
   };
 };
 

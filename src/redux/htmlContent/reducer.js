@@ -1,5 +1,5 @@
 import actionTypes from "./actions";
-import { updateObject } from "../../utilities/fnUtil";
+import { updateObject, showNotification } from "../../utilities/fnUtil";
 
 const initialState = {
   htmlContent: {}
@@ -11,6 +11,7 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { htmlContent: action.payload });
 
     case actionTypes.UPDATE_HTML_CONTENT:
+    showNotification({message: 'Cập Nhật Thành Công!'})
       return updateObject(state, { htmlContent: action.payload });
     default:
       return state;

@@ -48,6 +48,12 @@ const SideBar = props => {
             <span>Quản lý nội dung</span>
           </Link>
         </Menu.Item>
+        <Menu.Item key="blogManagement">
+          <Link to={{ pathname: "/admin/blogManagement" }}>
+            <Icon type="form" />
+            <span>Quản lý Blog</span>
+          </Link>
+        </Menu.Item>
       </Menu>
     </Sider>
   );
