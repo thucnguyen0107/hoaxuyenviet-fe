@@ -2,147 +2,16 @@ import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
 import { Link } from 'react-router-dom';
-
-
+import { isNotEmpty, cloneData } from '../../../utilities/fnUtil'
+import { registerFormModel } from '../../../models/formModel';
+import axios from 'axios';
+ import { endPoints } from "../../../services/config";
+ import { showNotification } from '../../../utilities/fnUtil';
 class Register extends React.Component {
   state = {
-    registerForm1: {
-      id: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'number',
-          placeholder: 'Vui lòng nhập số điện thoại của bạn',
-          name: 'Tài khoản đăng nhập (số điện thoại)'
-        },
-        value: '',
-        validation: {
-          required: true,
-          minLength: 10,
-          maxLength: 11,
-          letterValid: /^\+?[0-9]+$/,
-          errorMessage: "Số điện thoại không hợp lệ"
-        },
-        valid: true
-      },
-      password: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'password',
-          placeholder: 'Vui lòng nhập mật khẩu của bạn',
-          name: 'Mật khẩu'
-        },
-        value: '',
-        validation: {
-          required: true,
-          minLength: 5,
-          maxLength: 32,
-          letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Mật khẩu phải nhiều hơn 5 ký tự và ít hơn 32 ký tự"
-        },
-        valid: true,
-      },
-      // passwordConfirm: {
-      //   elementType: 'input',
-      //   elementConfig: {
-      //     type: 'password',
-      //     placeholder: 'Xác nhận mật khẩu'
-      //   },
-      //   value: '',
-      //   validation: {
-      //     required: true,
-      //     minLength: 5,
-      //     maxLength: 32,
-      //     letterValid: /^[a-zA-Z]+$/,
-      //     errorMessage: "Xác nhận mật khẩu không chính xác"
-      //   },
-      //   valid: true,
-      // },
-      name: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text',
-          placeholder: 'Vui lòng nhập họ và tên của bạn',
-          name: 'Họ và tên'
-        },
-        value: '',
-        validation: {
-          required: true,
-          minLength: 10,
-          maxLength: 50,
-          letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Họ và tên phải có nhiều hơn 10 ký tự và ít hơn 50 ký tự"
-        },
-        valid: true,
-      },
-      email: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'email',
-          placeholder: 'Vui lòng nhập địa chỉ E-Mail của bạn',
-          name: 'E-Mail'
-        },
-        value: '',
-        validation: {
-          required: true,
-          minLength: 10,
-          maxLength: 50,
-          letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Email phải có nhiều hơn 10 ký tự và ít hơn 50 ký tự"
-        },
-        valid: true,
-      },
-      address: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text',
-          placeholder: 'Vui lòng nhập địa chỉ của bạn',
-          name: 'Địa chỉ'
-        },
-        value: '',
-        validation: {
-          required: true,
-          minLength: 15,
-          maxLength: 50,
-          letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Địa chỉ phải có nhiều hơn 10 ký tự và ít hơn 100 ký tự"
-        },
-        valid: true,
-      },
-      birth: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'date',
-          name: 'Ngày tháng năm sinh'
-        },
-        value: '',
-        validation: {
-          required: true,
-        },
-        valid: true,
-      },
-      gender: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text',
-          placeholder: 'Vui lòng nhập giới tính của bạn',
-          name: 'Giới tính'
-        },
-        value: '',
-        validation: {
-          required: true,
-          minLength: 2,
-          maxLength: 3,
-          letterValid: /^[a-zA-Z]+$/,
-          errorMessage: "Giới tính không hợp lệ"
-        },
-        valid: true,
-      },
-    },
-    formIsValid: false
+    registerForm1: 
+      cloneData(registerFormModel)
   }
-
-
-
   componentDidMount() {
     loadingScreen.hideLoading();
   }
@@ -151,9 +20,42 @@ class Register extends React.Component {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
         console.log("Valid Form Successfully");
+
+        this.onRegister();
       }
     });
   };
+
+  onRegister = () => {
+    loadingScreen.showLoading();
+
+    const userInfo = {
+      name: this.state.registerForm1.name.value,
+      email: this.state.registerForm1.email.value,
+      address: this.state.registerForm1.address.value,
+      birth: this.state.registerForm1.birth.value,
+      gender: this.state.registerForm1.gender.value,
+      rewardPoints: 0,
+    }
+
+
+    const user = {
+      userPermission: {password: this.state.registerForm1.password.value},
+      userInfo: userInfo,
+      _id: this.state.registerForm1.telephone.value,
+    }
+
+    axios
+    .post(endPoints.CREATE_USER_API, user)
+    .then(res => {
+        console.log(res);
+        loadingScreen.hideLoading();
+    })
+    .catch(err => {
+        loadingScreen.hideLoading();
+        showNotification({type: 'error', message: err});
+    });
+  }
   
   render() {
     return (
