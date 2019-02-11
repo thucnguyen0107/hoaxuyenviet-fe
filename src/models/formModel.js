@@ -584,7 +584,8 @@ export const checkoutFormModel = {
     },
     value: getCurrentDate(),
     validation: {
-
+      required: true,
+      errorMessage: "Vui Lòng Nhập Ngày Giao Hàng!"
     },
     valid: true
   },
