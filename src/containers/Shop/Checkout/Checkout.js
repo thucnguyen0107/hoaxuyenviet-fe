@@ -2,8 +2,6 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import checkoutService from '../../../services/checkoutService';
-import loginService from '../../../services/loginService';
-import axios from 'axios';
 import { isNotEmpty, cloneData } from '../../../utilities/fnUtil'
 import { checkoutFormModel } from '../../../models/formModel';
 import { endPoints } from "../../../services/config";
@@ -126,7 +124,8 @@ class Checkout extends React.Component {
 const mapStateToProps = state => {
   return {
     authUser: state.authUser,
-    user: state.userList.user
+    user: state.userList.user,
+    cart: state.userList.cart
   };
 };
 

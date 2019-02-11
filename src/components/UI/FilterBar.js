@@ -24,7 +24,6 @@ const filterBar = (props) => {
       ]
   };
   arrayFilter.push(priceFilter);
-  console.log(arrayFilter);
   let dropdownBtnHTML = [];
 
   dropdownBtnHTML = (

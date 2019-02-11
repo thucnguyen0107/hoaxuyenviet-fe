@@ -209,10 +209,8 @@ const input = props => {
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          {/* <Radio value={"VISA"}>VISA</Radio>
-          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
+          <input className="payment" type="radio" name="payment" value="COD" defaultChecked/> COD (Giao Hàng Nhận Tiền)<br />
           <input className="payment" type="radio" name="payment" value="VISA" /> VISA<br />
-          <input className="payment" type="radio" name="payment" value="COD" /> Giao Hàng Nhận Tiền<br />
         </div>
       );
       break;
@@ -224,8 +222,6 @@ const input = props => {
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          {/* <Radio value={"VISA"}>VISA</Radio>
-          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
           <input className="gender" type="radio" name="gender" value="male" checked={props.value === 'male' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nam
           <input className="gender" type="radio" name="gender" value="female" checked={props.value === 'female' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nữ<br />
         </div>
