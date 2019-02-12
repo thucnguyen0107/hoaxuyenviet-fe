@@ -42,7 +42,16 @@ const createNewProduct = data => {
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Mã Sản Phẩm Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!'})
+          : err.response.data.code === "006"
+          ? showNotification({
+              type: "error",
+              message: err.response.data.message
+            })
+          : showNotification({
+              type: "error",
+              message:
+                "Có lỗi trong quá trình xử lý! Vui lòng thực hiện lại hoặc liên hệ quản trị trang!"
+            })
       );
   };
 };
@@ -70,7 +79,11 @@ const updateProductToSV = (id, data) => {
       .catch(err => {
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!'})
+          : showNotification({
+              type: "error",
+              message:
+                "Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!"
+            });
       });
   };
 };
@@ -92,7 +105,11 @@ const deleteProductToSV = id => {
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Lỗi Xóa Sản Phẩm Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!'})
+          : showNotification({
+              type: "error",
+              message:
+                "Lỗi Xóa Sản Phẩm Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!"
+            })
       );
   };
 };

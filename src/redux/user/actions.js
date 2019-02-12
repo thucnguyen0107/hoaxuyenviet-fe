@@ -4,8 +4,7 @@ import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
 import loadingScreen from "../../utilities/loadingScreen";
 
 const GET_USER_LIST = "GET_USER_LIST";
-// const ADD_NEW_USER = "ADD_NEW_USER";
-// const UPDATE_User_BY_ID = "UPDATE_USER_BY_ID";
+const CREATE_NEW_USER = "CREATE_NEW_USER";
 const DELETE_USER_BY_ID = "DELETE_USER_BY_ID";
 const GET_USER_BY_ID = "GET_USER_BY_ID";
 const UPDATE_USER_BY_ID = "UPDATE_USER_BY_ID";
@@ -18,7 +17,7 @@ const getCart = res => {
     type: GET_CART,
     payload: res
   };
-}
+};
 
 // update cart
 const updateCart = res => {
@@ -26,33 +25,42 @@ const updateCart = res => {
     type: UPDATE_CART,
     payload: res
   };
-}
+};
 
-const getCartFromSV = (userId) => {
-  return dispatch => axios.get(endPoints.CART_API + userId).then(data => {
-    if (data) {
-      dispatch(getCart(data))
-    } else {
-      const cartModel = { userInfo: userId, productOrder: []};
-      axios.post(endPoints.CART_API, cartModel).then((res) => dispatch(getCart(res)))
-    }
-  }).catch(err => {
-    if (err === '002') {
-      clearAuthUser('/login');
-    }
-  });
-}
+const getCartFromSV = userId => {
+  return dispatch =>
+    axios
+      .get(endPoints.CART_API + userId)
+      .then(data => {
+        if (data) {
+          dispatch(getCart(data));
+        } else {
+          const cartModel = { userInfo: userId, productOrder: [] };
+          axios
+            .post(endPoints.CART_API, cartModel)
+            .then(res => dispatch(getCart(res)));
+        }
+      })
+      .catch(err => {
+        if (err === "002") {
+          clearAuthUser("/login");
+        }
+      });
+};
 
 const updateCartFromSV = (cartId, cartData) => {
   return dispatch =>
-    axios.patch(endPoints.CART_API + cartId, cartData).then(() => {
-      return dispatch(updateCart(cartData));
-    }).catch(err => {
-      if (err === '002') {
-        clearAuthUser('/login');
-      }
-    });
-}
+    axios
+      .patch(endPoints.CART_API + cartId, cartData)
+      .then(() => {
+        return dispatch(updateCart(cartData));
+      })
+      .catch(err => {
+        if (err === "002") {
+          clearAuthUser("/login");
+        }
+      });
+};
 
 // get User list
 const getUserList = res => {
@@ -82,13 +90,16 @@ const getUserById = res => {
 // get user by id from sv
 const getUserFromSV = id => {
   return dispatch => {
-    axios.get(endPoints.USER_API + id).then(data => {
-      dispatch(getUserById(data));
-    }).catch(err => {
-      if (err === '002') {
-        clearAuthUser('/login');
-      }
-    });
+    axios
+      .get(endPoints.USER_API + id)
+      .then(data => {
+        dispatch(getUserById(data));
+      })
+      .catch(err => {
+        if (err === "002") {
+          clearAuthUser("/login");
+        }
+      });
   };
 };
 
@@ -104,41 +115,52 @@ const updateUserById = res => {
 const updateUserFromSV = (id, data) => {
   loadingScreen.showLoading();
   return dispatch =>
-    axios.patch(endPoints.USER_API + id, data).then(() => {
-      loadingScreen.hideLoading()
-      return dispatch(updateUserById(data));
-    }).catch(err => {
-      if (err === '002') {
-        clearAuthUser('/login');
-      }
-    });
+    axios
+      .patch(endPoints.USER_API + id, data)
+      .then(() => {
+        loadingScreen.hideLoading();
+        return dispatch(updateUserById(data));
+      })
+      .catch(err => {
+        if (err === "002") {
+          clearAuthUser("/login");
+        }
+      });
 };
 
-// add new User to store
-// const addNewUser = res => {
-//   return {
-//     type: ADD_NEW_USER,
-//     payload: res
-//   };
-// };
+// create new User to store
+const createNewUser = res => {
+  return {
+    type: CREATE_NEW_USER,
+    payload: res
+  };
+};
 
 // create new User
-// const createNewUser = data => {
-//   return dispatch => {
-//     axios
-//       .post(endPoints.CREATE_USER_BY_ADMIN, data)
-//       .then(() => {
-//         dispatch(addNewUser(data));
-//       })
-//       .catch(err =>
-//         err.response.data.code === "002"
-//           ? clearAuthUser()
-//           : alert(
-//               "Mã Sản Phẩm Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!"
-//             )
-//       );
-//   };
-// };
+const createNewUserFromSV = data => {
+  loadingScreen.showLoading();
+  return dispatch => {
+    axios
+      .post(endPoints.CREATE_USER_API, data)
+      .then(res => {
+        loadingScreen.hideLoading();
+        return dispatch(createNewUser(res));
+      })
+      .catch(err => {
+        loadingScreen.hideLoading();
+        err.response.data.code === "006"
+          ? showNotification({
+              type: "error",
+              message: err.response.data.message
+            })
+          : showNotification({
+              type: "error",
+              message:
+                "Có lỗi trong quá trình xử lý! Vui lòng thực hiện lại hoặc liên hệ quản trị trang!"
+            });
+      });
+  };
+};
 
 // update User to store
 
@@ -187,13 +209,18 @@ const deleteUserToSV = id => {
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Lỗi Xóa Người Dùng Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!'})
+          : showNotification({
+              type: "error",
+              message:
+                "Lỗi Xóa Người Dùng Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!"
+            })
       );
   };
 };
 
 const actions = {
   GET_USER_LIST,
+  CREATE_NEW_USER,
   DELETE_USER_BY_ID,
   GET_USER_BY_ID,
   UPDATE_USER_BY_ID,
@@ -204,7 +231,8 @@ const actions = {
   getUserFromSV,
   updateUserFromSV,
   getCartFromSV,
-  updateCartFromSV
+  updateCartFromSV,
+  createNewUserFromSV
 };
 
 export default actions;

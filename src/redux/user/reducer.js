@@ -13,29 +13,33 @@ const reducer = (state = initState, action) => {
     case actionTypes.GET_USER_LIST:
       return updateObject(state, { userList: action.payload });
 
+    case actionTypes.CREATE_NEW_USER:
+      showNotification({ message: "Tạo Tài Khoản Thành Công!" });
+      return updateObject(state, { user: action.payload });
+
     case actionTypes.DELETE_USER_BY_ID:
       clonedUserList = state.userList.slice();
       let deleteElement = clonedUserList.find(item => {
         return item._id === action.payload;
       });
       clonedUserList.splice(clonedUserList.indexOf(deleteElement), 1);
-      showNotification({message: 'Xóa Người Dùng Thành Công!'})
+      showNotification({ message: "Xóa Người Dùng Thành Công!" });
       return updateObject(state, { userList: clonedUserList });
 
     case actionTypes.GET_USER_BY_ID:
       return updateObject(state, { user: action.payload });
 
     case actionTypes.UPDATE_USER_BY_ID:
-    showNotification({message: 'Cập Nhật Người Dùng Thành Công!'})
+      showNotification({ message: "Cập Nhật Người Dùng Thành Công!" });
       return updateObject(state, { user: action.payload });
 
     case actionTypes.GET_CART:
-      return updateObject(state, {cart: action.payload})
+      return updateObject(state, { cart: action.payload });
 
     case actionTypes.UPDATE_CART:
-    showNotification({message: 'Thêm Vào Giỏ Hàng Thành Công!'})
-      return updateObject(state, {cart: action.payload})
-    
+      showNotification({ message: "Thêm Vào Giỏ Hàng Thành Công!" });
+      return updateObject(state, { cart: action.payload });
+
     default:
       return state;
   }

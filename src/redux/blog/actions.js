@@ -42,7 +42,16 @@ const createNewBlog = data => {
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Mã Blog Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!'})
+          : err.response.data.code === "006"
+          ? showNotification({
+              type: "error",
+              message: err.response.data.message
+            })
+          : showNotification({
+              type: "error",
+              message:
+                "Có lỗi trong quá trình xử lý! Vui lòng thực hiện lại hoặc liên hệ quản trị trang!"
+            })
       );
   };
 };
@@ -70,7 +79,11 @@ const updateBlogToSV = (id, data) => {
       .catch(err => {
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Blog Hoặc Blog Chưa Có! Vui Lòng Cập Nhật Lại!'})
+          : showNotification({
+              type: "error",
+              message:
+                "Lỗi Cập Nhật Blog Hoặc Blog Chưa Có! Vui Lòng Cập Nhật Lại!"
+            });
       });
   };
 };
@@ -92,7 +105,10 @@ const deleteBlogToSV = id => {
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Lỗi Xóa Blog Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!'})
+          : showNotification({
+              type: "error",
+              message: "Lỗi Xóa Blog Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!"
+            })
       );
   };
 };
