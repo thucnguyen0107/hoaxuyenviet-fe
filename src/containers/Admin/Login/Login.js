@@ -15,7 +15,7 @@ class Login extends React.Component {
         elementConfig: {
           type: "text",
           placeholder: "Nhập Số Điện Thoại",
-          name: "Số Điện Thoại",
+          name: "Số Điện Thoại"
         },
         value: "",
         validation: {
@@ -68,7 +68,11 @@ class Login extends React.Component {
       })
       .catch(err => {
         loadingScreen.hideLoading();
-        showNotification({type: 'error', message: err});
+        showNotification({
+          type: "error",
+          message:
+            "Không thể đăng nhập! Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!"
+        });
       });
   };
 
