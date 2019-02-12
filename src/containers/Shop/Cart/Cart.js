@@ -35,6 +35,10 @@ class Cart extends React.Component {
       if (isNotEmpty(this.props.cart)) {
         this.setState({ cartList: cloneData(this.props.cart.productOrder) });
       }
+    }else{
+      let cartListLS =  JSON.parse(localStorage.getItem("list")) || [];
+      loadingScreen.showLoading();
+      this.setState({ cartList: cartListLS });
     }
   }
 
@@ -47,9 +51,17 @@ class Cart extends React.Component {
   }
 
   onRemoveCartItem = (item) => {
-    let cartData = cloneData(this.props.cart);
-    cartData.productOrder.splice(cartData.productOrder.indexOf(item), 1);
-    this.props.removeCartItem(this.props.cart._id, cartData);
+    if (this.props.authUser.auth) {
+      let cartData = cloneData(this.props.cart);
+      cartData.productOrder.splice(cartData.productOrder.indexOf(item), 1);
+      this.props.removeCartItem(this.props.cart._id, cartData);
+    }else{
+      let cartData = cloneData(this.state.cartList);
+      this.state.cartList.splice(cartData.indexOf(item), 1);
+      let cartListLS = this.state.cartList.slice(0);
+      localStorage.setItem("list", JSON.stringify(cartListLS));
+      this.setState({ cartList: cartListLS });
+    }
   };
 
   render() {
@@ -217,7 +229,6 @@ class Cart extends React.Component {
                         />
                         <span className="input-group-btn">
                           <button
-                            style={{ marginTop: "30px" }}
                             type="button"
                             defaultValue="Apply Coupon"
                             id="button-coupon"
