@@ -2,11 +2,11 @@ import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import Form from '../../../components/UI/Form/Form';
 import { Link } from 'react-router-dom';
-import loginService from '../../../services/loginService';
 import axios from "axios";
 import { endPoints } from "../../../services/config";
 import Actions from "../../../redux/rootActions"
 import { connect } from "react-redux";
+import { showNotification } from '../../../utilities/fnUtil';
 class Login extends React.Component {
     state = {
         loginForm: {
@@ -54,7 +54,6 @@ class Login extends React.Component {
     setStateForm = (object, submit = false) => {
         this.setState(object, () => {
             if (this.state.formIsValid && submit) {
-                console.log("Valid Form Successfully");
                 // loginService.loginLS();
                 // this.props.history.push({pathname:'/home'})
 
@@ -74,18 +73,17 @@ class Login extends React.Component {
             .then(res => {
                 localStorage.setItem("authUser", JSON.stringify(res));
                 this.props.updateAuthUser(res);
-                this.props.history.push("/home");
+                this.props.history.push("/account");
                 loadingScreen.hideLoading();
             })
             .catch(err => {
                 loadingScreen.hideLoading();
-                alert(err);
+                showNotification({type: 'error', message: err});
             });
     };
 
 
     render() {
-
         return (
             <>
                 <div id="breadcrumb">
@@ -128,14 +126,18 @@ class Login extends React.Component {
         );
     }
 }
-
+const mapStateToProps = state => {
+    return {
+        authUser: state.authUser
+    };
+};
 const mapDispatchToProps = dispatch => {
     return {
         updateAuthUser: authUser =>
-            dispatch(Actions.userActions.getAuthUser(authUser))
+            dispatch(Actions.authActions.getAuthUser(authUser))
     };
 };
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Login);

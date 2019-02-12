@@ -2,7 +2,8 @@ import React from "react";
 import {
   formatDate,
   formatCurrency,
-  initGalleryZoom
+  initGalleryZoom,
+  createContentHtmlString
 } from "../utilities/fnUtil";
 import { convertItemToName } from "../utilities/categoriesUtil";
 import { Tag, Switch, Input, Button, Icon, Collapse } from "antd";
@@ -24,35 +25,35 @@ const getColumnSearchProps = (
     confirm,
     clearFilters
   }) => (
-    <div style={{ padding: 8 }}>
-      <Input
-        ref={node => {
-          searchInput = node;
-        }}
-        placeholder={`Tìm Theo ${name}`}
-        value={selectedKeys[0]}
-        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-        onPressEnter={() => handleSearch(selectedKeys, confirm)}
-        style={{ width: 188, marginBottom: 8, display: "block" }}
-      />
-      <Button
-        type="primary"
-        onClick={() => handleSearch(selectedKeys, confirm)}
-        icon="search"
-        size="small"
-        style={{ width: 90, marginRight: 8 }}
-      >
-        Tìm
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={node => {
+            searchInput = node;
+          }}
+          placeholder={`Tìm Theo ${name}`}
+          value={selectedKeys[0]}
+          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm)}
+          style={{ width: 188, marginBottom: 8, display: "block" }}
+        />
+        <Button
+          type="primary"
+          onClick={() => handleSearch(selectedKeys, confirm)}
+          icon="search"
+          size="small"
+          style={{ width: 90, marginRight: 8 }}
+        >
+          Tìm
       </Button>
-      <Button
-        onClick={() => handleReset(clearFilters)}
-        size="small"
-        style={{ width: 90 }}
-      >
-        Xóa
+        <Button
+          onClick={() => handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
+          Xóa
       </Button>
-    </div>
-  ),
+      </div>
+    ),
   filterIcon: filtered => (
     <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
   ),
@@ -112,7 +113,7 @@ const getColumnSearchProps = (
             highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
             searchWords={[searchText]}
             autoEscape
-            textToHighlight={item.toString()}
+            textToHighlight={item ? item.toString() : ""}
           />
         );
     }
@@ -163,7 +164,7 @@ export const createDataProductListColumns = (
           className={"gallery_zoom_admin" + record._id}
           onLoad={initGalleryZoom(".gallery_zoom_admin" + record._id)}
         >
-          {images.map((img, index) => (
+          { images ? images.map((img, index) => (
             <a
               href={img}
               key={index}
@@ -182,7 +183,7 @@ export const createDataProductListColumns = (
                 style={{ pointerEvents: "none" }}
               />
             </a>
-          ))}
+          )) : null}
         </div>
       )
     },
@@ -338,7 +339,6 @@ export const createDataUserListColumns = (
       title: "Số Di Động",
       dataIndex: "_id",
       key: "_id",
-      fixed: "left",
       ...getColumnSearchProps(
         "_id",
         "Số ĐT",
@@ -352,7 +352,6 @@ export const createDataUserListColumns = (
       title: "Tên",
       dataIndex: "name",
       key: "name",
-      fixed: "left",
       ...getColumnSearchProps(
         "name",
         "Tên Khách",
@@ -489,14 +488,14 @@ export const createDataOrderListColumns = (
         <>
           <Collapse>
             <Collapse.Panel header="Chi Tiết">
-              {record.map(item => {
+              {record.length ? record.map(item => {
                 return (
                   <div key={item._id}>
                     <span style={{ marginRight: "10px" }}>{`Tên: ${
                       item.name
-                    }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
+                      }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
                       item.quantity
-                    }, Giảm Giá: ${item.discount}`}</span>
+                      }, Giảm Giá: ${item.discount}`}</span>
                     {item.images.map((img, index) => {
                       return (
                         <img
@@ -511,7 +510,7 @@ export const createDataOrderListColumns = (
                     })}
                   </div>
                 );
-              })}
+              }) : null}
             </Collapse.Panel>
           </Collapse>
         </>
@@ -610,6 +609,113 @@ export const createDataOrderListColumns = (
         searchText,
         searchInput,
         "status"
+      )
+    }
+  ];
+  return arr;
+};
+
+export const createDataBlogListColumns = (
+  handleSearch,
+  handleReset,
+  searchText,
+  searchInput
+) => {
+  const arr = [
+    {
+      title: "Mã",
+      dataIndex: "_id",
+      key: "_id",
+      ...getColumnSearchProps(
+        "_id",
+        "Mã Blog",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput
+      )
+    },
+    {
+      title: "Tên",
+      dataIndex: "title",
+      key: "title",
+      ...getColumnSearchProps(
+        "title",
+        "Tên Blog",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput
+      )
+    },
+    {
+      title: "Hình Ảnh",
+      key: "image",
+      dataIndex: "image",
+      render: (image, record) => (
+        <div
+          className={"gallery_zoom_blog" + record._id}
+          onLoad={initGalleryZoom(".gallery_zoom_blog" + record._id)}
+        >
+            <a
+              href={image}
+              style={{
+                width: "50px",
+                height: "50px",
+                display: "inline-block",
+              }}
+            >
+              <img
+                src={image}
+                alt="Error"
+                width="50"
+                height="50"
+                style={{ pointerEvents: "none" }}
+              />
+            </a>
+        </div>
+      )
+    },
+    {
+      title: "Nội Dung",
+      key: "content",
+      dataIndex: "content",
+      render: content => (
+        <>
+          <Collapse>
+            <Collapse.Panel header="Chi Tiết">
+              <div dangerouslySetInnerHTML={createContentHtmlString(content)}></div>
+            </Collapse.Panel>
+          </Collapse>
+        </>
+      )
+    },
+    {
+      title: "Ngày Tạo",
+      key: "createdAt",
+      dataIndex: "createdAt",
+      ...getColumnSearchProps(
+        "createdAt",
+        "Ngày Tạo",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "date"
+      )
+    },
+    {
+      title: "Ngày Cập Nhật",
+      key: "updatedAt",
+      dataIndex: "updatedAt",
+      ...getColumnSearchProps(
+        "updatedAt",
+        "Ngày Cập Nhật",
+        handleSearch,
+        handleReset,
+        searchText,
+        searchInput,
+        "date"
       )
     }
   ];

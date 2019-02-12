@@ -5,7 +5,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import classes from './Blogs.scss';
 import filterUtils from '../../../utilities/filter';
-import {isNotEmpty} from '../../../utilities/fnUtil';
+import { isNotEmpty, formatDate, createContentHtmlString } from '../../../utilities/fnUtil';
+import { endPoints } from '../../../services/config';
 
 class Blogs extends React.Component {
 
@@ -30,7 +31,7 @@ class Blogs extends React.Component {
 
   componentWillMount() {
     loadingScreen.showLoading();
-    axios.get('/datatest/Blog.json').then((res) => {
+    axios.get(endPoints.BLOG_LIST_API).then((res) => {
       console.log(res);
       this.setState({
         HTMLBlogModel: res,
@@ -55,39 +56,40 @@ class Blogs extends React.Component {
     });
 
   }
+
   render() {
     let styleCenter;
     styleCenter = {
       margin: '40px auto 0',
-      width:'70%',
+      width: '70%',
     }
 
     let listBlog = null;
     listBlog = (
       <>
         {
-         isNotEmpty(this.state.filteredHTMLBlogModel) ? this.state.filteredHTMLBlogModel.slice(0, this.state.visible).map(blog => {
+          isNotEmpty(this.state.filteredHTMLBlogModel) ? this.state.filteredHTMLBlogModel.slice(0, this.state.visible).map(blog => {
             return (
               <div className="blog_item" key={blog._id}>
                 <div className="summary">
                   <div className="blog-left-content">
                     <div className="blog_stats">
-                      <div className="date-time hl">{blog.addedDate}</div>
+                      <div className="date-time hl">{formatDate(blog.createdAt, true)}</div>
                     </div>
                     <h2 className="blog_title"><Link to={"/blogDetail/" + blog._id} >{blog.title}</Link></h2>
 
                     <div className="image">
-                      <Iimg src={blog.images[0]} alt="Blogs" title="Blogs" className="img-thumbnail" />
+                      <Iimg src={blog.image} alt="Blogs" title="Blogs" className="img-thumbnail" />
                       <p className="post_hover">
-                        <Link className="icon zoom" title="Click to view Full Image " to={blog.images[0]} data-lightbox="example-set">
+                        <Link className="icon zoom" title="Click to view Full Image " to={blog.image} data-lightbox="example-set">
                           <i className="fa fa-plus"></i>
                         </Link>
                         <Link className="icon dots" title="Read More" to={"/blogDetail/" + blog._id}><i className="fa fa-ellipsis-h"></i> </Link>
                       </p>
                     </div>
                   </div>
-                  <div className="blog-right-content">
-                    <p>{blog.content}</p>
+                  <div className="blog-right-content" id="blog-short-content">
+                    <p dangerouslySetInnerHTML={createContentHtmlString(blog.content, true)}></p>
                     <Link className="read-more-link" to={"/blogDetail/" + blog._id}>Đọc tiếp</Link>
                   </div>
                 </div>
@@ -121,7 +123,7 @@ class Blogs extends React.Component {
             <div className={classes.align_center}>
               <input type="text" name="search" defaultValue="" placeholder="Tìm kiếm bài viết" id="input-search" className="form-control" onChange={event => this.filterProductFn({ title: event.target.value })} />
             </div>
-            <div id="content"  style={styleCenter}>
+            <div id="content" style={styleCenter}>
               <div className="blog all-blogs">
                 <div className="blog_grid_holder">
                   <div className="row">

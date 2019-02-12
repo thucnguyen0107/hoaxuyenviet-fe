@@ -1,6 +1,6 @@
 import axios from "axios";
 import { endPoints } from "../../services/config";
-import { clearAuthUser } from "../../utilities/fnUtil";
+import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
 
 const GET_PRODUCT_LIST = "GET_PRODUCT_LIST";
 const ADD_NEW_PRODUCT = "ADD_NEW_PRODUCT";
@@ -17,7 +17,7 @@ const getProductList = res => {
 // get product list from server
 const getProductListFromSV = () => {
   return dispatch => {
-    axios.get(endPoints.GET_PRODUCT_LIST).then(data => {
+    axios.get(endPoints.PRODUCT_LIST_API).then(data => {
       dispatch(getProductList(data));
     });
   };
@@ -35,16 +35,14 @@ const addNewProduct = res => {
 const createNewProduct = data => {
   return dispatch => {
     axios
-      .post(endPoints.CREATE_PRODUCT_BY_ADMIN, data)
+      .post(endPoints.PRODUCT_API, data)
       .then(() => {
         dispatch(addNewProduct(data));
       })
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : alert(
-              "Mã Sản Phẩm Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!"
-            )
+          : showNotification({type: 'error', message: 'Mã Sản Phẩm Đã Tồn Tại Hoặc Gặp Lỗi Trong Quá Trình Tạo! Vui Lòng Tạo Lại!'})
       );
   };
 };
@@ -65,16 +63,14 @@ const updateProductById = (id, data) => {
 const updateProductToSV = (id, data) => {
   return dispatch => {
     axios
-      .patch(endPoints.UPDATE_PRODUCT_BY_ADMIN + id, data)
+      .patch(endPoints.PRODUCT_API + id, data)
       .then(() => {
         dispatch(updateProductById(id, data));
       })
       .catch(err => {
         err.response.data.code === "002"
           ? clearAuthUser()
-          : alert(
-              "Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!"
-            );
+          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!'})
       });
   };
 };
@@ -91,12 +87,12 @@ const deleteProductById = id => {
 const deleteProductToSV = id => {
   return dispatch => {
     axios
-      .delete(endPoints.DELETE_PRODUCT_BY_ADMIN + id)
+      .delete(endPoints.PRODUCT_API + id)
       .then(() => dispatch(deleteProductById(id)))
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : alert("Lỗi Xóa Sản Phẩm Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!")
+          : showNotification({type: 'error', message: 'Lỗi Xóa Sản Phẩm Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!'})
       );
   };
 };

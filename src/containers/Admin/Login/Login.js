@@ -6,6 +6,7 @@ import { endPoints } from "../../../services/config";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
+import { showNotification } from "../../../utilities/fnUtil";
 class Login extends React.Component {
   state = {
     loginForm: {
@@ -13,7 +14,8 @@ class Login extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Nhập Số Điện Thoại"
+          placeholder: "Nhập Số Điện Thoại",
+          name: "Số Điện Thoại",
         },
         value: "",
         validation: {
@@ -29,7 +31,8 @@ class Login extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "password",
-          placeholder: "Nhập Mật Khẩu"
+          placeholder: "Nhập Mật Khẩu",
+          name: "Mật Khẩu"
         },
         value: "",
         validation: {
@@ -65,7 +68,7 @@ class Login extends React.Component {
       })
       .catch(err => {
         loadingScreen.hideLoading();
-        alert(err);
+        showNotification({type: 'error', message: err});
       });
   };
 

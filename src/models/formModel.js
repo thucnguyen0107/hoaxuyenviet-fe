@@ -1,4 +1,5 @@
 import { headerContent } from "../data/data";
+import { getCurrentDate } from '../utilities/fnUtil'
 
 export const ProductFormModel = {
   _id: {
@@ -470,4 +471,336 @@ export const userProfileFormModel = {
     },
     valid: true
   }
+}
+
+export const checkoutFormModel = {
+  fullName: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Họ và Tên",
+      name: "Họ và Tên"
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 4,
+      errorMessage:
+        "Họ và tên phải từ 4 ký tự!"
+    },
+    valid: true
+  },
+
+  email: {
+    elementType: "input",
+    elementConfig: {
+      type: "email",
+      placeholder: "E-Mail",
+      name: "E-Mail"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Email không đúng định dạng!"
+    },
+    valid: true
+  },
+  telephone: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Số Điện Thoại",
+      name: "Số Điện Thoại"
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 9,
+      maxLength: 32,
+      numberValid: '^[0-9]+$',
+      errorMessage: "Số điện thoại phải từ 9 đến 32 chữ số!"
+    },
+    valid: true
+  },
+  address: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Địa Chỉ",
+      name: "Địa Chỉ"
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 5,
+      errorMessage: "Địa chỉ phải trên 5 ký tự!"
+    },
+    valid: true
+  },
+  fullNameReceivePerson: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Họ và Tên ",
+      name: "Họ và Tên Người Nhận (nếu có)"
+    },
+    value: "",
+    validation: {
+      required: false,
+    },
+    valid: true
+  },
+  telephoneReceivePerson: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Số Điện Thoại",
+      name: "Số Điện Thoại Người Nhận (nếu có)"
+    },
+    value: "",
+    validation: {
+      required: false,
+    },
+    valid: true
+  },
+  addressReivePerson: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      placeholder: "Địa Chỉ",
+      name: "Địa Chỉ Người Nhận (nếu không nhập thì địa chỉ cá nhân của bạn sẽ là địa chỉ nhận hàng)"
+    },
+    value: "",
+    validation: {
+      required: false,
+    },
+    valid: true
+  },
+  orderDate: {
+    elementType: "orderDate",
+    elementConfig: {
+      type: "text",
+      name: "Ngày Đặt Hàng"
+    },
+    value: getCurrentDate(),
+    validation: {
+      required: true,
+      errorMessage: "Vui Lòng Nhập Ngày Giao Hàng!"
+    },
+    valid: true
+  },
+  paymentMethod: {
+    elementType: "radioPayment",
+    elementConfig: {
+      type: "text",
+      name: "Hình Thức Thanh Toán"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Vui Lòng Chọn Hình Thức Thanh Toán!"
+    },
+    valid: true
+  },
+  note: {
+    elementType: "textarea",
+    elementConfig: {
+      type: "text",
+      placeholder: "Ghi Chú",
+      name: "Ghi Chú"
+    },
+    value: "",
+    validation: {
+    },
+    valid: true
+  }
+}
+
+export const BlogFormModel = {
+  _id: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      name: "Mã Blog",
+      placeholder: "Nhập Mã Blog",
+      unique: 1
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 1,
+      maxLength: 32,
+      errorMessage: "Chưa Nhập Mã Blog"
+    },
+    valid: true
+  },
+  image: {
+    elementType: "image",
+    elementConfig: {
+      name: "Hình Ảnh",
+      placeholder: "Nhập Đường Dẫn Hình Ảnh"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Chưa Nhập Link Hình"
+    },
+    valid: true
+  },
+  title: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      name: "Tên Blog",
+      placeholder: "Nhập Tên Blog"
+    },
+    value: "",
+    validation: {
+      required: true,
+      minLength: 6,
+      maxLength: 32,
+      errorMessage: "Chưa Nhập Tên Hoặc Độ Dài Chưa Đủ"
+    },
+    valid: true
+  },
+  content: {
+    elementType: "editor",
+    elementConfig: {
+      name: "Mô Tả Nội Dung Blog",
+      placeholder: "Nhập Mô Tả Nội Dung Blog"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Chưa Nhập Mô Tả Nội Dung Blog"
+    },
+    valid: true
+  }
+};
+
+export const registerFormModel  = {
+  telephone: {
+    elementType: 'input',
+    elementConfig: {
+      type: 'number',
+      placeholder: 'Vui lòng nhập số điện thoại của bạn',
+      name: 'Tài khoản đăng nhập (số điện thoại)'
+    },
+    value: '',
+    validation: {
+      required: true,
+      minLength: 10,
+      maxLength: 11,
+      letterValid: /^\+?[0-9]+$/,
+      errorMessage: "Số điện thoại không hợp lệ"
+    },
+    valid: true
+  },
+  password: {
+    elementType: 'input',
+    elementConfig: {
+      type: 'password',
+      placeholder: 'Vui lòng nhập mật khẩu của bạn',
+      name: 'Mật khẩu'
+    },
+    value: '',
+    validation: {
+      required: true,
+      minLength: 5,
+      maxLength: 32,
+      letterValid: /^[a-zA-Z]+$/,
+      errorMessage: "Mật khẩu phải nhiều hơn 5 ký tự và ít hơn 32 ký tự"
+    },
+    valid: true,
+  },
+  // passwordConfirm: {
+  //   elementType: 'input',
+  //   elementConfig: {
+  //     type: 'password',
+  //     placeholder: 'Xác nhận mật khẩu'
+  //   },
+  //   value: '',
+  //   validation: {
+  //     required: true,
+  //     minLength: 5,
+  //     maxLength: 32,
+  //     letterValid: /^[a-zA-Z]+$/,
+  //     errorMessage: "Xác nhận mật khẩu không chính xác"
+  //   },
+  //   valid: true,
+  // },
+  name: {
+    elementType: 'input',
+    elementConfig: {
+      type: 'text',
+      placeholder: 'Vui lòng nhập họ và tên của bạn',
+      name: 'Họ và tên'
+    },
+    value: '',
+    validation: {
+      required: true,
+      minLength: 4,
+      letterValid: /^[a-zA-Z]+$/,
+      errorMessage: "Họ và tên phải có nhiều hơn 4 ký tự "
+    },
+    valid: true,
+  },
+  email: {
+    elementType: 'input',
+    elementConfig: {
+      type: 'email',
+      placeholder: 'Vui lòng nhập địa chỉ E-Mail của bạn',
+      name: 'E-Mail'
+    },
+    value: '',
+    validation: {
+      required: true,
+      letterValid: /^[a-zA-Z]+$/,
+      errorMessage: "Email phải đúng định dạng"
+    },
+    valid: true,
+  },
+  address: {
+    elementType: 'input',
+    elementConfig: {
+      type: 'text',
+      placeholder: 'Vui lòng nhập địa chỉ của bạn',
+      name: 'Địa chỉ'
+    },
+    value: '',
+    validation: {
+      required: true,
+      minLength: 5,
+      letterValid: /^[a-zA-Z]+$/,
+      errorMessage: "Địa chỉ phải có nhiều hơn 5 ký tự "
+    },
+    valid: true,
+  },
+  birth: {
+    elementType: "date",
+    elementConfig: {
+      type: "text",
+      name: "Ngày Tháng Năm Sinh"
+    },
+
+    value: getCurrentDate(),
+    validation: {
+      required: true,
+      errorMessage: "Vui Lòng Chọn Ngày Tháng Năm Sinh!"
+    },
+    valid: true
+  },
+  gender: {
+    elementType: "radioGender",
+    elementConfig: {
+      type: "text",
+      name: "Giới Tính"
+    },
+    value: "male",
+    validation: {
+      required: true,
+      errorMessage: "Vui Lòng Chọn Giới Tính!"
+    },
+    valid: true
+  },
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { endPoints } from "../../services/config";
-import { clearAuthUser } from "../../utilities/fnUtil";
+import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
 
 const GET_ORDER_LIST = "GET_PRODUCT_LIST";
 const UPDATE_ORDER_BY_ID = "UPDATE_PRODUCT_BY_ID";
@@ -16,7 +16,7 @@ const getOrderList = res => {
 // get ORDER list from server
 const getOrderListFromSV = () => {
   return dispatch => {
-    axios.get(endPoints.GET_ORDER_LIST).then(data => {
+    axios.get(endPoints.ORDER_LIST_API).then(data => {
       dispatch(getOrderList(data));
     });
   };
@@ -38,16 +38,14 @@ const updateOrderById = (id, data) => {
 const updateOrderToSV = (id, data) => {
   return dispatch => {
     axios
-      .patch(endPoints.UPDATE_ORDER_BY_ADMIN + id, data)
+      .patch(endPoints.ORDER_API + id, data)
       .then(() => {
         dispatch(updateOrderById(id, data));
       })
       .catch(err => {
         err.response.data.code === "002"
           ? clearAuthUser()
-          : alert(
-              "Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!"
-            );
+          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!'})
       });
   };
 };

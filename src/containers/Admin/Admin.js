@@ -13,6 +13,7 @@ import ProductManagement from "./ProductManagement/ProductManagement";
 import HtmlContentManagement from "./HtmlContentManagement/HtmlContentManagement";
 import UserManagement from "./UserManagement/UserManagement";
 import OrderManagement from "./OrderManagement/OrderManagement";
+import BlogManagement from "./BlogManagement/BlogManagement";
 
 const {
   Content
@@ -60,6 +61,11 @@ class Admin extends React.Component {
                 path="/admin/userManagement"
                 exact
                 component={UserManagement}
+              />
+              <Route
+                path="/admin/blogManagement"
+                exact
+                component={BlogManagement}
               />
               <Redirect from="/admin" to="/admin/productManagement" />
             </Switch>

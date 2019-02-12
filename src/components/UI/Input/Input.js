@@ -3,14 +3,14 @@ import classes from "./Input.scss";
 import { initGalleryZoom } from "../../../utilities/fnUtil";
 import { Select, Switch, Radio, DatePicker } from "antd";
 import moment from 'moment';
-import { getCurrentDate } from '../../../utilities/fnUtil';
-const { MonthPicker, RangePicker } = DatePicker;
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const dateFormat = 'DD/MM/YYYY';
 
-const RadioGroup = Radio.Group;
 const input = props => {
   let inputElement = null;
+  let classname = null;
   const inputClasses = [classes.InputElement, "form-control"];
   let validationError = null;
 
@@ -49,6 +49,19 @@ const input = props => {
       );
       break;
 
+    case "editor":
+      inputElement = (
+        <ReactQuill
+          style={{height: "auto"}}
+          {...props.elementConfig}
+          onChange={props.changed}
+          required={props.mandatory}
+          className={inputClasses.join(" ")}
+          value={props.value}
+        />
+      );
+      break;
+
     case "password":
       inputElement = (
         <input
@@ -62,8 +75,55 @@ const input = props => {
       );
       break;
 
+      case "image":
+      classname =
+        "gallery_create_product" +
+        (props.elementConfig.id ? props.elementConfig.id : "");
+      inputElement = (
+        <>
+          <input
+            onChange={props.changed}
+            placeholder={props.elementConfig.placeholder}
+            type="text"
+            className={inputClasses.join(" ")}
+            required={props.mandatory}
+            value={props.value}
+          />
+          {props.value ? (
+            <div
+              className={classname}
+              onLoad={initGalleryZoom(
+                ".gallery_create_product" + props.elementConfig.id
+                  ? props.elementConfig.id
+                  : ""
+              )}
+              style={{ marginTop: "5px" }}
+            >
+                <a
+                  href={props.value}
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    display: "inline-block",
+                    marginRight: "5px"
+                  }}
+                >
+                  <img
+                    src={props.value}
+                    alt="Error"
+                    width="50"
+                    height="50"
+                    style={{ pointerEvents: "none" }}
+                  />
+                </a>
+            </div>
+          ) : null}
+        </>
+      );
+      break;
+
     case "images":
-      let classname =
+      classname =
         "gallery_create_product" +
         (props.elementConfig.id ? props.elementConfig.id : "");
       inputElement = (
@@ -149,10 +209,8 @@ const input = props => {
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          {/* <Radio value={"VISA"}>VISA</Radio>
-          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
+          <input className="payment" type="radio" name="payment" value="COD" defaultChecked/> COD (Giao Hàng Nhận Tiền)<br />
           <input className="payment" type="radio" name="payment" value="VISA" /> VISA<br />
-          <input className="payment" type="radio" name="payment" value="COD" /> Giao Hàng Nhận Tiền<br />
         </div>
       );
       break;
@@ -164,8 +222,6 @@ const input = props => {
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          {/* <Radio value={"VISA"}>VISA</Radio>
-          <Radio value={"COD"}>Giao Hàng Nhận Tiền</Radio> */}
           <input className="gender" type="radio" name="gender" value="male" checked={props.value === 'male' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nam
           <input className="gender" type="radio" name="gender" value="female" checked={props.value === 'female' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nữ<br />
         </div>
@@ -176,7 +232,7 @@ const input = props => {
       inputElement = (
         <div>
           <br />
-          <DatePicker name="Ngày Đặt Hàng" defaultValue={moment(props.value, dateFormat)} format={dateFormat} disabled onChange={props.changed} />
+          <DatePicker name="Ngày Đặt Hàng" value={moment(props.value, dateFormat)} format={dateFormat} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} />
         </div>
       );
       break;

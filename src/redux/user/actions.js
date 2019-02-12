@@ -1,11 +1,59 @@
 import axios from "axios";
 import { endPoints } from "../../services/config";
-import { clearAuthUser } from "../../utilities/fnUtil";
+import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
+import loadingScreen from "../../utilities/loadingScreen";
 
 const GET_USER_LIST = "GET_USER_LIST";
-// const ADD_NEW_USER = "ADD_NEW_User";
+// const ADD_NEW_USER = "ADD_NEW_USER";
 // const UPDATE_User_BY_ID = "UPDATE_USER_BY_ID";
 const DELETE_USER_BY_ID = "DELETE_USER_BY_ID";
+const GET_USER_BY_ID = "GET_USER_BY_ID";
+const UPDATE_USER_BY_ID = "UPDATE_USER_BY_ID";
+const GET_CART = "GET_CART";
+const UPDATE_CART = "UPDATE_CART";
+
+// get cart
+const getCart = res => {
+  return {
+    type: GET_CART,
+    payload: res
+  };
+}
+
+// update cart
+const updateCart = res => {
+  return {
+    type: UPDATE_CART,
+    payload: res
+  };
+}
+
+const getCartFromSV = (userId) => {
+  return dispatch => axios.get(endPoints.CART_API + userId).then(data => {
+    if (data) {
+      dispatch(getCart(data))
+    } else {
+      const cartModel = { userInfo: userId, productOrder: []};
+      axios.post(endPoints.CART_API, cartModel).then((res) => dispatch(getCart(res)))
+    }
+  }).catch(err => {
+    if (err === '002') {
+      clearAuthUser('/login');
+    }
+  });
+}
+
+const updateCartFromSV = (cartId, cartData) => {
+  return dispatch =>
+    axios.patch(endPoints.CART_API + cartId, cartData).then(() => {
+      return dispatch(updateCart(cartData));
+    }).catch(err => {
+      if (err === '002') {
+        clearAuthUser('/login');
+      }
+    });
+}
+
 // get User list
 const getUserList = res => {
   return {
@@ -17,10 +65,53 @@ const getUserList = res => {
 // get User list from server
 const getUserListFromSV = () => {
   return dispatch => {
-    axios.get(endPoints.GET_USER_LIST).then(data => {
+    axios.get(endPoints.USER_LIST_API).then(data => {
       dispatch(getUserList(data));
     });
   };
+};
+
+// get user by id
+const getUserById = res => {
+  return {
+    type: GET_USER_BY_ID,
+    payload: res
+  };
+};
+
+// get user by id from sv
+const getUserFromSV = id => {
+  return dispatch => {
+    axios.get(endPoints.USER_API + id).then(data => {
+      dispatch(getUserById(data));
+    }).catch(err => {
+      if (err === '002') {
+        clearAuthUser('/login');
+      }
+    });
+  };
+};
+
+// update user by id
+const updateUserById = res => {
+  return {
+    type: UPDATE_USER_BY_ID,
+    payload: res
+  };
+};
+
+// update user by id from server
+const updateUserFromSV = (id, data) => {
+  loadingScreen.showLoading();
+  return dispatch =>
+    axios.patch(endPoints.USER_API + id, data).then(() => {
+      loadingScreen.hideLoading()
+      return dispatch(updateUserById(data));
+    }).catch(err => {
+      if (err === '002') {
+        clearAuthUser('/login');
+      }
+    });
 };
 
 // add new User to store
@@ -91,12 +182,12 @@ const deleteUserById = id => {
 const deleteUserToSV = id => {
   return dispatch => {
     axios
-      .delete(endPoints.DELETE_USER_BY_ADMIN + id)
+      .delete(endPoints.USER_API + id)
       .then(() => dispatch(deleteUserById(id)))
       .catch(err =>
         err.response.data.code === "002"
           ? clearAuthUser()
-          : alert("Lỗi Xóa Sản Phẩm Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!")
+          : showNotification({type: 'error', message: 'Lỗi Xóa Người Dùng Hoặc Server Lỗi! Vui Lòng Kiểm Tra Lại!'})
       );
   };
 };
@@ -104,8 +195,16 @@ const deleteUserToSV = id => {
 const actions = {
   GET_USER_LIST,
   DELETE_USER_BY_ID,
+  GET_USER_BY_ID,
+  UPDATE_USER_BY_ID,
+  GET_CART,
+  UPDATE_CART,
   getUserListFromSV,
-  deleteUserToSV
+  deleteUserToSV,
+  getUserFromSV,
+  updateUserFromSV,
+  getCartFromSV,
+  updateCartFromSV
 };
 
 export default actions;

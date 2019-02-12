@@ -21,7 +21,7 @@ export const formatDate = (dateString, onlyDate = false) => {
 };
 
 export const formatCurrency = price => {
-  return price.toLocaleString("vi-VN", { currency: "VND" });
+  return price ? price.toLocaleString("vi-VN", { currency: "VND" }) : 0;
 };
 
 export const initGalleryZoom = name => {
@@ -66,26 +66,27 @@ export const isNotEmpty = data => {
 export const showNotification = notiData => {
   const options = {
     top: 150,
-    duration: 2
+    duration: 2,
+    onClose: notiData.fn
   };
   message.config(options);
   switch (notiData.type) {
     case "error":
       message.error(notiData.message);
       break;
-
+      case "warning":
+      message.warning(notiData.message);
+      break;
     default:
       message.success(notiData.message);
       break;
   }
 };
 
-export const clearAuthUser = () => {
+export const clearAuthUser = (path = "/admin") => {
   localStorage.removeItem("authUser");
-  alert(
-    "Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng"
-  );
-  window.location.replace("/admin");
+  showNotification({type: 'error', message: 'Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng', fn: (path) => window.location.replace(path)})
+  window.location.replace(path);
 };
 
 export const getCurrentDate = () => {
@@ -123,3 +124,11 @@ export const getDate = data => {
   date = dd + "/" + mm + "/" + yyyy;
   return date;
 };
+
+export const createContentHtmlString = (content, onlyFirst = false) => {
+  return onlyFirst ? {
+    __html: content.length > 33 ? content.slice(0, 33) + '...' : content 
+  } : {
+    __html: content
+  }
+}

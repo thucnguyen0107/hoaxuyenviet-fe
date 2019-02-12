@@ -1,8 +1,10 @@
 import actionTypes from "./actions";
-import { updateObject } from "../../utilities/fnUtil";
+import { updateObject, showNotification } from "../../utilities/fnUtil";
 
 const initState = {
-  userList: []
+  userList: [],
+  user: {},
+  cart: {}
 };
 
 const reducer = (state = initState, action) => {
@@ -17,8 +19,23 @@ const reducer = (state = initState, action) => {
         return item._id === action.payload;
       });
       clonedUserList.splice(clonedUserList.indexOf(deleteElement), 1);
+      showNotification({message: 'Xóa Người Dùng Thành Công!'})
       return updateObject(state, { userList: clonedUserList });
 
+    case actionTypes.GET_USER_BY_ID:
+      return updateObject(state, { user: action.payload });
+
+    case actionTypes.UPDATE_USER_BY_ID:
+    showNotification({message: 'Cập Nhật Người Dùng Thành Công!'})
+      return updateObject(state, { user: action.payload });
+
+    case actionTypes.GET_CART:
+      return updateObject(state, {cart: action.payload})
+
+    case actionTypes.UPDATE_CART:
+    showNotification({message: 'Thêm Vào Giỏ Hàng Thành Công!'})
+      return updateObject(state, {cart: action.payload})
+    
     default:
       return state;
   }

@@ -15,7 +15,6 @@ class CustomForm extends React.Component {
       clonedForm: cloneData(props.originalForm),  // clone form 
       originalForm: cloneData(props.originalForm)
     };
-    console.log(this.state.clonedForm)
   }
 
   componentWillReceiveProps = nextProps => {
@@ -70,6 +69,10 @@ class CustomForm extends React.Component {
 
     // update value for changed input element
     switch (updatedFormElement.elementType) {
+      case "image":
+          updatedFormElement.value = event.target.value;
+        break;
+
       case "images":
         if (event.target.value) {
           updatedFormElement.value = event.target.value.split(",");
@@ -79,10 +82,6 @@ class CustomForm extends React.Component {
         break;
 
       case "multiSelect":
-        // let newValue = [];
-        // for (let i = 0; i < event.target.selectedOptions.length; i++) {
-        //   newValue.push(event.target.selectedOptions[i].value);
-        // }
         updatedFormElement.value = event;
         break;
 
@@ -93,9 +92,15 @@ class CustomForm extends React.Component {
       case "textarea":
         updatedFormElement.value = event.target.value.split(",");
         break;
+
+      case "editor":
+        updatedFormElement.value = event;
+        break;
+
       case "date":
         updatedFormElement.value = formatDate(event, true);
         break;
+        
       default:
         updatedFormElement.value = event.target.value;
         break;
