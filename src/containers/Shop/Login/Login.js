@@ -74,6 +74,7 @@ class Login extends React.Component {
         localStorage.setItem("authUser", JSON.stringify(res));
         this.props.updateAuthUser(res);
         this.props.getUserById(res.userPhone);
+        this.props.getCartFromSV(res.userPhone);
         this.props.history.push("/account");
         loadingScreen.hideLoading();
       })
@@ -160,7 +161,8 @@ const mapDispatchToProps = dispatch => {
   return {
     updateAuthUser: authUser =>
       dispatch(Actions.authActions.getAuthUser(authUser)),
-    getUserById: id => dispatch(Actions.userActions.getUserFromSV(id))
+    getUserById: id => dispatch(Actions.userActions.getUserFromSV(id)),
+    getCartFromSV: id => dispatch(Actions.userActions.getCartFromSV(id))
   };
 };
 export default connect(

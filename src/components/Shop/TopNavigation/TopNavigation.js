@@ -4,7 +4,11 @@ import Logo from "../../../assets/images/catalog/logo.png";
 import NavigationItem from "../TopNavigation/NavigationItem/NavigationItem";
 import "./TopNavigation.css";
 import { Link } from "react-router-dom";
-import { formatCurrency, isNotEmpty } from "../../../utilities/fnUtil";
+import {
+  formatCurrency,
+  isNotEmpty,
+  clearAuthUser
+} from "../../../utilities/fnUtil";
 import cartService from "../../../services/cartService";
 import { connect } from "react-redux";
 let tempTotalPrice = 0;
@@ -29,12 +33,12 @@ function blurSelected() {
 }
 
 const closeMenu = () => {
-  window.$('.myaccount a.dropdown-toggle').click();
-}
+  window.$(".myaccount a.dropdown-toggle").click();
+};
 
 const closeCartMenu = () => {
   window.$("#cart .dropdown-toggle").click();
-}
+};
 
 // function onLogout() {
 //   localStorage.removeItem("authUser");
@@ -43,12 +47,12 @@ const closeCartMenu = () => {
 let cartList = [];
 function loadCart(authUser, productOrder = []) {
   let arrayProductOrder = [];
-  if(authUser.auth) {
+  if (authUser.auth) {
     arrayProductOrder = productOrder.slice();
   } else {
     arrayProductOrder = cartService.getProductToCart();
   }
-  
+
   tempTotalPrice = 0;
   cartList = (
     <>
@@ -81,7 +85,7 @@ function loadCart(authUser, productOrder = []) {
                         Giá:{" "}
                         {formatCurrency(
                           (order.price - (order.price * order.discount) / 100) *
-                          order.quantity
+                            order.quantity
                         )}{" "}
                         VND{" "}
                       </p>
@@ -103,8 +107,8 @@ function loadCart(authUser, productOrder = []) {
           );
         })
       ) : (
-          <p>Giỏ hàng của bạn rỗng</p>
-        )}
+        <p>Giỏ hàng của bạn rỗng</p>
+      )}
     </>
   );
 }
@@ -177,7 +181,10 @@ const topNavigation = props => {
             </div>
             <div className="header-right">
               <div className="header-cart-wrapper">
-                <div className="header-cart" onLoad={loadCart(props.authUser, props.cart.productOrder)}>
+                <div
+                  className="header-cart"
+                  onLoad={loadCart(props.authUser, props.cart.productOrder)}
+                >
                   <div id="cart" className="btn-group btn-block">
                     <button
                       type="button"
@@ -193,7 +200,8 @@ const topNavigation = props => {
                     </button>
                     <ul
                       className="dropdown-menu pull-right cart-menu"
-                      style={zIndexStyle} onClick={() => closeCartMenu()}
+                      style={zIndexStyle}
+                      onClick={() => closeCartMenu()}
                     >
                       {cartList}
                       <li>
@@ -247,7 +255,8 @@ const topNavigation = props => {
                   {!props.authUser.auth ? (
                     <ul
                       className="dropdown-menu dropdown-menu-right myaccount-menu"
-                      style={zIndexStyle} onClick={() => closeMenu()}
+                      style={zIndexStyle}
+                      onClick={() => closeMenu()}
                     >
                       <li>
                         <Link to="/register">Đăng ký</Link>
@@ -263,43 +272,42 @@ const topNavigation = props => {
                                 <span className="checkout">Thanh Toán</span>
                               </Link>
                             </li>
-                            <li>
-                              <Link to="/logout" title="Logout">
-                                <span className="logout">Thoát</span>
-                              </Link>
-                            </li>
                           </ul>
                         </div>
                       </nav>
                     </ul>
                   ) : (
-                      <ul
-                        className="dropdown-menu dropdown-menu-right myaccount-menu"
-                        style={zIndexStyle} onClick={() => closeMenu()}
-                      >
-                        <nav id="top">
-                          <div id="top-links" className="nav">
-                            <ul className="list-inline">
-                              <li>
-                                <Link to="/account" title="Checkout">
-                                  <span className="checkout">Tài Khoản</span>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to="/checkout" title="Checkout">
-                                  <span className="checkout">Thanh Toán</span>
-                                </Link>
-                              </li>
-                              <li>
-                                <Link to="/logout" title="Logout">
-                                  <span className="logout">Thoát</span>
-                                </Link>
-                              </li>
-                            </ul>
-                          </div>
-                        </nav>
-                      </ul>
-                    )}
+                    <ul
+                      className="dropdown-menu dropdown-menu-right myaccount-menu"
+                      style={zIndexStyle}
+                      onClick={() => closeMenu()}
+                    >
+                      <nav id="top">
+                        <div id="top-links" className="nav">
+                          <ul className="list-inline">
+                            <li>
+                              <Link to="/account" title="Checkout">
+                                <span className="checkout">Tài Khoản</span>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link to="/checkout" title="Checkout">
+                                <span className="checkout">Thanh Toán</span>
+                              </Link>
+                            </li>
+                            <li>
+                              <a
+                                title="Logout"
+                                onClick={() => clearAuthUser("/login", true)}
+                              >
+                                <span className="logout">Thoát</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </nav>
+                    </ul>
+                  )}
                 </div>
               </div>
             </div>

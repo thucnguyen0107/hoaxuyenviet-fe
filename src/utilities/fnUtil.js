@@ -74,7 +74,7 @@ export const showNotification = notiData => {
     case "error":
       message.error(notiData.message);
       break;
-      case "warning":
+    case "warning":
       message.warning(notiData.message);
       break;
     default:
@@ -83,10 +83,18 @@ export const showNotification = notiData => {
   }
 };
 
-export const clearAuthUser = (path = "/admin") => {
+export const clearAuthUser = (path = "/admin", isLogOut = false) => {
   localStorage.removeItem("authUser");
-  showNotification({type: 'error', message: 'Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng', fn: (path) => window.location.replace(path)})
-  window.location.replace(path);
+  if (!isLogOut) {
+    showNotification({
+      type: "error",
+      message:
+        "Thời Gian Đăng Nhập Hết Hiệu Lực! Vui Lòng Đăng Nhập Lại Để Tiếp Tục Sử Dụng",
+      fn: path => window.location.replace(path)
+    });
+  } else {
+    window.location.replace(path);
+  }
 };
 
 export const getCurrentDate = () => {
@@ -126,9 +134,11 @@ export const getDate = data => {
 };
 
 export const createContentHtmlString = (content, onlyFirst = false) => {
-  return onlyFirst ? {
-    __html: content.length > 33 ? content.slice(0, 33) + '...' : content 
-  } : {
-    __html: content
-  }
-}
+  return onlyFirst
+    ? {
+        __html: content.length > 33 ? content.slice(0, 33) + "..." : content
+      }
+    : {
+        __html: content
+      };
+};
