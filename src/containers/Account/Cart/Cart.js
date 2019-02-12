@@ -4,6 +4,8 @@ import Iimg from '../../../components/UI/LoadingImage/Limg';
 import Input from '../../../components/UI/Input/Input';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { isNotEmpty, cloneData } from '../../../utilities/fnUtil';
 class Cart extends React.Component {
   state = {
     HTMLOrderModel: [],
@@ -16,23 +18,39 @@ class Cart extends React.Component {
     loadingScreen.hideLoading();
   }
 
+  // componentWillMount() {
+  //   loadingScreen.showLoading();
+  //   axios.get('/datatest/Order.json').then((res) => {
+  //     console.log(res);
+  //     this.setState({ HTMLOrderModel: res }, loadingScreen.hideLoading)
+  //   }).catch((err) => {
+  //     loadingScreen.hideLoading();
+  //     console.error(err);
+  //   })
+  // }
+
   componentWillMount() {
-    loadingScreen.showLoading();
-    axios.get('/datatest/Order.json').then((res) => {
-      console.log(res);
-      this.setState({ HTMLOrderModel: res }, loadingScreen.hideLoading)
-    }).catch((err) => {
-      loadingScreen.hideLoading();
-      console.error(err);
-    })
+    if (this.props.authUser.auth) {
+      if (isNotEmpty(this.props.cart) && this.props.cart.productOrder.length) {
+        this.setState({ HTMLOrderModel: cloneData(this.props.cart.productOrder) });
+      }
+    }
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.authUser.auth) {
+  //     if (isNotEmpty(nextProps.cart) && nextProps.cart.productOrder.length) {
+  //       this.setState({ HTMLOrderModel: cloneData(nextProps.cart.productOrder) });
+  //     }
+  //   }
+  // }
 
 
   render() {
 
-    let listOder = null;
+    let listOrder = null;
     let tempTotalPrice = this.state.totalPrice;
-    listOder = (
+    listOrder = (
       <>
         {
           this.state.HTMLOrderModel.map(order => {
@@ -97,7 +115,7 @@ class Cart extends React.Component {
                         <td className="text-right">Thành tiền</td>
                       </tr>
                     </thead>
-                    {listOder}
+                    {listOrder}
                   </table>
                 </div>
               </form>
@@ -147,4 +165,12 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart;
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser,
+    user: state.userList.user,
+    cart: state.userList.cart
+  };
+};
+
+export default connect(mapStateToProps)(Cart);

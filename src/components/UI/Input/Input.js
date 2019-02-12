@@ -52,7 +52,7 @@ const input = props => {
     case "editor":
       inputElement = (
         <ReactQuill
-          style={{height: "auto"}}
+          style={{ height: "auto" }}
           {...props.elementConfig}
           onChange={props.changed}
           required={props.mandatory}
@@ -75,7 +75,7 @@ const input = props => {
       );
       break;
 
-      case "image":
+    case "image":
       classname =
         "gallery_create_product" +
         (props.elementConfig.id ? props.elementConfig.id : "");
@@ -99,23 +99,23 @@ const input = props => {
               )}
               style={{ marginTop: "5px" }}
             >
-                <a
-                  href={props.value}
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    display: "inline-block",
-                    marginRight: "5px"
-                  }}
-                >
-                  <img
-                    src={props.value}
-                    alt="Error"
-                    width="50"
-                    height="50"
-                    style={{ pointerEvents: "none" }}
-                  />
-                </a>
+              <a
+                href={props.value}
+                style={{
+                  width: "50px",
+                  height: "50px",
+                  display: "inline-block",
+                  marginRight: "5px"
+                }}
+              >
+                <img
+                  src={props.value}
+                  alt="Error"
+                  width="50"
+                  height="50"
+                  style={{ pointerEvents: "none" }}
+                />
+              </a>
             </div>
           ) : null}
         </>
@@ -209,8 +209,8 @@ const input = props => {
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          <input className="payment" type="radio" name="payment" value="COD" defaultChecked/> COD (Giao Hàng Nhận Tiền)<br />
-          <input className="payment" type="radio" name="payment" value="VISA" /> VISA<br />
+          <input className="payment" type="radio" name="payment" value="COD" checked={props.value === 'COD' ? true : false} onChange={props.changed} /> COD (Giao Hàng Nhận Tiền)<br />
+          <input className="payment" type="radio" name="payment" value="VISA" checked={props.value === 'VISA' ? true : false} onChange={props.changed} /> VISA<br />
         </div>
       );
       break;
