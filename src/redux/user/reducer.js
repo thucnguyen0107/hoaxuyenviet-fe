@@ -37,7 +37,7 @@ const reducer = (state = initState, action) => {
       return updateObject(state, { cart: action.payload });
 
     case actionTypes.UPDATE_CART:
-      showNotification({ message: "Thêm Vào Giỏ Hàng Thành Công!" });
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       return updateObject(state, { cart: action.payload });
 
     default:

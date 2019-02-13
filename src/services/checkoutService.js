@@ -2,7 +2,7 @@ import loginService from '../services/loginService';
 
 
 
-const saveUserInfoLSGuess = () => {
+const saveUserInfoLSGuest = () => {
 
   const checkoutForm = document.forms.checkoutForm;
 
@@ -135,17 +135,14 @@ const addUserInfoLS = () => {
   if (loginService.isAuthenticated()) {
     saveUserInfoLSUser();
   } else {
-    // guess
-    saveUserInfoLSGuess();
+    // guest
+    saveUserInfoLSGuest();
   }
 }
 
-const getInfoIfUserLogin = () => {
-  const authUser = JSON.parse(localStorage.getItem("authUser")) || {}
-  return authUser.userInfo
-}
+
 
 const checkoutService = {
-  saveUserInfoLSGuess, addUserInfoLS, getInfoIfUserLogin
+  saveUserInfoLSGuest, addUserInfoLS
 }
 export default checkoutService;

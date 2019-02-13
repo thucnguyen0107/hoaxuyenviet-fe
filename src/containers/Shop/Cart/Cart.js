@@ -4,15 +4,18 @@ import Iimg from "../../../components/UI/LoadingImage/Limg";
 import Input from "../../../components/UI/Input/Input";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import {
   formatCurrency,
   showNotification,
-  isNotEmpty
+  isNotEmpty,
+  cloneData
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
 import cartService from "../../../services/cartService";
 import loginService from '../../../services/loginService';
 import { Popconfirm } from "antd";
+import Actions from "../../../redux/rootActions";
 class Cart extends React.Component {
   state = {
     cartList: [],
@@ -26,19 +29,39 @@ class Cart extends React.Component {
 
   }
 
+
   componentWillMount = () => {
-    // let arrayProductOrder = JSON.parse(localStorage.getItem("listAuth"));
-    let arrayProductOrder = cartService.getProductToCart();
-    loadingScreen.showLoading();
-    this.setState({ cartList: arrayProductOrder });
-  };
+    if (this.props.authUser.auth) {
+      if (isNotEmpty(this.props.cart)) {
+        this.setState({ cartList: cloneData(this.props.cart.productOrder) });
+      }
+    }else{
+      let cartListLS =  JSON.parse(localStorage.getItem("list")) || [];
+      loadingScreen.showLoading();
+      this.setState({ cartList: cartListLS });
+    }
+  }
 
-  removeCartItemLS = (cartList, itemID) => {
-    const newCartList = cartService.removeCartItemLS(cartList, itemID);
-    this.setState({ cartList: newCartList });
-    showNotification({ message: "Xóa thành công!" });
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.authUser.auth) {
+      if (isNotEmpty(nextProps.cart)) {
+        this.setState({ cartList: cloneData(nextProps.cart.productOrder) });
+      }
+    }
+  }
 
-
+  onRemoveCartItem = (item) => {
+    if (this.props.authUser.auth) {
+      let cartData = cloneData(this.props.cart);
+      cartData.productOrder.splice(cartData.productOrder.indexOf(item), 1);
+      this.props.removeCartItem(this.props.cart._id, cartData);
+    }else{
+      let cartData = cloneData(this.state.cartList);
+      this.state.cartList.splice(cartData.indexOf(item), 1);
+      let cartListLS = this.state.cartList.slice(0);
+      localStorage.setItem("list", JSON.stringify(cartListLS));
+      this.setState({ cartList: cartListLS });
+    }
   };
 
   render() {
@@ -75,7 +98,7 @@ class Cart extends React.Component {
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <input type="number" name="quantity[5]" defaultValue={order.quantity} size="1" className="form-control" style={{
+                    <input type="number" name="" disabled defaultValue={order.quantity} size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
                       width: '40px'
@@ -86,7 +109,7 @@ class Cart extends React.Component {
 
                       <Popconfirm
                         title="Bạn có chắc chắn muốn xóa?"
-                        onConfirm={() => this.removeCartItemLS(this.state.cartList, order._id)}
+                        onConfirm={() => this.onRemoveCartItem(order)}
                         okText="Đồng Ý"
                         cancelText="Hủy">
                         <button type="button" className="btn btn-danger"><i className="fa fa-times-circle" ></i></button></Popconfirm>
@@ -206,7 +229,6 @@ class Cart extends React.Component {
                         />
                         <span className="input-group-btn">
                           <button
-                            style={{ marginTop: "30px" }}
                             type="button"
                             defaultValue="Apply Coupon"
                             id="button-coupon"
@@ -259,4 +281,22 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart;
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser,
+    user: state.userList.user,
+    cart: state.userList.cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    removeCartItem: (cartId, cartData) =>
+      dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cart);
