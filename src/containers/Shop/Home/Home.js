@@ -57,7 +57,6 @@ class Body extends React.Component {
     axios
       .get(endPoints.HTML_CONTENT)
       .then(res => {
-        console.log(res);
         this.setState({ htmlContentModel: res }, loadingScreen.hideLoading);
       })
       .catch(err => {

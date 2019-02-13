@@ -142,3 +142,19 @@ export const createContentHtmlString = (content, onlyFirst = false) => {
         __html: content
       };
 };
+
+export const createOrderId = phone => {
+  const date = new Date();
+  const orderId =
+    date.getDate().toString() +
+    (date.getMonth() + 1).toString() +
+    date
+      .getFullYear()
+      .toString()
+      .slice(-2) +
+    date.getHours().toString() +
+    date.getMinutes().toString() +
+    date.getSeconds().toString() +
+    phone.toString().slice(-4);
+  return orderId;
+};
