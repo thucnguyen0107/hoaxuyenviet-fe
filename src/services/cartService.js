@@ -1,31 +1,36 @@
-import { showNotification, isNotEmpty, cloneData } from '../utilities/fnUtil';
-import loginService from './loginService';
-import Actions from '../redux/rootActions';
-import loadingScreen from '../utilities/loadingScreen';
-const saveCartItemLSGuest = (item) => {
+import { showNotification, cloneData } from "../utilities/fnUtil";
+import loginService from "./loginService";
+import Actions from "../redux/rootActions";
+import loadingScreen from "../utilities/loadingScreen";
+const saveCartItemLSGuest = item => {
   let productData;
   let quantity = document.getElementById("input-quantity");
   // assign item to data variable
   productData = cloneData(item);
   if (quantity.value <= 0) {
-    showNotification({ message: 'Số lượng sản phẩm phải lớn hơn 0!', type: 'error' })
+    showNotification({
+      message: "Số lượng sản phẩm phải lớn hơn 0!",
+      type: "error"
+    });
   } else {
     // Add quantity use input to product data
     productData.quantity = parseFloat(quantity.value);
-    // create array in local storage	
+    // create array in local storage
     let arrProductListLocalStorage = [];
-    // Parse the serialized data back into an aray of objects	
-    arrProductListLocalStorage = JSON.parse(localStorage.getItem('list')) || [];
+    // Parse the serialized data back into an aray of objects
+    arrProductListLocalStorage = JSON.parse(localStorage.getItem("list")) || [];
     // if duplicate product, just add quantity
-    arrProductListLocalStorage = checkExistingItem(productData, arrProductListLocalStorage);
-    // Re-serialize the array back into a string and store it in localStorage	
+    arrProductListLocalStorage = checkExistingItem(
+      productData,
+      arrProductListLocalStorage
+    );
+    // Re-serialize the array back into a string and store it in localStorage
     localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
     loadingScreen.showLoading();
     showNotification({ message: 'Lưu Vào Giỏ Hàng Thành Công!' })
     loadingScreen.hideLoading();
   }
-
-}
+};
 
 const checkExistingItem = (product, arr) => {
   let isExist = false;
@@ -41,7 +46,7 @@ const checkExistingItem = (product, arr) => {
   }
   clonedArr.push(product);
   return clonedArr;
-}
+};
 
 // const removeCartItemLS = (cartList, itemID) => {
 

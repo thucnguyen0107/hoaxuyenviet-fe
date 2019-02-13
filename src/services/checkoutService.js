@@ -1,5 +1,5 @@
 import loginService from '../services/loginService';
-
+import { createOrderId } from '../utilities/fnUtil';
 
 
 const saveUserInfoLSGuest = () => {
@@ -52,7 +52,7 @@ const saveUserInfoLSGuest = () => {
   })
 
   const order = {
-    _id: 0,
+    _id: createOrderId(phoneNumber),
     customerInfo: {
       name: fullName,
       email: email,
@@ -68,7 +68,7 @@ const saveUserInfoLSGuest = () => {
       note: note,
       payment: payment,
       deliveryDate: orderDate,
-      status: '',
+      status: 'PENDING',
       productOrder: arrProductOrder
     },
     finalPrice: tempFinalPrice

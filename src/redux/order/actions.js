@@ -45,7 +45,11 @@ const updateOrderToSV = (id, data) => {
       .catch(err => {
         err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!'})
+          : showNotification({
+              type: "error",
+              message:
+                "Lỗi Cập Nhật Sản Phẩm Hoặc Sản Phẩm Chưa Có! Vui Lòng Cập Nhật Lại!"
+            });
       });
   };
 };
