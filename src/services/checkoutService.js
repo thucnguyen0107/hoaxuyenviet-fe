@@ -44,24 +44,35 @@ const saveUserInfoLSGuest = () => {
 
   const note = noteInput.value;
 
+  let tempFinalPrice = 0;
+  const arrProductOrder = JSON.parse(localStorage.getItem('list')) || []
+  arrProductOrder.forEach(element => {
+    tempFinalPrice += (element.price - (element.price * element.discount) / 100) *
+      element.quantity;
+  })
+
   const order = {
+    _id: 0,
     customerInfo: {
-      fullName: fullName,
+      name: fullName,
       email: email,
-      phoneNumber: phoneNumber,
+      phone: phoneNumber,
       address: address
     },
-    receiveInfo: {
-      fullNameReceive: fullNameReceive,
-      phoneNumberReceive: phoneNumberReceive,
-      addressReceive: addressReceive
+    receiverInfo: {
+      name: fullNameReceive,
+      phone: phoneNumberReceive,
+      address: addressReceive
     },
     order: {
-      orderDate: orderDate,
+      note: note,
       payment: payment,
-      note: note
+      deliveryDate: orderDate,
+      status: '',
+      productOrder: arrProductOrder
     },
-    productOrder: JSON.parse(localStorage.getItem('list')) || []
+    finalPrice: tempFinalPrice
+
   }
   localStorage.setItem('order', JSON.stringify(order));
 }

@@ -210,14 +210,14 @@ class ProductDetail extends React.Component {
 
 
   addProductToCart() {
-    if(this.props.authUser.auth) {
+    if (this.props.authUser.auth) {
       let cart = cloneData(this.props.cart);
       const cartItem = cloneData(this.state.product);
       cartItem.quantity = +document.getElementById("input-quantity").value;
       cart.productOrder = cartService.checkExistingItem(cartItem, cart.productOrder);
       this.props.updateCart(this.props.cart._id, cart);
     } else
-    cartService.saveCartItemLSGuest(this.state.product);
+      cartService.saveCartItemLSGuest(this.state.product);
   }
 
   componentDidMount() {

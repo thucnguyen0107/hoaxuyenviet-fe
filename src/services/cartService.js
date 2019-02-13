@@ -1,6 +1,7 @@
 import { showNotification, isNotEmpty, cloneData } from '../utilities/fnUtil';
 import loginService from './loginService';
-import Actions from '../redux/rootActions'; 
+import Actions from '../redux/rootActions';
+import loadingScreen from '../utilities/loadingScreen';
 const saveCartItemLSGuest = (item) => {
   let productData;
   let quantity = document.getElementById("input-quantity");
@@ -19,7 +20,9 @@ const saveCartItemLSGuest = (item) => {
     arrProductListLocalStorage = checkExistingItem(productData, arrProductListLocalStorage);
     // Re-serialize the array back into a string and store it in localStorage	
     localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
+    loadingScreen.showLoading();
     showNotification({ message: 'Lưu Vào Giỏ Hàng Thành Công!' })
+    loadingScreen.hideLoading();
   }
 
 }
@@ -33,64 +36,52 @@ const checkExistingItem = (product, arr) => {
       isExist = true;
     }
   });
-  if(isExist) {
+  if (isExist) {
     return clonedArr;
-  } 
+  }
   clonedArr.push(product);
   return clonedArr;
 }
 
-const removeCartItemLS = (cartList, itemID) => {
+// const removeCartItemLS = (cartList, itemID) => {
 
-  cartList = cartList.filter(ele => ele._id !== itemID);
+//   cartList = cartList.filter(ele => ele._id !== itemID);
 
-  let cartListTemp = cartList.slice(0);
+//   let cartListTemp = cartList.slice(0);
 
-  const user = JSON.parse(localStorage.getItem('authUser')) || []
-  const arrProductListAuthLS = {
-    arrProductListLocalStorage: cartListTemp,
-    userPhone: user.userPhone
+//   const user = JSON.parse(localStorage.getItem('authUser')) || []
+//   const arrProductListAuthLS = {
+//     arrProductListLocalStorage: cartListTemp,
+//     userPhone: user.userPhone
 
-  }
-  if (loginService.isAuthenticated()) {
-    localStorage.setItem("listAuth", JSON.stringify(arrProductListAuthLS));
-  } else {
-    localStorage.setItem("list", JSON.stringify(cartListTemp));
-  }
+//   }
+//   if (loginService.isAuthenticated()) {
+//     localStorage.setItem("listAuth", JSON.stringify(arrProductListAuthLS));
+//   } else {
+//     localStorage.setItem("list", JSON.stringify(cartListTemp));
+//   }
 
-  return cartList;
-}
+//   return cartList;
+// }
 
-const addProductToCart = (productInfo, cart) => {
-  const clonedCart = cloneData(cart);
-  if (loginService.isAuthenticated()) {
-    clonedCart.productOrder.push(productInfo);
-    Actions.userActions.updateCartFromSV(cart._id, clonedCart);
-  }
-  else {
-    return saveCartItemLSGuest(productInfo)
-  }
-}
+// const addProductToCart = (productInfo, cart) => {
+//   const clonedCart = cloneData(cart);
+//   if (loginService.isAuthenticated()) {
+//     clonedCart.productOrder.push(productInfo);
+//     Actions.userActions.updateCartFromSV(cart._id, clonedCart);
+//   }
+//   else {
+//     return saveCartItemLSGuest(productInfo)
+//   }
+// }
 
 
 const getProductToCart = () => {
-  if (loginService.isAuthenticated()) {
-    if (JSON.parse(localStorage.getItem("listAuth"))) {
-      return JSON.parse(localStorage.getItem("listAuth")).arrProductListLocalStorage
-    } else {
-      return [];
-    }
-  } else {
-    return JSON.parse(localStorage.getItem("list")) || [];
-  }
-
+  return JSON.parse(localStorage.getItem("list")) || [];
 }
 
-
-
-
 const cartService = {
-  saveCartItemLSGuest, removeCartItemLS, addProductToCart, getProductToCart, checkExistingItem
+  saveCartItemLSGuest, getProductToCart, checkExistingItem
 }
 
 export default cartService;

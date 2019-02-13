@@ -37,7 +37,7 @@ class Checkout extends React.Component {
       if (this.state.formIsValid && submit) {
         console.log("Valid Form Successfully");
         if (this.props.authUser.auth) {
-          console.log("chua dang nhap")
+          console.log("")
         } else {
           checkoutService.saveUserInfoLSGuest();
         }

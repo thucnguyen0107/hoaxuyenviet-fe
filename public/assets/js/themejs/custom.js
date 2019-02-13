@@ -74,7 +74,7 @@ $(document).ready(function () {
         $(".menu_toggle").slideUp("slow");
         $("#search").slideUp("slow");
         $(".header-search.dropdown-toggle").removeClass('active');
-        return false;
+        return true;
     });
     // $("#form-currency .dropdown-toggle").click(function() {
     //     $('#form-currency').toggleClass("active");

@@ -38,7 +38,6 @@ class EditInformation extends React.Component {
   }
 
   componentWillMount() {
-    loadingScreen.showLoading();
     if (isNotEmpty(this.props.user)) {
       this.initForm(this.props.user);
     }
