@@ -18,16 +18,7 @@ class Cart extends React.Component {
     loadingScreen.hideLoading();
   }
 
-  // componentWillMount() {
-  //   loadingScreen.showLoading();
-  //   axios.get('/datatest/Order.json').then((res) => {
-  //     console.log(res);
-  //     this.setState({ HTMLOrderModel: res }, loadingScreen.hideLoading)
-  //   }).catch((err) => {
-  //     loadingScreen.hideLoading();
-  //     console.error(err);
-  //   })
-  // }
+
 
   componentWillMount() {
     if (this.props.authUser.auth) {
@@ -37,13 +28,7 @@ class Cart extends React.Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.authUser.auth) {
-  //     if (isNotEmpty(nextProps.cart) && nextProps.cart.productOrder.length) {
-  //       this.setState({ HTMLOrderModel: cloneData(nextProps.cart.productOrder) });
-  //     }
-  //   }
-  // }
+
 
 
   render() {

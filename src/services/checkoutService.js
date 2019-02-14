@@ -75,8 +75,9 @@ const createOrder = (cartData) => {
 
 
   }
-
+  // localStorage.setItem('order', JSON.stringify(order));
   return order;
+
 }
 
 

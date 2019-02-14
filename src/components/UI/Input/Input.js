@@ -204,7 +204,6 @@ const input = props => {
     case "radioPayment":
       inputElement = (
         <div
-          onChange={props.changed}
           value={props.value}
           required={props.mandatory}
           style={{ marginLeft: "10px" }}

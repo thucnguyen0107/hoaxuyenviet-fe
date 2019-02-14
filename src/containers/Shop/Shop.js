@@ -16,6 +16,7 @@ import Account from "../../containers/Account/Account";
 import BlogDetail from "../Shop/BlogDetail/BlogDetail";
 import Register from "../../containers/Shop/Register/Register";
 import ForGotPassWord from "../../containers/Shop/ForGotPassword/ForGotPassword";
+import CheckoutSuccess from '../../containers/Shop/CheckoutSuccess/CheckoutSuccess';
 import { connect } from "react-redux";
 
 class Shop extends React.Component {
@@ -32,6 +33,7 @@ class Shop extends React.Component {
               exact
               component={ProductDetail}
             />
+            <Route path="/checkoutSuccess" exact component={CheckoutSuccess} />
             <Route path="/search" exact component={Search} />
             <Route path="/cart" exact component={Cart} />
             <Route path="/checkout" exact component={Checkout} />
@@ -61,6 +63,7 @@ class Shop extends React.Component {
               exact
               component={ProductDetail}
             />
+            <Route path="/checkoutSuccess" exact component={CheckoutSuccess} />
             <Route path="/search" exact component={Search} />
             <Route path="/cart" exact component={Cart} />
             <Route path="/checkout" exact component={Checkout} />

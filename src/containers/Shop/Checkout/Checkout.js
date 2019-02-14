@@ -28,6 +28,9 @@ class Checkout extends React.Component {
   }
 
   componentWillMount = () => {
+    if (isNotEmpty(this.props.user))
+      this.initForm(this.props.user);
+
     if (this.props.authUser.auth) {
       if (isNotEmpty(this.props.cart)) {
         this.setState({ cartList: cloneData(this.props.cart.productOrder) });
@@ -61,7 +64,8 @@ class Checkout extends React.Component {
       this.props.removeCartItem(this.props.cart._id, cartData);
     } else {
       loadingScreen.showLoading();
-      let cartListLS = localStorage.removeItem("list");
+      let cartListLS = [];
+      localStorage.setItem('list', JSON.stringify(cartListLS))
       this.setState({ cartList: cartListLS });
       showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       loadingScreen.hideLoading();
@@ -82,6 +86,7 @@ class Checkout extends React.Component {
           .then(res => {
             console.log(res)
             this.clearAllCart();
+            this.props.history.replace("/checkoutSuccess");
           }).catch(err => {
             console.log(err);
 
@@ -91,7 +96,44 @@ class Checkout extends React.Component {
   };
 
   render() {
+    if (!this.state.cartList.length) {
+      return (<>
+        <div id="breadcrumb">
+          <div className="container">
+            <div className="row">
+              <ul className="breadcrumb">
+                <h2 className="page-title">Thanh toán</h2>
+                <li>
+                  <a href="/">
+                    <i className="fa fa-home" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    style={{ pointerEvents: "none", cursor: "default" }}
+                  >
+                    Thanh toán
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
+        <div id="checkout-cart" className="container">
+          <div className="row">
+            <div id="content" className="col-sm-12">
+              <div className="text-center">
+                <h2 >Giỏ Hàng Đang Trống! Vui Lòng Thêm Sản Phẩm Trước Khi Thanh Toán!</h2>
+                <Link to="/home">Tiếp Tục Mua Sắm</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+      )
+    }
     let listOder = null;
     listOder = (
       <>
@@ -121,10 +163,11 @@ class Checkout extends React.Component {
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <span type="number" name="" disabled size="1" className="form-control" style={{
+                    <span name="" size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
-                      width: '40px'
+                      width: '40px',
+                      border: 'none'
                     }}>{order.quantity}</span>
                   </div>
                   </td>

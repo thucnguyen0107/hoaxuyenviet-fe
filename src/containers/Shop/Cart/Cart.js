@@ -101,7 +101,8 @@ class Cart extends React.Component {
                     <span name="" size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
-                      width: '40px'
+                      width: '40px',
+                      border: 'none'
                     }}>{order.quantity}</span>
 
                     <span className="input-group-btn">
