@@ -2,16 +2,19 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import checkoutService from '../../../services/checkoutService';
-import { isNotEmpty, cloneData } from '../../../utilities/fnUtil'
+import { isNotEmpty, cloneData,formatCurrency } from '../../../utilities/fnUtil'
 import { checkoutFormModel } from '../../../models/formModel';
 import { endPoints } from "../../../services/config";
+import { Link } from "react-router-dom";
+import Iimg from "../../../components/UI/LoadingImage/Limg";
+import classes from "./Checkout.scss";
+import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
 class Checkout extends React.Component {
   state = {
     checkoutForm: cloneData(checkoutFormModel),
-
+    cartList: [],
   };
-
 
   initForm = (user) => {
     let checkoutForm = cloneData(this.state.checkoutForm);
@@ -23,9 +26,27 @@ class Checkout extends React.Component {
     this.setState({ checkoutForm });
   }
 
+  componentWillMount = () => {
+    if (this.props.authUser.auth) {
+      if (isNotEmpty(this.props.cart)) {
+        this.setState({ cartList: cloneData(this.props.cart.productOrder) });
+      }
+    } else {
+      let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
+      loadingScreen.showLoading();
+      this.setState({ cartList: cartListLS });
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (isNotEmpty(nextProps.user))
       this.initForm(nextProps.user);
+
+      if (nextProps.authUser.auth) {
+        if (isNotEmpty(nextProps.cart)) {
+          this.setState({ cartList: cloneData(nextProps.cart.productOrder) });
+        }
+      }
   }
 
   componentDidMount() {
@@ -46,6 +67,57 @@ class Checkout extends React.Component {
   };
 
   render() {
+
+    let listOder = null;
+    listOder = (
+      <>
+        {isNotEmpty(this.state.cartList)
+          ? this.state.cartList.map((order, index) => {
+            return (
+              <tbody key={index}>
+                <tr>
+                  <td className="text-center">
+                    <Link to={`/productDetail/${order._id}`}>
+                      <Iimg
+                        className={classes.imageSmall}
+                        src={order.images[0]}
+                        alt={order.productName}
+                        title={order.productName}
+                      />
+                    </Link>
+                  </td>
+                  <td className="text-left">
+                    <Link to={`/productDetail/${order._id}`}>
+                      {order.productName}
+                    </Link>
+                    <br />
+                    <small>Ngày giao hàng: </small>
+                    <br />
+                    <small>Điểm nhận: 300</small>
+                  </td>
+
+                  <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
+                    <input type="number" name="" disabled defaultValue={order.quantity} size="1" className="form-control" style={{
+                      padding: '6px 5px',
+                      textAlign: 'center',
+                      width: '40px'
+                    }}></input>
+                  </div>
+                  </td>
+
+                  <td className="text-right">
+                    {formatCurrency(order.price)} VND
+                    </td>
+                  <td className="text-right">{order.discount} %</td>
+                  <td className="text-right">{formatCurrency((order.price - (order.price * order.discount / 100)))} VND</td>
+                  <td className="text-right">{formatCurrency((order.price - (order.price * order.discount / 100)) * order.quantity)} VND</td>
+                </tr>
+              </tbody>
+            );
+          })
+          : null}
+        </>
+        );
     return (
       <>
         <div id="breadcrumb">
@@ -74,6 +146,28 @@ class Checkout extends React.Component {
         <div id="checkout-cart" className="container">
           <div className="row">
             <div id="content" className="col-sm-12">
+            <form
+                action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=checkout/cart/edit"
+                method="post"
+                encType="multipart/form-data"
+              >
+                <div className="table-responsive">
+                  <table className="table table-bordered shopping-cart">
+                    <thead>
+                      <tr>
+                        <td className="text-center">Hình ảnh</td>
+                        <td className="text-left">Tên sản phẩm</td>
+                        <td className="text-left">Số lượng</td>
+                        <td className="text-right">Đơn giá</td>
+                        <td className="text-right">Giảm giá</td>
+                        <td className="text-right">Giá sau khi giảm</td>
+                        <td className="text-right">Thành tiền</td>
+                      </tr>
+                    </thead>
+                    {listOder}
+                  </table>
+                </div>
+              </form>
               <div className="panel-group" id="accordion">
                 <div className="panel panel-default">
                   <div className="panel-heading">
@@ -129,9 +223,16 @@ const mapStateToProps = state => {
   return {
     authUser: state.authUser,
     user: state.userList.user,
-    cart: state.userList.cart
+    cart: state.userList.cart,
+    order: state.orderList.order
   };
 };
 
-export default connect(mapStateToProps)(Checkout);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateOrder: (orderId, orderData) => dispatch(Actions.userActions.updateOrderToSV(orderId, orderData))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
 

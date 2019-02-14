@@ -96,7 +96,7 @@ function loadCart(authUser, productOrder = [], fn, cartLS) {
                       </p>
                     </td>
 
-                    <td className="text-center">
+                    {/* <td className="text-center">
                       <button
                         type="button"
                         title="Remove"
@@ -104,7 +104,7 @@ function loadCart(authUser, productOrder = [], fn, cartLS) {
                       >
                         <i className="fa fa-times" />
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                 </tbody>
               </table>

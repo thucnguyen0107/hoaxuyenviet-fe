@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getAuthUserFromLS: () => dispatch(Actions.authActions.getAuthUserFromLS()),
     getUserFromSV: id => dispatch(Actions.userActions.getUserFromSV(id)),
-    getCartFromSV: id => dispatch(Actions.userActions.getCartFromSV(id))
+    getCartFromSV: id => dispatch(Actions.userActions.getCartFromSV(id)),
   };
 };
 
