@@ -3,7 +3,7 @@ import { Table, Button, Divider, Popconfirm } from "antd";
 import { createDataOrderListColumns } from "../../../models/tableModel";
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
-import { cloneData, showNotification } from "../../../utilities/fnUtil";
+import { cloneData, showNotification, } from "../../../utilities/fnUtil";
 
 class OrderManagement extends React.Component {
   state = {

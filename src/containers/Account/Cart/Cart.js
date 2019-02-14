@@ -26,9 +26,10 @@ class Cart extends React.Component {
 
 
   componentWillMount = () => {
+    loadingScreen.showLoading();
     if (this.props.authUser.auth) {
       if (isNotEmpty(this.props.cart)) {
-        this.setState({ cartList: cloneData(this.props.cart.productOrder) });
+        this.setState({ cartList: cloneData(this.props.cart.productOrder) }, loadingScreen.hideLoading);
       }
     } else {
       let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
@@ -102,22 +103,14 @@ class Cart extends React.Component {
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <input type="number" name="" disabled defaultValue={order.quantity} size="1" className="form-control" style={{
+                    <span name="" size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
-                      width: '40px'
-                    }}></input>
-                    {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
-                    <span className="input-group-btn">
-                      {/* <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button> */}
+                      width: '40px',
+                      border: 'none'
+                    }}>{order.quantity}</span>
 
-                      <Popconfirm
-                        title="Bạn có chắc chắn muốn xóa?"
-                        onConfirm={() => this.onRemoveCartItem(order)}
-                        okText="Đồng Ý"
-                        cancelText="Hủy">
-                        <button type="button" className="btn btn-danger"><i className="fa fa-times-circle" ></i></button></Popconfirm>
-                    </span>
+
                   </div>
                   </td>
 

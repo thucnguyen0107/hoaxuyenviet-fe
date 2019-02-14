@@ -136,11 +136,11 @@ export const getDate = data => {
 export const createContentHtmlString = (content, onlyFirst = false) => {
   return onlyFirst
     ? {
-        __html: content.length > 33 ? content.slice(0, 33) + "..." : content
-      }
+      __html: content.length > 33 ? content.slice(0, 33) + "..." : content
+    }
     : {
-        __html: content
-      };
+      __html: content
+    };
 };
 
 export const createOrderId = phone => {
@@ -158,3 +158,19 @@ export const createOrderId = phone => {
     phone.toString().slice(-4);
   return orderId;
 };
+
+export const convertStatus = (status) => {
+  let res = "";
+  switch (status) {
+    case 'PENDING':
+      res = "Đang Xử Lý"
+      break;
+    case 'DELIVERING':
+      res = "Đang Giao Hàng"
+      break;
+    case 'COMPLETED':
+      res = "Hoàn Thành"
+      break;
+  }
+  return res;
+}

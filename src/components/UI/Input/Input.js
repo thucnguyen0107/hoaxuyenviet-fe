@@ -208,8 +208,8 @@ const input = props => {
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          <input className="payment" type="radio" name="payment" value="COD" checked={props.value === 'COD' ? true : false} onChange={props.changed} /> COD (Giao Hàng Nhận Tiền)<br />
-          <input className="payment" type="radio" name="payment" value="VISA" checked={props.value === 'VISA' ? true : false} onChange={props.changed} /> VISA<br />
+          <input className="payment" type="radio" name="payment" value="COD" onChange={props.changed} defaultChecked /> COD (Giao Hàng Nhận Tiền)<br />
+          <input className="payment" type="radio" name="payment" value="VISA" onChange={props.changed} /> VISA<br />
         </div>
       );
       break;

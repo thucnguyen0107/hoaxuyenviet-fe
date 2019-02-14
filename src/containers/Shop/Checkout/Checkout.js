@@ -37,7 +37,6 @@ class Checkout extends React.Component {
       }
     } else {
       let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
-      loadingScreen.showLoading();
       this.setState({ cartList: cartListLS });
     }
   }
@@ -47,14 +46,11 @@ class Checkout extends React.Component {
       this.initForm(nextProps.user);
 
     if (nextProps.authUser.auth) {
+      loadingScreen.showLoading();
       if (isNotEmpty(nextProps.cart)) {
-        this.setState({ cartList: cloneData(nextProps.cart.productOrder) });
+        this.setState({ cartList: cloneData(nextProps.cart.productOrder) }, loadingScreen.hideLoading);
       }
     }
-  }
-
-  componentDidMount() {
-    loadingScreen.hideLoading();
   }
 
   clearAllCart = () => {

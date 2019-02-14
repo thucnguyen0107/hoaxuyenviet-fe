@@ -53,7 +53,7 @@ class SlideBarAccount extends React.Component {
             <Link to={{ pathname: "/account/order" }}>
               <Icon type="shopping"></Icon>
               <span>
-                Đơn Mua
+                Lịch Sử Đơn Hàng
             </span>
             </Link>
           </Menu.Item>
@@ -62,7 +62,7 @@ class SlideBarAccount extends React.Component {
             <Link to={{ pathname: "/account/reward" }}>
               <Icon type="trophy"></Icon>
               <span>
-                Điểm thưởng
+                Điểm Thưởng
             </span>
             </Link>
           </Menu.Item>
@@ -71,7 +71,7 @@ class SlideBarAccount extends React.Component {
             <Link to={{ pathname: "/account/cart" }}>
               <Icon type="shopping-cart"></Icon>
               <span>
-                Giỏ hàng
+                Giỏ Hàng
             </span>
             </Link>
           </Menu.Item>

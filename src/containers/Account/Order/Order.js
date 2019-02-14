@@ -2,107 +2,97 @@ import React from 'react';
 import { Table } from 'antd';
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
+import Axios from 'axios';
+import { endPoints } from '../../../services/config';
+import {
+  formatCurrency,
+  formatDate,
+  convertStatus
+} from "../../../utilities/fnUtil";
+import loadingScreen from '../../../utilities/loadingScreen';
 class Order extends React.Component {
-  render() {
-    const columns = [{
-      title: 'Tên sản phẩm',
-      dataIndex: 'name',
-    }, {
-      title: 'Mã đơn hàng',
-      dataIndex: 'id',
-    }, {
-      title: 'Địa chỉ nhận hàng',
-      dataIndex: 'address',
-    }, {
-      title: 'Tổng tiền',
-      dataIndex: 'priece',
-    }
-    ];
+  state = {
+    orderList: []
+  }
 
-    const data = [{
-      key: '1',
-      name: 'John Brown',
-      id: 32,
-      address: 'New York No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '2',
-      name: 'Jim Green',
-      id: 42,
-      address: 'London No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '3',
-      name: 'Joe Black',
-      id: 32,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '4',
-      name: 'Disabled User',
-      id: 99,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '5',
-      name: 'Jim Green',
-      id: 42,
-      address: 'London No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '6',
-      name: 'Joe Black',
-      id: 32,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '7',
-      name: 'Disabled User',
-      id: 99,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '8',
-      name: 'Jim Green',
-      id: 42,
-      address: 'London No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '9',
-      name: 'Joe Black',
-      id: 32,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '10',
-      name: 'Disabled User',
-      id: 99,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '11',
-      name: 'Jim Green',
-      id: 42,
-      address: 'London No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '12',
-      name: 'Joe Black',
-      id: 32,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
-    }, {
-      key: '13',
-      name: 'Disabled User',
-      id: 99,
-      address: 'Sidney No. 1 Lake Park',
-      priece: '100.000 VND',
+  componentWillMount() {
+    loadingScreen.showLoading();
+    if (this.props.authUser.auth) {
+      Axios.get(endPoints.ORDER_LIST_API + "/" + this.props.user._id)
+        .then(res => {
+          console.log(res);
+          this.setState({ orderList: res }, loadingScreen.hideLoading)
+        }).catch(err => {
+          console.log(err);
+        })
     }
+  }
+
+  render() {
+    const columns = [
+      {
+        title: 'Mã Đơn Hàng',
+        dataIndex: 'id',
+      },
+      {
+        title: 'Trạng Thái',
+        dataIndex: 'status',
+      },
+      {
+        title: 'Ngày Đặt Hàng',
+        dataIndex: 'createdAt',
+      },
+      {
+        title: 'Ngày Giao Hàng',
+        dataIndex: 'deliveryDate',
+      },
+      {
+        title: 'Địa Chỉ Nhận',
+        dataIndex: 'address',
+      },
+      {
+        title: 'Tổng Tiền',
+        dataIndex: 'price',
+      },
+      {
+        title: 'Ghi Chú',
+        dataIndex: 'note',
+      }
+
     ];
+    let data = !this.state.orderList.length
+      ? []
+      : this.state.orderList.map(item => {
+        return {
+          key: item._id,
+          id: item._id,
+          status: item.order ? convertStatus(item.order.status) : "",
+          createdAt: item.createdAt ? formatDate(item.createdAt) : "",
+          deliveryDate: item.order ? item.order.deliveryDate : "",
+          address: item.receiverInfo.address ? item.receiverInfo.address : item.customerInfo.address,
+          price: item.order ? `${formatCurrency(item.order.finalPrice)} VND` : "",
+          note: item.order ? item.order.note : ""
+
+          // key: item._id,
+          // _id: item._id,
+          // customerInfo: item.customerInfo ? item.customerInfo : "",
+          // receiverInfo: item.receiverInfo ? item.receiverInfo : "",
+          // deliveryDate: item.order ? item.order.deliveryDate : "",
+          // note: item.order ? item.order.note : "",
+          // payment: item.order ? item.order.payment : "",
+          // finalPrice: item.order ? item.order.finalPrice : "",
+          // status: item.order ? item.order.status : "",
+          // productOrder: item.order ? item.order.productOrder : "",
+          // createdAt: item.createdAt,
+          // updatedAt: item.updatedAt
+        };
+      });
+
     return (
       <>
         <div >
-          <Table columns={columns} dataSource={data} />
+          <Table columns={columns} dataSource={data} bordered
+            scroll={{ x: true }} />
         </div>
       </>
     );
@@ -111,19 +101,13 @@ class Order extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    orderStore: state.orderList
+    authUser: state.authUser,
+    user: state.userList.user,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getOrderList: () => dispatch(Actions.orderActions.getOrderListFromSV()),
-    updateOrderById: (id, data) =>
-      dispatch(Actions.orderActions.updateOrderToSV(id, data))
-  };
-};
+
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
 )(Order);
