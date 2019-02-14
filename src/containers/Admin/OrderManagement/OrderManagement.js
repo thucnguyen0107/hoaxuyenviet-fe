@@ -32,7 +32,7 @@ class OrderManagement extends React.Component {
       this.props.orderStore.orderList.find(item => item._id === id)
     );
     if (clonedOrder.order.status === statusName) {
-      return showNotification({type: 'warning', message: "Trạng Thái Đang Tồn Tại! Không Cần Cập Nhật"});
+      return showNotification({ type: 'warning', message: "Trạng Thái Đang Tồn Tại! Không Cần Cập Nhật" });
     }
     clonedOrder.order.status = statusName;
     this.props.updateOrderById(id, clonedOrder);
@@ -84,21 +84,21 @@ class OrderManagement extends React.Component {
     let data = !this.props.orderStore.orderList.length
       ? []
       : this.props.orderStore.orderList.map(item => {
-          return {
-            key: item._id,
-            _id: item._id,
-            customerInfo: item.customerInfo ? item.customerInfo : "",
-            receiverInfo: item.receiverInfo ? item.receiverInfo : "",
-            deliveryDate: item.order ? item.order.deliveryDate : "",
-            note: item.order ? item.order.note : "",
-            payment: item.order ? item.order.payment : "",
-            finalPrice: item.order ? item.order.finalPrice : "",
-            status: item.order ? item.order.status : "",
-            productOrder: item.order ? item.order.productOrder : "",
-            createdAt: item.createdAt,
-            updatedAt: item.updatedAt
-          };
-        });
+        return {
+          key: item._id,
+          _id: item._id,
+          customerInfo: item.customerInfo ? item.customerInfo : "",
+          receiverInfo: item.receiverInfo ? item.receiverInfo : "",
+          deliveryDate: item.order ? item.order.deliveryDate : "",
+          note: item.order ? item.order.note : "",
+          payment: item.order ? item.order.payment : "",
+          finalPrice: item.order ? item.order.finalPrice : "",
+          status: item.order ? item.order.status : "",
+          productOrder: item.order ? item.order.productOrder : "",
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt
+        };
+      });
 
     return (
       <>

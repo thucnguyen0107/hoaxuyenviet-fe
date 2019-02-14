@@ -2,14 +2,15 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import checkoutService from '../../../services/checkoutService';
-import { isNotEmpty, cloneData,formatCurrency } from '../../../utilities/fnUtil'
+import { isNotEmpty, cloneData, formatCurrency, showNotification } from '../../../utilities/fnUtil'
 import { checkoutFormModel } from '../../../models/formModel';
 import { endPoints } from "../../../services/config";
 import { Link } from "react-router-dom";
 import Iimg from "../../../components/UI/LoadingImage/Limg";
 import classes from "./Checkout.scss";
-import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
+import Axios from "axios";
+import Actions from "../../../redux/rootActions";
 class Checkout extends React.Component {
   state = {
     checkoutForm: cloneData(checkoutFormModel),
@@ -42,26 +43,49 @@ class Checkout extends React.Component {
     if (isNotEmpty(nextProps.user))
       this.initForm(nextProps.user);
 
-      if (nextProps.authUser.auth) {
-        if (isNotEmpty(nextProps.cart)) {
-          this.setState({ cartList: cloneData(nextProps.cart.productOrder) });
-        }
+    if (nextProps.authUser.auth) {
+      if (isNotEmpty(nextProps.cart)) {
+        this.setState({ cartList: cloneData(nextProps.cart.productOrder) });
       }
+    }
   }
 
   componentDidMount() {
     loadingScreen.hideLoading();
   }
 
+  clearAllCart = () => {
+    if (this.props.authUser.auth) {
+      let cartData = cloneData(this.props.cart);
+      cartData.productOrder = [];
+      this.props.removeCartItem(this.props.cart._id, cartData);
+    } else {
+      loadingScreen.showLoading();
+      let cartListLS = localStorage.removeItem("list");
+      this.setState({ cartList: cartListLS });
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
+      loadingScreen.hideLoading();
+    }
+  }
+
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
         console.log("Valid Form Successfully");
+        let orderData = null;
         if (this.props.authUser.auth) {
-          console.log("")
+          orderData = checkoutService.createOrder(cloneData(this.props.cart.productOrder))
         } else {
-          checkoutService.saveUserInfoLSGuest();
+          orderData = checkoutService.createOrder(JSON.parse(localStorage.getItem('list')))
         }
+        Axios.post(endPoints.ORDER_API, orderData)
+          .then(res => {
+            console.log(res)
+            this.clearAllCart();
+          }).catch(err => {
+            console.log(err);
+
+          })
       }
     });
   };
@@ -97,11 +121,11 @@ class Checkout extends React.Component {
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <input type="number" name="" disabled defaultValue={order.quantity} size="1" className="form-control" style={{
+                    <span type="number" name="" disabled size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
                       width: '40px'
-                    }}></input>
+                    }}>{order.quantity}</span>
                   </div>
                   </td>
 
@@ -116,8 +140,8 @@ class Checkout extends React.Component {
             );
           })
           : null}
-        </>
-        );
+      </>
+    );
     return (
       <>
         <div id="breadcrumb">
@@ -146,7 +170,7 @@ class Checkout extends React.Component {
         <div id="checkout-cart" className="container">
           <div className="row">
             <div id="content" className="col-sm-12">
-            <form
+              <form
                 action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=checkout/cart/edit"
                 method="post"
                 encType="multipart/form-data"
@@ -224,15 +248,15 @@ const mapStateToProps = state => {
     authUser: state.authUser,
     user: state.userList.user,
     cart: state.userList.cart,
-    order: state.orderList.order
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateOrder: (orderId, orderData) => dispatch(Actions.userActions.updateOrderToSV(orderId, orderData))
-  }
-}
+    removeCartItem: (cartId, cartData) =>
+      dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
 

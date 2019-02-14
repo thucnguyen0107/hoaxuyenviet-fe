@@ -98,15 +98,13 @@ class Cart extends React.Component {
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <input type="number" name="" disabled defaultValue={order.quantity} size="1" className="form-control" style={{
+                    <span name="" size="1" className="form-control" style={{
                       padding: '6px 5px',
                       textAlign: 'center',
                       width: '40px'
-                    }}></input>
-                    {/* <Input inputtype="input" className="form-control" defaultValue="1" size="1"/> */}
-                    <span className="input-group-btn">
-                      {/* <button type="submit" className="btn btn-primary"><i className="fa fa-refresh"></i></button> */}
+                    }}>{order.quantity}</span>
 
+                    <span className="input-group-btn">
                       <Popconfirm
                         title="Bạn có chắc chắn muốn xóa?"
                         onConfirm={() => this.onRemoveCartItem(index)}

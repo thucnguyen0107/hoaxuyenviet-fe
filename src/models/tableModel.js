@@ -164,7 +164,7 @@ export const createDataProductListColumns = (
           className={"gallery_zoom_admin" + record._id}
           onLoad={initGalleryZoom(".gallery_zoom_admin" + record._id)}
         >
-          { images ? images.map((img, index) => (
+          {images ? images.map((img, index) => (
             <a
               href={img}
               key={index}
@@ -492,7 +492,7 @@ export const createDataOrderListColumns = (
                 return (
                   <div key={item._id}>
                     <span style={{ marginRight: "10px" }}>{`Tên: ${
-                      item.name
+                      item.productName
                       }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
                       item.quantity
                       }, Giảm Giá: ${item.discount}`}</span>
@@ -657,22 +657,22 @@ export const createDataBlogListColumns = (
           className={"gallery_zoom_blog" + record._id}
           onLoad={initGalleryZoom(".gallery_zoom_blog" + record._id)}
         >
-            <a
-              href={image}
-              style={{
-                width: "50px",
-                height: "50px",
-                display: "inline-block",
-              }}
-            >
-              <img
-                src={image}
-                alt="Error"
-                width="50"
-                height="50"
-                style={{ pointerEvents: "none" }}
-              />
-            </a>
+          <a
+            href={image}
+            style={{
+              width: "50px",
+              height: "50px",
+              display: "inline-block",
+            }}
+          >
+            <img
+              src={image}
+              alt="Error"
+              width="50"
+              height="50"
+              style={{ pointerEvents: "none" }}
+            />
+          </a>
         </div>
       )
     },
