@@ -1,19 +1,14 @@
 import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Iimg from "../../../components/UI/LoadingImage/Limg";
-import Input from "../../../components/UI/Input/Input";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import {
   formatCurrency,
-  showNotification,
   isNotEmpty,
   cloneData
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
-import cartService from "../../../services/cartService";
-import loginService from '../../../services/loginService';
 import { Popconfirm } from "antd";
 import Actions from "../../../redux/rootActions";
 class Cart extends React.Component {
@@ -65,6 +60,16 @@ class Cart extends React.Component {
   };
 
   render() {
+    if(!this.state.cartList.length)
+    {
+      return(
+      <div className="text-center">
+      <h2>Giỏ hàng hiện tại đang rỗng!</h2>
+      <Link to="/home">Tiếp tục mua sắm</Link>
+      </div>
+      )
+    }
+
     let listOder = null;
     let tempTotalPrice = this.state.totalPrice;
     listOder = (
@@ -138,85 +143,27 @@ class Cart extends React.Component {
         <div id="checkout-cart" className="container">
           <div className="row">
             <div id="content" className="col-sm-12">
-              <h2 className="page-title">Danh sách sản phẩm đã chọn</h2>
-              <form
-                action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=checkout/cart/edit"
-                method="post"
-                encType="multipart/form-data"
-              >
+              <h2 className="page-title">
+                Thông Tin Giỏ Hàng
+              </h2>
+              <form action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=checkout/cart/edit" method="post" encType="multipart/form-data">
                 <div className="table-responsive">
                   <table className="table table-bordered shopping-cart">
                     <thead>
                       <tr>
-                        <td className="text-center">Hình ảnh</td>
-                        <td className="text-left">Tên sản phẩm</td>
-                        <td className="text-left">Số lượng</td>
-                        <td className="text-right">Đơn giá</td>
-                        <td className="text-right">Giảm giá</td>
-                        <td className="text-right">Giá sau khi giảm</td>
-                        <td className="text-right">Thành tiền</td>
+                        <td className="text-center">Hình Ảnh</td>
+                        <td className="text-left">Tên Sản Phẩm</td>
+                        <td className="text-left">Số Lượng</td>
+                        <td className="text-right">Giảm Giá</td>
+                        <td className="text-right">Đơn Giá</td>
+                        <td className="text-right">Thành Tiền</td>
+                        <td className="text-right">Trạng Thái</td>
                       </tr>
                     </thead>
                     {listOder}
                   </table>
                 </div>
               </form>
-              <h2>Nhập mã giảm giá </h2>
-
-              <div className="panel-group" id="accordion">
-                <div className="panel panel-default">
-                  <div className="panel-heading">
-                    <h4 className="panel-title">
-                      <a
-                        href="#collapse-coupon"
-                        className="accordion-toggle collapsed"
-                        data-toggle="collapse"
-                        data-parent="#accordion"
-                        aria-expanded="false"
-                      >
-                        Sử dụng mã giảm giá <i className="fa fa-caret-down" />
-                      </a>
-                    </h4>
-                  </div>
-                  <div
-                    id="collapse-coupon"
-                    className="panel-collapse collapse"
-                    aria-expanded="false"
-                    style={{ height: "0px" }}
-                  >
-                    <div className="panel-body">
-                      <label
-                        className="col-sm-2 control-label"
-                        htmlFor="input-coupon"
-                      >
-                        Nhập mã giảm giá ở đây
-                      </label>
-                      <div className="input-group">
-                        {/* <input type="text" name="coupon" defaultValue="" placeholder="Enter your coupon here" id="input-coupon" className="form-control" /> */}
-                        <Input
-                          inputtype="input"
-                          className="form-control"
-                          name="coupon"
-                          defaultValue=""
-                          placeholder="Enter your coupon here"
-                          id="input-coupon"
-                        />
-                        <span className="input-group-btn">
-                          <button
-                            type="button"
-                            defaultValue="Apply Coupon"
-                            id="button-coupon"
-                            data-loading-text="Loading..."
-                            className="btn btn-primary"
-                          >
-                            Xác nhận mã
-                          </button>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <br />
               <div className="row">
                 <div className="col-sm-4 col-sm-offset-8">
