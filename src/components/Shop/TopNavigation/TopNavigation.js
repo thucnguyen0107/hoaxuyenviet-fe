@@ -45,12 +45,17 @@ const closeCartMenu = () => {
 // }
 
 let cartList = [];
-function loadCart(authUser, productOrder = []) {
+function loadCart(authUser, productOrder = [], fn, cartLS) {
   let arrayProductOrder = [];
   if (authUser.auth) {
     arrayProductOrder = productOrder.slice();
   } else {
-    arrayProductOrder = cartService.getProductToCart();
+    let temp = cartService.getProductToCart();
+    if (!Object.is(JSON.stringify(temp), JSON.stringify(cartLS))) {
+      fn(cartService.getProductToCart());
+    }
+    arrayProductOrder = cartLS.slice();
+
   }
 
   tempTotalPrice = 0;
@@ -85,13 +90,13 @@ function loadCart(authUser, productOrder = []) {
                         Giá:{" "}
                         {formatCurrency(
                           (order.price - (order.price * order.discount) / 100) *
-                            order.quantity
+                          order.quantity
                         )}{" "}
                         VND{" "}
                       </p>
                     </td>
 
-                    <td className="text-center">
+                    {/* <td className="text-center">
                       <button
                         type="button"
                         title="Remove"
@@ -99,7 +104,7 @@ function loadCart(authUser, productOrder = []) {
                       >
                         <i className="fa fa-times" />
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                 </tbody>
               </table>
@@ -107,8 +112,8 @@ function loadCart(authUser, productOrder = []) {
           );
         })
       ) : (
-        <p>Giỏ hàng của bạn rỗng</p>
-      )}
+          <p>Giỏ hàng của bạn rỗng</p>
+        )}
     </>
   );
 }
@@ -180,10 +185,11 @@ const topNavigation = props => {
               </div>
             </div>
             <div className="header-right">
-              <div className="header-cart-wrapper">
+              <div className="header-cart-wrapper" >
                 <div
                   className="header-cart"
-                  onLoad={loadCart(props.authUser, props.cart.productOrder)}
+                  onLoad={loadCart(props.authUser, props.cart.productOrder, props.setCartLSState, props.cartLS)}
+
                 >
                   <div id="cart" className="btn-group btn-block">
                     <button
@@ -192,7 +198,7 @@ const topNavigation = props => {
                       data-loading-text="Loading..."
                       className="btn btn-inverse btn-block btn-lg dropdown-toggle"
                     >
-                      <span id="cart-title">Giỏ hàng</span>
+                      <span id="cart-title" onClick={() => loadCart(props.authUser, props.cart.productOrder, props.setCartLSState, props.cartLS)}>Giỏ hàng</span>
                       <i className="fa fa-angle-down" />
                       <span id="cart-total">
                         <span className="single-item">0</span>
@@ -277,37 +283,37 @@ const topNavigation = props => {
                       </nav>
                     </ul>
                   ) : (
-                    <ul
-                      className="dropdown-menu dropdown-menu-right myaccount-menu"
-                      style={zIndexStyle}
-                      onClick={() => closeMenu()}
-                    >
-                      <nav id="top">
-                        <div id="top-links" className="nav">
-                          <ul className="list-inline">
-                            <li>
-                              <Link to="/account" title="Checkout">
-                                <span className="checkout">Tài Khoản</span>
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/checkout" title="Checkout">
-                                <span className="checkout">Thanh Toán</span>
-                              </Link>
-                            </li>
-                            <li>
-                              <a
-                                title="Logout"
-                                onClick={() => clearAuthUser("/login", true)}
-                              >
-                                <span className="logout">Thoát</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </nav>
-                    </ul>
-                  )}
+                      <ul
+                        className="dropdown-menu dropdown-menu-right myaccount-menu"
+                        style={zIndexStyle}
+                        onClick={() => closeMenu()}
+                      >
+                        <nav id="top">
+                          <div id="top-links" className="nav">
+                            <ul className="list-inline">
+                              <li>
+                                <Link to="/account" title="Checkout">
+                                  <span className="checkout">Tài Khoản</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link to="/checkout" title="Checkout">
+                                  <span className="checkout">Thanh Toán</span>
+                                </Link>
+                              </li>
+                              <li>
+                                <a
+                                  title="Logout"
+                                  onClick={() => clearAuthUser("/login", true)}
+                                >
+                                  <span className="logout">Thoát</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </nav>
+                      </ul>
+                    )}
                 </div>
               </div>
             </div>

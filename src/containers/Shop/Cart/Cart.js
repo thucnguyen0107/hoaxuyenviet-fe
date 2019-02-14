@@ -35,8 +35,8 @@ class Cart extends React.Component {
       if (isNotEmpty(this.props.cart)) {
         this.setState({ cartList: cloneData(this.props.cart.productOrder) });
       }
-    }else{
-      let cartListLS =  JSON.parse(localStorage.getItem("list")) || [];
+    } else {
+      let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
       loadingScreen.showLoading();
       this.setState({ cartList: cartListLS });
     }
@@ -50,14 +50,14 @@ class Cart extends React.Component {
     }
   }
 
-  onRemoveCartItem = (item) => {
+  onRemoveCartItem = (index) => {
     if (this.props.authUser.auth) {
       let cartData = cloneData(this.props.cart);
-      cartData.productOrder.splice(cartData.productOrder.indexOf(item), 1);
+      cartData.productOrder.splice(index, 1);
       this.props.removeCartItem(this.props.cart._id, cartData);
-    }else{
+    } else {
       let cartData = cloneData(this.state.cartList);
-      this.state.cartList.splice(cartData.indexOf(item), 1);
+      this.state.cartList.splice(index, 1);
       let cartListLS = this.state.cartList.slice(0);
       localStorage.setItem("list", JSON.stringify(cartListLS));
       this.setState({ cartList: cartListLS });
@@ -109,7 +109,7 @@ class Cart extends React.Component {
 
                       <Popconfirm
                         title="Bạn có chắc chắn muốn xóa?"
-                        onConfirm={() => this.onRemoveCartItem(order)}
+                        onConfirm={() => this.onRemoveCartItem(index)}
                         okText="Đồng Ý"
                         cancelText="Hủy">
                         <button type="button" className="btn btn-danger"><i className="fa fa-times-circle" ></i></button></Popconfirm>
