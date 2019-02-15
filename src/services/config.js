@@ -20,6 +20,8 @@ export const endPoints = {
   BLOG_API: `${baseURL}/blog/`,
   BLOG_LIST_API: `${baseURL}/blogs`,
   CART_API: `${baseURL}/cart/`,
+  EMAIL_API: `${baseURL}/sendEmail`,
+  PAYMENT_API: `${baseURL}/checkout/charge`,
   HOAXUYENVIET_LOGIN: `${baseURL}/hoaxuyenvietLogin`
 };
 

@@ -480,14 +480,14 @@ class ProductDetail extends React.Component {
                             Thêm vào giỏ hàng
                           </button>
 
-                          <div className="btn-group">
+                          {/* <div className="btn-group">
                             <button
                               type="button"
                               className="btn btn-primary wishlist"
                             >
                               Thanh Toán
                             </button>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>

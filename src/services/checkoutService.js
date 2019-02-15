@@ -34,9 +34,9 @@ const createOrder = (cartData) => {
 
   const addressReceive = addressReceiveInput.value;
 
-  const orderDateInput = checkoutForm[7];
+  const deliveryDateInput = checkoutForm[7];
 
-  const orderDate = orderDateInput.value;
+  const deliveryDate = deliveryDateInput.value;
 
   const payment = window.$('.payment:checked').val();
 
@@ -67,7 +67,7 @@ const createOrder = (cartData) => {
     order: {
       note: note,
       payment: payment,
-      deliveryDate: orderDate,
+      deliveryDate: deliveryDate,
       status: 'PENDING',
       productOrder: arrProductOrder,
       finalPrice: tempFinalPrice

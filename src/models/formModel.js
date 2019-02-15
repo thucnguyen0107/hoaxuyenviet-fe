@@ -577,10 +577,10 @@ export const checkoutFormModel = {
     valid: true
   },
   orderDate: {
-    elementType: "orderDate",
+    elementType: "date",
     elementConfig: {
       type: "text",
-      name: "Ngày Đặt Hàng"
+      name: "Ngày Giao Hàng"
     },
     value: getCurrentDate(),
     validation: {
@@ -597,7 +597,7 @@ export const checkoutFormModel = {
     },
     value: "",
     validation: {
-      required: true,
+      required: false,
       errorMessage: "Vui Lòng Chọn Hình Thức Thanh Toán!"
     },
     valid: true
@@ -678,7 +678,7 @@ export const BlogFormModel = {
   }
 };
 
-export const registerFormModel  = {
+export const registerFormModel = {
   telephone: {
     elementType: 'input',
     elementConfig: {

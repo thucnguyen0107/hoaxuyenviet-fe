@@ -97,9 +97,6 @@ class Cart extends React.Component {
                       {order.productName}
                     </Link>
                     <br />
-                    <small>Ngày giao hàng: </small>
-                    <br />
-                    <small>Điểm nhận: 300</small>
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>

@@ -20,6 +20,7 @@ import CheckoutSuccess from '../../containers/Shop/CheckoutSuccess/CheckoutSucce
 import { connect } from "react-redux";
 
 class Shop extends React.Component {
+
   render() {
     if (this.props.authUser.auth) {
       return (
