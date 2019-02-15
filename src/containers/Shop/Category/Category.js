@@ -132,7 +132,7 @@ class Category extends React.Component {
   render() {
     return (
       this.catParams && (
-        <>
+        <div class="main-content">
           <div id="breadcrumb">
             <div className="container">
               <div className="row">
@@ -216,7 +216,7 @@ class Category extends React.Component {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )
     );
   }

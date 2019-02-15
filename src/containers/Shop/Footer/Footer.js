@@ -38,7 +38,16 @@ class Footer extends React.Component {
 
     return (
       <footer>
-        <div id="footer">
+        <div
+          id="footer"
+          style={{
+            position: "absolute",
+            bottom: "0",
+            marginTop: "-100px",
+            clear: "both",
+            minHeight: "100px"
+          }}
+        >
           <div className="content_footer_top">
             <div id="footer-about-us-block" className="footer-about-us-block">
               <div className="container">

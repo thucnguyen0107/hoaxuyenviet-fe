@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="theme-color" content="#000000" />
-  <!--
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -21,38 +23,113 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 
-  <!--INCLUDE 3 PARTY FILE-->
+    <!--INCLUDE 3 PARTY FILE-->
 
-  <link href="%PUBLIC_URL%/assets/js/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400" type="text/css" rel="stylesheet">
-  <link href="%PUBLIC_URL%/assets/css/stylesheet.css" rel="stylesheet" />
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/css/themecss/lightbox.css" />
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/js/jquery/magnific/magnific-popup.css" />
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/css/themecss/carousel.css" />
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/css/themecss/custom.css" />
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/css/themecss/bootstrap.min.css" />
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/css/themecss/animate.css" />
-  <link href="%PUBLIC_URL%/assets/js/jquery/swiper/css/swiper.min.css" type="text/css" rel="stylesheet" media="screen" />
-  <link href="%PUBLIC_URL%/assets/js/jquery/swiper/css/opencart.css" type="text/css" rel="stylesheet" media="screen" />
-  <link href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
-  <link href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
-  <link href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/" rel="canonical" />
-  <link href="%PUBLIC_URL%/assets/images/catalog/cart.png" rel="icon" />
-  <!-- Theme Start -->
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/js/jquery/magnific/magnific-popup.css" />
-  <!-- Theme End -->
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.css" />
-  <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.transitions.css" />
-  <!--END OF INCLUDE 3 PARTY FILE-->
-  <title>Hoa Xuyên Việt</title>
-  <base href="/">
-</head>
+    <link
+      href="%PUBLIC_URL%/assets/js/font-awesome/css/font-awesome.min.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:200,300,400"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link href="%PUBLIC_URL%/assets/css/stylesheet.css" rel="stylesheet" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/themecss/lightbox.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/js/jquery/magnific/magnific-popup.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/themecss/carousel.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/themecss/custom.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/themecss/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/themecss/animate.css"
+    />
+    <link
+      href="%PUBLIC_URL%/assets/js/jquery/swiper/css/swiper.min.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="%PUBLIC_URL%/assets/js/jquery/swiper/css/opencart.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.transitions.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/"
+      rel="canonical"
+    />
+    <link href="%PUBLIC_URL%/assets/images/catalog/cart.png" rel="icon" />
+    <!-- Theme Start -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/js/jquery/magnific/magnific-popup.css"
+    />
+    <!-- Theme End -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.transitions.css"
+    />
+    <!--END OF INCLUDE 3 PARTY FILE-->
+    <title>Hoa Xuyên Việt</title>
+    <base href="/" />
+  </head>
 
-<body class="common-home layout-1">
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <!--
+  <body class="common-home layout-1">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div
+      id="root"
+      class="container-fluid"
+      style="padding:0; position: relative; min-height: 100%"
+    ></div>
+    <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -62,26 +139,85 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/jquery/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/lightbox/lightbox-2.6.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/jquery/swiper/js/swiper.jquery.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/common.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/custom.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/jstree.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/carousel.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/productcarosel.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/jquery.custom.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/jquery.formalize.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/jquery.elevatezoom.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/bootstrap-notify.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/jquery/magnific/jquery.magnific-popup.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/tabs.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/common.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/parallax.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.min.js"></script>
-  <script type="text/javascript" src="%PUBLIC_URL%/assets/js/themejs/jquery.lettering.js"></script>
-</body>
-
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/jquery/jquery-2.1.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/bootstrap/js/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/lightbox/lightbox-2.6.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/jquery/swiper/js/swiper.jquery.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/common.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/custom.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/jstree.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/carousel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/productcarosel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/jquery.custom.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/jquery.formalize.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/jquery.elevatezoom.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/bootstrap-notify.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/jquery/magnific/jquery.magnific-popup.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/tabs.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/common.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/parallax.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/jquery/owl-carousel/owl.carousel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/themejs/jquery.lettering.js"
+    ></script>
+  </body>
 </html>

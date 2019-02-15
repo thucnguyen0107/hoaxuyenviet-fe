@@ -1,9 +1,14 @@
 import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
-import checkoutService from '../../../services/checkoutService';
-import { isNotEmpty, cloneData, formatCurrency, showNotification } from '../../../utilities/fnUtil'
-import { checkoutFormModel } from '../../../models/formModel';
+import checkoutService from "../../../services/checkoutService";
+import {
+  isNotEmpty,
+  cloneData,
+  formatCurrency,
+  showNotification
+} from "../../../utilities/fnUtil";
+import { checkoutFormModel } from "../../../models/formModel";
 import { endPoints } from "../../../services/config";
 import { Link } from "react-router-dom";
 import Iimg from "../../../components/UI/LoadingImage/Limg";
@@ -14,10 +19,10 @@ import Actions from "../../../redux/rootActions";
 class Checkout extends React.Component {
   state = {
     checkoutForm: cloneData(checkoutFormModel),
-    cartList: [],
+    cartList: []
   };
 
-  initForm = (user) => {
+  initForm = user => {
     let checkoutForm = cloneData(this.state.checkoutForm);
     checkoutForm.fullName.value = user.userInfo.name;
     checkoutForm.email.value = user.userInfo.email;
@@ -25,11 +30,10 @@ class Checkout extends React.Component {
     checkoutForm.telephone.value = user._id;
 
     this.setState({ checkoutForm });
-  }
+  };
 
   componentWillMount = () => {
-    if (isNotEmpty(this.props.user))
-      this.initForm(this.props.user);
+    if (isNotEmpty(this.props.user)) this.initForm(this.props.user);
 
     if (this.props.authUser.auth) {
       if (isNotEmpty(this.props.cart)) {
@@ -39,16 +43,18 @@ class Checkout extends React.Component {
       let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
       this.setState({ cartList: cartListLS });
     }
-  }
+  };
 
   componentWillReceiveProps(nextProps) {
-    if (isNotEmpty(nextProps.user))
-      this.initForm(nextProps.user);
+    if (isNotEmpty(nextProps.user)) this.initForm(nextProps.user);
 
     if (nextProps.authUser.auth) {
       loadingScreen.showLoading();
       if (isNotEmpty(nextProps.cart)) {
-        this.setState({ cartList: cloneData(nextProps.cart.productOrder) }, loadingScreen.hideLoading);
+        this.setState(
+          { cartList: cloneData(nextProps.cart.productOrder) },
+          loadingScreen.hideLoading
+        );
       }
     }
   }
@@ -61,12 +67,12 @@ class Checkout extends React.Component {
     } else {
       loadingScreen.showLoading();
       let cartListLS = [];
-      localStorage.setItem('list', JSON.stringify(cartListLS))
+      localStorage.setItem("list", JSON.stringify(cartListLS));
       this.setState({ cartList: cartListLS });
       showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       loadingScreen.hideLoading();
     }
-  }
+  };
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
@@ -74,115 +80,145 @@ class Checkout extends React.Component {
         console.log("Valid Form Successfully");
         let orderData = null;
         if (this.props.authUser.auth) {
-          orderData = checkoutService.createOrder(cloneData(this.props.cart.productOrder))
+          orderData = checkoutService.createOrder(
+            cloneData(this.props.cart.productOrder)
+          );
         } else {
-          orderData = checkoutService.createOrder(JSON.parse(localStorage.getItem('list')))
+          orderData = checkoutService.createOrder(
+            JSON.parse(localStorage.getItem("list"))
+          );
         }
         Axios.post(endPoints.ORDER_API, orderData)
           .then(res => {
-            console.log(res)
+            console.log(res);
             this.clearAllCart();
             this.props.history.replace("/checkoutSuccess");
-          }).catch(err => {
-            console.log(err);
-
           })
+          .catch(err => {
+            console.log(err);
+          });
       }
     });
   };
 
   render() {
     if (!this.state.cartList.length) {
-      return (<>
-        <div id="breadcrumb">
-          <div className="container">
-            <div className="row">
-              <ul className="breadcrumb">
-                <h2 className="page-title">Thanh toán</h2>
-                <li>
-                  <a href="/">
-                    <i className="fa fa-home" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    style={{ pointerEvents: "none", cursor: "default" }}
-                  >
-                    Thanh toán
-                  </a>
-                </li>
-              </ul>
+      return (
+        <div class="main-content">
+          <div id="breadcrumb">
+            <div className="container">
+              <div className="row">
+                <ul className="breadcrumb">
+                  <h2 className="page-title">Thanh toán</h2>
+                  <li>
+                    <a href="/">
+                      <i className="fa fa-home" />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/"
+                      style={{ pointerEvents: "none", cursor: "default" }}
+                    >
+                      Thanh toán
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="checkout-cart" className="container">
-          <div className="row">
-            <div id="content" className="col-sm-12">
-              <div className="text-center">
-                <h2 >Giỏ Hàng Đang Trống! Vui Lòng Thêm Sản Phẩm Trước Khi Thanh Toán!</h2>
-                <Link to="/home">Tiếp Tục Mua Sắm</Link>
+          <div id="checkout-cart" className="container">
+            <div className="row">
+              <div id="content" className="col-sm-12">
+                <div className="text-center">
+                  <h2>
+                    Giỏ Hàng Đang Trống! Vui Lòng Thêm Sản Phẩm Trước Khi Thanh
+                    Toán!
+                  </h2>
+                  <Link to="/home">Tiếp Tục Mua Sắm</Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </>
-      )
+      );
     }
     let listOder = null;
     listOder = (
       <>
         {isNotEmpty(this.state.cartList)
           ? this.state.cartList.map((order, index) => {
-            return (
-              <tbody key={index}>
-                <tr>
-                  <td className="text-center">
-                    <Link to={`/productDetail/${order._id}`}>
-                      <Iimg
-                        className={classes.imageSmall}
-                        src={order.images[0]}
-                        alt={order.productName}
-                        title={order.productName}
-                      />
-                    </Link>
-                  </td>
-                  <td className="text-left">
-                    <Link to={`/productDetail/${order._id}`}>
-                      {order.productName}
-                    </Link>
-                    <br />
-                    <small>Ngày giao hàng: </small>
-                    <br />
-                    <small>Điểm nhận: 300</small>
-                  </td>
-
-                  <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>
-                    <span name="" size="1" className="form-control" style={{
-                      padding: '6px 5px',
-                      textAlign: 'center',
-                      width: '40px',
-                      border: 'none'
-                    }}>{order.quantity}</span>
-                  </div>
-                  </td>
-
-                  <td className="text-right">
-                    {formatCurrency(order.price)} VND
+              return (
+                <tbody key={index}>
+                  <tr>
+                    <td className="text-center">
+                      <Link to={`/productDetail/${order._id}`}>
+                        <Iimg
+                          className={classes.imageSmall}
+                          src={order.images[0]}
+                          alt={order.productName}
+                          title={order.productName}
+                        />
+                      </Link>
                     </td>
-                  <td className="text-right">{order.discount} %</td>
-                  <td className="text-right">{formatCurrency((order.price - (order.price * order.discount / 100)))} VND</td>
-                  <td className="text-right">{formatCurrency((order.price - (order.price * order.discount / 100)) * order.quantity)} VND</td>
-                </tr>
-              </tbody>
-            );
-          })
+                    <td className="text-left">
+                      <Link to={`/productDetail/${order._id}`}>
+                        {order.productName}
+                      </Link>
+                      <br />
+                      <small>Ngày giao hàng: </small>
+                      <br />
+                      <small>Điểm nhận: 300</small>
+                    </td>
+
+                    <td className="text-left">
+                      <div
+                        className="input-group btn-block"
+                        style={{ maxWidth: "200px" }}
+                      >
+                        <span
+                          name=""
+                          size="1"
+                          className="form-control"
+                          style={{
+                            padding: "6px 5px",
+                            textAlign: "center",
+                            width: "40px",
+                            border: "none"
+                          }}
+                        >
+                          {order.quantity}
+                        </span>
+                      </div>
+                    </td>
+
+                    <td className="text-right">
+                      {formatCurrency(order.price)} VND
+                    </td>
+                    <td className="text-right">{order.discount} %</td>
+                    <td className="text-right">
+                      {formatCurrency(
+                        order.price - (order.price * order.discount) / 100
+                      )}{" "}
+                      VND
+                    </td>
+                    <td className="text-right">
+                      {formatCurrency(
+                        (order.price - (order.price * order.discount) / 100) *
+                          order.quantity
+                      )}{" "}
+                      VND
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })
           : null}
       </>
     );
     return (
-      <>
+      <div class="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -242,7 +278,7 @@ class Checkout extends React.Component {
                         className="accordion-toggle collapsed"
                         aria-expanded="false"
                       >
-                        Tài khoản  &amp; Chi tiết hóa đơn{" "}
+                        Tài khoản &amp; Chi tiết hóa đơn{" "}
                         <i className="fa fa-caret-down" />
                       </a>
                     </h4>
@@ -272,12 +308,11 @@ class Checkout extends React.Component {
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
@@ -286,7 +321,7 @@ const mapStateToProps = state => {
   return {
     authUser: state.authUser,
     user: state.userList.user,
-    cart: state.userList.cart,
+    cart: state.userList.cart
   };
 };
 
@@ -297,5 +332,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Checkout);

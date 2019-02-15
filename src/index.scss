@@ -12,3 +12,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+:global .main-content,
+:global #common-home {
+  padding-bottom: 150px;
+}

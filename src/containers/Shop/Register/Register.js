@@ -48,7 +48,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <>
+      <div class="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -102,7 +102,7 @@ class Register extends React.Component {
             </fieldset>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

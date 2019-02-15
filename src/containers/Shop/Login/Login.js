@@ -90,7 +90,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <>
+      <div class="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -148,7 +148,7 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

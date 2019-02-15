@@ -4,12 +4,16 @@ import axios from "axios";
 import { endPoints } from "../../../services/config";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Iimg from "../../../components/UI/LoadingImage/Limg";
-import { formatCurrency, isNotEmpty, cloneData } from "../../../utilities/fnUtil";
+import {
+  formatCurrency,
+  isNotEmpty,
+  cloneData
+} from "../../../utilities/fnUtil";
 import { convertItemToName } from "../../../utilities/categoriesUtil";
 import classes from "./ProductDetail.scss";
 import { Tag } from "antd";
 import cartService from "../../../services/cartService";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import Actions from "../../../redux/rootActions";
 class ProductDetail extends React.Component {
   createZoom = () => {
@@ -33,7 +37,7 @@ class ProductDetail extends React.Component {
           scrollZoom : true*/
         });
       } else {
-        $(document).on("click", ".thumbnail", function () {
+        $(document).on("click", ".thumbnail", function() {
           $(".thumbnails").magnificPopup("open", 0);
           return false;
         });
@@ -43,14 +47,14 @@ class ProductDetail extends React.Component {
 
   init = () => {
     let $ = window.$;
-    $(document).ready(function () {
+    $(document).ready(function() {
       if ($(window).width() > 767) {
         var z_index = 0;
-        $(document).on("click", ".thumbnail", function () {
+        $(document).on("click", ".thumbnail", function() {
           $(".thumbnails").magnificPopup("open", z_index);
           return false;
         });
-        $(".additional-carousel a").click(function () {
+        $(".additional-carousel a").click(function() {
           var smallImage = $(this).attr("data-image");
           var largeImage = $(this).attr("data-zoom-image");
           var ez = $("#tmzoom").data("elevateZoom");
@@ -60,13 +64,13 @@ class ProductDetail extends React.Component {
           return false;
         });
       } else {
-        $(document).on("click", ".thumbnail", function () {
+        $(document).on("click", ".thumbnail", function() {
           $(".thumbnails").magnificPopup("open", 0);
           return false;
         });
       }
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
       $(".thumbnails").magnificPopup({
         delegate: "a.elevatezoom-gallery",
         type: "image",
@@ -79,7 +83,7 @@ class ProductDetail extends React.Component {
         },
         image: {
           tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-          titleSrc: function (item) {
+          titleSrc: function(item) {
             return item.el.attr("title");
           }
         }
@@ -208,16 +212,17 @@ class ProductDetail extends React.Component {
     }
   }
 
-
   addProductToCart() {
     if (this.props.authUser.auth) {
       let cart = cloneData(this.props.cart);
       const cartItem = cloneData(this.state.product);
       cartItem.quantity = +document.getElementById("input-quantity").value;
-      cart.productOrder = cartService.checkExistingItem(cartItem, cart.productOrder);
+      cart.productOrder = cartService.checkExistingItem(
+        cartItem,
+        cart.productOrder
+      );
       this.props.updateCart(this.props.cart._id, cart);
-    } else
-      cartService.saveCartItemLSGuest(this.state.product);
+    } else cartService.saveCartItemLSGuest(this.state.product);
   }
 
   componentDidMount() {
@@ -272,7 +277,7 @@ class ProductDetail extends React.Component {
       );
       loadingScreen.hideLoading();
       return (
-        <>
+        <div class="main-content">
           <div id="breadcrumb">
             <div className="container">
               <div className="row">
@@ -416,9 +421,9 @@ class ProductDetail extends React.Component {
                           <h2>
                             {formatCurrency(
                               this.state.product.price -
-                              (this.state.product.discount *
-                                this.state.product.price) /
-                              100
+                                (this.state.product.discount *
+                                  this.state.product.price) /
+                                  100
                             )}{" "}
                             VND
                           </h2>
@@ -445,8 +450,8 @@ class ProductDetail extends React.Component {
                             {formatCurrency(this.state.product.price)} VND
                           </span>
                         ) : (
-                            <span />
-                          )}
+                          <span />
+                        )}
                       </ul>
                       <div id="product">
                         <div className="form-group cart">
@@ -504,34 +509,39 @@ class ProductDetail extends React.Component {
                       </div>
                     </div>
                   </div>
-                  {this.state.randomList ? <div className="box related">
-                    <div className="box-heading">
-                      <h2 className="products-section-title">
-                        Có thể bạn muốn mua
-                      </h2>
-                    </div>
-                    <div className="tabs">
-                      <div className="box-content">
-                        <div id="products-related" className="related-products">
-                          <div className="customNavigation">
-                            <a className="fa prev fa-angle-left" />
-                            <a className="fa next fa-angle-right" />
-                          </div>
+                  {this.state.randomList ? (
+                    <div className="box related">
+                      <div className="box-heading">
+                        <h2 className="products-section-title">
+                          Có thể bạn muốn mua
+                        </h2>
+                      </div>
+                      <div className="tabs">
+                        <div className="box-content">
                           <div
-                            className="box-product product-carousel"
-                            id="related-carousel"
+                            id="products-related"
+                            className="related-products"
                           >
-                            {listProductCardHTML}
+                            <div className="customNavigation">
+                              <a className="fa prev fa-angle-left" />
+                              <a className="fa next fa-angle-right" />
+                            </div>
+                            <div
+                              className="box-product product-carousel"
+                              id="related-carousel"
+                            >
+                              {listProductCardHTML}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div> : null}
+                  ) : null}
                 </div>
               </div>
             </div>
           </div>
-        </>
+        </div>
       );
     } else {
       // loadingScreen.showLoading();
@@ -544,14 +554,17 @@ const mapStateToProps = state => {
   return {
     cart: state.userList.cart,
     authUser: state.authUser
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateCart: (cartId, cartData) => dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
-  }
-}
+    updateCart: (cartId, cartData) =>
+      dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
+  };
+};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductDetail);

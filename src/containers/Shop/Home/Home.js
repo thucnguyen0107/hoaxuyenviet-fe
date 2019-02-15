@@ -74,7 +74,11 @@ class Body extends React.Component {
   render() {
     return (
       <>
-        <div id="common-home">
+        <div
+          id="common-home"
+          className="container-fluid"
+          style={{ paddingLeft: 0, paddingRight: 0, margin: 0 }}
+        >
           <div className="content-top">
             <div className={classes.GlobalBanner}>
               <strong>
