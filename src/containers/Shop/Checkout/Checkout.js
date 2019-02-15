@@ -27,6 +27,45 @@ class Checkout extends React.Component {
     this.setState({ checkoutForm });
   }
 
+  processPaymentForm = (finalPrice) => {
+    return window.StripeCheckout.configure({
+      key: 'pk_test_gUOofIWJiaQuU1NKoTkeTLcg',
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      locale: 'auto',
+      token: function (token) {
+        console.log(token);
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+
+        let item = {
+          total: finalPrice
+        }
+        Axios.post(endPoints.PAYMENT_API, {
+          stripeTokenId: token.id,
+          data: item
+        }).then((res) => console.log(res)).catch((err) => console.log(err))
+      }
+    });
+  }
+
+  initPaymentForm = (payment, finalPrice) => {
+
+    let handler = this.processPaymentForm(finalPrice);
+    if (payment === 'CC') {
+      // Open Checkout with further options:
+      handler.open({
+        name: 'hoaxuyenviet',
+        description: 'thanh toan don hang',
+        amount: finalPrice,
+        panelLabel: 'Thanh toan',
+        allowRememberMe: false,
+        email: 'nqthai95@gmail.com',
+        currency: 'vnd'
+      });
+    }
+  }
+
+
   componentWillMount = () => {
     if (isNotEmpty(this.props.user))
       this.initForm(this.props.user);
@@ -51,6 +90,7 @@ class Checkout extends React.Component {
         this.setState({ cartList: cloneData(nextProps.cart.productOrder) }, loadingScreen.hideLoading);
       }
     }
+
   }
 
   clearAllCart = () => {
@@ -81,12 +121,20 @@ class Checkout extends React.Component {
         Axios.post(endPoints.ORDER_API, orderData)
           .then(res => {
             console.log(res)
+            Axios.post(endPoints.EMAIL_API, orderData)
+              .then(res => {
+                console.log(res)
+              }).catch(err => {
+                console.log(err);
+              })
+            this.initPaymentForm(orderData.order.payment, orderData.order.finalPrice);
             this.clearAllCart();
             this.props.history.replace("/checkoutSuccess");
           }).catch(err => {
             console.log(err);
 
           })
+
       }
     });
   };
@@ -153,9 +201,6 @@ class Checkout extends React.Component {
                       {order.productName}
                     </Link>
                     <br />
-                    <small>Ngày giao hàng: </small>
-                    <br />
-                    <small>Điểm nhận: 300</small>
                   </td>
 
                   <td className="text-left"><div className="input-group btn-block" style={{ maxWidth: "200px" }}>

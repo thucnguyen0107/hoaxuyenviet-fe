@@ -209,7 +209,7 @@ const input = props => {
           style={{ marginLeft: "10px" }}
         >
           <input className="payment" type="radio" name="payment" value="COD" onChange={props.changed} defaultChecked /> COD (Giao Hàng Nhận Tiền)<br />
-          <input className="payment" type="radio" name="payment" value="VISA" onChange={props.changed} /> VISA<br />
+          <input className="payment" type="radio" name="payment" value="CC" onChange={props.changed} /> CREDIT CARD<br />
         </div>
       );
       break;
@@ -227,14 +227,7 @@ const input = props => {
       );
       break;
 
-    case "orderDate":
-      inputElement = (
-        <div>
-          <br />
-          <DatePicker name="Ngày Đặt Hàng" value={moment(props.value, dateFormat)} format={dateFormat} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} />
-        </div>
-      );
-      break;
+
 
     case "date":
       inputElement = (

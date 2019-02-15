@@ -624,6 +624,43 @@ function responsivecolumn() {
         }
         lastScrollTop = st;
     });
+
+    if ($(document).width() >= 980) {
+        $(window).bind("scroll", function () {
+            var scrollHeight = $(document).height();
+            var scrollPosition = $(window).height() + $(window).scrollTop();
+            if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+                // when scroll to bottom of the page
+                // $('#footer').css({ "position": "absolute", "bottom": "0" });
+            }
+
+        });
+
+    }
+
+    // var height;
+    // $(window).scroll(function () {
+    //     height = $(document).height() - $(window).height();
+    //     console.log(height + " " + $(this).scrollTop());
+    //     if ($(this).scrollTop() > height) {
+    //         $('footer').slideDown(300);
+    //     } else {
+    //         $('footer').slideUp(300);
+    //     }
+    // });
+    // $(window).bind('resize', () => {
+    //     $(window).scroll(function () {
+    //         height = $(document).height() - $(window).height();
+    //         console.log(height + " " + $(this).scrollTop());
+    //         if ($(this).scrollTop() > height) {
+    //             $('footer').slideDown(300);
+    //         } else {
+    //             $('footer').slideUp(300);
+    //         }
+    //     });
+    // })
+
+
     // if ($(document).width() >= 980) {
     //     $(window).bind('scroll', function () {
     //         var st = $(this).scrollTop();

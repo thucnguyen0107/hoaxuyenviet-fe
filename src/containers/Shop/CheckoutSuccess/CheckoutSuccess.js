@@ -9,18 +9,35 @@ class CheckoutSuccess extends React.Component {
   componentDidMount() {
     loadingScreen.hideLoading();
   }
-
-  componentWillMount() {
-
-  }
-
-
   render() {
     return (
       <>
-        <div className="text-center">
-          <img style={{ display: 'block', margin: '0 auto', width: "100px", height: '100px' }} className="img-responsive" src={SuccessImg} alt="Success" />
-          <h2>Bạn Đã Đặt Hàng Thành Công, Vui Lòng Kiểm Tra Email Để Theo Dõi Đơn Hàng</h2>
+        <div id="breadcrumb">
+          <div className="container">
+            <div className="row">
+              <ul className="breadcrumb">
+                <h2 className="page-title">Thanh toán</h2>
+                <li>
+                  <a href="/">
+                    <i className="fa fa-home" />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    style={{ pointerEvents: "none", cursor: "default" }}
+                  >
+                    Thanh toán
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="text-center" style={{ padding: '50px 0' }}>
+          <img style={{ display: 'block', margin: '0 auto', width: "100px", height: '100px', marginBottom: '30px' }} className="img-responsive" src={SuccessImg} alt="Success" />
+          <h2 style={{ marginBottom: '30px' }}>Bạn Đã Đặt Hàng Thành Công</h2>
+          <h2 style={{ marginBottom: '30px' }}>Vui Lòng Kiểm Tra Email Để Theo Dõi Đơn Hàng</h2>
           <Link to="/home">Tiếp Tục Mua Sắm</Link>
         </div>
       </>
