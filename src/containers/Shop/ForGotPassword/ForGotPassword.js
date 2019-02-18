@@ -3,6 +3,7 @@ import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import { endPoints } from "../../../services/config";
 import axios from "axios";
+import { showNotification } from "../../../utilities/fnUtil";
 class ForgotPassWord extends React.Component {
   state = {
     forgotPasswordForm: {
@@ -40,7 +41,7 @@ class ForgotPassWord extends React.Component {
   };
 
   onForgotPWD = () => {
-
+    loadingScreen.showLoading();
     const user = {
       userPhone : this.state.forgotPasswordForm.telephone.value,
       origin: window.location.origin
@@ -49,9 +50,24 @@ class ForgotPassWord extends React.Component {
     axios
       .post(endPoints.FORGOT_PASSWORD_API, user)
       .then(res => {
-        console.log(res)
+        loadingScreen.hideLoading();
+        if(!res) {
+          showNotification({
+            type: 'error',
+            message: 'Số Điện Thoại Không Đúng Hoặc Chưa Đăng Ký! Vui Lòng Thao Tác Lại!'
+          })
+        } else {
+          showNotification({
+            message: 'Vui Lòng Kiểm Tra Email Để Thay Đổi Mật Khẩu Theo Đường Dẫn Web!'
+          })
+          
+        }
       }).catch(err => {
-        console.log(err);
+        loadingScreen.hideLoading();
+        showNotification({
+          type: 'error',
+          message: 'Số Điện Thoại Không Đúng Hoặc Chưa Đăng Ký! Vui Lòng Thao Tác Lại!'
+        })
       })
   };
   render() {
