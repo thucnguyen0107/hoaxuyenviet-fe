@@ -22,17 +22,20 @@ class Footer extends React.Component {
     let listSocial;
     listSocial = (
       <>
-        {this.state.HTMLSocialModel.map(social => {
-          if (social.visible) {
-            return (
-              <li key={social._id} className={social._id}>
-                <a href={social.link} rel="noopener noreferrer" target="_blank">
-                  <i className={social.iconName} />
-                </a>
-              </li>
-            );
-          }
-        })}
+        {
+          this.state.HTMLSocialModel.map(social => {
+            if (social.visible) {
+              return (
+                <li key={social._id} className={social._id}>
+                  <a href={social.link} rel="noopener noreferrer" target="_blank">
+                    <i className={social.iconName} />
+                  </a>
+                </li>
+              );
+            }
+            return null;
+          })
+        }
       </>
     );
 

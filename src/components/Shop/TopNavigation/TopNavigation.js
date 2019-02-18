@@ -40,6 +40,8 @@ const closeCartMenu = () => {
   window.$("#cart .dropdown-toggle").click();
 };
 
+
+
 // function onLogout() {
 //   localStorage.removeItem("authUser");
 // }
@@ -85,7 +87,7 @@ function loadCart(authUser, productOrder = [], fn, cartLS) {
                       <Link to={`/productDetail/${order._id}`}>
                         {order.productName}
                       </Link>
-                      <p>Số lượng: {order.quantity}</p>
+                      <p>Số Lượng: {order.quantity}</p>
                       <p>
                         Giá:{" "}
                         {formatCurrency(
@@ -216,7 +218,7 @@ const topNavigation = props => {
                             <tbody>
                               <tr>
                                 <td className="text-right">
-                                  <strong>Tổng tiền</strong>
+                                  <strong>Tổng Tiền</strong>
                                 </td>
                                 <td className="text-right">
                                   {formatCurrency(tempTotalPrice)} VND
@@ -226,11 +228,11 @@ const topNavigation = props => {
                           </table>
                           <div className="text-right button-container">
                             <Link className="addtocart" to="/cart">
-                              <strong>Giỏ hàng</strong>
+                              <strong>Giỏ Hàng</strong>
                             </Link>
                             &nbsp;&nbsp;&nbsp;
                             <Link to="/checkout" className="checkout">
-                              <strong>Thanh toán</strong>
+                              <strong>Thanh Toán</strong>
                             </Link>
                           </div>
                         </div>
@@ -245,7 +247,7 @@ const topNavigation = props => {
               <div className="myaccount-wrapper">
                 <div className="dropdown myaccount">
                   <a
-                    href="#"
+                    href="/"
                     title={
                       props.authUser.auth
                         ? isNotEmpty(props.user)
@@ -265,10 +267,10 @@ const topNavigation = props => {
                       onClick={() => closeMenu()}
                     >
                       <li>
-                        <Link to="/register">Đăng ký</Link>
+                        <Link to="/register">Đăng Ký</Link>
                       </li>
                       <li>
-                        <Link to="/login">Đăng nhập</Link>
+                        <Link to="/login">Đăng Nhập</Link>
                       </li>
                       <nav id="top">
                         <div id="top-links" className="nav">
@@ -303,6 +305,7 @@ const topNavigation = props => {
                               </li>
                               <li>
                                 <a
+                                href="/"
                                   title="Logout"
                                   onClick={() => clearAuthUser("/login", true)}
                                 >
@@ -322,7 +325,7 @@ const topNavigation = props => {
                 id="searchInput"
                 type="search"
                 name="search"
-                placeholder="Bạn muốn gửi gắm yêu thương vào hoa gì?"
+                placeholder="Bạn Muốn Gửi Gắm Yêu Thương Vào Hoa Gì?"
                 className="form-control input-lg inputField"
                 onFocus={focusSelected}
                 onBlur={blurSelected}

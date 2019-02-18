@@ -277,7 +277,7 @@ class ProductDetail extends React.Component {
       );
       loadingScreen.hideLoading();
       return (
-        <div class="main-content">
+        <div className="main-content">
           <div id="breadcrumb">
             <div className="container">
               <div className="row">
@@ -333,8 +333,8 @@ class ProductDetail extends React.Component {
 
                           <div className="additional-carousel">
                             <div className="customNavigation">
-                              <a className="fa prev fa-angle-left" />
-                              <a className="fa next fa-angle-right" />
+                              <a  href="/" className="fa prev fa-angle-left" >Ne</a>
+                              <a href="/" className="fa next fa-angle-right" >Pr</a>
                             </div>
 
                             <div
@@ -468,6 +468,7 @@ class ProductDetail extends React.Component {
                             size="2"
                             id="input-quantity"
                             className="form-control"
+                            min="1"
                           />
                           <button
                             type="button"
@@ -523,8 +524,8 @@ class ProductDetail extends React.Component {
                             className="related-products"
                           >
                             <div className="customNavigation">
-                              <a className="fa prev fa-angle-left" />
-                              <a className="fa next fa-angle-right" />
+                              <a href="/" className="fa prev fa-angle-left">Ne</a>
+                              <a href="/" className="fa next fa-angle-right" >Pr</a>
                             </div>
                             <div
                               className="box-product product-carousel"

@@ -71,7 +71,12 @@ class Checkout extends React.Component {
     }
   };
 
+  componentDidMount = () => {
+    loadingScreen.hideLoading();
+  }
+
   componentWillMount = () => {
+    loadingScreen.showLoading();
     if (isNotEmpty(this.props.user)) this.initForm(this.props.user);
 
     if (this.props.authUser.auth) {
@@ -116,7 +121,6 @@ class Checkout extends React.Component {
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
-        console.log("Valid Form Successfully");
         let orderData = null;
         if (this.props.authUser.auth) {
           orderData = checkoutService.createOrder(
@@ -150,7 +154,7 @@ class Checkout extends React.Component {
   render() {
     if (!this.state.cartList.length) {
       return (
-        <div class="main-content">
+        <div className="main-content">
           <div id="breadcrumb">
             <div className="container">
               <div className="row">
@@ -261,7 +265,7 @@ class Checkout extends React.Component {
       </>
     );
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -297,13 +301,13 @@ class Checkout extends React.Component {
                   <table className="table table-bordered shopping-cart">
                     <thead>
                       <tr>
-                        <td className="text-center">Hình ảnh</td>
-                        <td className="text-left">Tên sản phẩm</td>
-                        <td className="text-left">Số lượng</td>
-                        <td className="text-right">Đơn giá</td>
-                        <td className="text-right">Giảm giá</td>
-                        <td className="text-right">Giá sau khi giảm</td>
-                        <td className="text-right">Thành tiền</td>
+                        <td className="text-center">Hình Ảnh</td>
+                        <td className="text-left">Tên Sản Phẩm</td>
+                        <td className="text-left">Số Lượng</td>
+                        <td className="text-right">Đơn Giá</td>
+                        <td className="text-right">Giảm Giá</td>
+                        <td className="text-right">Giá Sau Khi Giảm</td>
+                        <td className="text-right">Thành Tiền</td>
                       </tr>
                     </thead>
                     {listOder}
@@ -321,7 +325,7 @@ class Checkout extends React.Component {
                         className="accordion-toggle collapsed"
                         aria-expanded="false"
                       >
-                        Tài khoản &amp; Chi tiết hóa đơn{" "}
+                        Tài khoản &amp; Chi Tiết Hóa Đơn{" "}
                         <i className="fa fa-caret-down" />
                       </a>
                     </h4>
@@ -336,7 +340,7 @@ class Checkout extends React.Component {
                       <div className="row">
                         <div className="col-sm-12">
                           <fieldset id="account">
-                            <legend>Thông tin cá nhân</legend>
+                            <legend>Thông Tin Cá Nhân</legend>
                             <Form
                               idForm="checkoutForm"
                               nameForm="checkoutForm"

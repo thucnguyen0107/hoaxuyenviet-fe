@@ -9,7 +9,6 @@ import {
   cloneData
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
-import { Popconfirm } from "antd";
 import Actions from "../../../redux/rootActions";
 class Cart extends React.Component {
   state = {

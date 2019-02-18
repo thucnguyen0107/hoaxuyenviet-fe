@@ -71,7 +71,6 @@ class Category extends React.Component {
         }
       })
       .then(res => {
-        console.log(res);
         this.setState(
           {
             productList: res,
@@ -97,7 +96,6 @@ class Category extends React.Component {
         }
       })
       .then(res => {
-        console.log(res);
         this.setState(
           {
             productList: res,
@@ -129,10 +127,12 @@ class Category extends React.Component {
     window.gridResize();
   }
 
+  
+
   render() {
     return (
       this.catParams && (
-        <div class="main-content">
+        <div className="main-content">
           <div id="breadcrumb">
             <div className="container">
               <div className="row">
@@ -189,6 +189,8 @@ class Category extends React.Component {
                           0,
                           this.state.visible
                         )}
+
+
                       />
                     ) : null}
                   </div>
@@ -222,4 +224,7 @@ class Category extends React.Component {
   }
 }
 
+
+
 export default Category;
+

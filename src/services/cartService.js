@@ -1,36 +1,33 @@
 import { showNotification, cloneData } from "../utilities/fnUtil";
-import loginService from "./loginService";
-import Actions from "../redux/rootActions";
 import loadingScreen from "../utilities/loadingScreen";
 const saveCartItemLSGuest = item => {
   let productData;
-  let quantity = document.getElementById("input-quantity");
-  // assign item to data variable
   productData = cloneData(item);
-  if (quantity.value <= 0) {
-    showNotification({
-      message: "Số lượng sản phẩm phải lớn hơn 0!",
-      type: "error"
-    });
-  } else {
-    // Add quantity use input to product data
-    productData.quantity = parseFloat(quantity.value);
-    // create array in local storage
-    let arrProductListLocalStorage = [];
-    // Parse the serialized data back into an aray of objects
-    arrProductListLocalStorage = JSON.parse(localStorage.getItem("list")) || [];
-    // if duplicate product, just add quantity
-    arrProductListLocalStorage = checkExistingItem(
-      productData,
-      arrProductListLocalStorage
-    );
-    // Re-serialize the array back into a string and store it in localStorage
-    localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
-    loadingScreen.showLoading();
-    showNotification({ message: 'Lưu Vào Giỏ Hàng Thành Công!' })
-    loadingScreen.hideLoading();
+  if(window.$('#input-quantity').length){  // Check if input-quantity exists
+    let quantity = document.getElementById("input-quantity");
+    // assign item to data variable
+      // Add quantity use input to product data
+      productData.quantity = parseFloat(quantity.value);
+  }else{
+     // Add quantity use input to product data
+     productData.quantity = parseFloat(1);
   }
+  // create array in local storage
+  let arrProductListLocalStorage = [];
+  // Parse the serialized data back into an aray of objects
+  arrProductListLocalStorage = JSON.parse(localStorage.getItem("list")) || [];
+  // if duplicate product, just add quantity
+  arrProductListLocalStorage = checkExistingItem(
+    productData,
+    arrProductListLocalStorage
+  );
+  // Re-serialize the array back into a string and store it in localStorage
+  localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
+  loadingScreen.showLoading();
+  showNotification({ message: 'Lưu Vào Giỏ Hàng Thành Công!' })
+  loadingScreen.hideLoading();
 };
+
 
 const checkExistingItem = (product, arr) => {
   let isExist = false;

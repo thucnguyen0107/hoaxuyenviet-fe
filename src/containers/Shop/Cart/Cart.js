@@ -2,18 +2,14 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Iimg from "../../../components/UI/LoadingImage/Limg";
 import Input from "../../../components/UI/Input/Input";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   formatCurrency,
-  showNotification,
   isNotEmpty,
   cloneData
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
-import cartService from "../../../services/cartService";
-import loginService from "../../../services/loginService";
 import { Popconfirm } from "antd";
 import Actions from "../../../redux/rootActions";
 class Cart extends React.Component {
@@ -27,6 +23,7 @@ class Cart extends React.Component {
   }
 
   componentWillMount = () => {
+    loadingScreen.showLoading();
     if (this.props.authUser.auth) {
       if (isNotEmpty(this.props.cart)) {
         this.setState({ cartList: cloneData(this.props.cart.productOrder) });
@@ -52,7 +49,7 @@ class Cart extends React.Component {
       cartData.productOrder.splice(index, 1);
       this.props.removeCartItem(this.props.cart._id, cartData);
     } else {
-      let cartData = cloneData(this.state.cartList);
+      // let cartData = cloneData(this.state.cartList);
       this.state.cartList.splice(index, 1);
       let cartListLS = this.state.cartList.slice(0);
       localStorage.setItem("list", JSON.stringify(cartListLS));
@@ -150,7 +147,7 @@ class Cart extends React.Component {
     );
 
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -192,20 +189,20 @@ class Cart extends React.Component {
                   <table className="table table-bordered shopping-cart">
                     <thead>
                       <tr>
-                        <td className="text-center">Hình ảnh</td>
-                        <td className="text-left">Tên sản phẩm</td>
-                        <td className="text-left">Số lượng</td>
-                        <td className="text-right">Đơn giá</td>
-                        <td className="text-right">Giảm giá</td>
-                        <td className="text-right">Giá sau khi giảm</td>
-                        <td className="text-right">Thành tiền</td>
+                        <td className="text-center">Hình Ảnh</td>
+                        <td className="text-left">Tên Sản Phẩm</td>
+                        <td className="text-left">Số Lượng</td>
+                        <td className="text-right">Đơn Giá</td>
+                        <td className="text-right">Giảm Giá</td>
+                        <td className="text-right">Giá Sau Khi Giảm</td>
+                        <td className="text-right">Thành Tiền</td>
                       </tr>
                     </thead>
                     {listOder}
                   </table>
                 </div>
               </form>
-              <h2>Nhập mã giảm giá </h2>
+              <h2>Nhập Mã Giảm Giá </h2>
 
               <div className="panel-group" id="accordion">
                 <div className="panel panel-default">
@@ -218,7 +215,7 @@ class Cart extends React.Component {
                         data-parent="#accordion"
                         aria-expanded="false"
                       >
-                        Sử dụng mã giảm giá <i className="fa fa-caret-down" />
+                        Sử Dụng Mã Giảm Giá <i className="fa fa-caret-down" />
                       </a>
                     </h4>
                   </div>
@@ -233,7 +230,7 @@ class Cart extends React.Component {
                         className="col-sm-2 control-label"
                         htmlFor="input-coupon"
                       >
-                        Nhập mã giảm giá ở đây
+                        Nhập Mã Giảm Giá Ở Đây
                       </label>
                       <div className="input-group">
                         {/* <input type="text" name="coupon" defaultValue="" placeholder="Enter your coupon here" id="input-coupon" className="form-control" /> */}
@@ -268,7 +265,7 @@ class Cart extends React.Component {
                     <tbody>
                       <tr>
                         <td className="text-right">
-                          <strong>Tổng tiền:</strong>
+                          <strong>Tổng Tiền:</strong>
                         </td>
                         <td className="text-right">
                           {formatCurrency(tempTotalPrice)} VND

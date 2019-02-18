@@ -76,6 +76,19 @@ $(document).ready(function () {
         $(".header-search.dropdown-toggle").removeClass('active');
         return true;
     });
+
+    $('body').on('click', function (e) {
+        if (!$('li.dropdown.mega-dropdown').is(e.target) 
+            && $('li.dropdown.mega-dropdown').has(e.target).length === 0 
+            && $('.open').has(e.target).length === 0
+        ) {
+            $('li.dropdown.mega-dropdown').removeClass('open');
+        }
+    });
+
+   
+
+
     // $("#form-currency .dropdown-toggle").click(function() {
     //     $('#form-currency').toggleClass("active");
     //     $(".language-menu").slideUp("slow");

@@ -1,15 +1,8 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-import loadingScreen from '../../../utilities/loadingScreen';
 import { Link } from "react-router-dom";
 
 
-const SubMenu = Menu.SubMenu;
-// const hideLS = () => {
-//   window.$(document).ready(() => {
-//     loadingScreen.hideLoading();
-//   })
-// }
 
 
 class SlideBarAccount extends React.Component {

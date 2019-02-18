@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table } from 'antd';
-import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
 import Axios from 'axios';
 import { endPoints } from '../../../services/config';
@@ -20,7 +19,6 @@ class Order extends React.Component {
     if (this.props.authUser.auth) {
       Axios.get(endPoints.ORDER_LIST_API + "/" + this.props.user._id)
         .then(res => {
-          console.log(res);
           this.setState({ orderList: res }, loadingScreen.hideLoading)
         }).catch(err => {
           console.log(err);

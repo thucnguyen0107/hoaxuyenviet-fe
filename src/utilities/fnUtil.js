@@ -171,6 +171,8 @@ export const convertStatus = (status) => {
     case 'COMPLETED':
       res = "Hoàn Thành"
       break;
+    default:
+    break;
   }
   return res;
 }

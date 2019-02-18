@@ -389,10 +389,9 @@ export const userProfileFormModel = {
     value: "",
     validation: {
       required: true,
-      minLength: 10,
-      maxLength: 32,
+      minLength: 4,
       errorMessage:
-        "Họ và tên phải từ 10 đến 32 ký tự!"
+        "Họ và tên phải từ 4 ký tự!"
     },
     valid: true
   },
@@ -683,8 +682,8 @@ export const registerFormModel = {
     elementType: 'input',
     elementConfig: {
       type: 'number',
-      placeholder: 'Vui lòng nhập số điện thoại của bạn',
-      name: 'Tài khoản đăng nhập (số điện thoại)'
+      placeholder: 'Vui Lòng Nhập Số Điện Thoại Của Bạn',
+      name: 'Tài Khoản Đăng Nhập (Số Điện Thoại)'
     },
     value: '',
     validation: {
@@ -692,7 +691,7 @@ export const registerFormModel = {
       minLength: 10,
       maxLength: 11,
       letterValid: /^\+?[0-9]+$/,
-      errorMessage: "Số điện thoại không hợp lệ"
+      errorMessage: "Số Điện Thoại Không Hợp Lệ"
     },
     valid: true
   },
@@ -700,8 +699,8 @@ export const registerFormModel = {
     elementType: 'input',
     elementConfig: {
       type: 'password',
-      placeholder: 'Vui lòng nhập mật khẩu của bạn',
-      name: 'Mật khẩu'
+      placeholder: 'Vui Lòng Nhập Mật Khẩu Của Bạn',
+      name: 'Mật Khẩu'
     },
     value: '',
     validation: {
@@ -733,8 +732,8 @@ export const registerFormModel = {
     elementType: 'input',
     elementConfig: {
       type: 'text',
-      placeholder: 'Vui lòng nhập họ và tên của bạn',
-      name: 'Họ và tên'
+      placeholder: 'Vui Lòng Nhập Họ Tên Của Bạn',
+      name: 'Họ và Tên'
     },
     value: '',
     validation: {
@@ -749,14 +748,14 @@ export const registerFormModel = {
     elementType: 'input',
     elementConfig: {
       type: 'email',
-      placeholder: 'Vui lòng nhập địa chỉ E-Mail của bạn',
+      placeholder: 'Vui Lòng Nhập Địa Chỉ E-Mail Của Bạn',
       name: 'E-Mail'
     },
     value: '',
     validation: {
       required: true,
       letterValid: /^[a-zA-Z]+$/,
-      errorMessage: "Email phải đúng định dạng"
+      errorMessage: "Email Phải Đúng Định Dạng"
     },
     valid: true,
   },
@@ -764,8 +763,8 @@ export const registerFormModel = {
     elementType: 'input',
     elementConfig: {
       type: 'text',
-      placeholder: 'Vui lòng nhập địa chỉ của bạn',
-      name: 'Địa chỉ'
+      placeholder: 'Vui Lòng nhập Địa Chỉ Của Bạn',
+      name: 'Địa Chỉ'
     },
     value: '',
     validation: {

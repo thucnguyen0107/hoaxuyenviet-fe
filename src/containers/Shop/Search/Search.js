@@ -22,7 +22,6 @@ class Search extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
 
     // this.catParams = convertCategories(this.props.match.params.first, this.props.match.params.second, props.history.replace);
     this.state = {
@@ -63,7 +62,6 @@ class Search extends React.Component {
     axios
       .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText })
       .then(res => {
-        console.log(res);
         this.setState(
           {
             productList: res,
@@ -88,7 +86,6 @@ class Search extends React.Component {
     axios
       .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText })
       .then(res => {
-        console.log(res);
         this.setState(
           {
             productList: res,
@@ -114,7 +111,7 @@ class Search extends React.Component {
   }
   render() {
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">

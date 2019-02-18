@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Input.scss";
 import { initGalleryZoom } from "../../../utilities/fnUtil";
-import { Select, Switch, Radio, DatePicker } from "antd";
+import { Select, Switch, DatePicker } from "antd";
 import moment from 'moment';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -31,7 +31,7 @@ const input = props => {
           type={props.elementConfig.type}
           className={inputClasses.join(" ")}
           value={props.value}
-          disabled={props.notUpdate && props.elementConfig.unique || props.noEdit}
+          disabled={(props.notUpdate && props.elementConfig.unique) || props.noEdit}
         />
       );
       break;
@@ -221,8 +221,8 @@ const input = props => {
           required={props.mandatory}
           style={{ marginLeft: "10px" }}
         >
-          <input className="gender" type="radio" name="gender" value="male" checked={props.value === 'male' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nam
-          <input className="gender" type="radio" name="gender" value="female" checked={props.value === 'female' ? true : false} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} /> Nữ<br />
+          <input className="gender" type="radio" name="gender" value="male" checked={props.value === 'male' ? true : false} onChange={props.changed} disabled={(props.notUpdate && props.elementConfig.unique) || props.noEdit} /> Nam
+          <input className="gender" type="radio" name="gender" value="female" checked={props.value === 'female' ? true : false} onChange={props.changed} disabled={(props.notUpdate && props.elementConfig.unique) || props.noEdit} /> Nữ<br />
         </div>
       );
       break;
@@ -233,7 +233,7 @@ const input = props => {
       inputElement = (
         <div>
           <br />
-          <DatePicker name="date" value={moment(props.value, dateFormat)} format={dateFormat} onChange={props.changed} disabled={props.notUpdate && props.elementConfig.unique || props.noEdit} />
+          <DatePicker name="date" value={moment(props.value, dateFormat)} format={dateFormat} onChange={props.changed} disabled={(props.notUpdate && props.elementConfig.unique) || props.noEdit} />
         </div>
       );
       break;

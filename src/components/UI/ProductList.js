@@ -1,7 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { formatCurrency } from '../../utilities/fnUtil';
+import { formatCurrency, cloneData } from '../../utilities/fnUtil';
 import Limg from './LoadingImage/Limg';
+import cartService from "../../services/cartService";
+import { connect } from "react-redux";
+import Actions from "../../redux/rootActions";
+
+function addProductToCart(authUser, product, cart, fn) {
+  if (authUser.auth) {
+     let cartClone = cloneData(cart);
+     const cartItem = cloneData(product);
+     cartItem.quantity = 1;
+     cartClone.productOrder = cartService.checkExistingItem(
+      cartItem,
+      cartClone.productOrder
+    );
+    fn(cartClone._id, cartClone);
+  } else
+   cartService.saveCartItemLSGuest(product);
+}
 
 const productList = (props) => {
 
@@ -40,10 +57,10 @@ const productList = (props) => {
                         </div>
                       </span>
                       <div className="button-group">
-                        <Link to="/cart" className="btn btn-primary addtocart" >
+                        <a className="btn btn-primary addtocart"  onClick={() => addProductToCart(props.authUser, product, props.cart, props.updateCart)}>
                           <i className="fa fa-shopping-basket"></i>
                           Add to Cart
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -63,4 +80,22 @@ const productList = (props) => {
   );
 }
 
-export default productList;
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser,
+    user: state.userList.user,
+    cart: state.userList.cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateCart: (cartId, cartData) =>
+      dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(productList);

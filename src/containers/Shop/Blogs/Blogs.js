@@ -36,7 +36,6 @@ class Blogs extends React.Component {
     axios
       .get(endPoints.BLOG_LIST_API)
       .then(res => {
-        console.log(res);
         this.setState(
           {
             HTMLBlogModel: res,
@@ -165,7 +164,7 @@ class Blogs extends React.Component {
       </>
     );
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">

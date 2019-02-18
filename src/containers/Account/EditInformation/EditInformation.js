@@ -55,7 +55,6 @@ class EditInformation extends React.Component {
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
-        console.log("Valid Form Successfully");
         this.onUpdateUser();
       }
     });

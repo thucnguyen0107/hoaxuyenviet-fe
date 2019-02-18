@@ -2,11 +2,8 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import { Link } from "react-router-dom";
-import { isNotEmpty, cloneData } from "../../../utilities/fnUtil";
+import {cloneData } from "../../../utilities/fnUtil";
 import { registerFormModel } from "../../../models/formModel";
-import axios from "axios";
-import { endPoints } from "../../../services/config";
-import { showNotification } from "../../../utilities/fnUtil";
 import Actions from "../../../redux/rootActions";
 import { connect } from "react-redux";
 class Register extends React.Component {
@@ -20,8 +17,6 @@ class Register extends React.Component {
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
-        console.log("Valid Form Successfully");
-
         this.onRegister();
       }
     });
@@ -48,7 +43,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">

@@ -1,7 +1,6 @@
 import React from 'react';
 import loadingScreen from '../../../utilities/loadingScreen';
 import { connect } from "react-redux";
-import Actions from '../../../redux/rootActions';
 import { isNotEmpty } from "../../../utilities/fnUtil";
 
 class Reward extends React.Component{

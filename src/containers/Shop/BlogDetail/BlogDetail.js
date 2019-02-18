@@ -16,9 +16,7 @@ class BlogDetail extends React.Component {
     axios
       .get(endPoints.BLOG_API + this.props.match.params.blog_id)
       .then(res => {
-        console.log(this.props.match.params.blog_id);
 
-        console.log(res);
         this.setState(
           {
             blog: res
@@ -39,7 +37,7 @@ class BlogDetail extends React.Component {
       width: "70%"
     };
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">

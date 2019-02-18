@@ -90,7 +90,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
