@@ -90,7 +90,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="main-content">
+      <div className="main-content" style={{paddingBottom:'400px'}}>
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -113,7 +113,7 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-        <div id="content" className="col-sm-9" style={{ height: "430px" }}>
+        <div id="content" className="container"  style={{ width: "100%",margin:'0 auto' }}>
           <div className="row">
             <div className="col-sm-6">
               <div className="well">
@@ -147,10 +147,10 @@ class Login extends React.Component {
                 />
               </div>
             </div>
-            <div className="col-sm-6" style={{marginTop: '-100px'}}>
+            <div className="col-sm-6">
               <div className="well">
                 <h2> Quên Mật Khẩu </h2>     
-                <Link to="/register" className="btn btn-default">
+                <Link to="/forgotpassword" className="btn btn-default">
                  Tìm Lại Mật Khẩu
                 </Link>
               </div>
