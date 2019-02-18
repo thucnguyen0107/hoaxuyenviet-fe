@@ -4,7 +4,7 @@ export const slideShowDelayTime = 5000;
 
 export const visibleItems = 20;
 
-export const baseURL = "https://hoaxuyenviet-be-lumolsabi.now.sh";
+export const baseURL = "https://hoaxuyenviet-be-bnykdbzwl.now.sh";
 
 export const endPoints = {
   HTML_CONTENT: `${baseURL}/htmlContent`,
@@ -22,6 +22,8 @@ export const endPoints = {
   CART_API: `${baseURL}/cart/`,
   EMAIL_API: `${baseURL}/sendEmail`,
   PAYMENT_API: `${baseURL}/checkout/charge`,
+  FORGOT_PASSWORD_API: `${baseURL}/forgotPWD`,
+  RESET_PASSWORD_API: `${baseURL}/resetPWD`,
   HOAXUYENVIET_LOGIN: `${baseURL}/hoaxuyenvietLogin`
 };
 

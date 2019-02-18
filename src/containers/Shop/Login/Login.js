@@ -14,7 +14,7 @@ class Login extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Số điện thoại",
+          placeholder: "Số Điện Thoại",
           name: "Số Điện Thoại"
         },
         value: "",
@@ -23,7 +23,7 @@ class Login extends React.Component {
           minLength: 9,
           maxLength: 32,
           numberValid: "^[0-9]+$",
-          errorMessage: "Số điện thoại không đúng hoặc chưa được đăng ký!"
+          errorMessage: "Số Điện Thoại Không Đúng Hoặc Chưa Được Đăng Ký!"
         },
         valid: true
       },
@@ -31,7 +31,7 @@ class Login extends React.Component {
         elementType: "input",
         elementConfig: {
           type: "password",
-          placeholder: "Mật khẩu",
+          placeholder: "Mật Khẩu",
           name: "Mật Khẩu"
         },
         value: "",
@@ -39,7 +39,7 @@ class Login extends React.Component {
           required: true,
           minLength: 1,
           maxLength: 32,
-          errorMessage: "Mật khẩu không đúng. Vui lòng nhập lại!"
+          errorMessage: "Mật Khẩu Không Đúng. Vui Lòng Nhập Lại!"
         },
         valid: true
       }
@@ -131,6 +131,7 @@ class Login extends React.Component {
                 </Link>
               </div>
             </div>
+            
             <div className="col-sm-6">
               <div className="well">
                 <h2>Đăng Nhập</h2>
@@ -144,6 +145,14 @@ class Login extends React.Component {
                   setState={this.setStateForm}
                   btnName="Đăng nhập"
                 />
+              </div>
+            </div>
+            <div className="col-sm-6" style={{marginTop: '-100px'}}>
+              <div className="well">
+                <h2> Quên Mật Khẩu </h2>     
+                <Link to="/register" className="btn btn-default">
+                 Tìm Lại Mật Khẩu
+                </Link>
               </div>
             </div>
           </div>

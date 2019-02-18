@@ -209,7 +209,7 @@ const topNavigation = props => {
                     <ul
                       className="dropdown-menu pull-right cart-menu"
                       style={zIndexStyle}
-                      onClick={() => closeCartMenu()}
+                     
                     >
                       {cartList}
                       <li>

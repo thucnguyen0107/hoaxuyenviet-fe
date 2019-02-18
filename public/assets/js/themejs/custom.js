@@ -77,12 +77,16 @@ $(document).ready(function () {
         return true;
     });
 
+    // close cart menu when click outside cart menu
     $('body').on('click', function (e) {
-        if (!$('li.dropdown.mega-dropdown').is(e.target) 
-            && $('li.dropdown.mega-dropdown').has(e.target).length === 0 
-            && $('.open').has(e.target).length === 0
+        if (!$('#cart .dropdown-toggle').is(e.target) 
+            && $('#cart .dropdown-toggle').has(e.target).length === 0 
+            && $('.active').has(e.target).length === 0
         ) {
-            $('li.dropdown.mega-dropdown').removeClass('open');
+            // $('#cart').removeClass('open');
+            // $('#cart .dropdown-toggle').removeClass('active');
+            $(".cart-menu").slideUp("slow");
+            
         }
     });
 

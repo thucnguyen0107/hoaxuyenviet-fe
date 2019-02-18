@@ -1,13 +1,62 @@
 import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
+import Form from "../../../components/UI/Form/Form";
+import { endPoints } from "../../../services/config";
+import axios from "axios";
+class ForgotPassWord extends React.Component {
+  state = {
+    forgotPasswordForm: {
+      telephone: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Số Điện Thoại",
+          name: "Số Điện Thoại"
+        },
+        value: "",
+        validation: {
+          required: true,
+          minLength: 9,
+          maxLength: 32,
+          numberValid: "^[0-9]+$",
+          errorMessage: "Số điện thoại không đúng hoặc chưa được đăng ký!"
+        },
+        valid: true
+      },
+    },
+    formIsValid: false
+  };
 
-class ForGotPassWord extends React.Component {
   componentDidMount() {
     loadingScreen.hideLoading();
   }
+
+  setStateForm = (object, submit = false) => {
+    this.setState(object, () => {
+      if (this.state.formIsValid && submit) {
+        this.onForgotPWD();
+      }
+    });
+  };
+
+  onForgotPWD = () => {
+
+    const user = {
+      userPhone : this.state.forgotPasswordForm.telephone.value,
+      origin: window.location.origin
+    }
+
+    axios
+      .post(endPoints.FORGOT_PASSWORD_API, user)
+      .then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err);
+      })
+  };
   render() {
     return (
-      <div class="main-content">
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">
@@ -32,50 +81,23 @@ class ForGotPassWord extends React.Component {
         </div>
         <div id="content" style={{ margin: "auto", width: "60%" }}>
           <p>
-            Vui lòng nhập địa chỉ E-mail có liên kết với tài khoản của bạn. Sau
-            đó bấm nút xác nhận để nhận mật khẩu mới qua E-mail.
+            Vui Lòng Nhập Số Điện Thoại của bạn. Sau
+            Đó Bấm Nút Xác Nhận Để Nhận Mật Khẩu Mới Qua E-mail.
           </p>
-          <form
-            action="http://splashythemes.com/opencart/OPC01/OPC010011/OPC3/index.php?route=account/forgotten"
-            method="post"
-            enctype="multipart/form-data"
-            className="form-horizontal"
-          >
-            <fieldset>
-              <legend>E-mail của bạn</legend>
-              <div className="form-group required">
-                <label className="col-sm-2 control-label" htmlFor="input-email">
-                  E-Mail Address{" "}
-                </label>
-                <div className="col-sm-10">
-                  <input
-                    type="text"
-                    name="email"
-                    defaultValue=""
-                    placeholder="Vui lòng nhập địa chỉ E-mail"
-                    id="input-email"
-                    className="form-control"
-                  />
-                </div>
-              </div>
-            </fieldset>
-            <div className="buttons clearfix">
-              <div className="pull-left">
-                <a
-                  href="http://localhost:3000/login"
-                  className="btn btn-default"
-                >
-                  Trở về
-                </a>
-              </div>
-              <div className="pull-right">
-                <input defaultValue="Xác nhận" className="btn btn-primary" />
-              </div>
-            </div>
-          </form>
+
+          <Form
+            idForm="forgotPasswordForm"
+            nameForm="forgotPasswordForm"
+            originalForm={this.state.forgotPasswordForm}
+            setState={this.setStateForm}
+            btnName="Xác Nhận"
+          />
+
         </div>
       </div>
     );
   }
 }
-export default ForGotPassWord;
+
+export default ForgotPassWord;
+

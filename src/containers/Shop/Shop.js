@@ -15,9 +15,10 @@ import Blogs from "../Shop/Blogs/Blogs";
 import Account from "../../containers/Account/Account";
 import BlogDetail from "../Shop/BlogDetail/BlogDetail";
 import Register from "../../containers/Shop/Register/Register";
-import ForGotPassWord from "../../containers/Shop/ForGotPassword/ForGotPassword";
+import ForgotPassWord from "../../containers/Shop/ForgotPassword/ForgotPassword";
 import CheckoutSuccess from '../../containers/Shop/CheckoutSuccess/CheckoutSuccess';
 import { connect } from "react-redux";
+import ResetPassWord from "./ResetPassword/ResetPassword";
 
 class Shop extends React.Component {
 
@@ -44,6 +45,7 @@ class Shop extends React.Component {
             <Redirect from="/login" to="/account" />
             <Redirect from="/register" to="/account" />
             <Redirect path="/forgotpassword" to="/account" />
+            <Route path="/resetPWD/:userPhone/:token" to="/account" />
             <Redirect from="/" to="/home" exact />
             <Route path="/pageNotFound" exact component={notFoundPage} />
             <Redirect to="/pageNotFound" />
@@ -71,7 +73,8 @@ class Shop extends React.Component {
             <Route path="/blogs" exact component={Blogs} />
             <Route path="/blogDetail/:blog_id" exact component={BlogDetail} />
             <Route path="/register" exact component={Register} />
-            <Route path="/forgotpassword" exact component={ForGotPassWord} />
+            <Route path="/forgotpassword" exact component={ForgotPassWord} />
+            <Route path="/resetPWD/:userPhone/:token" exact  component={ResetPassWord} />
             <Redirect from="/account" to="/login" />
             <Route path="/login" exact component={Login} />
             <Redirect from="/" to="/home" exact />
