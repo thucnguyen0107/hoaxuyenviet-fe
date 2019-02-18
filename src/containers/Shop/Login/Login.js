@@ -150,7 +150,7 @@ class Login extends React.Component {
             <div className="col-sm-6" style={{marginTop: '-100px'}}>
               <div className="well">
                 <h2> Quên Mật Khẩu </h2>     
-                <Link to="/register" className="btn btn-default">
+                <Link to="/forgotpassword" className="btn btn-default">
                  Tìm Lại Mật Khẩu
                 </Link>
               </div>

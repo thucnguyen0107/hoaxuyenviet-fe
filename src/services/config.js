@@ -4,7 +4,7 @@ export const slideShowDelayTime = 5000;
 
 export const visibleItems = 20;
 
-export const baseURL = "https://hoaxuyenviet-be-bnykdbzwl.now.sh";
+export const baseURL = "";
 
 export const endPoints = {
   HTML_CONTENT: `${baseURL}/htmlContent`,
