@@ -2,6 +2,7 @@ import React from "react";
 import loadingScreen from "../../../utilities/loadingScreen";
 import Form from "../../../components/UI/Form/Form";
 import checkoutService from "../../../services/checkoutService";
+import cartService from '../../../services/cartService'
 import {
   isNotEmpty,
   cloneData,
@@ -84,7 +85,7 @@ class Checkout extends React.Component {
         this.setState({ cartList: cloneData(this.props.cart.productOrder) });
       }
     } else {
-      let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
+      let cartListLS = cartService.getCartFromLS();
       this.setState({ cartList: cartListLS });
     }
   };

@@ -10,6 +10,7 @@ import {
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
 import Actions from "../../../redux/rootActions";
+import cartService from '../../../services/cartService'
 class Cart extends React.Component {
   state = {
     cartList: [],
@@ -31,7 +32,7 @@ class Cart extends React.Component {
         this.setState({ cartList: cloneData(this.props.cart.productOrder) }, loadingScreen.hideLoading);
       }
     } else {
-      let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
+      let cartListLS = cartService.getCartFromLS();
       loadingScreen.showLoading();
       this.setState({ cartList: cartListLS });
     }

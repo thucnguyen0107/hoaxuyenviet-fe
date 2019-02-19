@@ -52,9 +52,9 @@ function loadCart(authUser, productOrder = [], fn, cartLS) {
   if (authUser.auth) {
     arrayProductOrder = productOrder.slice();
   } else {
-    let temp = cartService.getProductToCart();
+    let temp = cartService.getCartFromLS();
     if (!Object.is(JSON.stringify(temp), JSON.stringify(cartLS))) {
-      fn(cartService.getProductToCart());
+      fn(cartService.getCartFromLS());
     }
     arrayProductOrder = cartLS.slice();
 

@@ -92,7 +92,7 @@ class Login extends React.Component {
 
 
     return (
-      <div className="main-content" style={{paddingBottom:'400px'}}>
+      <div className="main-content">
         <div id="breadcrumb">
           <div className="container">
             <div className="row">

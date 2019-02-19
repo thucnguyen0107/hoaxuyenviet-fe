@@ -4,10 +4,13 @@ import Iimg from "../../../components/UI/LoadingImage/Limg";
 import Input from "../../../components/UI/Input/Input";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import cartService from '../../../services/cartService'
+import "./Cart.css";
 import {
   formatCurrency,
   isNotEmpty,
-  cloneData
+  cloneData,
+  showNotification
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
 import { Popconfirm } from "antd";
@@ -15,11 +18,23 @@ import Actions from "../../../redux/rootActions";
 class Cart extends React.Component {
   state = {
     cartList: [],
-    totalPrice: 0
+    totalPrice: 0,
   };
 
   componentDidMount() {
     loadingScreen.hideLoading();
+
+    window.$('.input-number-increment').click(function() {
+      
+    });
+    
+    window.$('.input-number-decrement').click(function() {
+      var $input = window.$(this).parents('.input-number-group').find('.input-number');
+      var val = parseInt($input.val(), 10);
+      $input.val(val - 1);
+    })
+    
+    
   }
 
   componentWillMount = () => {
@@ -29,7 +44,7 @@ class Cart extends React.Component {
         this.setState({ cartList: cloneData(this.props.cart.productOrder) });
       }
     } else {
-      let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
+      let cartListLS = cartService.getCartFromLS();
       loadingScreen.showLoading();
       this.setState({ cartList: cartListLS });
     }
@@ -42,6 +57,48 @@ class Cart extends React.Component {
       }
     }
   };
+
+  onIncreQuantity = (orderItem, index) => {
+    if(this.props.authUser.auth){
+      let cartData = cloneData(this.props.cart);
+      cartData.productOrder[index].quantity = ++orderItem.quantity
+      this.props.updateCariItem(this.props.cart._id, cartData);
+    }else{
+      this.state.cartList[index].quantity = ++orderItem.quantity;
+      let cartListLS =  cartService.getCartFromLS();
+      cartListLS[index].quantity = this.state.cartList[index].quantity;
+      loadingScreen.showLoading();
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
+      localStorage.setItem("list", JSON.stringify(cartListLS));
+      this.setState({ cartList:cartListLS})
+      loadingScreen.hideLoading();
+    }
+    
+  }
+
+  onDecreQuantity = (orderItem, index) => {
+    if(this.props.authUser.auth){
+      let cartData = cloneData(this.props.cart);
+      cartData.productOrder[index].quantity = --orderItem.quantity
+      if(cartData.productOrder[index].quantity < 1){
+        cartData.productOrder[index].quantity = 1;
+      }
+      this.props.updateCariItem(this.props.cart._id, cartData);
+    }else{
+      this.state.cartList[index].quantity = --orderItem.quantity;
+      if( this.state.cartList[index].quantity < 1){
+        this.state.cartList[index].quantity = 1;
+      }
+      let cartListLS =  cartService.getCartFromLS();
+      cartListLS[index].quantity = this.state.cartList[index].quantity;
+      loadingScreen.showLoading();
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
+      localStorage.setItem("list", JSON.stringify(cartListLS));
+      this.setState({ cartList:cartListLS})
+      loadingScreen.hideLoading();
+    }
+    
+  }
 
   onRemoveCartItem = index => {
     if (this.props.authUser.auth) {
@@ -92,19 +149,15 @@ class Cart extends React.Component {
                         className="input-group btn-block"
                         style={{ maxWidth: "200px" }}
                       >
-                        <span
-                          name=""
-                          size="1"
-                          className="form-control"
-                          style={{
-                            padding: "6px 5px",
-                            textAlign: "center",
-                            width: "40px",
-                            border: "none"
-                          }}
-                        >
-                          {order.quantity}
-                        </span>
+                        <div className="input-group input-number-group">
+                          <div className="input-group-button">
+                            <span className="input-number-decrement" onClick={()=>this.onDecreQuantity(order, index)}>-</span>
+                          </div>
+                          <input readOnly className="input-number" type="number" min="1" value={order.quantity} />
+                          <div className="input-group-button">
+                            <span className="input-number-increment" onClick={()=>this.onIncreQuantity(order, index)}>+</span>
+                          </div>
+                        </div>
 
                         <span className="input-group-btn">
                           <Popconfirm
@@ -307,6 +360,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     removeCartItem: (cartId, cartData) =>
+      dispatch(Actions.userActions.updateCartFromSV(cartId, cartData)),
+
+      updateCariItem: (cartId, cartData) =>
       dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
   };
 };

@@ -163,11 +163,11 @@ class Search extends React.Component {
                   className={classes.productsProgressBar}
                   data-auto-id="productsProgressBar"
                 >
-                  You've viewed{" "}
+                  Bạn đã xem{" "}
                   {this.state.visible > this.state.filteredProductList.length
                     ? this.state.filteredProductList.length
                     : this.state.visible}{" "}
-                  of {this.state.filteredProductList.length} products
+                  / {this.state.filteredProductList.length} sản phẩm
                 </p>
                 {this.state.visible < this.state.filteredProductList.length && (
                   <button
