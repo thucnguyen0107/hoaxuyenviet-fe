@@ -35,9 +35,9 @@ const productList = (props) => {
                 <div className="product-block-inner">
                   <div className="image">
                     <Link to={'/productDetail/' + product._id}>
-                      <Limg src={(product.images[0])} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
-                        className="img-responsive reg-image" />
-                      <img className="img-responsive hover-image" src={product.images[1]}
+                      <Limg width="290" height="370" src={(product.images[0])} title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;"
+                        className=" reg-image" />
+                      <img width="290" height="370" className=" hover-image" src={product.images[1]}
                         title="Apple Cinema 30&quot;" alt="Apple Cinema 30&quot;" />
                     </Link>
                     <div className="extra-info">

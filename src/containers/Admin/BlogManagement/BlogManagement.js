@@ -143,6 +143,7 @@ class BlogManagement extends React.Component {
         </div>
         <div>
           <Table
+           style={{textTransform:'capitalize'}}
             columns={columns}
             dataSource={data}
             bordered

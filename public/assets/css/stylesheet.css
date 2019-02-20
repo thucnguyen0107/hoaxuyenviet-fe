@@ -5239,7 +5239,7 @@ body .btn:hover {
 #column-left .image .hover-image .button-group button:hover {
 	background: transparent;
 	color: #ffffff;
-	height: auto;
+	/* height: auto; */
 	left: 0;
 	opacity: 0;
 	position: absolute;

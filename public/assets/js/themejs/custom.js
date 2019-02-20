@@ -64,33 +64,25 @@ $(document).ready(function () {
     $('.aboutus h1, .affiliate-success h1').prependTo('#breadcrumb .container .row');
     /*$('#content select').customSelect();
     $('ul.breadcrumb').prependTo('.row #content');*/
-    $("#cart .dropdown-toggle").click(function () {
-        $(this).toggleClass("active");
-        $(".cart-menu").slideToggle("slow");
-        $(".myaccount-menu").slideUp("slow");
+    $("#cart").hover(function () {
+        // $(".cart-menu").css('display', 'block');
+        $(".cart-menu").css("height", "auto")
+        $(".cart-menu").stop(true,false).slideDown("fast");
+        
+
+        // $(".myaccount-menu").slideUp("slow");
         //$(".language-menu").slideUp("slow");
         //$(".currency-menu").slideUp("slow");
-        $(".myaccount > .dropdown-toggle").removeClass('active');
-        $(".menu_toggle").slideUp("slow");
-        $("#search").slideUp("slow");
-        $(".header-search.dropdown-toggle").removeClass('active');
-        return true;
+        // $(".myaccount > .dropdown-toggle").removeClass('active');
+        // $(".menu_toggle").slideUp("slow");
+        // $("#search").slideUp("slow");
+        // $(".header-search.dropdown-toggle").removeClass('active');
+        // return true;
+    }, function () {
+        $(".cart-menu").css("height", "auto")
+        $(".cart-menu").stop(true,false).slideUp("fast");
     });
 
-    // close cart menu when click outside cart menu
-    $('body').on('click', function (e) {
-        if (!$('#cart .dropdown-toggle').is(e.target) 
-            && $('#cart .dropdown-toggle').has(e.target).length === 0 
-            && $('.active').has(e.target).length === 0
-        ) {
-            // $('#cart').removeClass('open');
-            // $('#cart .dropdown-toggle').removeClass('active');
-            $(".cart-menu").slideUp("slow");
-            
-        }
-    });
-
-   
 
 
     // $("#form-currency .dropdown-toggle").click(function() {

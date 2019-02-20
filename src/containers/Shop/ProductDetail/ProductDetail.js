@@ -7,7 +7,8 @@ import Iimg from "../../../components/UI/LoadingImage/Limg";
 import {
   formatCurrency,
   isNotEmpty,
-  cloneData
+  cloneData,
+  createContentHtmlString
 } from "../../../utilities/fnUtil";
 import { convertItemToName } from "../../../utilities/categoriesUtil";
 import classes from "./ProductDetail.scss";
@@ -16,59 +17,65 @@ import cartService from "../../../services/cartService";
 import { connect } from "react-redux";
 import Actions from "../../../redux/rootActions";
 class ProductDetail extends React.Component {
-  createZoom = () => {
-    let $ = window.$;
-    if (!window.$(".zoomContainer")[0]) {
-      if ($(window).width() > 767) {
-        window.$("#tmzoom").elevateZoom({
-          // gallery: 'additional-carousel',
-          //inner zoom
-          zoomType: "inner",
-          cursor: "crosshair"
-          /*//tint
-          tint:true, 
-          tintColour:'#F90', 
-          tintOpacity:0.5
-          //lens zoom
-          zoomType : "lens", 
-          lensShape : "round", 
-          lensSize : 200 
-          //Mousewheel zoom
-          scrollZoom : true*/
-        });
-      } else {
-        $(document).on("click", ".thumbnail", function() {
-          $(".thumbnails").magnificPopup("open", 0);
-          return false;
-        });
-      }
-    }
-  };
+  // createZoom = () => {
+  //   let $ = window.$;
+  //   if (!window.$(".zoomContainer")[0]) {
+  //     // if ($(window).width() > 767) {
+  //     //   window.$("#tmzoom").elevateZoom({
+  //     //     // gallery: 'additional-carousel',
+  //     //     //inner zoom
+  //     //     zoomType: "inner",
+  //     //     cursor: "crosshair",
+  //     //     // width:"500",
+  //     //     // height:"600"
+  //     //     /*//tint
+  //     //     tint:true, 
+  //     //     tintColour:'#F90', 
+  //     //     tintOpacity:0.5
+  //     //     //lens zoom
+  //     //     zoomType : "lens", 
+  //     //     lensShape : "round", 
+  //     //     lensSize : 200 
+  //     //     //Mousewheel zoom
+  //     //     scrollZoom : true*/
+  //     //   });
+  //     // } else {
+  //       $(document).on("click", ".thumbnail", function() {
+  //         $(".thumbnails").magnificPopup("open", 0);
+  //         return false;
+  //       });
+  //     // }
+  //   }
+  // };
 
   init = () => {
     let $ = window.$;
     $(document).ready(function() {
-      if ($(window).width() > 767) {
-        var z_index = 0;
-        $(document).on("click", ".thumbnail", function() {
-          $(".thumbnails").magnificPopup("open", z_index);
-          return false;
-        });
-        $(".additional-carousel a").click(function() {
-          var smallImage = $(this).attr("data-image");
-          var largeImage = $(this).attr("data-zoom-image");
-          var ez = $("#tmzoom").data("elevateZoom");
-          $(".thumbnail").attr("href", largeImage);
-          ez.swaptheimage(smallImage, largeImage);
-          z_index = $(this).index("#additional-carousel a");
-          return false;
-        });
-      } else {
-        $(document).on("click", ".thumbnail", function() {
-          $(".thumbnails").magnificPopup("open", 0);
-          return false;
-        });
-      }
+      // if ($(window).width() > 767) {
+        // var z_index = 0;
+        // $(document).on("click", ".thumbnail", function() {
+        //   $(".thumbnails").magnificPopup("open", z_index);
+        //   return false;
+        // });
+
+        $(document).on("click", ".child-image", function() {
+          $("#tmzoom").attr('src',$(this).children('img').attr('src'))
+        })
+        // $(".additional-carousel a").click(function() {
+        //   var smallImage = $(this).attr("data-image");
+        //   var largeImage = $(this).attr("data-zoom-image");
+        //   var ez = $("#tmzoom").data("elevateZoom");
+        //   $(".thumbnail").attr("href", largeImage);
+        //   ez.swaptheimage(smallImage, largeImage);
+        //   z_index = $(this).index("#additional-carousel a");
+        //   return false;
+        // });
+      // } else {
+      //   $(document).on("click", ".thumbnail", function() {
+      //     $(".thumbnails").magnificPopup("open", 0);
+      //     return false;
+      //   });
+      // }
     });
     $(document).ready(function() {
       $(".thumbnails").magnificPopup({
@@ -225,6 +232,23 @@ class ProductDetail extends React.Component {
     } else cartService.saveCartItemLSGuest(this.state.product);
   }
 
+  onCheckout() {
+    if (this.props.authUser.auth) {
+      let cart = cloneData(this.props.cart);
+      const cartItem = cloneData(this.state.product);
+      cartItem.quantity = +document.getElementById("input-quantity").value;
+      cart.productOrder = cartService.checkExistingItem(
+        cartItem,
+        cart.productOrder
+      );
+      this.props.updateCart(this.props.cart._id, cart);
+      this.props.history.push({pathname: '/checkout'})
+    } else {
+      cartService.saveCartItemLSGuest(this.state.product);
+      this.props.history.push({pathname: '/checkout'})
+    }
+  }
+
   componentDidMount() {
     // this.isAuthenticated();
   }
@@ -236,12 +260,12 @@ class ProductDetail extends React.Component {
   render() {
     if (isNotEmpty(this.state.product)) {
       let listProductCardHTML = [];
-      if (this.state.randomList) {
+      if (this.state.randomList.length) {
         listProductCardHTML = (
           <>
             {this.state.randomList.map((card, index) => {
               return (
-                <div className="slider-item" key={index}>
+                <div className="slider-item related_product_image" key={index}>
                   <ProductCard cardContent={card} />
                 </div>
               );
@@ -255,16 +279,18 @@ class ProductDetail extends React.Component {
       listAdditionalProductHTML = this.state.product.images.map(
         (img, index) => {
           return (
-            <div className="slider-item" key={index}>
+            <div className="slider-item small_image" key={index}>
               <div className="product-block">
                 <a
                   href={img}
                   title={this.state.product.productName}
-                  className="elevatezoom-gallery"
+                  className="elevatezoom-gallery child-image"
                   data-image={img}
                   data-zoom-image={img}
                 >
                   <Iimg
+                  width="40"
+                  height="50"
                     src={img}
                     title={`${this.state.product.productName}`}
                     alt={`${this.state.product.productName}`}
@@ -316,15 +342,18 @@ class ProductDetail extends React.Component {
                           {/* <!-- Cloud-Zoom Image Effect Start --> */}
                           <div className="image">
                             <a
-                              className="thumbnail"
+                              className="thumbnail "
                               href={this.state.product.images[0]}
                               title="MacBook"
                             >
                               <Iimg
+                              className="main-image"
                                 id="tmzoom"
+                                width="400"
+                                height="500"
                                 src={this.state.product.images[0]}
                                 data-zoom-image={this.state.product.images[0]}
-                                onLoad={() => this.createZoom()}
+                                // onLoad={() => this.createZoom()}
                                 title="MacBook"
                                 alt="MacBook"
                               />
@@ -332,10 +361,10 @@ class ProductDetail extends React.Component {
                           </div>
 
                           <div className="additional-carousel">
-                            <div className="customNavigation">
+                            {/* <div className="customNavigation">
                               <a  href="/" className="fa prev fa-angle-left" >Ne</a>
                               <a href="/" className="fa next fa-angle-right" >Pr</a>
-                            </div>
+                            </div> */}
 
                             <div
                               id="additional-carousel"
@@ -481,14 +510,15 @@ class ProductDetail extends React.Component {
                             Thêm vào giỏ hàng
                           </button>
 
-                          {/* <div className="btn-group">
+                          <div className="btn-group">
                             <button
                               type="button"
                               className="btn btn-primary wishlist"
+                              onClick={() => this.onCheckout()}
                             >
                               Thanh Toán
                             </button>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -504,13 +534,13 @@ class ProductDetail extends React.Component {
                         </ul>
                         <div className="tab-content">
                           <div className="tab-pane active" id="tab-description">
-                            <div>{this.state.product.description}</div>
+                            <div dangerouslySetInnerHTML={createContentHtmlString(this.state.product.description)}></div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {this.state.randomList ? (
+                  {this.state.randomList.length ? (
                     <div className="box related">
                       <div className="box-heading">
                         <h2 className="products-section-title">
@@ -524,8 +554,8 @@ class ProductDetail extends React.Component {
                             className="related-products"
                           >
                             <div className="customNavigation">
-                              <a href="/" className="fa prev fa-angle-left">Ne</a>
-                              <a href="/" className="fa next fa-angle-right" >Pr</a>
+                              <a  className="fa prev fa-angle-left">Ne</a>
+                              <a  className="fa next fa-angle-right" >Pr</a>
                             </div>
                             <div
                               className="box-product product-carousel"

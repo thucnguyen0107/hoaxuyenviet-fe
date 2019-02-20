@@ -19,8 +19,7 @@
   }
   
   .input-number-group .input-number {
-    width: 80px;
-    padding: 0 12px;
+    width: 35px;
     vertical-align: top;
     text-align: center;
     outline: none;
@@ -55,10 +54,21 @@
   
   .input-number-group .input-number-decrement {
     margin-right: 0.3rem;
+    text-align: right;
   }
   
   .input-number-group .input-number-increment {
     margin-left: 0.3rem;
+    text-align: left;
+  }
+
+  .clear_float{
+    float: initial!important;
+  }
+
+  .transparent_button{
+    border:none !important;
+    background-color: #fff!important;
   }
   
   

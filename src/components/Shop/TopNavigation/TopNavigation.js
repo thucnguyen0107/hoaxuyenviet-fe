@@ -37,7 +37,7 @@ const closeMenu = () => {
 };
 
 const closeCartMenu = () => {
-  window.$("#cart .dropdown-toggle").click();
+  window.$("#cart .dropdown-toggle").onMouseOver();
 };
 
 
@@ -200,7 +200,7 @@ const topNavigation = props => {
                       data-loading-text="Loading..."
                       className="btn btn-inverse btn-block btn-lg dropdown-toggle"
                     >
-                      <span id="cart-title" onClick={() => loadCart(props.authUser, props.cart.productOrder, props.setCartLSState, props.cartLS)}>Giỏ hàng</span>
+                      <span id="cart-title" onMouseEnter={() => loadCart(props.authUser, props.cart.productOrder, props.setCartLSState, props.cartLS)}>Giỏ hàng</span>
                       <i className="fa fa-angle-down" />
                       <span id="cart-total">
                         <span className="single-item">0</span>
@@ -209,7 +209,6 @@ const topNavigation = props => {
                     <ul
                       className="dropdown-menu pull-right cart-menu"
                       style={zIndexStyle}
-                     
                     >
                       {cartList}
                       <li>

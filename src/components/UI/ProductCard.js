@@ -5,13 +5,13 @@ const productCard = (props) => {
 
 
   return (
-    <div className="slider-item">
+    <div className="slider-item ">
       <div className="product-block product-thumb transition">
         <div className="product-block-inner">
           <div className="image">
             <a href={'/productDetail/' + props.cardContent._id}>
-              <Iimg src={props.cardContent.images[0]} title={props.cardContent.productName} alt={props.cardContent.productName} className="img-responsive reg-image" />
-              <Iimg className="img-responsive hover-image" src={props.cardContent.images[1]} title={props.cardContent.productName}
+              <Iimg width="400" height="400" src={props.cardContent.images[0]} title={props.cardContent.productName} alt={props.cardContent.productName} className=" reg-image" />
+              <Iimg  width="400" height="400" className="hover-image" src={props.cardContent.images[1]} title={props.cardContent.productName}
                 alt={props.cardContent.productName} />
             </a>
             <div className="extra-info">

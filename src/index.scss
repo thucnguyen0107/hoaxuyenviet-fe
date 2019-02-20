@@ -19,3 +19,32 @@ code {
 }
 
 
+:global  .fa-zalo:before{
+  content: "Z";
+  font-weight: 600;
+}
+
+:global .main-image {
+  height: 500px !important;
+  width: inherit !important;
+  margin: 0!important;
+}
+
+:global .slider-item.small_image{
+  width: 40px!important;
+  height: 40px!important;
+
+  a{
+    width: 40px!important;
+  height: 40px!important;
+  }
+  img{
+    width: 40px!important;
+  height: 40px!important;
+  }
+}
+
+:global .slider-item.related_product_image{
+  width: 400px!important;
+}
+

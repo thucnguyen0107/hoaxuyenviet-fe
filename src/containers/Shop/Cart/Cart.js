@@ -64,9 +64,10 @@ class Cart extends React.Component {
       cartData.productOrder[index].quantity = ++orderItem.quantity
       this.props.updateCariItem(this.props.cart._id, cartData);
     }else{
-      this.state.cartList[index].quantity = ++orderItem.quantity;
+      let cartData = cloneData(this.state.cartList[index])
+      cartData.quantity = ++orderItem.quantity;
       let cartListLS =  cartService.getCartFromLS();
-      cartListLS[index].quantity = this.state.cartList[index].quantity;
+      cartListLS[index].quantity = cartData.quantity;
       loadingScreen.showLoading();
       showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       localStorage.setItem("list", JSON.stringify(cartListLS));
@@ -85,12 +86,13 @@ class Cart extends React.Component {
       }
       this.props.updateCariItem(this.props.cart._id, cartData);
     }else{
-      this.state.cartList[index].quantity = --orderItem.quantity;
-      if( this.state.cartList[index].quantity < 1){
-        this.state.cartList[index].quantity = 1;
+      let cartData = cloneData(this.state.cartList[index])
+      cartData.quantity = --orderItem.quantity;
+      if( cartData.quantity < 1){
+        cartData.quantity = 1;
       }
       let cartListLS =  cartService.getCartFromLS();
-      cartListLS[index].quantity = this.state.cartList[index].quantity;
+      cartListLS[index].quantity = cartData.quantity;
       loadingScreen.showLoading();
       showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       localStorage.setItem("list", JSON.stringify(cartListLS));
@@ -151,15 +153,15 @@ class Cart extends React.Component {
                       >
                         <div className="input-group input-number-group">
                           <div className="input-group-button">
-                            <span className="input-number-decrement" onClick={()=>this.onDecreQuantity(order, index)}>-</span>
+                            <span className="input-number-decrement transparent_button" onClick={()=>this.onDecreQuantity(order, index)}>-</span>
                           </div>
-                          <input readOnly className="input-number" type="number" min="1" value={order.quantity} />
+                          <input readOnly className="input-number transparent_button" type="number" min="1" value={order.quantity} />
                           <div className="input-group-button">
-                            <span className="input-number-increment" onClick={()=>this.onIncreQuantity(order, index)}>+</span>
+                            <span className="input-number-increment transparent_button" onClick={()=>this.onIncreQuantity(order, index)}>+</span>
                           </div>
                         </div>
 
-                        <span className="input-group-btn">
+                        <span className="input-group-btn clear_float">
                           <Popconfirm
                             title="Bạn có chắc chắn muốn xóa?"
                             onConfirm={() => this.onRemoveCartItem(index)}
