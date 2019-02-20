@@ -15,10 +15,10 @@ import Blogs from "../Shop/Blogs/Blogs";
 import Account from "../../containers/Account/Account";
 import BlogDetail from "../Shop/BlogDetail/BlogDetail";
 import Register from "../../containers/Shop/Register/Register";
-import ForgotPassWord from "../../containers/Shop/ForGotPassword/ForGotPassword"
 import CheckoutSuccess from '../../containers/Shop/CheckoutSuccess/CheckoutSuccess';
 import { connect } from "react-redux";
 import ResetPassWord from "./ResetPassword/ResetPassword";
+import ForgotPassWord from "../../containers/Shop/ForgotPassWord/ForgotPassWord";
 
 class Shop extends React.Component {
 

@@ -83,6 +83,18 @@ $(document).ready(function () {
         $(".cart-menu").stop(true,false).slideUp("fast");
     });
 
+    $(".myaccount").hover(function () {
+        // $(".cart-menu").css('display', 'block');
+        $(".myaccount .dropdown-menu").css("height", "auto")
+        $(".myaccount .dropdown-menu").stop(true,false).slideDown("fast");
+        
+
+       
+    }, function () {
+        $(".myaccount .dropdown-menu").css("height", "auto")
+        $(".myaccount .dropdown-menu").stop(true,false).slideUp("fast");
+    });
+
 
 
     // $("#form-currency .dropdown-toggle").click(function() {
