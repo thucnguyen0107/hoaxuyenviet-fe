@@ -1,6 +1,7 @@
 import React from 'react';
 import Iimg from '../../components/UI/LoadingImage/Limg';
 import { formatCurrency } from '../../utilities/fnUtil';
+import { Link } from 'react-router-dom';
 const productCard = (props) => {
 
 
@@ -9,11 +10,11 @@ const productCard = (props) => {
       <div className="product-block product-thumb transition">
         <div className="product-block-inner">
           <div className="image">
-            <a href={'/productDetail/' + props.cardContent._id}>
-              <Iimg width="400" height="400" src={props.cardContent.images[0]} title={props.cardContent.productName} alt={props.cardContent.productName} className=" reg-image" />
-              <Iimg  width="400" height="400" className="hover-image" src={props.cardContent.images[1]} title={props.cardContent.productName}
+            <Link to={{pathname:'/productDetail/' + props.cardContent._id}}>
+              <Iimg width="300" height="400" src={props.cardContent.images[0]} title={props.cardContent.productName} alt={props.cardContent.productName} className=" reg-image" />
+              <Iimg  width="300" height="400" className="hover-image" src={props.cardContent.images[1]} title={props.cardContent.productName}
                 alt={props.cardContent.productName} />
-            </a>
+            </Link>
             <div className="extra-info">
               {props.cardContent.discount > 0 ? <span className="percentsaving">{`${props.cardContent.discount}%`}</span> : null}
             </div>
@@ -21,8 +22,8 @@ const productCard = (props) => {
           <div className="caption">
             <div className="product-deacription-wrapper">
               <h4>
-                <a href={'/productDetail/' + props.cardContent._id}>{props.cardContent.productName}
-                </a>
+              <Link to={{pathname:'/productDetail/' + props.cardContent._id}}>{props.cardContent.productName}
+                </Link>
               </h4>
               <strong><span className="price-new">{formatCurrency((props.cardContent.price - (props.cardContent.discount * props.cardContent.price / 100)))} VND</span></strong>
               {props.cardContent.discount > 0 ? <span className="price-old">{formatCurrency(props.cardContent.price)}</span> : <span className="price-old"></span>}
@@ -43,7 +44,7 @@ const productCard = (props) => {
           <span className="related_default_width" style={{ display: 'none', visibility: "hidden" }}></span>
         </div>
       </div>
-    </div>
+     </div>
   );
 }
 

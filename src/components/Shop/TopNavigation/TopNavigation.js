@@ -32,13 +32,13 @@ function blurSelected() {
   }
 }
 
-const closeMenu = () => {
-  window.$(".myaccount a.dropdown-toggle").click();
-};
+// const closeMenu = () => {
+//   window.$(".myaccount a.dropdown-toggle").click();
+// };
 
-const closeCartMenu = () => {
-  window.$("#cart .dropdown-toggle").onMouseOver();
-};
+// const closeCartMenu = () => {
+//   window.$("#cart .dropdown-toggle").onMouseOver();
+// };
 
 
 
@@ -263,7 +263,7 @@ const topNavigation = props => {
                     <ul
                       className="dropdown-menu dropdown-menu-right myaccount-menu"
                       style={zIndexStyle}
-                      onClick={() => closeMenu()}
+                      // onClick={() => closeMenu()}
                     >
                       <li>
                         <Link to="/register">Đăng Ký</Link>
@@ -287,7 +287,7 @@ const topNavigation = props => {
                       <ul
                         className="dropdown-menu dropdown-menu-right myaccount-menu"
                         style={zIndexStyle}
-                        onClick={() => closeMenu()}
+                        // onClick={() => closeMenu()}
                       >
                         <nav id="top">
                           <div id="top-links" className="nav">

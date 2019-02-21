@@ -50,6 +50,9 @@ class Login extends React.Component {
   componentDidMount() {
     loadingScreen.hideLoading();
   }
+  componentWillMount() {
+    loadingScreen.showLoading();
+  }
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {

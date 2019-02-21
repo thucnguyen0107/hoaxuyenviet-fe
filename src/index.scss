@@ -15,7 +15,10 @@ code {
 
 :global .main-content,
 :global #common-home {
-  padding-bottom: 400px;
+  padding-bottom: 100px;
+  @media screen and (max-width: 575px){
+    padding-bottom: 400px;
+  }
 }
 
 
@@ -47,4 +50,25 @@ code {
 :global .slider-item.related_product_image{
   width: 400px!important;
 }
+
+:global .image-gallery-slide img {
+  width: 500px!important;
+  height: 500px!important;
+}
+
+
+:global .image-gallery-thumbnail  {
+  border:none!important;
+}
+
+:global .image-gallery-thumbnail img  {
+  width: 40px!important;
+  height: 50px!important;
+
+}
+
+:global .slick-prev:before, :global .slick-next:before {
+  color: #000 !important;
+}
+
 

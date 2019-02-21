@@ -18,7 +18,7 @@ import Register from "../../containers/Shop/Register/Register";
 import CheckoutSuccess from '../../containers/Shop/CheckoutSuccess/CheckoutSuccess';
 import { connect } from "react-redux";
 import ResetPassWord from "./ResetPassword/ResetPassword";
-import ForgotPassWord from "../../containers/Shop/ForgotPassWord/ForgotPassWord";
+import ForgotPassword from "./ForgotPassword/ForgotPassword";
 
 class Shop extends React.Component {
 
@@ -73,7 +73,7 @@ class Shop extends React.Component {
             <Route path="/blogs" exact component={Blogs} />
             <Route path="/blogDetail/:blog_id" exact component={BlogDetail} />
             <Route path="/register" exact component={Register} />
-            <Route path="/forgotpassword" exact component={ForgotPassWord} />
+            <Route path="/forgotpassword" exact component={ForgotPassword} />
             <Route path="/resetPWD/:userPhone/:token" exact  component={ResetPassWord} />
             <Redirect from="/account" to="/login" />
             <Route path="/login" exact component={Login} />

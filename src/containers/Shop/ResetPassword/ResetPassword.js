@@ -47,6 +47,10 @@ class ResetPassWord extends React.Component {
     loadingScreen.hideLoading();
   }
 
+  componentWillMount() {
+    loadingScreen.showLoading();
+  }
+
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {

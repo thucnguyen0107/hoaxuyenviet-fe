@@ -4,7 +4,7 @@ import Form from "../../../components/UI/Form/Form";
 import { endPoints } from "../../../services/config";
 import axios from "axios";
 import { showNotification } from "../../../utilities/fnUtil";
-class ForgotPassWord extends React.Component {
+class ForgotPassword extends React.Component {
   state = {
     forgotPasswordForm: {
       telephone: {
@@ -28,8 +28,13 @@ class ForgotPassWord extends React.Component {
     formIsValid: false
   };
 
+
   componentDidMount() {
     loadingScreen.hideLoading();
+  }
+
+  componentWillMount() {
+    loadingScreen.showLoading();
   }
 
   setStateForm = (object, submit = false) => {
@@ -115,5 +120,5 @@ class ForgotPassWord extends React.Component {
   }
 }
 
-export default ForgotPassWord;
+export default ForgotPassword;
 

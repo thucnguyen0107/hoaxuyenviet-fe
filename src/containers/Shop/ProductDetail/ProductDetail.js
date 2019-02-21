@@ -3,7 +3,9 @@ import ProductCard from "../../../components/UI/ProductCard";
 import axios from "axios";
 import { endPoints } from "../../../services/config";
 import loadingScreen from "../../../utilities/loadingScreen";
-import Iimg from "../../../components/UI/LoadingImage/Limg";
+import "react-image-gallery/styles/css/image-gallery.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {
   formatCurrency,
   isNotEmpty,
@@ -16,87 +18,10 @@ import { Tag } from "antd";
 import cartService from "../../../services/cartService";
 import { connect } from "react-redux";
 import Actions from "../../../redux/rootActions";
+import ImageGallery from 'react-image-gallery';
+import Slider from "react-slick";
+import Limg from "../../../components/UI/LoadingImage/Limg";
 class ProductDetail extends React.Component {
-  // createZoom = () => {
-  //   let $ = window.$;
-  //   if (!window.$(".zoomContainer")[0]) {
-  //     // if ($(window).width() > 767) {
-  //     //   window.$("#tmzoom").elevateZoom({
-  //     //     // gallery: 'additional-carousel',
-  //     //     //inner zoom
-  //     //     zoomType: "inner",
-  //     //     cursor: "crosshair",
-  //     //     // width:"500",
-  //     //     // height:"600"
-  //     //     /*//tint
-  //     //     tint:true, 
-  //     //     tintColour:'#F90', 
-  //     //     tintOpacity:0.5
-  //     //     //lens zoom
-  //     //     zoomType : "lens", 
-  //     //     lensShape : "round", 
-  //     //     lensSize : 200 
-  //     //     //Mousewheel zoom
-  //     //     scrollZoom : true*/
-  //     //   });
-  //     // } else {
-  //       $(document).on("click", ".thumbnail", function() {
-  //         $(".thumbnails").magnificPopup("open", 0);
-  //         return false;
-  //       });
-  //     // }
-  //   }
-  // };
-
-  init = () => {
-    let $ = window.$;
-    $(document).ready(function() {
-      // if ($(window).width() > 767) {
-        // var z_index = 0;
-        // $(document).on("click", ".thumbnail", function() {
-        //   $(".thumbnails").magnificPopup("open", z_index);
-        //   return false;
-        // });
-
-        $(document).on("click", ".child-image", function() {
-          $("#tmzoom").attr('src',$(this).children('img').attr('src'))
-        })
-        // $(".additional-carousel a").click(function() {
-        //   var smallImage = $(this).attr("data-image");
-        //   var largeImage = $(this).attr("data-zoom-image");
-        //   var ez = $("#tmzoom").data("elevateZoom");
-        //   $(".thumbnail").attr("href", largeImage);
-        //   ez.swaptheimage(smallImage, largeImage);
-        //   z_index = $(this).index("#additional-carousel a");
-        //   return false;
-        // });
-      // } else {
-      //   $(document).on("click", ".thumbnail", function() {
-      //     $(".thumbnails").magnificPopup("open", 0);
-      //     return false;
-      //   });
-      // }
-    });
-    $(document).ready(function() {
-      $(".thumbnails").magnificPopup({
-        delegate: "a.elevatezoom-gallery",
-        type: "image",
-        tLoading: "Loading image #%curr%...",
-        mainClass: "mfp-with-zoom",
-        gallery: {
-          enabled: true,
-          navigateByImgClick: true,
-          preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
-        },
-        image: {
-          tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-          titleSrc: function(item) {
-            return item.el.attr("title");
-          }
-        }
-      });
-    });
-  };
 
   state = {
     product: {},
@@ -174,7 +99,7 @@ class ProductDetail extends React.Component {
             this.setState({
               product: res,
               randomList: rl
-            });
+            }, loadingScreen.hideLoading);
           });
       })
       .catch(err => {
@@ -197,7 +122,7 @@ class ProductDetail extends React.Component {
                 product: res,
                 randomList: rl
               },
-              () => true
+              loadingScreen.hideLoading
             );
           });
         })
@@ -207,16 +132,6 @@ class ProductDetail extends React.Component {
         });
     }
     return true;
-  }
-  componentWillUpdate() {
-    loadingScreen.showLoading();
-  }
-
-  componentDidUpdate() {
-    if (isNotEmpty(this.state.product)) {
-      window.productCarouselAutoSet();
-      this.init();
-    }
   }
 
   addProductToCart() {
@@ -242,22 +157,54 @@ class ProductDetail extends React.Component {
         cart.productOrder
       );
       this.props.updateCart(this.props.cart._id, cart);
-      this.props.history.push({pathname: '/checkout'})
+      this.props.history.push({ pathname: '/checkout' })
     } else {
       cartService.saveCartItemLSGuest(this.state.product);
-      this.props.history.push({pathname: '/checkout'})
+      this.props.history.push({ pathname: '/checkout' })
     }
   }
 
-  componentDidMount() {
-    // this.isAuthenticated();
-  }
-
-  componentWillUnmount() {
-    window.$(".zoomContainer").remove();
-  }
-
   render() {
+
+    const settings = {
+      // adaptiveHeight: true,
+      // dots: true,
+      infinite: false,
+      // arrows: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            // infinite: true,
+            // dots: true
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            // infinite: true,
+            // dots: true
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    };
+
+
+
     if (isNotEmpty(this.state.product)) {
       let listProductCardHTML = [];
       if (this.state.randomList.length) {
@@ -274,34 +221,12 @@ class ProductDetail extends React.Component {
         );
       }
 
-      let listAdditionalProductHTML = [];
+      const imagesArray = this.state.product.images.map((image) => ({
+        original: image,
+        thumbnail: image,
+      }));
 
-      listAdditionalProductHTML = this.state.product.images.map(
-        (img, index) => {
-          return (
-            <div className="slider-item small_image" key={index}>
-              <div className="product-block">
-                <a
-                  href={img}
-                  title={this.state.product.productName}
-                  className="elevatezoom-gallery child-image"
-                  data-image={img}
-                  data-zoom-image={img}
-                >
-                  <Iimg
-                  width="40"
-                  height="50"
-                    src={img}
-                    title={`${this.state.product.productName}`}
-                    alt={`${this.state.product.productName}`}
-                  />
-                </a>
-              </div>
-            </div>
-          );
-        }
-      );
-      loadingScreen.hideLoading();
+      // loadingScreen.hideLoading();
       return (
         <div className="main-content">
           <div id="breadcrumb">
@@ -339,46 +264,7 @@ class ProductDetail extends React.Component {
                     <div className="col-sm-8 product-left">
                       <div className="product-info">
                         <div className="left product-image thumbnails">
-                          {/* <!-- Cloud-Zoom Image Effect Start --> */}
-                          <div className="image">
-                            <a
-                              className="thumbnail "
-                              href={this.state.product.images[0]}
-                              title="MacBook"
-                            >
-                              <Iimg
-                              className="main-image"
-                                id="tmzoom"
-                                width="400"
-                                height="500"
-                                src={this.state.product.images[0]}
-                                data-zoom-image={this.state.product.images[0]}
-                                // onLoad={() => this.createZoom()}
-                                title="MacBook"
-                                alt="MacBook"
-                              />
-                            </a>
-                          </div>
-
-                          <div className="additional-carousel">
-                            {/* <div className="customNavigation">
-                              <a  href="/" className="fa prev fa-angle-left" >Ne</a>
-                              <a href="/" className="fa next fa-angle-right" >Pr</a>
-                            </div> */}
-
-                            <div
-                              id="additional-carousel"
-                              className="image-additional product-carousel"
-                            >
-                              {listAdditionalProductHTML}
-                            </div>
-                            <span
-                              className="additional_default_width"
-                              style={{ display: "none", visibility: "hidden" }}
-                            />
-                          </div>
-
-                          {/* <!-- Cloud-Zoom Image Effect End--> */}
+                          <ImageGallery showFullscreenButton={false} showPlayButton={false} showNav={false} sizes items={imagesArray} />
                         </div>
                       </div>
                     </div>
@@ -450,9 +336,9 @@ class ProductDetail extends React.Component {
                           <h2>
                             {formatCurrency(
                               this.state.product.price -
-                                (this.state.product.discount *
-                                  this.state.product.price) /
-                                  100
+                              (this.state.product.discount *
+                                this.state.product.price) /
+                              100
                             )}{" "}
                             VND
                           </h2>
@@ -479,8 +365,8 @@ class ProductDetail extends React.Component {
                             {formatCurrency(this.state.product.price)} VND
                           </span>
                         ) : (
-                          <span />
-                        )}
+                            <span />
+                          )}
                       </ul>
                       <div id="product">
                         <div className="form-group cart">
@@ -540,34 +426,15 @@ class ProductDetail extends React.Component {
                       </div>
                     </div>
                   </div>
-                  {this.state.randomList.length ? (
-                    <div className="box related">
-                      <div className="box-heading">
-                        <h2 className="products-section-title">
-                          Có thể bạn muốn mua
-                        </h2>
-                      </div>
-                      <div className="tabs">
-                        <div className="box-content">
-                          <div
-                            id="products-related"
-                            className="related-products"
-                          >
-                            <div className="customNavigation">
-                              <a  className="fa prev fa-angle-left">Ne</a>
-                              <a  className="fa next fa-angle-right" >Pr</a>
-                            </div>
-                            <div
-                              className="box-product product-carousel"
-                              id="related-carousel"
-                            >
-                              {listProductCardHTML}
-                            </div>
-                          </div>
+                  <Slider {...settings}  className={classes.relate_products} >
+                    {this.state.randomList.map((card, index) => {
+                      return (
+                        <div className="box-product"  key={index}>
+                          <ProductCard cardContent={card}/>
                         </div>
-                      </div>
-                    </div>
-                  ) : null}
+                      );
+                    })}
+                  </Slider>
                 </div>
               </div>
             </div>
@@ -575,7 +442,6 @@ class ProductDetail extends React.Component {
         </div>
       );
     } else {
-      // loadingScreen.showLoading();
       return null;
     }
   }
