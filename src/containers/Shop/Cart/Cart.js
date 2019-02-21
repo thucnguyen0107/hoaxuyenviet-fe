@@ -112,6 +112,7 @@ class Cart extends React.Component {
       this.state.cartList.splice(index, 1);
       let cartListLS = this.state.cartList.slice(0);
       localStorage.setItem("list", JSON.stringify(cartListLS));
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       this.setState({ cartList: cartListLS });
     }
   };

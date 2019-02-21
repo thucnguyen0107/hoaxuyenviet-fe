@@ -202,7 +202,7 @@ class Category extends React.Component {
                     {this.state.visible > this.state.filteredProductList.length
                       ? this.state.filteredProductList.length
                       : this.state.visible}{" "}
-                    / {this.state.filteredProductList.length} sản phẩm
+                     {this.state.filteredProductList.length} sản phẩm
                   </p>
                   {this.state.visible <
                     this.state.filteredProductList.length && (

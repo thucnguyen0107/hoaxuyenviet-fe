@@ -109,7 +109,6 @@ class ProductDetail extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    loadingScreen.showLoading();
     if (
       this.props.match.params.product_id !== nextProps.match.params.product_id
     ) {
@@ -148,21 +147,9 @@ class ProductDetail extends React.Component {
   }
 
   onCheckout() {
-    if (this.props.authUser.auth) {
-      let cart = cloneData(this.props.cart);
-      const cartItem = cloneData(this.state.product);
-      cartItem.quantity = +document.getElementById("input-quantity").value;
-      cart.productOrder = cartService.checkExistingItem(
-        cartItem,
-        cart.productOrder
-      );
-      this.props.updateCart(this.props.cart._id, cart);
-      this.props.history.push({ pathname: '/checkout' })
-    } else {
-      cartService.saveCartItemLSGuest(this.state.product);
-      this.props.history.push({ pathname: '/checkout' })
-    }
+    this.props.history.push({ pathname: '/checkout' })
   }
+
 
   render() {
 
@@ -449,8 +436,9 @@ class ProductDetail extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.userList.cart,
-    authUser: state.authUser
+    authUser: state.authUser,
+    user: state.userList.user,
+    cart: state.userList.cart
   };
 };
 

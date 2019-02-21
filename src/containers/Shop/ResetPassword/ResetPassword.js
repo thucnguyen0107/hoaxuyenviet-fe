@@ -4,7 +4,7 @@ import Form from "../../../components/UI/Form/Form";
 import { endPoints } from "../../../services/config";
 import axios from "axios";
 import { showNotification } from "../../../utilities/fnUtil";
-class ResetPassWord extends React.Component {
+class ResetPassword extends React.Component {
   state = {
     resetPasswordForm: {
         password: {
@@ -126,5 +126,5 @@ class ResetPassWord extends React.Component {
   }
 }
 
-export default ResetPassWord;
+export default ResetPassword;
 
