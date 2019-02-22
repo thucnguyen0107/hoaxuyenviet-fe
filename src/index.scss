@@ -15,7 +15,7 @@ code {
 
 :global .main-content,
 :global #common-home {
-  padding-bottom: 100px;
+  padding-bottom: 150px;
   @media screen and (max-width: 575px){
     padding-bottom: 400px;
   }
@@ -69,6 +69,10 @@ code {
 
 :global .slick-prev:before, :global .slick-next:before {
   color: #000 !important;
+}
+
+:global .slick-next{
+  right: -25px!important;
 }
 
 

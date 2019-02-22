@@ -1,56 +1,25 @@
 import React from "react";
-// import emailInputImage from '../../../assets/images/themeimage/special-discount-block.jpg';
 import { slideShowDelayTime } from "../../../services/config";
-import BannersSlider from "../../../components/Shop/Slider/BannersSlider/BannersSlider";
-import CategoriesSlider from "../../../components/Shop/Slider/CategoriesSlider/CategoriesSlider";
+import CategorySlider from "../../../components/Shop/Slider/CategoriesSlider/CategorySlider/CategorySlider";
 import TabCategories from "../../../components/Shop/TabCategories/TabCategories";
-// import Blog_News from '../../../components/Slider/Blog_News/Blog_News';
 import classes from "./Home.scss";
 import axios from "axios";
 import { endPoints } from "../../../services/config";
 import loadingScreen from "../../../utilities/loadingScreen";
 import { htmlContentModel } from "../../../models/htmlContentModel";
 import { isNotEmpty } from "../../../utilities/fnUtil";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router-dom';
+import Iimg from "../../../components/UI/LoadingImage/Limg";
+import  './Home.css';
 class Body extends React.Component {
   state = {
     htmlContentModel
   };
 
-  createNewSlider = id => {
-    const slideShow = {
-      mode: "horizontal",
-      slidesPerView: 1,
-      pagination: false,
-      paginationClickable: true,
-      nextButton: `.swiper-button-next.${id}`,
-      prevButton: `.swiper-button-prev.${id}`,
-      spaceBetween: 0,
-      autoplay: slideShowDelayTime,
-      autoplayDisableOnInteraction: true,
-      loop: true,
-      preloadImages: true
-    };
-
-    return slideShow;
-  };
-
-  createSwiper = (...arg) => {
-    for (const item of arg) {
-      window.$(`#${item}`).swiper(this.createNewSlider(item));
-    }
-  };
-
-  hoverBanner = (element, childElement = "") => {
-    window.$(`${element} ${childElement}`).hover(
-      function() {
-        document.querySelector(element).swiper.stopAutoplay();
-      },
-      function() {
-        document.querySelector(element).swiper.startAutoplay();
-      }
-    );
-  };
+ 
 
   componentWillMount() {
     loadingScreen.showLoading();
@@ -65,13 +34,43 @@ class Body extends React.Component {
       });
   }
 
-  componentDidUpdate() {
-    this.createSwiper("slideshow0", "slideshow1");
-    this.hoverBanner("#slideshow0");
-    this.hoverBanner("#slideshow1", ".categorycmsblock-wrapper");
-  }
-
+  
   render() {
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: slideShowDelayTime,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows:false,
+    };
+
+    const settings_tab = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: slideShowDelayTime,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight:true
+    };
+
+    let catSliderList = [];
+
+    for (const i in this.state.htmlContentModel.eventSlide) {
+      catSliderList.push(
+        (
+          <div key={i}>
+            <CategorySlider sliderItem={this.state.htmlContentModel.eventSlide[i]} />
+            </div>
+        )
+      )
+    }
+
     return (
       <>
         <div
@@ -87,19 +86,31 @@ class Body extends React.Component {
             </div>
             <div id="content">
               {/**Slider */}
-              {
-                <BannersSlider
-                  listBannerSlider={this.state.htmlContentModel.bannerSlide}
-                />
-              }
+              {this.state.htmlContentModel.bannerSlide.length ? <Slider {...settings}>
+              
+                {
+                  this.state.htmlContentModel.bannerSlide.map((banner, index) => {
+                    return(
+                      <div key={index}>
+                        <Link to={banner.eventLink}><Iimg src={banner.image} alt={`Main-banner-${index + 1}`} className="img-responsive" /></Link>
+                     </div>
+                    );
+
+                    
+                  })
+
+                }
+              </Slider>: null}
+              
               {/**End Slider */}
 
               {/**Test Category Block SlideShow */}
 
               {isNotEmpty(this.state.htmlContentModel.eventSlide) ? (
-                <CategoriesSlider
-                  listCatBannerSlider={this.state.htmlContentModel.eventSlide}
-                />
+                <Slider {...settings_tab}>
+                    {catSliderList}
+               </Slider>
+
               ) : null}
               {/**END Test Category Block SlideShow */}
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Iimg from "../../../../UI/LoadingImage/Limg";
 const categorySlider = (props) => {
 
   return (
@@ -11,7 +12,7 @@ const categorySlider = (props) => {
               <div className="categorycmsblock-left col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <div className="categorycmsblock-item categorycmsblock-item-1">
                   <Link className="categorycmsblock-image" to={props.sliderItem[0].eventLink}>
-                    <img src={props.sliderItem[0].image} alt="Cat-banner-1" />
+                    <Iimg src={props.sliderItem[0].image} alt="Cat-banner-1" />
                   </Link>
                   <div className="categorycmsblock-title-link-wrapper">
                     <span className="categorycmsblock-title"></span>
@@ -23,7 +24,7 @@ const categorySlider = (props) => {
                     <span className="categorycmsblock-title"></span>
                   </div>
                   <Link className="categorycmsblock-image" to={props.sliderItem[1].eventLink}>
-                    <img src={props.sliderItem[1].image} alt="Cat-banner-2" />
+                    <Iimg src={props.sliderItem[1].image} alt="Cat-banner-2" />
                   </Link>
                   <div className="categorycmsblock-link-wrapper">
                     <Link className="categorycmsblock-link" to={props.sliderItem[1].eventLink}>Chi tiết</Link>
@@ -36,7 +37,7 @@ const categorySlider = (props) => {
                     <span className="categorycmsblock-title"></span>
                   </div>
                   <Link className="categorycmsblock-image" to={props.sliderItem[2].eventLink}>
-                    <img src={props.sliderItem[2].image} alt="Cat-banner-3" />
+                    <Iimg src={props.sliderItem[2].image} alt="Cat-banner-3" />
                   </Link>
                   <div className="categorycmsblock-link-wrapper">
                     <Link className="categorycmsblock-link" to={props.sliderItem[2].eventLink}>Chi tiết</Link>
@@ -44,7 +45,7 @@ const categorySlider = (props) => {
                 </div>
                 <div className="categorycmsblock-item categorycmsblock-item-4">
                   <Link className="categorycmsblock-image" to={props.sliderItem[3].eventLink}>
-                    <img src={props.sliderItem[3].image} alt="Cat-banner-4" />
+                    <Iimg src={props.sliderItem[3].image} alt="Cat-banner-4" />
                   </Link>
                   <div className="categorycmsblock-title-link-wrapper">
                     <span className="categorycmsblock-title"></span>

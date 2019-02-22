@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import Actions from "../../redux/rootActions";
 import cartService from "../../services/cartService";
-import loadingScreen from '../../utilities/loadingScreen';
 
 function addProductToCart(authUser, product, cart, fn) {
   if (authUser.auth) {

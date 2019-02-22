@@ -1,0 +1,12 @@
+.slick-next{
+    right: 10px!important;
+  }
+
+  .slick-prev{
+    left: 10px!important;
+    z-index: 30000;
+  }
+
+  .categorycmsblock-image img{
+      margin: 0 auto;
+  }

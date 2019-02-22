@@ -72,21 +72,19 @@ class Checkout extends React.Component {
     }
   };
 
-  componentDidMount = () => {
-    loadingScreen.hideLoading();
-  }
+ 
 
   componentWillMount = () => {
     loadingScreen.showLoading();
     if (isNotEmpty(this.props.user)) this.initForm(this.props.user);
 
-    if (this.props.authUser.auth) {
+    if (JSON.parse(localStorage.getItem('authUser'))) {
       if (isNotEmpty(this.props.cart)) {
-        this.setState({ cartList: cloneData(this.props.cart.productOrder) });
+        this.setState({ cartList: cloneData(this.props.cart.productOrder)}, loadingScreen.hideLoading);
       }
-    } else {
+     } else {
       let cartListLS = cartService.getCartFromLS();
-      this.setState({ cartList: cartListLS });
+      this.setState({ cartList: cartListLS }, loadingScreen.hideLoading);
     }
   };
 
@@ -103,6 +101,8 @@ class Checkout extends React.Component {
       }
     }
   }
+
+
 
   clearAllCart = () => {
     if (this.props.authUser.auth) {
@@ -154,6 +154,7 @@ class Checkout extends React.Component {
 
   render() {
     if (!this.state.cartList.length) {
+      loadingScreen.showLoading()
       return (
         <div className="main-content">
           <div id="breadcrumb">
@@ -194,6 +195,7 @@ class Checkout extends React.Component {
           </div>
         </div>
       );
+      
     }
     let listOder = null;
     listOder = (

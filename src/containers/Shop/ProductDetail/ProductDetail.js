@@ -20,7 +20,6 @@ import { connect } from "react-redux";
 import Actions from "../../../redux/rootActions";
 import ImageGallery from 'react-image-gallery';
 import Slider from "react-slick";
-import Limg from "../../../components/UI/LoadingImage/Limg";
 class ProductDetail extends React.Component {
 
   state = {
@@ -147,17 +146,27 @@ class ProductDetail extends React.Component {
   }
 
   onCheckout() {
-    this.props.history.push({ pathname: '/checkout' })
+    if (this.props.authUser.auth) {
+      let cart = cloneData(this.props.cart);
+      const cartItem = cloneData(this.state.product);
+      cartItem.quantity = +document.getElementById("input-quantity").value;
+      cart.productOrder = cartService.checkExistingItem(
+        cartItem,
+        cart.productOrder
+      );
+      this.props.updateCart(this.props.cart._id, cart);
+      this.props.history.push({ pathname: '/checkout' })
+    } else {
+      cartService.saveCartItemLSGuest(this.state.product);
+      this.props.history.push({ pathname: '/checkout' })
+    }
   }
 
 
   render() {
 
     const settings = {
-      // adaptiveHeight: true,
-      // dots: true,
       infinite: false,
-      // arrows: true,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
@@ -167,8 +176,6 @@ class ProductDetail extends React.Component {
           settings: {
             slidesToShow: 3,
             slidesToScroll: 1,
-            // infinite: true,
-            // dots: true
           }
         },
         {
@@ -176,8 +183,6 @@ class ProductDetail extends React.Component {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
-            // infinite: true,
-            // dots: true
           }
         },
         {
@@ -193,20 +198,7 @@ class ProductDetail extends React.Component {
 
 
     if (isNotEmpty(this.state.product)) {
-      let listProductCardHTML = [];
-      if (this.state.randomList.length) {
-        listProductCardHTML = (
-          <>
-            {this.state.randomList.map((card, index) => {
-              return (
-                <div className="slider-item related_product_image" key={index}>
-                  <ProductCard cardContent={card} />
-                </div>
-              );
-            })}
-          </>
-        );
-      }
+      
 
       const imagesArray = this.state.product.images.map((image) => ({
         original: image,
@@ -361,7 +353,7 @@ class ProductDetail extends React.Component {
                             className="control-label qty"
                             htmlFor="input-quantity"
                           >
-                            Số lượng
+                            Số Lượng
                           </label>
                           <input
                             type="number"

@@ -21,39 +21,23 @@ class Cart extends React.Component {
     totalPrice: 0,
   };
 
-  componentDidMount() {
-    loadingScreen.hideLoading();
-
-    window.$('.input-number-increment').click(function() {
-      
-    });
-    
-    window.$('.input-number-decrement').click(function() {
-      var $input = window.$(this).parents('.input-number-group').find('.input-number');
-      var val = parseInt($input.val(), 10);
-      $input.val(val - 1);
-    })
-    
-    
-  }
-
+ 
   componentWillMount = () => {
     loadingScreen.showLoading();
-    if (this.props.authUser.auth) {
+    if (JSON.parse(localStorage.getItem('authUser'))) {
       if (isNotEmpty(this.props.cart)) {
-        this.setState({ cartList: cloneData(this.props.cart.productOrder) });
+        this.setState({ cartList: cloneData(this.props.cart.productOrder) }, loadingScreen.hideLoading);
       }
-    } else {
+     } else {
       let cartListLS = cartService.getCartFromLS();
-      loadingScreen.showLoading();
-      this.setState({ cartList: cartListLS });
+      this.setState({ cartList: cartListLS }, loadingScreen.hideLoading);
     }
   };
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.authUser.auth) {
       if (isNotEmpty(nextProps.cart)) {
-        this.setState({ cartList: cloneData(nextProps.cart.productOrder) });
+        this.setState({ cartList: cloneData(nextProps.cart.productOrder) }, loadingScreen.hideLoading);
       }
     }
   };
