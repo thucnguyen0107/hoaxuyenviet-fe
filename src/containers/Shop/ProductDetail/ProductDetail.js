@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import ProductCard from "../../../components/UI/ProductCard";
 import axios from "axios";
 import { endPoints } from "../../../services/config";
@@ -82,6 +83,10 @@ class ProductDetail extends React.Component {
       marginLeft: "10px"
     };
   }
+
+  componentDidUpdate = () => {
+    ReactDOM.findDOMNode(this).scrollIntoView();
+   }
 
   componentWillMount() {
     loadingScreen.showLoading();
@@ -205,7 +210,7 @@ class ProductDetail extends React.Component {
         thumbnail: image,
       }));
 
-      // loadingScreen.hideLoading();
+       loadingScreen.showLoading();
       return (
         <div className="main-content">
           <div id="breadcrumb">
@@ -405,6 +410,13 @@ class ProductDetail extends React.Component {
                       </div>
                     </div>
                   </div>
+                  <div className="box related">
+                      <div className="box-heading">
+                        <h2 className="products-section-title">
+                          Có thể bạn muốn mua
+                        </h2>
+                      </div>
+                  </div>
                   <Slider {...settings}  className={classes.relate_products} >
                     {this.state.randomList.map((card, index) => {
                       return (
@@ -420,6 +432,8 @@ class ProductDetail extends React.Component {
           </div>
         </div>
       );
+      
+
     } else {
       return null;
     }

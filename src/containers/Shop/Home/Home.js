@@ -37,6 +37,7 @@ class Body extends React.Component {
   
   render() {
 
+
     const settings = {
       dots: true,
       infinite: true,
@@ -46,6 +47,7 @@ class Body extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows:false,
+      
     };
 
     const settings_tab = {
@@ -92,7 +94,7 @@ class Body extends React.Component {
                   this.state.htmlContentModel.bannerSlide.map((banner, index) => {
                     return(
                       <div key={index}>
-                        <Link to={banner.eventLink}><Iimg src={banner.image} alt={`Main-banner-${index + 1}`} className="img-responsive" /></Link>
+                        <Link to={banner.eventLink}><Iimg src={banner.image} alt={`Main-banner-${index + 1}`} className="img-responsive background_img" /></Link>
                      </div>
                     );
 
