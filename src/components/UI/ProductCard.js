@@ -1,19 +1,40 @@
 import React from 'react';
 import Iimg from '../../components/UI/LoadingImage/Limg';
-import { formatCurrency } from '../../utilities/fnUtil';
+import { formatCurrency,cloneData } from '../../utilities/fnUtil';
+import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import Actions from "../../redux/rootActions";
+import cartService from "../../services/cartService";
+
+function addProductToCart(authUser, product, cart, fn) {
+  if (authUser.auth) {
+    let cartClone = cloneData(cart);
+    const cartItem = cloneData(product);
+    cartItem.quantity = 1;
+    cartClone.productOrder = cartService.checkExistingItem(
+      cartItem,
+      cartClone.productOrder
+    );
+    fn(cartClone._id, cartClone);
+  } else {
+    cartService.saveCartItemLSGuest(product);
+  }
+
+}
+
 const productCard = (props) => {
 
 
   return (
-    <div className="slider-item">
+    <div className="slider-item ">
       <div className="product-block product-thumb transition">
         <div className="product-block-inner">
           <div className="image">
-            <a href={'/productDetail/' + props.cardContent._id}>
-              <Iimg src={props.cardContent.images[0]} title={props.cardContent.productName} alt={props.cardContent.productName} className="img-responsive reg-image" />
-              <Iimg className="img-responsive hover-image" src={props.cardContent.images[1]} title={props.cardContent.productName}
+            <Link to={{pathname:'/productDetail/' + props.cardContent._id}}>
+              <Iimg width="300" height="400" src={props.cardContent.images[0]} title={props.cardContent.productName} alt={props.cardContent.productName} className=" reg-image" />
+              <Iimg  width="300" height="400" className="hover-image" src={props.cardContent.images[1]} title={props.cardContent.productName}
                 alt={props.cardContent.productName} />
-            </a>
+            </Link>
             <div className="extra-info">
               {props.cardContent.discount > 0 ? <span className="percentsaving">{`${props.cardContent.discount}%`}</span> : null}
             </div>
@@ -21,8 +42,8 @@ const productCard = (props) => {
           <div className="caption">
             <div className="product-deacription-wrapper">
               <h4>
-                <a href={'/productDetail/' + props.cardContent._id}>{props.cardContent.productName}
-                </a>
+              <Link to={{pathname:'/productDetail/' + props.cardContent._id}}>{props.cardContent.productName}
+                </Link>
               </h4>
               <strong><span className="price-new">{formatCurrency((props.cardContent.price - (props.cardContent.discount * props.cardContent.price / 100)))} VND</span></strong>
               {props.cardContent.discount > 0 ? <span className="price-old">{formatCurrency(props.cardContent.price)}</span> : <span className="price-old"></span>}
@@ -33,7 +54,7 @@ const productCard = (props) => {
               </div>
 
               <div className="button-group">
-                <button type="button" className="btn btn-primary addtocart" >
+                <button type="button" className="btn btn-primary addtocart"  onClick={() => addProductToCart(props.authUser, props.cardContent, props.cart, props.updateCart)}>
                   <i className="fa fa-shopping-basket"></i>
                   Add to Cart
               </button>
@@ -43,8 +64,26 @@ const productCard = (props) => {
           <span className="related_default_width" style={{ display: 'none', visibility: "hidden" }}></span>
         </div>
       </div>
-    </div>
+     </div>
   );
 }
 
-export default productCard;
+const mapStateToProps = state => {
+  return {
+    authUser: state.authUser,
+    user: state.userList.user,
+    cart: state.userList.cart
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateCart: (cartId, cartData) =>
+      dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(productCard);

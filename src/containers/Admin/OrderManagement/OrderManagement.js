@@ -56,16 +56,16 @@ class OrderManagement extends React.Component {
             okText="Đồng Ý"
             cancelText="Hủy"
           >
-            <Button type="default">PENDING</Button>
+            <Button type="default">Đang Xử Lý</Button>
           </Popconfirm>
           <Divider type="vertical" />
           <Popconfirm
-            title="Bạn có chắc chắn muốn xóaBạn có chắc chắn muốn thay đổi trạng thái đơn hàng?"
+            title="Bạn có chắc chắn muốn thay đổi trạng thái đơn hàng?"
             onConfirm={() => this.updateOrderStatus(record._id, "DELIVERING")}
             okText="Đồng Ý"
             cancelText="Hủy"
           >
-            <Button type="default">DELIVERING</Button>
+            <Button type="default">Đang Giao Hàng</Button>
           </Popconfirm>
           <Divider type="vertical" />
           <Popconfirm
@@ -74,7 +74,7 @@ class OrderManagement extends React.Component {
             okText="Đồng Ý"
             cancelText="Hủy"
           >
-            <Button type="default">COMPLETED</Button>
+            <Button type="default">Hoàn Thành</Button>
           </Popconfirm>
         </>
       )

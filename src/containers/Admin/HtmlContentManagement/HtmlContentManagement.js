@@ -164,6 +164,12 @@ class HtmlContentManagement extends React.Component {
           visible: true,
           link: "https://instagram.com",
           iconName: "fa fa-instagram"
+        },
+        {
+          id: "zalo",
+          visible: true,
+          link: "https://zalo.me",
+          iconName: "fa fa-zalo"
         }
       ]
     };

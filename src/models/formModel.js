@@ -166,19 +166,19 @@ export const ProductFormModel = {
     valid: true
   },
   description: {
-    elementType: "textarea",
+    elementType: "editor",
     elementConfig: {
-      type: "text",
       name: "Mô Tả Sản Phẩm",
       placeholder: "Nhập Mô Tả Sản Phẩm"
     },
-    value: [],
+    value: "",
     validation: {
       required: true,
       errorMessage: "Chưa Nhập Mô Tả"
     },
     valid: true
   }
+  
 };
 
 export const htmlContentFormModel = {

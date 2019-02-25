@@ -3,7 +3,8 @@ import {
   formatDate,
   formatCurrency,
   initGalleryZoom,
-  createContentHtmlString
+  createContentHtmlString,
+  convertStatus
 } from "../utilities/fnUtil";
 import { convertItemToName } from "../utilities/categoriesUtil";
 import { Tag, Switch, Input, Button, Icon, Collapse } from "antd";
@@ -74,6 +75,11 @@ const getColumnSearchProps = (
           .toString()
           .toLowerCase()
           .includes(value.toLowerCase());
+      case "status":
+        return convertStatus(record[dataIndex])
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase());
       default:
         return record[dataIndex]
           .toString()
@@ -93,9 +99,9 @@ const getColumnSearchProps = (
       case "birthDate":
         return formatDate(item, true);
       case "status":
-        if (item === "PENDING") return <Tag color="#87d068">{item}</Tag>;
-        if (item === "DELIVERING") return <Tag color="#108ee9">{item}</Tag>;
-        if (item === "COMPLETED") return <Tag color="#9e0b0b">{item}</Tag>;
+        if (item === "PENDING") return <Tag color="#87d068">{convertStatus(item)}</Tag>;
+        if (item === "DELIVERING") return <Tag color="#108ee9">{convertStatus(item)}</Tag>;
+        if (item === "COMPLETED") return <Tag color="#9e0b0b">{convertStatus(item)}</Tag>;
         break;
       case "category":
         return (

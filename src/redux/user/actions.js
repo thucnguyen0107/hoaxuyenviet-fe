@@ -148,7 +148,7 @@ const createNewUserFromSV = data => {
       })
       .catch(err => {
         loadingScreen.hideLoading();
-        err.response.data.code === "006"
+        err.response && err.response.data.code === "006"
           ? showNotification({
               type: "error",
               message: err.response.data.message

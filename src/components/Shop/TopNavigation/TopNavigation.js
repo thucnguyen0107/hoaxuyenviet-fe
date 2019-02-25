@@ -32,13 +32,13 @@ function blurSelected() {
   }
 }
 
-const closeMenu = () => {
-  window.$(".myaccount a.dropdown-toggle").click();
-};
+// const closeMenu = () => {
+//   window.$(".myaccount a.dropdown-toggle").click();
+// };
 
-const closeCartMenu = () => {
-  window.$("#cart .dropdown-toggle").click();
-};
+// const closeCartMenu = () => {
+//   window.$("#cart .dropdown-toggle").onMouseOver();
+// };
 
 
 
@@ -52,9 +52,9 @@ function loadCart(authUser, productOrder = [], fn, cartLS) {
   if (authUser.auth) {
     arrayProductOrder = productOrder.slice();
   } else {
-    let temp = cartService.getProductToCart();
+    let temp = cartService.getCartFromLS();
     if (!Object.is(JSON.stringify(temp), JSON.stringify(cartLS))) {
-      fn(cartService.getProductToCart());
+      fn(cartService.getCartFromLS());
     }
     arrayProductOrder = cartLS.slice();
 
@@ -200,7 +200,7 @@ const topNavigation = props => {
                       data-loading-text="Loading..."
                       className="btn btn-inverse btn-block btn-lg dropdown-toggle"
                     >
-                      <span id="cart-title" onClick={() => loadCart(props.authUser, props.cart.productOrder, props.setCartLSState, props.cartLS)}>Giỏ hàng</span>
+                      <span id="cart-title" onMouseEnter={() => loadCart(props.authUser, props.cart.productOrder, props.setCartLSState, props.cartLS)}>Giỏ hàng</span>
                       <i className="fa fa-angle-down" />
                       <span id="cart-total">
                         <span className="single-item">0</span>
@@ -209,7 +209,6 @@ const topNavigation = props => {
                     <ul
                       className="dropdown-menu pull-right cart-menu"
                       style={zIndexStyle}
-                     
                     >
                       {cartList}
                       <li>
@@ -264,7 +263,7 @@ const topNavigation = props => {
                     <ul
                       className="dropdown-menu dropdown-menu-right myaccount-menu"
                       style={zIndexStyle}
-                      onClick={() => closeMenu()}
+                      // onClick={() => closeMenu()}
                     >
                       <li>
                         <Link to="/register">Đăng Ký</Link>
@@ -288,7 +287,7 @@ const topNavigation = props => {
                       <ul
                         className="dropdown-menu dropdown-menu-right myaccount-menu"
                         style={zIndexStyle}
-                        onClick={() => closeMenu()}
+                        // onClick={() => closeMenu()}
                       >
                         <nav id="top">
                           <div id="top-links" className="nav">

@@ -1,5 +1,6 @@
 @import url("themecss/animate.css");
 
+
 body {
 	background-color: #ffffff;
 	color: #606060;
@@ -5194,7 +5195,7 @@ body .btn:hover {
 	position: relative;
 	float: left;
 	width: 100%;
-	background: #f8f8f8;
+	background: transparent;
 }
 .product-thumb .image a:hover {}
 .product-thumb .image img {
@@ -5239,7 +5240,7 @@ body .btn:hover {
 #column-left .image .hover-image .button-group button:hover {
 	background: transparent;
 	color: #ffffff;
-	height: auto;
+	/* height: auto; */
 	left: 0;
 	opacity: 0;
 	position: absolute;

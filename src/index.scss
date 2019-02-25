@@ -16,4 +16,63 @@ code {
 :global .main-content,
 :global #common-home {
   padding-bottom: 150px;
+  @media screen and (max-width: 575px){
+    padding-bottom: 400px;
+  }
 }
+
+
+:global  .fa-zalo:before{
+  content: "Z";
+  font-weight: 600;
+}
+
+:global .main-image {
+  height: 500px !important;
+  width: inherit !important;
+  margin: 0!important;
+}
+
+:global .slider-item.small_image{
+  width: 40px!important;
+  height: 40px!important;
+
+  a{
+    width: 40px!important;
+  height: 40px!important;
+  }
+  img{
+    width: 40px!important;
+  height: 40px!important;
+  }
+}
+
+:global .slider-item.related_product_image{
+  width: 400px!important;
+}
+
+:global .image-gallery-slide img {
+  width: 500px!important;
+  height: 500px!important;
+}
+
+
+:global .image-gallery-thumbnail  {
+  border:none!important;
+}
+
+:global .image-gallery-thumbnail img  {
+  width: 40px!important;
+  height: 50px!important;
+
+}
+
+:global .slick-prev:before, :global .slick-next:before {
+  color: #000 !important;
+}
+
+:global .slick-next{
+  right: -25px!important;
+}
+
+

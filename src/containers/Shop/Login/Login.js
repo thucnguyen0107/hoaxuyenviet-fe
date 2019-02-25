@@ -50,6 +50,9 @@ class Login extends React.Component {
   componentDidMount() {
     loadingScreen.hideLoading();
   }
+  componentWillMount() {
+    loadingScreen.showLoading();
+  }
 
   setStateForm = (object, submit = false) => {
     this.setState(object, () => {
@@ -89,6 +92,8 @@ class Login extends React.Component {
   };
 
   render() {
+
+
     return (
       <div className="main-content">
         <div id="breadcrumb">
@@ -113,10 +118,9 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-        <div id="content" className="col-sm-9" style={{ height: "430px" }}>
+        <div id="content" className="container"  style={{ width: "100%",margin:'0 auto' }}>
           <div className="row">
             <div className="col-sm-6">
-              <div className="well">
                 <h2>Khách Hàng Mới</h2>
                 <p>
                   <strong>Đăng Ký</strong>
@@ -129,7 +133,13 @@ class Login extends React.Component {
                 <Link to="/register" className="btn btn-default">
                   Tiếp tục
                 </Link>
-              </div>
+                <div style={{margin: '50px 0'}}>
+                  <h2> Quên Mật Khẩu </h2>     
+                  <Link to="/forgotpassword" className="btn btn-default">
+                  Tìm Lại Mật Khẩu
+                  </Link>
+                </div>
+                
             </div>
             
             <div className="col-sm-6">
@@ -147,14 +157,7 @@ class Login extends React.Component {
                 />
               </div>
             </div>
-            <div className="col-sm-6" style={{marginTop: '-100px'}}>
-              <div className="well">
-                <h2> Quên Mật Khẩu </h2>     
-                <Link to="/forgotpassword" className="btn btn-default">
-                 Tìm Lại Mật Khẩu
-                </Link>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

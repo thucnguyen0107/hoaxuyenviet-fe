@@ -15,7 +15,7 @@ const saveCartItemLSGuest = item => {
   // create array in local storage
   let arrProductListLocalStorage = [];
   // Parse the serialized data back into an aray of objects
-  arrProductListLocalStorage = JSON.parse(localStorage.getItem("list")) || [];
+  arrProductListLocalStorage = getCartFromLS();
   // if duplicate product, just add quantity
   arrProductListLocalStorage = checkExistingItem(
     productData,
@@ -78,12 +78,12 @@ const checkExistingItem = (product, arr) => {
 // }
 
 
-const getProductToCart = () => {
+const getCartFromLS = () => {
   return JSON.parse(localStorage.getItem("list")) || [];
 }
 
 const cartService = {
-  saveCartItemLSGuest, getProductToCart, checkExistingItem
+  saveCartItemLSGuest, getCartFromLS, checkExistingItem
 }
 
 export default cartService;

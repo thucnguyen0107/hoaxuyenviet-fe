@@ -4,10 +4,13 @@ import Iimg from "../../../components/UI/LoadingImage/Limg";
 import Input from "../../../components/UI/Input/Input";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import cartService from '../../../services/cartService'
+import "./Cart.css";
 import {
   formatCurrency,
   isNotEmpty,
-  cloneData
+  cloneData,
+  showNotification
 } from "../../../utilities/fnUtil";
 import classes from "./Cart.scss";
 import { Popconfirm } from "antd";
@@ -15,33 +18,73 @@ import Actions from "../../../redux/rootActions";
 class Cart extends React.Component {
   state = {
     cartList: [],
-    totalPrice: 0
+    totalPrice: 0,
   };
 
-  componentDidMount() {
-    loadingScreen.hideLoading();
-  }
-
+ 
   componentWillMount = () => {
     loadingScreen.showLoading();
-    if (this.props.authUser.auth) {
+    if (JSON.parse(localStorage.getItem('authUser'))) {
       if (isNotEmpty(this.props.cart)) {
-        this.setState({ cartList: cloneData(this.props.cart.productOrder) });
+        this.setState({ cartList: cloneData(this.props.cart.productOrder) }, loadingScreen.hideLoading);
       }
-    } else {
-      let cartListLS = JSON.parse(localStorage.getItem("list")) || [];
-      loadingScreen.showLoading();
-      this.setState({ cartList: cartListLS });
+     } else {
+      let cartListLS = cartService.getCartFromLS();
+      this.setState({ cartList: cartListLS }, loadingScreen.hideLoading);
     }
   };
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.authUser.auth) {
       if (isNotEmpty(nextProps.cart)) {
-        this.setState({ cartList: cloneData(nextProps.cart.productOrder) });
+        this.setState({ cartList: cloneData(nextProps.cart.productOrder) }, loadingScreen.hideLoading);
       }
     }
   };
+
+  onIncreQuantity = (orderItem, index) => {
+    if(this.props.authUser.auth){
+      let cartData = cloneData(this.props.cart);
+      cartData.productOrder[index].quantity = ++orderItem.quantity
+      this.props.updateCariItem(this.props.cart._id, cartData);
+    }else{
+      let cartData = cloneData(this.state.cartList[index])
+      cartData.quantity = ++orderItem.quantity;
+      let cartListLS =  cartService.getCartFromLS();
+      cartListLS[index].quantity = cartData.quantity;
+      loadingScreen.showLoading();
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
+      localStorage.setItem("list", JSON.stringify(cartListLS));
+      this.setState({ cartList:cartListLS})
+      loadingScreen.hideLoading();
+    }
+    
+  }
+
+  onDecreQuantity = (orderItem, index) => {
+    if(this.props.authUser.auth){
+      let cartData = cloneData(this.props.cart);
+      cartData.productOrder[index].quantity = --orderItem.quantity
+      if(cartData.productOrder[index].quantity < 1){
+        cartData.productOrder[index].quantity = 1;
+      }
+      this.props.updateCariItem(this.props.cart._id, cartData);
+    }else{
+      let cartData = cloneData(this.state.cartList[index])
+      cartData.quantity = --orderItem.quantity;
+      if( cartData.quantity < 1){
+        cartData.quantity = 1;
+      }
+      let cartListLS =  cartService.getCartFromLS();
+      cartListLS[index].quantity = cartData.quantity;
+      loadingScreen.showLoading();
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
+      localStorage.setItem("list", JSON.stringify(cartListLS));
+      this.setState({ cartList:cartListLS})
+      loadingScreen.hideLoading();
+    }
+    
+  }
 
   onRemoveCartItem = index => {
     if (this.props.authUser.auth) {
@@ -53,6 +96,7 @@ class Cart extends React.Component {
       this.state.cartList.splice(index, 1);
       let cartListLS = this.state.cartList.slice(0);
       localStorage.setItem("list", JSON.stringify(cartListLS));
+      showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       this.setState({ cartList: cartListLS });
     }
   };
@@ -92,21 +136,17 @@ class Cart extends React.Component {
                         className="input-group btn-block"
                         style={{ maxWidth: "200px" }}
                       >
-                        <span
-                          name=""
-                          size="1"
-                          className="form-control"
-                          style={{
-                            padding: "6px 5px",
-                            textAlign: "center",
-                            width: "40px",
-                            border: "none"
-                          }}
-                        >
-                          {order.quantity}
-                        </span>
+                        <div className="input-group input-number-group">
+                          <div className="input-group-button">
+                            <span className="input-number-decrement transparent_button" onClick={()=>this.onDecreQuantity(order, index)}>-</span>
+                          </div>
+                          <input readOnly className="input-number transparent_button" type="number" min="1" value={order.quantity} />
+                          <div className="input-group-button">
+                            <span className="input-number-increment transparent_button" onClick={()=>this.onIncreQuantity(order, index)}>+</span>
+                          </div>
+                        </div>
 
-                        <span className="input-group-btn">
+                        <span className="input-group-btn clear_float">
                           <Popconfirm
                             title="Bạn có chắc chắn muốn xóa?"
                             onConfirm={() => this.onRemoveCartItem(index)}
@@ -307,6 +347,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     removeCartItem: (cartId, cartData) =>
+      dispatch(Actions.userActions.updateCartFromSV(cartId, cartData)),
+
+      updateCariItem: (cartId, cartData) =>
       dispatch(Actions.userActions.updateCartFromSV(cartId, cartData))
   };
 };
