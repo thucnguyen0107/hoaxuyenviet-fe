@@ -1,5 +1,4 @@
 import { showNotification, cloneData } from "../utilities/fnUtil";
-import loadingScreen from "../utilities/loadingScreen";
 const saveCartItemLSGuest = item => {
   let productData;
   productData = cloneData(item);
@@ -23,9 +22,7 @@ const saveCartItemLSGuest = item => {
   );
   // Re-serialize the array back into a string and store it in localStorage
   localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
-  loadingScreen.showLoading();
   showNotification({ message: 'Lưu Vào Giỏ Hàng Thành Công!' })
-  loadingScreen.hideLoading();
 };
 
 

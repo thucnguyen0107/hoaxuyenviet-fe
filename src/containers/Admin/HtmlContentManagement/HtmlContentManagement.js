@@ -269,7 +269,6 @@ class HtmlContentManagement extends React.Component {
     this.setState(object, () => {
       if (this.state.formIsValid && submit) {
         const data = this.convertFormDataToData(this.state.htmlContentForm);
-        console.log(data);
         this.props.updateHtmlContent(data);
       }
     });

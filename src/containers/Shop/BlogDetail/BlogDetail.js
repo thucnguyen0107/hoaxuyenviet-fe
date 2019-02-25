@@ -9,6 +9,7 @@ class BlogDetail extends React.Component {
   };
   componentDidMount() {
     loadingScreen.hideLoading();
+      window.scrollTo(0,0);
   }
 
   componentWillMount() {

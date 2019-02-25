@@ -27,31 +27,31 @@ const SideBar = props => {
         <Menu.Item key="productManagement">
           <Link to={{ pathname: "/admin/productManagement" }}>
             <Icon type="database" />
-            <span>Quản lý sản phẩm</span>
+            <span>Quản Lý Sản Phẩm</span>
           </Link>
         </Menu.Item>
         <Menu.Item key="orderManagement">
           <Link to={{ pathname: "/admin/orderManagement" }}>
             <Icon type="shopping-cart" />
-            <span>Quản lý đơn hàng</span>
+            <span>Quản Lý Đơn Hàng</span>
           </Link>
         </Menu.Item>
         <Menu.Item key="userManagement">
           <Link to={{ pathname: "/admin/userManagement" }}>
             <Icon type="user" />
-            <span>Quản lý người dùng</span>
+            <span>Quản Lý Người Dùng</span>
           </Link>
         </Menu.Item>
         <Menu.Item key="htmlContentManagement">
           <Link to={{ pathname: "/admin/htmlContentManagement" }}>
             <Icon type="shop" />
-            <span>Quản lý nội dung</span>
+            <span>Quản Lý Nội Dung</span>
           </Link>
         </Menu.Item>
         <Menu.Item key="blogManagement">
           <Link to={{ pathname: "/admin/blogManagement" }}>
             <Icon type="form" />
-            <span>Quản lý Blog</span>
+            <span>Quản Lý Blog</span>
           </Link>
         </Menu.Item>
       </Menu>

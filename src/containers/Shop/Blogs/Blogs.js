@@ -100,23 +100,6 @@ class Blogs extends React.Component {
                             title="Blogs"
                             className="img-thumbnail"
                           />
-                          <p className="post_hover">
-                            <Link
-                              className="icon zoom"
-                              title="Click to view Full Image "
-                              to={blog.image}
-                              data-lightbox="example-set"
-                            >
-                              <i className="fa fa-plus" />
-                            </Link>
-                            <Link
-                              className="icon dots"
-                              title="Read More"
-                              to={"/blogDetail/" + blog._id}
-                            >
-                              <i className="fa fa-ellipsis-h" />{" "}
-                            </Link>
-                          </p>
                         </div>
                       </div>
                       <div
@@ -145,11 +128,11 @@ class Blogs extends React.Component {
           className={classes.productsProgressBar}
           data-auto-id="productsProgressBar"
         >
-          You've viewed{" "}
+          Bạn đã xem{" "}
           {this.state.visible > this.state.filteredHTMLBlogModel.length
             ? this.state.filteredHTMLBlogModel.length
             : this.state.visible}{" "}
-          of {this.state.filteredHTMLBlogModel.length} blogs
+          / {this.state.filteredHTMLBlogModel.length} blogs
         </p>
 
         {this.state.visible < this.state.filteredHTMLBlogModel.length && (

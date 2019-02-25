@@ -300,7 +300,18 @@ export const createDataProductListColumns = (
     {
       title: "Mô Tả",
       key: "description",
-      dataIndex: "description"
+      dataIndex: "description",
+      render: content => (
+        <>
+          <Collapse>
+            <Collapse.Panel header="Chi Tiết">
+           
+            <div dangerouslySetInnerHTML={createContentHtmlString(content)}></div>
+                
+            </Collapse.Panel>
+          </Collapse>
+        </>
+      )
     },
     {
       title: "Ngày Tạo",

@@ -42,6 +42,10 @@ class Cart extends React.Component {
     }
   };
 
+  componentDidMount = () => {
+    window.scrollTo(0,0);
+   }
+
   onIncreQuantity = (orderItem, index) => {
     if(this.props.authUser.auth){
       let cartData = cloneData(this.props.cart);
@@ -52,11 +56,9 @@ class Cart extends React.Component {
       cartData.quantity = ++orderItem.quantity;
       let cartListLS =  cartService.getCartFromLS();
       cartListLS[index].quantity = cartData.quantity;
-      loadingScreen.showLoading();
       showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       localStorage.setItem("list", JSON.stringify(cartListLS));
       this.setState({ cartList:cartListLS})
-      loadingScreen.hideLoading();
     }
     
   }
@@ -77,11 +79,9 @@ class Cart extends React.Component {
       }
       let cartListLS =  cartService.getCartFromLS();
       cartListLS[index].quantity = cartData.quantity;
-      loadingScreen.showLoading();
       showNotification({ message: "Cập Nhật Giỏ Hàng Thành Công!" });
       localStorage.setItem("list", JSON.stringify(cartListLS));
       this.setState({ cartList:cartListLS})
-      loadingScreen.hideLoading();
     }
     
   }
@@ -231,7 +231,7 @@ class Cart extends React.Component {
                       <tr>
                         <td className="text-center">Hình Ảnh</td>
                         <td className="text-left">Tên Sản Phẩm</td>
-                        <td className="text-left">Số Lượng</td>
+                        <td className="text-center">Số Lượng</td>
                         <td className="text-right">Đơn Giá</td>
                         <td className="text-right">Giảm Giá</td>
                         <td className="text-right">Giá Sau Khi Giảm</td>
