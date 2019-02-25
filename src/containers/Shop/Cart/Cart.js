@@ -42,6 +42,10 @@ class Cart extends React.Component {
     }
   };
 
+  componentDidMount = () => {
+    window.scrollTo(0,0);
+   }
+
   onIncreQuantity = (orderItem, index) => {
     if(this.props.authUser.auth){
       let cartData = cloneData(this.props.cart);

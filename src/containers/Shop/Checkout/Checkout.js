@@ -39,7 +39,6 @@ class Checkout extends React.Component {
       image: "https://stripe.com/img/documentation/checkout/marketplace.png",
       locale: "auto",
       token: function(token) {
-        console.log(token);
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
 
@@ -50,8 +49,8 @@ class Checkout extends React.Component {
           stripeTokenId: token.id,
           data: item
         })
-          .then(res => console.log(res))
-          .catch(err => console.log(err));
+          .then(res => {} )
+          .catch(err => {});
       }
     });
   };
@@ -101,6 +100,9 @@ class Checkout extends React.Component {
       }
     }
   }
+  componentDidMount = () => {
+    window.scrollTo(0,0);
+   }
 
 
 
@@ -133,13 +135,10 @@ class Checkout extends React.Component {
           );
         }
         Axios.post(endPoints.ORDER_API, orderData).then(res => {
-          console.log(res);
           Axios.post(endPoints.EMAIL_API, orderData)
             .then(res => {
-              console.log(res);
             })
             .catch(err => {
-              console.log(err);
             });
           this.initPaymentForm(
             orderData.order.payment,

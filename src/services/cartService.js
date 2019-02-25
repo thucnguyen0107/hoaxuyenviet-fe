@@ -1,5 +1,4 @@
 import { showNotification, cloneData } from "../utilities/fnUtil";
-import loadingScreen from "../utilities/loadingScreen";
 const saveCartItemLSGuest = item => {
   let productData;
   productData = cloneData(item);

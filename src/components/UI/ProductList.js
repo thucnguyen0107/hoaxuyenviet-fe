@@ -57,10 +57,10 @@ const productList = (props) => {
                         </div>
                       </span>
                       <div className="button-group">
-                        <a className="btn btn-primary addtocart"  onClick={() => addProductToCart(props.authUser, product, props.cart, props.updateCart)}>
+                        <button  className="btn btn-primary addtocart"  onClick={()=>  addProductToCart(props.authUser, product, props.cart, props.updateCart)}>
                           <i className="fa fa-shopping-basket"></i>
                           Add to Cart
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </div>

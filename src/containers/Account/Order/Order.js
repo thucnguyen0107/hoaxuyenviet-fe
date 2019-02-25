@@ -21,7 +21,6 @@ class Order extends React.Component {
         .then(res => {
           this.setState({ orderList: res }, loadingScreen.hideLoading)
         }).catch(err => {
-          console.log(err);
         })
     }
   }

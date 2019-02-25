@@ -75,9 +75,7 @@ class ResetPassword extends React.Component {
           axios
             .post(endPoints.RESET_PASSWORD_API, user)
             .then(res => {
-              console.log(res)
             }).catch(err => {
-              console.log(err);
             })
     }
     

@@ -100,23 +100,6 @@ class Blogs extends React.Component {
                             title="Blogs"
                             className="img-thumbnail"
                           />
-                          <p className="post_hover">
-                            <Link
-                              className="icon zoom"
-                              title="Click to view Full Image "
-                              to={blog.image}
-                              data-lightbox="example-set"
-                            >
-                              <i className="fa fa-plus" />
-                            </Link>
-                            <Link
-                              className="icon dots"
-                              title="Read More"
-                              to={"/blogDetail/" + blog._id}
-                            >
-                              <i className="fa fa-ellipsis-h" />{" "}
-                            </Link>
-                          </p>
                         </div>
                       </div>
                       <div
