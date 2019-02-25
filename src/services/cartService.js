@@ -23,9 +23,7 @@ const saveCartItemLSGuest = item => {
   );
   // Re-serialize the array back into a string and store it in localStorage
   localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
-  loadingScreen.showLoading();
   showNotification({ message: 'Lưu Vào Giỏ Hàng Thành Công!' })
-  loadingScreen.hideLoading();
 };
 
 

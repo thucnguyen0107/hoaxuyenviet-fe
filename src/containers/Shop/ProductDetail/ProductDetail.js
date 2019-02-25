@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from 'react-dom';
 import ProductCard from "../../../components/UI/ProductCard";
 import axios from "axios";
 import { endPoints } from "../../../services/config";
@@ -84,9 +83,8 @@ class ProductDetail extends React.Component {
     };
   }
 
-  componentDidUpdate = () => {
-    ReactDOM.findDOMNode(this).scrollIntoView();
-   }
+
+
 
   componentWillMount() {
     loadingScreen.showLoading();
@@ -116,10 +114,16 @@ class ProductDetail extends React.Component {
     if (
       this.props.match.params.product_id !== nextProps.match.params.product_id
     ) {
+      loadingScreen.showLoading();
+      window.scrollTo(0,0);
       axios
         .get(endPoints.PRODUCT_API + nextProps.match.params.product_id)
         .then(res => {
-          axios.get(endPoints.GET_RANDOM_LIST + res.type[0]).then(rl => {
+          axios.get(endPoints.GET_RANDOM_LIST + res.type[0], {
+            params: {
+              productId: res._id
+            }
+          }).then(rl => {
             this.setState(
               {
                 product: res,
@@ -136,6 +140,10 @@ class ProductDetail extends React.Component {
     }
     return true;
   }
+
+   componentDidMount = () => {
+    window.scrollTo(0,0);
+   }
 
   addProductToCart() {
     if (this.props.authUser.auth) {
@@ -210,7 +218,6 @@ class ProductDetail extends React.Component {
         thumbnail: image,
       }));
 
-       loadingScreen.showLoading();
       return (
         <div className="main-content">
           <div id="breadcrumb">
@@ -410,13 +417,13 @@ class ProductDetail extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="box related">
+                 {this.state.randomList.length ? <div className="box related">
                       <div className="box-heading">
                         <h2 className="products-section-title">
                           Có thể bạn muốn mua
                         </h2>
                       </div>
-                  </div>
+                  </div>: null } 
                   <Slider {...settings}  className={classes.relate_products} >
                     {this.state.randomList.map((card, index) => {
                       return (

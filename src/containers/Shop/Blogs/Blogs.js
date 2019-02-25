@@ -145,11 +145,11 @@ class Blogs extends React.Component {
           className={classes.productsProgressBar}
           data-auto-id="productsProgressBar"
         >
-          You've viewed{" "}
+          Bạn đã xem{" "}
           {this.state.visible > this.state.filteredHTMLBlogModel.length
             ? this.state.filteredHTMLBlogModel.length
             : this.state.visible}{" "}
-          of {this.state.filteredHTMLBlogModel.length} blogs
+          / {this.state.filteredHTMLBlogModel.length} blogs
         </p>
 
         {this.state.visible < this.state.filteredHTMLBlogModel.length && (
