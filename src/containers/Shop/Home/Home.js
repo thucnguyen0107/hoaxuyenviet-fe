@@ -3,41 +3,49 @@ import { slideShowDelayTime } from "../../../services/config";
 import CategorySlider from "../../../components/Shop/Slider/CategoriesSlider/CategorySlider/CategorySlider";
 import TabCategories from "../../../components/Shop/TabCategories/TabCategories";
 import classes from "./Home.scss";
-import axios from "axios";
-import { endPoints } from "../../../services/config";
-import loadingScreen from "../../../utilities/loadingScreen";
-import { htmlContentModel } from "../../../models/htmlContentModel";
+import { connect } from "react-redux";
 import { isNotEmpty } from "../../../utilities/fnUtil";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Iimg from "../../../components/UI/LoadingImage/Limg";
-import  './Home.css';
+import "./Home.css";
+import loadingScreen from "../../../utilities/loadingScreen";
+
+function CustomNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style }}
+      onClick={onClick}
+      title="Next"
+    />
+  );
+}
+
+function CustomPrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style }}
+      onClick={onClick}
+      title="Prev"
+    />
+  );
+}
+
 class Body extends React.Component {
-  state = {
-    htmlContentModel
-  };
-
- 
-
   componentWillMount() {
     loadingScreen.showLoading();
-    axios
-      .get(endPoints.HTML_CONTENT)
-      .then(res => {
-        this.setState({ htmlContentModel: res }, loadingScreen.hideLoading);
-      })
-      .catch(err => {
-        loadingScreen.hideLoading();
-        console.error(err);
-      });
+  }
+  componentDidMount() {
+    loadingScreen.hideLoading();
   }
 
-  
   render() {
-
-
     const settings = {
       dots: true,
       infinite: true,
@@ -46,8 +54,8 @@ class Body extends React.Component {
       autoplaySpeed: slideShowDelayTime,
       slidesToShow: 1,
       slidesToScroll: 1,
-      arrows:false,
-      
+      nextArrow: <CustomNextArrow />,
+      prevArrow: <CustomPrevArrow />
     };
 
     const settings_tab = {
@@ -58,19 +66,21 @@ class Body extends React.Component {
       autoplaySpeed: slideShowDelayTime,
       slidesToShow: 1,
       slidesToScroll: 1,
-      adaptiveHeight:true
+      adaptiveHeight: true,
+      nextArrow: <CustomNextArrow />,
+      prevArrow: <CustomPrevArrow />
     };
 
     let catSliderList = [];
 
-    for (const i in this.state.htmlContentModel.eventSlide) {
+    for (const i in this.props.htmlContentModel.eventSlide) {
       catSliderList.push(
-        (
-          <div key={i}>
-            <CategorySlider sliderItem={this.state.htmlContentModel.eventSlide[i]} />
-            </div>
-        )
-      )
+        <div key={i}>
+          <CategorySlider
+            sliderItem={this.props.htmlContentModel.eventSlide[i]}
+          />
+        </div>
+      );
     }
 
     return (
@@ -80,47 +90,48 @@ class Body extends React.Component {
           className="container-fluid"
           style={{ paddingLeft: 0, paddingRight: 0, margin: 0 }}
         >
-          <div className="content-top">
+          <div className="content-top banner">
             <div className={classes.GlobalBanner}>
               <strong>
-                Không chỉ là HOA …<br /> Mà còn là những Khoảnh Khắc ý nghĩa!
+                Không chỉ là HOA …<br /> Mà còn là những Khoảnh Khắc ý nghĩa
               </strong>
             </div>
             <div id="content">
               {/**Slider */}
-              {this.state.htmlContentModel.bannerSlide.length ? <Slider {...settings}>
-              
-                {
-                  this.state.htmlContentModel.bannerSlide.map((banner, index) => {
-                    return(
-                      <div key={index}>
-                        <Link to={banner.eventLink}><Iimg src={banner.image} alt={`Main-banner-${index + 1}`} className="img-responsive background_img" /></Link>
-                     </div>
-                    );
+              {this.props.htmlContentModel.bannerSlide ? (
+                <Slider {...settings}>
+                  {this.props.htmlContentModel.bannerSlide.map(
+                    (banner, index) => {
+                      return (
+                        <div key={index}>
+                          <Link to={banner.eventLink}>
+                            <Iimg
+                              src={banner.image}
+                              alt={`Main-banner-${index + 1}`}
+                              className="img-responsive background_img"
+                            />
+                          </Link>
+                        </div>
+                      );
+                    }
+                  )}
+                </Slider>
+              ) : null}
 
-                    
-                  })
-
-                }
-              </Slider>: null}
-              
               {/**End Slider */}
 
               {/**Test Category Block SlideShow */}
 
-              {isNotEmpty(this.state.htmlContentModel.eventSlide) ? (
-                <Slider {...settings_tab}>
-                    {catSliderList}
-               </Slider>
-
+              {isNotEmpty(this.props.htmlContentModel.eventSlide) ? (
+                <Slider {...settings_tab}>{catSliderList}</Slider>
               ) : null}
               {/**END Test Category Block SlideShow */}
 
               {/*--------------TAB CATEGORY --------------- */}
               <div id="Tab_Category_Slider" className="category_tab box">
-                {isNotEmpty(this.state.htmlContentModel.otherSlide) ? (
+                {isNotEmpty(this.props.htmlContentModel.otherSlide) ? (
                   <TabCategories
-                    listTabCategory={this.state.htmlContentModel.otherSlide}
+                    listTabCategory={this.props.htmlContentModel.otherSlide}
                   />
                 ) : null}
                 {/**------------- END--TAB CATEGORY--------------------- */}
@@ -142,4 +153,10 @@ class Body extends React.Component {
   }
 }
 
-export default Body;
+const mapStateToProps = state => {
+  return {
+    htmlContentModel: state.htmlContent.htmlContent
+  };
+};
+
+export default connect(mapStateToProps)(Body);

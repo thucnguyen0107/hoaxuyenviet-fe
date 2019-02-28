@@ -12,16 +12,40 @@ import {
   cloneData,
   createContentHtmlString
 } from "../../../utilities/fnUtil";
+import "./ProductDetail.css";
 import { convertItemToName } from "../../../utilities/categoriesUtil";
 import classes from "./ProductDetail.scss";
 import { Tag } from "antd";
 import cartService from "../../../services/cartService";
 import { connect } from "react-redux";
 import Actions from "../../../redux/rootActions";
-import ImageGallery from 'react-image-gallery';
+import ImageGallery from "react-image-gallery";
 import Slider from "react-slick";
-class ProductDetail extends React.Component {
 
+function CustomNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style }}
+      onClick={onClick}
+      title="Next"
+    />
+  );
+}
+
+function CustomPrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style }}
+      onClick={onClick}
+      title="Prev"
+    />
+  );
+}
+class ProductDetail extends React.Component {
   state = {
     product: {},
     randomList: []
@@ -83,9 +107,6 @@ class ProductDetail extends React.Component {
     };
   }
 
-
-
-
   componentWillMount() {
     loadingScreen.showLoading();
     axios
@@ -98,10 +119,13 @@ class ProductDetail extends React.Component {
             }
           })
           .then(rl => {
-            this.setState({
-              product: res,
-              randomList: rl
-            }, loadingScreen.hideLoading);
+            this.setState(
+              {
+                product: res,
+                randomList: rl
+              },
+              loadingScreen.hideLoading
+            );
           });
       })
       .catch(err => {
@@ -115,23 +139,25 @@ class ProductDetail extends React.Component {
       this.props.match.params.product_id !== nextProps.match.params.product_id
     ) {
       loadingScreen.showLoading();
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
       axios
         .get(endPoints.PRODUCT_API + nextProps.match.params.product_id)
         .then(res => {
-          axios.get(endPoints.GET_RANDOM_LIST + res.type[0], {
-            params: {
-              productId: res._id
-            }
-          }).then(rl => {
-            this.setState(
-              {
-                product: res,
-                randomList: rl
-              },
-              loadingScreen.hideLoading
-            );
-          });
+          axios
+            .get(endPoints.GET_RANDOM_LIST + res.type[0], {
+              params: {
+                productId: res._id
+              }
+            })
+            .then(rl => {
+              this.setState(
+                {
+                  product: res,
+                  randomList: rl
+                },
+                loadingScreen.hideLoading
+              );
+            });
         })
         .catch(err => {
           loadingScreen.hideLoading();
@@ -141,9 +167,9 @@ class ProductDetail extends React.Component {
     return true;
   }
 
-   componentDidMount = () => {
-    window.scrollTo(0,0);
-   }
+  componentDidMount = () => {
+    window.scrollTo(0, 0);
+  };
 
   addProductToCart() {
     if (this.props.authUser.auth) {
@@ -168,34 +194,34 @@ class ProductDetail extends React.Component {
         cart.productOrder
       );
       this.props.updateCart(this.props.cart._id, cart);
-      this.props.history.push({ pathname: '/checkout' })
+      this.props.history.push({ pathname: "/checkout" });
     } else {
       cartService.saveCartItemLSGuest(this.state.product);
-      this.props.history.push({ pathname: '/checkout' })
+      this.props.history.push({ pathname: "/checkout" });
     }
   }
 
-
   render() {
-
     const settings = {
       infinite: false,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
+      nextArrow: <CustomNextArrow />,
+      prevArrow: <CustomPrevArrow />,
       responsive: [
         {
           breakpoint: 1280,
           settings: {
             slidesToShow: 3,
-            slidesToScroll: 1,
+            slidesToScroll: 1
           }
         },
         {
           breakpoint: 1024,
           settings: {
             slidesToShow: 2,
-            slidesToScroll: 1,
+            slidesToScroll: 1
           }
         },
         {
@@ -208,14 +234,10 @@ class ProductDetail extends React.Component {
       ]
     };
 
-
-
     if (isNotEmpty(this.state.product)) {
-      
-
-      const imagesArray = this.state.product.images.map((image) => ({
+      const imagesArray = this.state.product.images.map(image => ({
         original: image,
-        thumbnail: image,
+        thumbnail: image
       }));
 
       return (
@@ -247,7 +269,7 @@ class ProductDetail extends React.Component {
               </div>
             </div>
           </div>
-          <div className="productpage">
+          <div className="productpage productdetailpage">
             <div id="product-product" className="container">
               <div className="row">
                 <div id="content" className="col-sm-12 productpage">
@@ -255,7 +277,13 @@ class ProductDetail extends React.Component {
                     <div className="col-sm-8 product-left">
                       <div className="product-info">
                         <div className="left product-image thumbnails">
-                          <ImageGallery showFullscreenButton={false} showPlayButton={false} showNav={false} sizes items={imagesArray} />
+                          <ImageGallery
+                            showFullscreenButton={false}
+                            showPlayButton={false}
+                            showNav={false}
+                            sizes
+                            items={imagesArray}
+                          />
                         </div>
                       </div>
                     </div>
@@ -327,9 +355,9 @@ class ProductDetail extends React.Component {
                           <h2>
                             {formatCurrency(
                               this.state.product.price -
-                              (this.state.product.discount *
-                                this.state.product.price) /
-                              100
+                                (this.state.product.discount *
+                                  this.state.product.price) /
+                                  100
                             )}{" "}
                             VND
                           </h2>
@@ -356,8 +384,8 @@ class ProductDetail extends React.Component {
                             {formatCurrency(this.state.product.price)} VND
                           </span>
                         ) : (
-                            <span />
-                          )}
+                          <span />
+                        )}
                       </ul>
                       <div id="product">
                         <div className="form-group cart">
@@ -411,24 +439,30 @@ class ProductDetail extends React.Component {
                         </ul>
                         <div className="tab-content">
                           <div className="tab-pane active" id="tab-description">
-                            <div dangerouslySetInnerHTML={createContentHtmlString(this.state.product.description)}></div>
+                            <div
+                              dangerouslySetInnerHTML={createContentHtmlString(
+                                this.state.product.description
+                              )}
+                            />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                 {this.state.randomList.length ? <div className="box related">
+                  {this.state.randomList.length ? (
+                    <div className="box related">
                       <div className="box-heading">
                         <h2 className="products-section-title">
                           Có thể bạn muốn mua
                         </h2>
                       </div>
-                  </div>: null } 
-                  <Slider {...settings}  className={classes.relate_products} >
+                    </div>
+                  ) : null}
+                  <Slider {...settings} className={classes.relate_products}>
                     {this.state.randomList.map((card, index) => {
                       return (
-                        <div className="box-product"  key={index}>
-                          <ProductCard cardContent={card}/>
+                        <div className="box-product" key={index}>
+                          <ProductCard cardContent={card} />
                         </div>
                       );
                     })}
@@ -439,8 +473,6 @@ class ProductDetail extends React.Component {
           </div>
         </div>
       );
-      
-
     } else {
       return null;
     }
