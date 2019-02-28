@@ -21,16 +21,7 @@
   z-index: 100;
 }
 
-@media only screen and (min-width: 1920px) {
-  .slick-next {
-    right: 15% !important;
-  }
 
-  .slick-prev {
-    left: 15% !important;
-    z-index: 990;
-  }
-}
 
 .background_img {
   width: 100%;
