@@ -1,27 +1,25 @@
 .slick-next {
   right: 10px !important;
-  content: url("../../../assets/images/catalog/homepage/flower-prev-3.png");
+  content: url("../../../assets/images/catalog/homepage/flower.png");
   display: inline-block;
-  transform: translateY(-15px) rotate(180deg);
-  width: 70px;
-  height: 30px;
+  opacity: 0.5;
+}
+
+li.slick-active .slick-next {
+  opacity: 1;
 }
 
 .slick-prev {
   left: 10px !important;
   z-index: 990;
-  content: url("../../../assets/images/catalog/homepage/flower-prev-3.png");
+  content: url("../../../assets/images/catalog/homepage/flower.png");
 
   display: inline-block;
-  width: 70px;
-  height: 30px;
 }
 
 .slick-dots {
   z-index: 100;
 }
-
-
 
 .background_img {
   width: 100%;

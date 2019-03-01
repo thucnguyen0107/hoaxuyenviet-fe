@@ -10,7 +10,8 @@ import {
   formatCurrency,
   isNotEmpty,
   cloneData,
-  createContentHtmlString
+  createContentHtmlString,
+  showNotification
 } from "../../../utilities/fnUtil";
 import "./ProductDetail.css";
 import { convertItemToName } from "../../../utilities/categoriesUtil";
@@ -22,29 +23,29 @@ import Actions from "../../../redux/rootActions";
 import ImageGallery from "react-image-gallery";
 import Slider from "react-slick";
 
-function CustomNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style }}
-      onClick={onClick}
-      title="Next"
-    />
-  );
-}
+// function CustomNextArrow(props) {
+//   const { className, style, onClick } = props;
+//   return (
+//     <div
+//       className={className}
+//       style={{ ...style }}
+//       onClick={onClick}
+//       title="Next"
+//     />
+//   );
+// }
 
-function CustomPrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style }}
-      onClick={onClick}
-      title="Prev"
-    />
-  );
-}
+// function CustomPrevArrow(props) {
+//   const { className, style, onClick } = props;
+//   return (
+//     <div
+//       className={className}
+//       style={{ ...style }}
+//       onClick={onClick}
+//       title="Prev"
+//     />
+//   );
+// }
 class ProductDetail extends React.Component {
   state = {
     product: {},
@@ -105,6 +106,7 @@ class ProductDetail extends React.Component {
       marginTop: "10px",
       marginLeft: "10px"
     };
+    this.numberInput = React.createRef();
   }
 
   componentWillMount() {
@@ -166,7 +168,9 @@ class ProductDetail extends React.Component {
     }
     return true;
   }
-
+  componentDidUpdate = () => {
+    // console.log(this.numberInput);
+  };
   componentDidMount = () => {
     window.scrollTo(0, 0);
   };
@@ -176,11 +180,18 @@ class ProductDetail extends React.Component {
       let cart = cloneData(this.props.cart);
       const cartItem = cloneData(this.state.product);
       cartItem.quantity = +document.getElementById("input-quantity").value;
-      cart.productOrder = cartService.checkExistingItem(
-        cartItem,
-        cart.productOrder
-      );
-      this.props.updateCart(this.props.cart._id, cart);
+      if (cartItem.quantity < 1) {
+        showNotification({
+          type: "error",
+          message: "Số Lượng Sản Phẩm Phải Lớn Hơn 0"
+        });
+      } else {
+        cart.productOrder = cartService.checkExistingItem(
+          cartItem,
+          cart.productOrder
+        );
+        this.props.updateCart(this.props.cart._id, cart);
+      }
     } else cartService.saveCartItemLSGuest(this.state.product);
   }
 
@@ -201,14 +212,32 @@ class ProductDetail extends React.Component {
     }
   }
 
+  filterInput() {
+    var number = document.getElementById("input-quantity");
+
+    number.onkeydown = function(e) {
+      if (
+        !(
+          (e.keyCode > 95 && e.keyCode < 106) ||
+          (e.keyCode > 47 && e.keyCode < 58) ||
+          e.keyCode === 8
+        )
+      ) {
+        return false;
+      }
+    };
+  }
+
   render() {
     const settings = {
+      dots: true,
       infinite: false,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
-      nextArrow: <CustomNextArrow />,
-      prevArrow: <CustomPrevArrow />,
+      draggable: false,
+      arrows: false,
+      customPaging: i => <div className="slick-next" />,
       responsive: [
         {
           breakpoint: 1280,
@@ -403,6 +432,8 @@ class ProductDetail extends React.Component {
                             id="input-quantity"
                             className="form-control"
                             min="1"
+                            ref={this.numberInput}
+                            onKeyDown={() => this.filterInput()}
                           />
                           <button
                             type="button"
