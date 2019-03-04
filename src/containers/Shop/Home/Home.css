@@ -1,29 +1,43 @@
-.slick-next{
-    right: 10px!important;
+.slick-next {
+  right: 10px !important;
+  content: url("../../../assets/images/catalog/homepage/flower-prev-3.png");
+  display: inline-block;
+  transform: translateY(-15px) rotate(180deg);
+  width: 70px;
+  height: 30px;
+}
+
+.slick-prev {
+  left: 10px !important;
+  z-index: 990;
+  content: url("../../../assets/images/catalog/homepage/flower-prev-3.png");
+
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+}
+
+.slick-dots {
+  z-index: 100;
+}
+
+@media only screen and (min-width: 1920px) {
+  .slick-next {
+    right: 15% !important;
   }
 
-  .slick-prev{
-    left: 10px!important;
-    z-index: 30000;
+  .slick-prev {
+    left: 15% !important;
+    z-index: 990;
   }
+}
 
-  @media only screen and (min-width: 1920px){
-    .slick-next{
-      right: 15%!important;
-    }
-  
-    .slick-prev{
-      left: 15%!important;
-      z-index: 30000;
-    }
-  }
-
-  .background_img{
-   width: 100%;
+.background_img {
+  width: 100%;
   height: 100%;
-  object-fit: cover
-  }
+  object-fit: cover;
+}
 
-  .categorycmsblock-image img{
-      margin: 0 auto;
-  }
+.categorycmsblock-image img {
+  margin: 0 auto;
+}

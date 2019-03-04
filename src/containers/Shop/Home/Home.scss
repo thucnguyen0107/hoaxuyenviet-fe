@@ -1,18 +1,23 @@
-.GlobalBanner{
-  background-color: #15a66d;
-    // position: relative;
-    // top: 104px;
-    // z-index: 2;
-    text-align: center;
-    color: #fff;
-    padding: 15px 0;
-    width: 100%;
-
+@font-face {
+  font-family: "CustomFont";
+  src: url("../../../assets/fonts/SVN-Reliant.ttf");
 }
 
+.GlobalBanner {
+  background-color: #15a66d;
+  // position: relative;
+  // top: 104px;
+  // z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 15px 0;
+  width: 100%;
+  font-family: "CustomFont";
+  font-size: 20px;
+}
 
-@media only screen and (max-width: 600px){
-  .GlobalBanner{
+@media only screen and (max-width: 600px) {
+  .GlobalBanner {
     // top: 70px;
     padding: 10px 0;
   }

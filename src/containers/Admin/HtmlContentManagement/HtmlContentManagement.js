@@ -51,6 +51,9 @@ class HtmlContentManagement extends React.Component {
     let formData = cloneData(htmlContentFormModel);
     for (const key in data) {
       switch (key) {
+        case "searchPlaceHolder":
+          formData[key].value = data[key];
+          break;
         case "bannerSlide":
           for (const i in data[key]) {
             formData.bannerSlide.value.push(data[key][i].image);
@@ -115,6 +118,7 @@ class HtmlContentManagement extends React.Component {
   convertFormDataToData = formData => {
     let data = {
       _id: "htmlContent",
+      searchPlaceHolder: "",
       bannerSlide: [],
       eventSlide: {
         firstSlide: [],
@@ -177,6 +181,11 @@ class HtmlContentManagement extends React.Component {
     for (const key in data) {
       let imgLength, elLength;
       switch (key) {
+        case "searchPlaceHolder":
+          data[key] = formData[key].value
+            ? formData[key].value
+            : "Bạn Muốn Gửi Gắm Yêu Thương Vào Hoa Gì?";
+          break;
         case "bannerSlide":
           imgLength = formData.bannerSlide.value.length;
           elLength = formData.eventLinkBannerSlide.value.length;
@@ -205,7 +214,7 @@ class HtmlContentManagement extends React.Component {
               eventLink: formData.eventLinkFirstEventSlide.value[i]
             });
           }
-          
+
           imgLength = formData.secondEventSlide.value.length;
           elLength = formData.eventLinkSecondEventSlide.value.length;
           for (

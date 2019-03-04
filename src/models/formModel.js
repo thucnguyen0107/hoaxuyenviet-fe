@@ -1,5 +1,5 @@
 import { headerContent } from "../data/data";
-import { getCurrentDate } from '../utilities/fnUtil'
+import { getCurrentDate } from "../utilities/fnUtil";
 
 export const ProductFormModel = {
   _id: {
@@ -178,10 +178,24 @@ export const ProductFormModel = {
     },
     valid: true
   }
-  
 };
 
 export const htmlContentFormModel = {
+  searchPlaceHolder: {
+    elementType: "input",
+    elementConfig: {
+      type: "text",
+      name: "Chữ Khung Tìm Kiếm",
+      placeholder: "Nhập Nội Dung Cho Khung Tìm Kiếm"
+    },
+    value: "",
+    validation: {
+      required: true,
+      errorMessage: "Chưa Nhập Nội Dung Cho Khung Tìm Kiếm"
+    },
+    valid: true
+  },
+
   bannerSlide: {
     elementType: "images",
     elementConfig: {
@@ -390,8 +404,7 @@ export const userProfileFormModel = {
     validation: {
       required: true,
       minLength: 4,
-      errorMessage:
-        "Họ và tên phải từ 4 ký tự!"
+      errorMessage: "Họ và tên phải từ 4 ký tự!"
     },
     valid: true
   },
@@ -451,7 +464,7 @@ export const userProfileFormModel = {
       required: true,
       minLength: 9,
       maxLength: 32,
-      numberValid: '^[0-9]+$',
+      numberValid: "^[0-9]+$",
       errorMessage: "Số điện thoại phải từ 9 đến 32 chữ số!"
     },
     valid: true
@@ -470,7 +483,7 @@ export const userProfileFormModel = {
     },
     valid: true
   }
-}
+};
 
 export const checkoutFormModel = {
   fullName: {
@@ -484,8 +497,7 @@ export const checkoutFormModel = {
     validation: {
       required: true,
       minLength: 4,
-      errorMessage:
-        "Họ và tên phải từ 4 ký tự!"
+      errorMessage: "Họ và tên phải từ 4 ký tự!"
     },
     valid: true
   },
@@ -516,7 +528,7 @@ export const checkoutFormModel = {
       required: true,
       minLength: 9,
       maxLength: 32,
-      numberValid: '^[0-9]+$',
+      numberValid: "^[0-9]+$",
       errorMessage: "Số điện thoại phải từ 9 đến 32 chữ số!"
     },
     valid: true
@@ -545,7 +557,7 @@ export const checkoutFormModel = {
     },
     value: "",
     validation: {
-      required: false,
+      required: false
     },
     valid: true
   },
@@ -558,7 +570,7 @@ export const checkoutFormModel = {
     },
     value: "",
     validation: {
-      required: false,
+      required: false
     },
     valid: true
   },
@@ -567,11 +579,12 @@ export const checkoutFormModel = {
     elementConfig: {
       type: "text",
       placeholder: "Địa Chỉ",
-      name: "Địa Chỉ Người Nhận (nếu không nhập thì địa chỉ cá nhân của bạn sẽ là địa chỉ nhận hàng)"
+      name:
+        "Địa Chỉ Người Nhận (nếu không nhập thì địa chỉ cá nhân của bạn sẽ là địa chỉ nhận hàng)"
     },
     value: "",
     validation: {
-      required: false,
+      required: false
     },
     valid: true
   },
@@ -609,11 +622,10 @@ export const checkoutFormModel = {
       name: "Ghi Chú"
     },
     value: "",
-    validation: {
-    },
+    validation: {},
     valid: true
   }
-}
+};
 
 export const BlogFormModel = {
   _id: {
@@ -679,13 +691,13 @@ export const BlogFormModel = {
 
 export const registerFormModel = {
   telephone: {
-    elementType: 'input',
+    elementType: "input",
     elementConfig: {
-      type: 'number',
-      placeholder: 'Vui Lòng Nhập Số Điện Thoại Của Bạn',
-      name: 'Tài Khoản Đăng Nhập (Số Điện Thoại)'
+      type: "number",
+      placeholder: "Vui Lòng Nhập Số Điện Thoại Của Bạn",
+      name: "Tài Khoản Đăng Nhập (Số Điện Thoại)"
     },
-    value: '',
+    value: "",
     validation: {
       required: true,
       minLength: 10,
@@ -696,13 +708,13 @@ export const registerFormModel = {
     valid: true
   },
   password: {
-    elementType: 'input',
+    elementType: "input",
     elementConfig: {
-      type: 'password',
-      placeholder: 'Vui Lòng Nhập Mật Khẩu Của Bạn',
-      name: 'Mật Khẩu'
+      type: "password",
+      placeholder: "Vui Lòng Nhập Mật Khẩu Của Bạn",
+      name: "Mật Khẩu"
     },
-    value: '',
+    value: "",
     validation: {
       required: true,
       minLength: 5,
@@ -710,7 +722,7 @@ export const registerFormModel = {
       letterValid: /^[a-zA-Z]+$/,
       errorMessage: "Mật khẩu phải nhiều hơn 5 ký tự và ít hơn 32 ký tự"
     },
-    valid: true,
+    valid: true
   },
   // passwordConfirm: {
   //   elementType: 'input',
@@ -729,51 +741,51 @@ export const registerFormModel = {
   //   valid: true,
   // },
   name: {
-    elementType: 'input',
+    elementType: "input",
     elementConfig: {
-      type: 'text',
-      placeholder: 'Vui Lòng Nhập Họ Tên Của Bạn',
-      name: 'Họ và Tên'
+      type: "text",
+      placeholder: "Vui Lòng Nhập Họ Tên Của Bạn",
+      name: "Họ và Tên"
     },
-    value: '',
+    value: "",
     validation: {
       required: true,
       minLength: 4,
       letterValid: /^[a-zA-Z]+$/,
       errorMessage: "Họ và tên phải có nhiều hơn 4 ký tự "
     },
-    valid: true,
+    valid: true
   },
   email: {
-    elementType: 'input',
+    elementType: "input",
     elementConfig: {
-      type: 'email',
-      placeholder: 'Vui Lòng Nhập Địa Chỉ E-Mail Của Bạn',
-      name: 'E-Mail'
+      type: "email",
+      placeholder: "Vui Lòng Nhập Địa Chỉ E-Mail Của Bạn",
+      name: "E-Mail"
     },
-    value: '',
+    value: "",
     validation: {
       required: true,
       letterValid: /^[a-zA-Z]+$/,
       errorMessage: "Email Phải Đúng Định Dạng"
     },
-    valid: true,
+    valid: true
   },
   address: {
-    elementType: 'input',
+    elementType: "input",
     elementConfig: {
-      type: 'text',
-      placeholder: 'Vui Lòng nhập Địa Chỉ Của Bạn',
-      name: 'Địa Chỉ'
+      type: "text",
+      placeholder: "Vui Lòng nhập Địa Chỉ Của Bạn",
+      name: "Địa Chỉ"
     },
-    value: '',
+    value: "",
     validation: {
       required: true,
       minLength: 5,
       letterValid: /^[a-zA-Z]+$/,
       errorMessage: "Địa chỉ phải có nhiều hơn 5 ký tự "
     },
-    valid: true,
+    valid: true
   },
   birth: {
     elementType: "date",
@@ -801,5 +813,5 @@ export const registerFormModel = {
       errorMessage: "Vui Lòng Chọn Giới Tính!"
     },
     valid: true
-  },
-}
+  }
+};
