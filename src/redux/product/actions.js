@@ -14,6 +14,15 @@ const getProductList = res => {
   };
 };
 
+// get product list from server for admin page
+const getProductListFromSVAdminPage = () => {
+  return dispatch => {
+    axios.get(endPoints.PRODUCT_LIST_ADMIN_API).then(data => {
+      dispatch(getProductList(data));
+    });
+  };
+};
+
 // get product list from server
 const getProductListFromSV = () => {
   return dispatch => {
@@ -40,7 +49,7 @@ const createNewProduct = data => {
         dispatch(addNewProduct(data));
       })
       .catch(err =>
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : err.response.data.code === "006"
           ? showNotification({
@@ -77,7 +86,7 @@ const updateProductToSV = (id, data) => {
         dispatch(updateProductById(id, data));
       })
       .catch(err => {
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : showNotification({
               type: "error",
@@ -103,7 +112,7 @@ const deleteProductToSV = id => {
       .delete(endPoints.PRODUCT_API + id)
       .then(() => dispatch(deleteProductById(id)))
       .catch(err =>
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : showNotification({
               type: "error",
@@ -120,6 +129,7 @@ const actions = {
   UPDATE_PRODUCT_BY_ID,
   DELETE_PRODUCT_BY_ID,
   getProductListFromSV,
+  getProductListFromSVAdminPage,
   createNewProduct,
   updateProductToSV,
   deleteProductToSV

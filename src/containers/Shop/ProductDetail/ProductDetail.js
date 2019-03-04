@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import Actions from "../../../redux/rootActions";
 import ImageGallery from "react-image-gallery";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 // function CustomNextArrow(props) {
 //   const { className, style, onClick } = props;
@@ -345,10 +346,15 @@ class ProductDetail extends React.Component {
                             {convertItemToName(
                               this.state.product.type,
                               "type"
-                            ).map((name, index) => (
-                              <Tag color="cyan" key={index}>
-                                {name}
-                              </Tag>
+                            ).map((item, index) => (
+                              <Link
+                                key={index}
+                                to={`/category/type/${item.id}`}
+                              >
+                                <Tag color="cyan" key={index}>
+                                  {item.subName}
+                                </Tag>
+                              </Link>
                             ))}
                           </span>
                         </li>
@@ -358,10 +364,15 @@ class ProductDetail extends React.Component {
                             {convertItemToName(
                               this.state.product.form,
                               "form"
-                            ).map((name, index) => (
-                              <Tag color="cyan" key={index}>
-                                {name}
-                              </Tag>
+                            ).map((item, index) => (
+                              <Link
+                                key={index}
+                                to={`/category/form/${item.id}`}
+                              >
+                                <Tag color="cyan" key={index}>
+                                  {item.subName}
+                                </Tag>
+                              </Link>
                             ))}
                           </span>
                         </li>
@@ -371,10 +382,15 @@ class ProductDetail extends React.Component {
                             {convertItemToName(
                               this.state.product.color,
                               "color"
-                            ).map((name, index) => (
-                              <Tag color="cyan" key={index}>
-                                {name}
-                              </Tag>
+                            ).map((item, index) => (
+                              <Link
+                                key={index}
+                                to={`/category/color/${item.id}`}
+                              >
+                                <Tag color="cyan" key={index}>
+                                  {item.subName}
+                                </Tag>
+                              </Link>
                             ))}
                           </span>{" "}
                         </li>

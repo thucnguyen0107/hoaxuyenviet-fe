@@ -2,8 +2,8 @@ import axios from "axios";
 import { endPoints } from "../../services/config";
 import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
 
-const GET_ORDER_LIST = "GET_PRODUCT_LIST";
-const UPDATE_ORDER_BY_ID = "UPDATE_PRODUCT_BY_ID";
+const GET_ORDER_LIST = "GET_ORDER_LIST";
+const UPDATE_ORDER_BY_ID = "UPDATE_ORDER_BY_ID";
 
 // get ORDER list
 const getOrderList = res => {
@@ -43,7 +43,7 @@ const updateOrderToSV = (id, data) => {
         dispatch(updateOrderById(id, data));
       })
       .catch(err => {
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : showNotification({
               type: "error",

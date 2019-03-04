@@ -165,6 +165,15 @@ export const ProductFormModel = {
     validation: {},
     valid: true
   },
+  visible: {
+    elementType: "switch",
+    elementConfig: {
+      name: "Hiện Sản Phẩm"
+    },
+    value: true,
+    validation: {},
+    valid: true
+  },
   description: {
     elementType: "editor",
     elementConfig: {
@@ -618,8 +627,8 @@ export const checkoutFormModel = {
     elementType: "textarea",
     elementConfig: {
       type: "text",
-      placeholder: "Ghi Chú",
-      name: "Ghi Chú"
+      placeholder: "Ghi Chú Cho Đơn Hàng",
+      name: "Ghi Chú Cho Đơn Hàng"
     },
     value: "",
     validation: {},
