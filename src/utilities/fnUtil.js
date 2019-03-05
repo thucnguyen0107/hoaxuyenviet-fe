@@ -136,11 +136,11 @@ export const getDate = data => {
 export const createContentHtmlString = (content, onlyFirst = false) => {
   return onlyFirst
     ? {
-      __html: content.length > 33 ? content.slice(0, 33) + "..." : content
-    }
+        __html: content.length > 33 ? content.slice(0, 33) + "..." : content
+      }
     : {
-      __html: content
-    };
+        __html: content
+      };
 };
 
 export const createOrderId = phone => {
@@ -159,20 +159,39 @@ export const createOrderId = phone => {
   return orderId;
 };
 
-export const convertStatus = (status) => {
+export const change_Unicode = alias => {
+  let str = alias;
+  str = str.toLowerCase();
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+  str = str.replace(/đ/g, "d");
+  str = str.replace(
+    /!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\'|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g,
+    " "
+  );
+  str = str.replace(/ + /g, " ");
+  str = str.trim();
+  return str;
+};
+
+export const convertStatus = status => {
   let res = "";
   switch (status) {
-    case 'PENDING':
-      res = "Đang Xử Lý"
+    case "PENDING":
+      res = "Đang Xử Lý";
       break;
-    case 'DELIVERING':
-      res = "Đang Giao Hàng"
+    case "DELIVERING":
+      res = "Đang Giao Hàng";
       break;
-    case 'COMPLETED':
-      res = "Hoàn Thành"
+    case "COMPLETED":
+      res = "Hoàn Thành";
       break;
     default:
-    break;
+      break;
   }
   return res;
-}
+};

@@ -1,6 +1,10 @@
 import axios from "axios";
 import { endPoints } from "../../services/config";
-import { clearAuthUser, showNotification } from "../../utilities/fnUtil";
+import {
+  clearAuthUser,
+  showNotification,
+  change_Unicode
+} from "../../utilities/fnUtil";
 
 const GET_PRODUCT_LIST = "GET_PRODUCT_LIST";
 const ADD_NEW_PRODUCT = "ADD_NEW_PRODUCT";
@@ -43,6 +47,7 @@ const addNewProduct = res => {
 // create new product
 const createNewProduct = data => {
   return dispatch => {
+    data.searchName = change_Unicode(data.productName);
     axios
       .post(endPoints.PRODUCT_API, data)
       .then(() => {
@@ -79,6 +84,7 @@ const updateProductById = (id, data) => {
 
 // update product to server
 const updateProductToSV = (id, data) => {
+  data.searchName = change_Unicode(data.productName);
   return dispatch => {
     axios
       .patch(endPoints.PRODUCT_API + id, data)
