@@ -130,6 +130,7 @@ class ProductManagement extends React.Component {
             key: item._id,
             _id: item._id,
             productName: item.productName,
+            visible: item.visible,
             images: item.images,
             price: item.price,
             discount: item.discount,
@@ -155,7 +156,7 @@ class ProductManagement extends React.Component {
         </div>
         <div>
           <Table
-          style={{textTransform:'capitalize'}}
+            style={{ textTransform: "capitalize" }}
             columns={columns}
             dataSource={data}
             bordered
@@ -220,7 +221,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getListProduct: () =>
-      dispatch(Actions.productActions.getProductListFromSV()),
+      dispatch(Actions.productActions.getProductListFromSVAdminPage()),
     createNewProduct: data =>
       dispatch(Actions.productActions.createNewProduct(data)),
     updateProductById: (id, data) =>

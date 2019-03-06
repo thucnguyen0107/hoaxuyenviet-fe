@@ -17,9 +17,12 @@ const updateHtmlContentToSV = data => {
     Axios.post(endPoints.HTML_CONTENT, data)
       .then(() => dispatch(updateHtmlContent(data)))
       .catch(err => {
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
-          : showNotification({type: 'error', message: 'Lỗi Cập Nhật Sản Phẩm! Vui Lòng Cập Nhật Lại!'});
+          : showNotification({
+              type: "error",
+              message: "Lỗi Cập Nhật Sản Phẩm! Vui Lòng Cập Nhật Lại!"
+            });
       });
 };
 
@@ -35,7 +38,11 @@ const getHtmlContentFromSV = () => {
     Axios.get(endPoints.HTML_CONTENT)
       .then(res => dispatch(getHtmlContent(res)))
       .catch(err =>
-        showNotification({type: 'error', message: 'Không Thể Lấy Dữ Liệu Từ Server! Vui Lòng Kiểm Tra Server Hoặc Thử Lại!'})
+        showNotification({
+          type: "error",
+          message:
+            "Không Thể Lấy Dữ Liệu Từ Server! Vui Lòng Kiểm Tra Server Hoặc Thử Lại!"
+        })
       );
 };
 

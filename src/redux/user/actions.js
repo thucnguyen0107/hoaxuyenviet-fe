@@ -207,7 +207,7 @@ const deleteUserToSV = id => {
       .delete(endPoints.USER_API + id)
       .then(() => dispatch(deleteUserById(id)))
       .catch(err =>
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : showNotification({
               type: "error",

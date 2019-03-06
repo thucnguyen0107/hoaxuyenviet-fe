@@ -2,29 +2,48 @@ import { showNotification, cloneData } from "../utilities/fnUtil";
 const saveCartItemLSGuest = item => {
   let productData;
   productData = cloneData(item);
-  if(window.$('#input-quantity').length){  // Check if input-quantity exists
+  if (window.$("#input-quantity").length) {
+    // Check if input-quantity exists
     let quantity = document.getElementById("input-quantity");
-    // assign item to data variable
+    if (quantity.value <= 0) {
+      showNotification({
+        type: "error",
+        message: "Số Lượng Sản Phẩm Phải Lớn Hơn 0"
+      });
+    } else {
       // Add quantity use input to product data
       productData.quantity = parseFloat(quantity.value);
-  }else{
-     // Add quantity use input to product data
-     productData.quantity = parseFloat(1);
+      // Add quantity use input to product data
+      // create array in local storage
+      let arrProductListLocalStorage = [];
+      // Parse the serialized data back into an aray of objects
+      arrProductListLocalStorage = getCartFromLS();
+      // if duplicate product, just add quantity
+      arrProductListLocalStorage = checkExistingItem(
+        productData,
+        arrProductListLocalStorage
+      );
+      // Re-serialize the array back into a string and store it in localStorage
+      localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
+      showNotification({ message: "Lưu Vào Giỏ Hàng Thành Công!" });
+    }
+  } else {
+    // Add quantity use input to product data
+    productData.quantity = parseFloat(1);
+    // create array in local storage
+    let arrProductListLocalStorage = [];
+    // Parse the serialized data back into an aray of objects
+    arrProductListLocalStorage = getCartFromLS();
+    // if duplicate product, just add quantity
+    arrProductListLocalStorage = checkExistingItem(
+      productData,
+      arrProductListLocalStorage
+    );
+    // Re-serialize the array back into a string and store it in localStorage
+    localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
+    showNotification({ message: "Lưu Vào Giỏ Hàng Thành Công!" });
   }
-  // create array in local storage
-  let arrProductListLocalStorage = [];
-  // Parse the serialized data back into an aray of objects
-  arrProductListLocalStorage = getCartFromLS();
-  // if duplicate product, just add quantity
-  arrProductListLocalStorage = checkExistingItem(
-    productData,
-    arrProductListLocalStorage
-  );
-  // Re-serialize the array back into a string and store it in localStorage
-  localStorage.setItem("list", JSON.stringify(arrProductListLocalStorage));
-  showNotification({ message: 'Lưu Vào Giỏ Hàng Thành Công!' })
 };
-
 
 const checkExistingItem = (product, arr) => {
   let isExist = false;
@@ -74,13 +93,14 @@ const checkExistingItem = (product, arr) => {
 //   }
 // }
 
-
 const getCartFromLS = () => {
   return JSON.parse(localStorage.getItem("list")) || [];
-}
+};
 
 const cartService = {
-  saveCartItemLSGuest, getCartFromLS, checkExistingItem
-}
+  saveCartItemLSGuest,
+  getCartFromLS,
+  checkExistingItem
+};
 
 export default cartService;

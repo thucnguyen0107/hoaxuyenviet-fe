@@ -40,7 +40,7 @@ const createNewBlog = data => {
         dispatch(addNewBlog(data));
       })
       .catch(err =>
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : err.response.data.code === "006"
           ? showNotification({
@@ -77,7 +77,7 @@ const updateBlogToSV = (id, data) => {
         dispatch(updateBlogById(id, data));
       })
       .catch(err => {
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : showNotification({
               type: "error",
@@ -103,7 +103,7 @@ const deleteBlogToSV = id => {
       .delete(endPoints.BLOG_API + id)
       .then(() => dispatch(deleteBlogById(id)))
       .catch(err =>
-        err.response.data.code === "002"
+        err.response && err.response.data.code === "002"
           ? clearAuthUser()
           : showNotification({
               type: "error",

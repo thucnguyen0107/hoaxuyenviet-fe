@@ -26,35 +26,35 @@ const getColumnSearchProps = (
     confirm,
     clearFilters
   }) => (
-      <div style={{ padding: 8 }}>
-        <Input
-          ref={node => {
-            searchInput = node;
-          }}
-          placeholder={`Tìm Theo ${name}`}
-          value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => handleSearch(selectedKeys, confirm)}
-          style={{ width: 188, marginBottom: 8, display: "block" }}
-        />
-        <Button
-          type="primary"
-          onClick={() => handleSearch(selectedKeys, confirm)}
-          icon="search"
-          size="small"
-          style={{ width: 90, marginRight: 8 }}
-        >
-          Tìm
+    <div style={{ padding: 8 }}>
+      <Input
+        ref={node => {
+          searchInput = node;
+        }}
+        placeholder={`Tìm Theo ${name}`}
+        value={selectedKeys[0]}
+        onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+        onPressEnter={() => handleSearch(selectedKeys, confirm)}
+        style={{ width: 188, marginBottom: 8, display: "block" }}
+      />
+      <Button
+        type="primary"
+        onClick={() => handleSearch(selectedKeys, confirm)}
+        icon="search"
+        size="small"
+        style={{ width: 90, marginRight: 8 }}
+      >
+        Tìm
       </Button>
-        <Button
-          onClick={() => handleReset(clearFilters)}
-          size="small"
-          style={{ width: 90 }}
-        >
-          Xóa
+      <Button
+        onClick={() => handleReset(clearFilters)}
+        size="small"
+        style={{ width: 90 }}
+      >
+        Xóa
       </Button>
-      </div>
-    ),
+    </div>
+  ),
   filterIcon: filtered => (
     <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
   ),
@@ -99,16 +99,19 @@ const getColumnSearchProps = (
       case "birthDate":
         return formatDate(item, true);
       case "status":
-        if (item === "PENDING") return <Tag color="#87d068">{convertStatus(item)}</Tag>;
-        if (item === "DELIVERING") return <Tag color="#108ee9">{convertStatus(item)}</Tag>;
-        if (item === "COMPLETED") return <Tag color="#9e0b0b">{convertStatus(item)}</Tag>;
+        if (item === "PENDING")
+          return <Tag color="#87d068">{convertStatus(item)}</Tag>;
+        if (item === "DELIVERING")
+          return <Tag color="#108ee9">{convertStatus(item)}</Tag>;
+        if (item === "COMPLETED")
+          return <Tag color="#9e0b0b">{convertStatus(item)}</Tag>;
         break;
       case "category":
         return (
           <span>
-            {convertItemToName(item, categoryType).map(tag => (
-              <Tag color="blue" key={tag}>
-                {tag}
+            {convertItemToName(item, categoryType).map((tag, index) => (
+              <Tag color="blue" key={index}>
+                {tag.subName}
               </Tag>
             ))}
           </span>
@@ -147,6 +150,7 @@ export const createDataProductListColumns = (
         searchInput
       )
     },
+
     {
       title: "Tên",
       dataIndex: "productName",
@@ -162,6 +166,12 @@ export const createDataProductListColumns = (
       )
     },
     {
+      title: "Hiện Sản Phẩm",
+      dataIndex: "visible",
+      key: "visible",
+      render: item => <Switch size="small" checked={item} disabled />
+    },
+    {
       title: "Hình Ảnh",
       key: "images",
       dataIndex: "images",
@@ -170,26 +180,28 @@ export const createDataProductListColumns = (
           className={"gallery_zoom_admin" + record._id}
           onLoad={initGalleryZoom(".gallery_zoom_admin" + record._id)}
         >
-          {images ? images.map((img, index) => (
-            <a
-              href={img}
-              key={index}
-              style={{
-                width: "50px",
-                height: "50px",
-                display: "inline-block",
-                marginRight: "5px"
-              }}
-            >
-              <img
-                src={img}
-                alt="Error"
-                width="50"
-                height="50"
-                style={{ pointerEvents: "none" }}
-              />
-            </a>
-          )) : null}
+          {images
+            ? images.map((img, index) => (
+                <a
+                  href={img}
+                  key={index}
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    display: "inline-block",
+                    marginRight: "5px"
+                  }}
+                >
+                  <img
+                    src={img}
+                    alt="Error"
+                    width="50"
+                    height="50"
+                    style={{ pointerEvents: "none" }}
+                  />
+                </a>
+              ))
+            : null}
         </div>
       )
     },
@@ -305,9 +317,7 @@ export const createDataProductListColumns = (
         <>
           <Collapse>
             <Collapse.Panel header="Chi Tiết">
-           
-            <div dangerouslySetInnerHTML={createContentHtmlString(content)}></div>
-                
+              <div dangerouslySetInnerHTML={createContentHtmlString(content)} />
             </Collapse.Panel>
           </Collapse>
         </>
@@ -505,29 +515,31 @@ export const createDataOrderListColumns = (
         <>
           <Collapse>
             <Collapse.Panel header="Chi Tiết">
-              {record.length ? record.map(item => {
-                return (
-                  <div key={item._id}>
-                    <span style={{ marginRight: "10px" }}>{`Tên: ${
-                      item.productName
-                      }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
-                      item.quantity
-                      }, Giảm Giá: ${item.discount}`}</span>
-                    {item.images.map((img, index) => {
-                      return (
-                        <img
-                          style={{ marginRight: "5px" }}
-                          key={index}
-                          src={img}
-                          alt="productImage"
-                          height="40"
-                          width="40"
-                        />
-                      );
-                    })}
-                  </div>
-                );
-              }) : null}
+              {record.length
+                ? record.map(item => {
+                    return (
+                      <div key={item._id}>
+                        <span style={{ marginRight: "10px" }}>{`Tên: ${
+                          item.productName
+                        }, Giá: ${formatCurrency(item.price)}, Số Lượng: ${
+                          item.quantity
+                        }, Giảm Giá: ${item.discount}`}</span>
+                        {item.images.map((img, index) => {
+                          return (
+                            <img
+                              style={{ marginRight: "5px" }}
+                              key={index}
+                              src={img}
+                              alt="productImage"
+                              height="40"
+                              width="40"
+                            />
+                          );
+                        })}
+                      </div>
+                    );
+                  })
+                : null}
             </Collapse.Panel>
           </Collapse>
         </>
@@ -679,7 +691,7 @@ export const createDataBlogListColumns = (
             style={{
               width: "50px",
               height: "50px",
-              display: "inline-block",
+              display: "inline-block"
             }}
           >
             <img
@@ -701,7 +713,7 @@ export const createDataBlogListColumns = (
         <>
           <Collapse>
             <Collapse.Panel header="Chi Tiết">
-              <div dangerouslySetInnerHTML={createContentHtmlString(content)}></div>
+              <div dangerouslySetInnerHTML={createContentHtmlString(content)} />
             </Collapse.Panel>
           </Collapse>
         </>

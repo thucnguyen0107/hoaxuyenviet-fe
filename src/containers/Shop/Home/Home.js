@@ -13,29 +13,29 @@ import Iimg from "../../../components/UI/LoadingImage/Limg";
 import "./Home.css";
 import loadingScreen from "../../../utilities/loadingScreen";
 
-function CustomNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style }}
-      onClick={onClick}
-      title="Next"
-    />
-  );
-}
+// function CustomNextArrow(props) {
+//   const { className, style, onClick } = props;
+//   return (
+//     <div
+//       className={className}
+//       style={{ ...style }}
+//       onClick={onClick}
+//       title="Next"
+//     />
+//   );
+// }
 
-function CustomPrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style }}
-      onClick={onClick}
-      title="Prev"
-    />
-  );
-}
+// function CustomPrevArrow(props) {
+//   const { className, style, onClick } = props;
+//   return (
+//     <div
+//       className={className}
+//       style={{ ...style }}
+//       onClick={onClick}
+//       title="Prev"
+//     />
+//   );
+// }
 
 class Body extends React.Component {
   componentWillMount() {
@@ -54,8 +54,9 @@ class Body extends React.Component {
       autoplaySpeed: slideShowDelayTime,
       slidesToShow: 1,
       slidesToScroll: 1,
-      nextArrow: <CustomNextArrow />,
-      prevArrow: <CustomPrevArrow />
+      draggable: false,
+      arrows: false,
+      customPaging: i => <div className="slick-next" />
     };
 
     const settings_tab = {
@@ -67,8 +68,9 @@ class Body extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       adaptiveHeight: true,
-      nextArrow: <CustomNextArrow />,
-      prevArrow: <CustomPrevArrow />
+      draggable: false,
+      arrows: false,
+      customPaging: i => <div className="slick-next" />
     };
 
     let catSliderList = [];
