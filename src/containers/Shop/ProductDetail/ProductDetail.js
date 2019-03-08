@@ -107,6 +107,7 @@ class ProductDetail extends React.Component {
       marginTop: "10px",
       marginLeft: "10px"
     };
+
     this.numberInput = React.createRef();
   }
 
@@ -304,14 +305,13 @@ class ProductDetail extends React.Component {
               <div className="row">
                 <div id="content" className="col-sm-12 productpage">
                   <div className="row">
-                    <div className="col-sm-8 product-left">
+                    <div className="col-sm-8 product-left text_center">
                       <div className="product-info">
                         <div className="left product-image thumbnails">
                           <ImageGallery
-                            showFullscreenButton={false}
+                            // showFullscreenButton={false}
                             showPlayButton={false}
                             showNav={false}
-                            sizes
                             items={imagesArray}
                           />
                         </div>

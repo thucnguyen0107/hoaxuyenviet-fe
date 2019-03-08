@@ -627,7 +627,8 @@ export const checkoutFormModel = {
     elementType: "textarea",
     elementConfig: {
       type: "text",
-      placeholder: "Ghi Chú Cho Đơn Hàng",
+      placeholder:
+        "Ghi Chú Thêm Về Đơn Hàng, Ví Dụ: Thời Gian Giao Hàng, Dòng Chữ Trên Sản Phẩm Hay Những Ghi Chú Cụ Thể Khác",
       name: "Ghi Chú Cho Đơn Hàng"
     },
     value: "",

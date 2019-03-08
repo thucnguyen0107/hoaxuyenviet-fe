@@ -1,0 +1,10 @@
+.text_center {
+  text-align: center;
+}
+.image-gallery-fullscreen-button {
+  height: 500px;
+  width: -webkit-fill-available;
+  opacity: 0;
+  top: 0;
+  left: 0;
+}

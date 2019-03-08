@@ -112,6 +112,7 @@ class Search extends React.Component {
   }
   componentDidUpdate() {
     window.gridResize();
+    document.getElementById("searchInput").value = "";
   }
   render() {
     return (
