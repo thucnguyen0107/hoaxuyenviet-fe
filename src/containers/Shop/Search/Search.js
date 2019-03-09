@@ -8,7 +8,7 @@ import classes from "./Search.scss";
 import { convertFilters } from "../../../utilities/categoriesUtil";
 import FilterBar from "../../../components/UI/FilterBar";
 import { visibleItems } from "../../../services/config";
-import { isNotEmpty } from "../../../utilities/fnUtil";
+import { isNotEmpty, change_Unicode } from "../../../utilities/fnUtil";
 class Search extends React.Component {
   catParams;
   filterParams = {
@@ -60,7 +60,9 @@ class Search extends React.Component {
         : "";
     loadingScreen.showLoading();
     axios
-      .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText })
+      .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, {
+        name: change_Unicode(searchText)
+      })
       .then(res => {
         this.setState(
           {
@@ -84,7 +86,9 @@ class Search extends React.Component {
         : "";
     loadingScreen.showLoading();
     axios
-      .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, { name: searchText })
+      .post(endPoints.GET_PRODUCT_LIST_BY_SEARCH, {
+        name: change_Unicode(searchText)
+      })
       .then(res => {
         this.setState(
           {
