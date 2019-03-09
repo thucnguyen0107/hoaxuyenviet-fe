@@ -1,7 +1,7 @@
-.Dark {
+.UnDark {
   transition: opacity 0.5s ease-in;
+  opacity: 0;
   display: block;
-  opacity: 0.5;
   pointer-events: none;
   background-color: rgba(45, 45, 45, 0.65);
   position: fixed;
@@ -10,16 +10,14 @@
   right: 0;
   height: calc(100vh + 40px);
   z-index: 19000;
-  pointer-events: none;
   overflow: hidden;
 }
-.UnDark {
+/* .UnDark {
   transition: opacity 0.3s ease-in;
-  display: block;
   pointer-events: all;
   opacity: 1;
   overflow: visible;
-}
+} */
 
 #flowerInput input[type="search"]::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */

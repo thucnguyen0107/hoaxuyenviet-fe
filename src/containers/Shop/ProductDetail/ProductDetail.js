@@ -309,7 +309,7 @@ class ProductDetail extends React.Component {
                       <div className="product-info">
                         <div className="left product-image thumbnails">
                           <ImageGallery
-                            // showFullscreenButton={false}
+                            showFullscreenButton={false}
                             showPlayButton={false}
                             showNav={false}
                             items={imagesArray}

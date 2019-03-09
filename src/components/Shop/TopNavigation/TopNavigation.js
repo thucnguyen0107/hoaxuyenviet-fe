@@ -16,20 +16,24 @@ function focusSelected() {
   document.body.style.overflow = "hidden";
 
   const UnDark = document.querySelector(".UnDark");
-  if (UnDark.classList.contains("UnDark")) {
-    UnDark.classList.remove("UnDark");
-    UnDark.classList.add("Dark");
-  }
+  UnDark.style.pointerEvents = "all";
+  UnDark.style.opacity = "1";
+  // if (UnDark.classList.contains("UnDark")) {
+  //   UnDark.classList.remove("UnDark");
+  //   UnDark.classList.add("Dark");
+  // }
 }
 
 function blurSelected() {
   document.body.style.overflow = "visible";
 
-  const Dark = document.querySelector(".Dark");
-  if (Dark.classList.contains("Dark")) {
-    Dark.classList.remove("Dark");
-    Dark.classList.add("UnDark");
-  }
+  const UnDark = document.querySelector(".UnDark");
+  UnDark.style.pointerEvents = "none";
+  UnDark.style.opacity = "0";
+  // if (Dark.classList.contains("Dark")) {
+  //   Dark.classList.remove("Dark");
+  //   Dark.classList.add("UnDark");
+  // }
 }
 
 // const closeMenu = () => {

@@ -24,8 +24,8 @@ function addProductToCart(authUser, product, cart, fn) {
 const productCard = props => {
   let styleImage_ratio_2_3;
   styleImage_ratio_2_3 = {
-    width: "300px",
-    height: "400px"
+    width: "330px",
+    height: "500px"
   };
 
   return (
