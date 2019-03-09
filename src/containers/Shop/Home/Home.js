@@ -122,12 +122,12 @@ class Body extends React.Component {
 
               {/**End Slider */}
 
-              {/**Test Category Block SlideShow */}
+              {/** Category Block SlideShow */}
 
               {isNotEmpty(this.props.htmlContentModel.eventSlide) ? (
                 <Slider {...settings_tab}>{catSliderList}</Slider>
               ) : null}
-              {/**END Test Category Block SlideShow */}
+              {/**  Category Block SlideShow */}
 
               {/*--------------TAB CATEGORY --------------- */}
               <div id="Tab_Category_Slider" className="category_tab box">
